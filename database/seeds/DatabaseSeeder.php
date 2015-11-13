@@ -1,5 +1,6 @@
 <?php
 
+use Codice\Note;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,15 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(UserTableSeeder::class);
+        Note::create([
+            'user_id' => 1,
+            'content' => '<p>Lorem ipsum <strong>dolor</strong> si amet.</p>',
+        ]);
+
+        Note::create([
+            'user_id' => 1,
+            'content' => '<p>A bit more of content here.</p>',
+        ]);
 
         Model::reguard();
     }
