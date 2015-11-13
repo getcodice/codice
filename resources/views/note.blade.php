@@ -6,11 +6,11 @@
       {!! $note->content !!}
     </div>
     <div class="panel-footer">
-        <span data-toggle="tooltip" title="{{ $note->created_at }}"><span class="fa fa-clock-o"></span> {{ $note->created_at->diffForHumans() }}</span>
+        <span data-toggle="tooltip" title="{{ $note->created_at }}">@icon('clock-o') {{ $note->created_at->diffForHumans() }}</span>
         <span class="pull-right hidden-print note-buttons">
-             <a href=""><span class="fa fa-check"></span> Wykonane</a>
-             <a href=""><span class="fa fa-pencil"></span> Edytuj</a>
-             <a href="" class="confirm-deletion"><span class="fa fa-trash-o"></span> Usuń</a>
+             <a href="">@icon('check') Wykonane</a>
+             <a href="">@icon('pencil') Edytuj</a>
+             <a href="" class="confirm-deletion">@icon('trash-o') Usuń</a>
         </span>
     </div>
 </article>

@@ -21,19 +21,19 @@
             </div>
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav">
-                    <li><a href=""><span class="fa fa-plus"></span> Dodaj</a></li>
-                    <li><a href=""><span class="fa fa-tags"></span> Etykiety</a></li>
-                    <li><a href=""><span class="fa fa-bell"></span> Przypomnienia</a></li>
+                    <li><a href="">@icon('plus') Dodaj</a></li>
+                    <li><a href="">@icon('tags') Etykiety</a></li>
+                    <li><a href="">@icon('bell') Przypomnienia</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="navbar-text nav-search-label"><span class="fa fa-search"></span></li>
+                    <li class="navbar-text nav-search-label">@icon('search')</li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> Sobak <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@icon('user') Sobak <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href=""><span class="fa fa-cog"></span> Ustawienia</a></li>
-                            <li><a href=""><span class="fa fa-bar-chart"></span> Statystyki</a></li>
-                            <li><a href=""><span class="fa fa-sign-out"></span> Wyloguj</a></li>
+                            <li><a href="">@icon('cog') Ustawienia</a></li>
+                            <li><a href="">@icon('bar-chart') Statystyki</a></li>
+                            <li><a href="">@icon('sign-out') Wyloguj</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <input type="search" name="search" class="form-control" placeholder="Szukaj" value="" required>
                     </div>
-                    <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
+                    <button type="submit" class="btn btn-primary">@icon('search')</button>
                 </form>
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 namespace Codice\Providers;
 
+use Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('icon', function($name) {
+            return '<span class="fa fa-' . substr($name, 2, -2) . '"></span>';
+        });
     }
 
     /**
