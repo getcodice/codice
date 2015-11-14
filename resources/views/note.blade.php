@@ -6,7 +6,7 @@
       {!! $note->content !!}
     </div>
     <div class="panel-footer">
-        <span data-toggle="tooltip" title="{{ $note->created_at }}">@icon('clock-o') {{ $note->created_at->diffForHumans() }}</span>
+        <span data-toggle="tooltip" title="{{ $note->created_at->format('d.m.Y H:i') }}">@icon('clock-o') {{ $note->created_at->diffForHumans() }}</span>
         <span class="pull-right hidden-print note-buttons">
              <a href="">@icon('check') @lang('note.buttons.done')</a>
              <a href="">@icon('pencil') @lang('note.buttons.edit')</a>
