@@ -103,6 +103,26 @@ article.panel:hover .note-buttons {
     display: block;
 }
 
+
+// Mobile styling for .note-buttons
+@media (max-width: $screen-sm) {
+    .note-buttons {
+        display: block;
+    }
+}
+
+@media (max-width: $screen-xs) {
+    .note-buttons {
+        a:not(:last-child) {
+            margin-right: 14px;
+        }
+
+        .text {
+            display: none;
+        }
+    }
+}
+
 .alert-fixed {
     cursor: pointer;
     font-weight: bold;
