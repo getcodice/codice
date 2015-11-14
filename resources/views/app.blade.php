@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-                    <span class="sr-only">Rozwiń menu</span>
+                    <span class="sr-only">@lang('app.menu.toggle')</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -21,9 +21,9 @@
             </div>
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav">
-                    <li><a href="">@icon('plus') Dodaj</a></li>
-                    <li><a href="">@icon('tags') Etykiety</a></li>
-                    <li><a href="">@icon('bell') Przypomnienia</a></li>
+                    <li><a href="">@icon('plus') @lang('app.menu.add')</a></li>
+                    <li><a href="">@icon('tags') @lang('app.menu.labels')</a></li>
+                    <li><a href="">@icon('bell') @lang('app.menu.reminders')</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -31,15 +31,15 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@icon('user') Sobak <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">@icon('cog') Ustawienia</a></li>
-                            <li><a href="">@icon('bar-chart') Statystyki</a></li>
-                            <li><a href="">@icon('sign-out') Wyloguj</a></li>
+                            <li><a href="">@icon('cog') @lang('app.menu.settings')</a></li>
+                            <li><a href="">@icon('bar-chart') @lang('app.menu.stats')</a></li>
+                            <li><a href="">@icon('sign-out') @lang('app.menu.logout')</a></li>
                         </ul>
                     </li>
                 </ul>
                 <form action="" method="post" class="navbar-form navbar-right hidden">
                     <div class="form-group">
-                        <input type="search" name="search" class="form-control" placeholder="Szukaj" value="" required>
+                        <input type="search" name="search" class="form-control" placeholder="@lang('app.menu.search-placeholder')" value="" required>
                     </div>
                     <button type="submit" class="btn btn-primary">@icon('search')</button>
                 </form>
