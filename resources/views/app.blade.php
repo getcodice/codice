@@ -21,7 +21,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav">
-                    <li><a href="">@icon('plus') @lang('app.menu.add')</a></li>
+                    <li><a href="{!! route('note.create') !!}">@icon('plus') @lang('app.menu.add')</a></li>
                     <li><a href="">@icon('tags') @lang('app.menu.labels')</a></li>
                     <li><a href="">@icon('bell') @lang('app.menu.reminders')</a></li>
                 </ul>
@@ -48,6 +48,12 @@
     </nav>
 
     <main class="container">
+        @if (Session::has('message'))
+            <div class="alert alert-{{ Session::get('message_type') ?: 'success' }} alert-fixed">
+                <p>{{ Session::get('message') }}</p>
+            </div>
+        @endif
+
         @yield('content')
     </main>
 
