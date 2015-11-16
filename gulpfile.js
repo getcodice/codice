@@ -14,7 +14,12 @@ gulp.task('scripts', function () {
 
 gulp.task('styles', function () {
     return gulp.src('./resources/styles/codice.scss')
-        .pipe(plugins.sass())
+        .pipe(plugins.sass({
+            includePaths: [
+                './bower_components/bootstrap-sass/assets/stylesheets/',
+            ],
+            outputStyle: 'compressed'
+        }))
         .on('error', onError)
         .pipe(plugins.csso())
         .pipe(gulp.dest('./public/assets/css'));

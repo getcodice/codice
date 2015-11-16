@@ -1,0 +1,27 @@
+// Codice brand colors
+$codice-danger:  #e6262e;
+$codice-info:    #74a0db;
+$codice-success: #68b92c;
+$codice-warning: #f6af00;
+
+// Customize bootstrap using variables
+$alert-danger-text:  #fff;
+$alert-info-text:    #fff;
+$alert-success-text: #fff;
+$alert-warning-text: #fff;
+
+$brand-danger:  $codice-danger;
+$brand-info:    $codice-info;
+$brand-success: $codice-success;
+$brand-warning: $codice-warning;
+
+$font-family-base: 'Roboto', sans-serif;
+
+$navbar-inverse-bg: #000;
+$navbar-inverse-color: #fff;
+$navbar-inverse-link-color: #fff;
+
+$state-danger-bg:  $codice-danger;
+$state-info-bg:    $codice-info;
+$state-success-bg: $codice-success;
+$state-warning-bg: $codice-warning;
