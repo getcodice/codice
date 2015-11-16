@@ -14,11 +14,11 @@ var $navSearchForm = $('.navbar-form');
 $navSearchLabel.on('click', function () {
     $navSearchLabel.addClass('hidden');
     $navSearchForm.removeClass('hidden');
+    $('.navbar-form input').focus();
 });
 
-var $alertFixed = $('.alert-fixed');
-$alertFixed.on('click', function () {
-    $alertFixed.slideUp('slow', function () {
-        $alertFixed.remove();
+$('.alert-fixed').on('click', function () {
+    $(this).slideUp('slow', function () {
+        $(this).remove();
     });
 });
