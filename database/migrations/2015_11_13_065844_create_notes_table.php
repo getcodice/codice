@@ -18,7 +18,7 @@ class CreateNotesTable extends Migration
             $table->text('content');
             $table->boolean('status');
             $table->timestamps();
-            $table->dateTime('expires_at');
+            $table->dateTime('expires_at')->nullable();
         });
     }
 

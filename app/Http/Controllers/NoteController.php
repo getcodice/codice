@@ -53,7 +53,7 @@ class NoteController extends Controller
                 'user_id' => 1,
                 'content' => Input::get('content'),
                 'status' => 0,
-                'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : 0,
+                'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null,
             ]);
 
             return Redirect::route('index')->with('message', trans('note.create.success'));
