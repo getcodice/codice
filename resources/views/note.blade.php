@@ -1,6 +1,6 @@
-<article class="panel panel-default">
+<article class="panel panel-{{ $note->state }}">
     <div class="panel-heading">
-        <a href="" title="Przejdź do widoku szczegółowego">Notatka</a>
+        <a href="" title="Przejdź do widoku szczegółowego">{{ trans('note.heading.' . $note->state, ['expires' => isset($note->expires_at) ? $note->expires_at->format('d.m.Y H:i') : null]) }}</a>
     </div>
     <div class="panel-body">
       {!! $note->content !!}
