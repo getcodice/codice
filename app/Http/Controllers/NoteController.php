@@ -2,6 +2,7 @@
 
 namespace Codice\Http\Controllers;
 
+use Auth;
 use Codice\Note;
 use Input;
 use Redirect;
@@ -15,6 +16,11 @@ class NoteController extends Controller
         'expires_at' => 'date',
     ];
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of notes.
      *
@@ -23,8 +29,7 @@ class NoteController extends Controller
     public function getIndex()
     {
         return View::make('index', [
-            // @todo: fix hardcoded user_id
-            'notes' => Note::where('user_id', '=', 1)->orderBy('created_at', 'desc')->get(),
+            'notes' => Note::logged()->orderBy('created_at', 'desc')->get(),
         ]);
     }
 
@@ -49,8 +54,7 @@ class NoteController extends Controller
 
         if ($validator->passes()) {
             Note::create([
-                // @todo: remove hardcoded user ID
-                'user_id' => 1,
+                'user_id' => Auth::id(),
                 'content' => Input::get('content'),
                 'status' => 0,
                 'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null,

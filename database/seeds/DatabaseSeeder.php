@@ -1,6 +1,7 @@
 <?php
 
 use Codice\Note;
+use Codice\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+
+        User::create([
+            'name' => 'test',
+            'email' => 'test@example.com',
+            'password' => bcrypt('test'),
+        ]);
 
         Note::create([
             'user_id' => 1,

@@ -2,6 +2,7 @@
 
 namespace Codice;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 use League\CommonMark\CommonMarkConverter;
 

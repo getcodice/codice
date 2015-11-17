@@ -15,3 +15,7 @@ Route::get('/', ['as' => 'index', 'uses' => 'NoteController@getIndex']);
 
 Route::get('create', ['as' => 'note.create', 'uses' => 'NoteController@getCreate']);
 Route::post('create', 'NoteController@postCreate');
+
+Route::get('login', ['as' => 'user.login', 'uses' => 'UserController@getLogin']);
+Route::post('login', 'UserController@postLogin');
+Route::get('logout', ['as' => 'user.logout', 'uses' => 'UserController@getLogout']);
