@@ -1,5 +1,5 @@
 @extends('app')
 
 @section('content')
-    @each('note', $notes, 'note')
+    @each('note.single', $notes, 'note')
 @stop
