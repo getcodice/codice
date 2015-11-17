@@ -3,6 +3,7 @@
 namespace Codice;
 
 use Illuminate\Database\Eloquent\Model;
+use League\CommonMark\CommonMarkConverter;
 
 class Note extends Model
 {
@@ -42,6 +43,18 @@ class Note extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Mutator for content attribute, which automagically parses Markdown
+     *
+     * @param  string $content
+     * @return string
+     */
+    public function getContentAttribute($content)
+    {
+        $converter = new CommonMarkConverter();
+        return $converter->convertToHtml($content);
+    }
 
     /**
      * Makes current note state easily available as $note->state
