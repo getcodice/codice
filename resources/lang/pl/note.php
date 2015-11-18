@@ -4,11 +4,21 @@ return [
         'edit' => 'Edytuj',
         'done' => 'Wykonano',
         'remove' => 'Usuń',
+        'undone' => 'Niewykonana',
     ],
     'create' => [
         'title' => 'Dodaj nową notatkę',
         'submit' => 'Zapisz',
         'success' => 'Notatka została dodana!',
+    ],
+    'done' => [
+        'done' => 'Notatka oznaczona jako wykonana!',
+        'undone' => 'Notatka oznaczona jako niewykonana.'
+    ],
+    'edit' => [
+        'title' => 'Edytuj notatkę',
+        'submit' => 'Edytuj',
+        'success' => 'Notatka została zmieniona.',
     ],
     'expires_at_help' => 'Zostaw puste, aby nie określać.',
     'expires_at_placeholder' => 'DD.MM.YYYY HH:MM',
@@ -25,9 +35,11 @@ return [
         'reminder_email' => 'Przypomnienie mailowe',
         'reminder_sms' => 'Przypomnienie SMS',
     ],
+    'not-found' => 'Nie znaleziono notatki.',
     'tabs' => [
         'attachments' => 'Załączniki',
         'general' => 'Ogólne',
         'reminders' => 'Przypomnienia',
     ],
+    'removed' => 'Notatka została usunięta.',
 ];

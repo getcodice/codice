@@ -19,3 +19,8 @@ Route::post('create', 'NoteController@postCreate');
 Route::get('login', ['as' => 'user.login', 'uses' => 'UserController@getLogin']);
 Route::post('login', 'UserController@postLogin');
 Route::get('logout', ['as' => 'user.logout', 'uses' => 'UserController@getLogout']);
+
+Route::get('note/{id}/edit', ['as' => 'note.edit', 'uses' => 'NoteController@getEdit']);
+Route::post('note/{id}/edit', 'NoteController@postEdit');
+Route::get('note/{id}/mark', ['as' => 'note.change', 'uses' => 'NoteController@getChangeStatus']);
+Route::get('note/{id}/remove', ['as' => 'note.remove', 'uses' => 'NoteController@getRemove']);
