@@ -36,10 +36,5 @@ return [
         'reminder_sms' => 'Przypomnienie SMS',
     ],
     'not-found' => 'Nie znaleziono notatki.',
-    'tabs' => [
-        'attachments' => 'Załączniki',
-        'general' => 'Ogólne',
-        'reminders' => 'Przypomnienia',
-    ],
     'removed' => 'Notatka została usunięta.',
 ];
