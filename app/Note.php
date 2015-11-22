@@ -15,6 +15,7 @@ class Note extends Model
      * @var array
      */
     protected $appends = [
+        'content_raw',
         'state',
     ];
 
@@ -55,6 +56,16 @@ class Note extends Model
     {
         $converter = new CommonMarkConverter();
         return $converter->convertToHtml($content);
+    }
+
+    /**
+     * Returns unparsed Markdown.
+     *
+     * @return string
+     */
+    public function getContentRawAttribute($content)
+    {
+        return $this->attributes['content'];
     }
 
     /**
