@@ -22,6 +22,24 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label class="control-label" for="labels">@lang('note.labels.labels')</label>
+        <select name="labels[]" class="form-control" id="labels" multiple>
+        @foreach ($labels as $id => $label)
+            <option value="{{ $id }}" {{ in_array($id, $note_labels) ? 'selected' : '' }}>{{ $label }}</option>
+        @endforeach
+        </select>
+    </div>
+
     {!! BootForm::submit(trans('note.edit.submit'), 'btn-primary') !!}
 {!! BootForm::close() !!}
+@stop
+
+@section('footer')
+<script src="{!! asset('assets/js/select2.min.js') !!}"></script>
+<script>
+$("#labels").select2({
+    placeholder: "@lang('note.labels.labels-select')",
+});
+</script>
 @stop

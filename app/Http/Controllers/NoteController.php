@@ -3,6 +3,7 @@
 namespace Codice\Http\Controllers;
 
 use Auth;
+use Codice\Label;
 use Codice\Note;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Input;
@@ -41,7 +42,9 @@ class NoteController extends Controller
      */
     public function getCreate()
     {
-        return View::make('note.create');
+        return View::make('note.create', [
+            'labels' => Label::orderBy('name')->lists('name', 'id'),
+        ]);
     }
 
     /**
@@ -54,12 +57,15 @@ class NoteController extends Controller
         $validator = Validator::make(Input::all(), $this->rules);
 
         if ($validator->passes()) {
-            Note::create([
+            $note = Note::create([
                 'user_id' => Auth::id(),
                 'content' => Input::get('content'),
                 'status' => 0,
                 'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null,
             ]);
+
+            $labels = Input::get('labels', []);
+            $note->labels()->sync($labels);
 
             return Redirect::route('index')->with('message', trans('note.create.success'));
         } else {
@@ -82,7 +88,9 @@ class NoteController extends Controller
         }
 
         return View::make('note.edit', [
+            'labels' => Label::orderBy('name')->lists('name', 'id'),
             'note' => $note,
+            'note_labels' => $note->labels()->lists('id')->toArray(),
         ]);
     }
 
@@ -106,6 +114,9 @@ class NoteController extends Controller
             $note->content = Input::get('content');
             $note->expires_at = Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null;
             $note->save();
+
+            $labels = Input::get('labels', []);
+            $note->labels()->sync($labels);
 
             return Redirect::route('index')->with('message', trans('note.edit.success'));
         } else {

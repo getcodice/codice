@@ -88,6 +88,15 @@ class Note extends Model
     }
 
     /**
+     * Labels that belong to the note
+     *
+     */
+    public function labels()
+    {
+        return $this->belongsToMany('Codice\Label');
+    }
+
+    /**
      * Set query scope to currently logged user.
      *
      */

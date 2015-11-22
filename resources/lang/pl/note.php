@@ -32,6 +32,8 @@ return [
     'labels' => [
         'content' => 'Treść',
         'expires_at' => 'Termin wykonania',
+        'labels' => 'Etykiety',
+        'labels-select' => 'Wyierz etykiety',
         'reminder_email' => 'Przypomnienie mailowe',
         'reminder_sms' => 'Przypomnienie SMS',
     ],

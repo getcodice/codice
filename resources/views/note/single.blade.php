@@ -3,7 +3,20 @@
         <a href="" title="Przejdź do widoku szczegółowego">{{ trans('note.heading.' . $note->state, ['expires' => isset($note->expires_at) ? $note->expires_at->format('d.m.Y H:i') : null]) }}</a>
     </div>
     <div class="panel-body">
-      {!! $note->content !!}
+        @if (count($note->labels))
+        <ul class="note-labels list-inline pull-right">
+            @foreach ($note->labels as $label)
+            <li><a href="{!! route('label', ['id' => $label->id]) !!}" class="label label-{{ config('labels.colors.' . $label->color) }}">{{ $label->name }}</a></li>
+            @endforeach
+        </ul>
+        @endif
+        @if (count($note->labels))
+        <div class="note-content has-labels">
+        @endif
+        {!! $note->content !!}
+        @if (count($note->labels))
+        </div>
+        @endif
     </div>
     <div class="panel-footer">
         <span data-toggle="tooltip" title="{{ $note->created_at->format('d.m.Y H:i') }}">@icon('clock-o') {{ $note->created_at->diffForHumans() }}</span>

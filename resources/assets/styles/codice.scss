@@ -1,5 +1,6 @@
 @import "variables";
 @import "../../../bower_components/font-awesome/scss/font-awesome";
+@import "../../../bower_components/select2/dist/css/select2.min";
 
 /*****************************************************************
  * Bootstrap imports
@@ -68,3 +69,4 @@
 @import "basic";
 @import "notes";
 @import "alerts";
+@import "forms";

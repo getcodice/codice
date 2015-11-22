@@ -7,6 +7,17 @@ code {
     color: #000;
 }
 
+a.action {
+    color: #666;
+    font-size: 0.9em;
+    margin-right: 6px;
+    text-decoration: none;
+
+    &:hover {
+        color: #000;
+    }
+}
+
 .nav-search-label {
     cursor: pointer;
 }
