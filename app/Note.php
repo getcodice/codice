@@ -3,6 +3,7 @@
 namespace Codice;
 
 use Auth;
+use Codice\Exceptions\NoteNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 use League\CommonMark\CommonMarkConverter;
 
@@ -45,6 +46,24 @@ class Note extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Find note owned by currently logged user.
+     *
+     * @param  $id Note ID
+     * @return Codice\Note
+     * @throws Codice\Exceptions\NoteNotFoundException
+     */
+    public static function findOwned($id)
+    {
+        $note = self::logged()->find($id);
+
+        if (!$note) {
+            throw new NoteNotFoundException;
+        }
+
+        return $note;
+    }
 
     /**
      * Mutator for content attribute, which automagically parses Markdown

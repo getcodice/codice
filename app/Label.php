@@ -3,6 +3,7 @@
 namespace Codice;
 
 use Auth;
+use Codice\Exceptions\LabelNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 
 class Label extends Model
@@ -18,6 +19,24 @@ class Label extends Model
      * Disable automagically handled (created|updated)_at columns.
      */
     public $timestamps = false;
+
+    /**
+     * Find label owned by currently logged user.
+     *
+     * @param  $id Label ID
+     * @return Codice\Label
+     * @throws Codice\Exceptions\NoteNotFoundException
+     */
+    public static function findOwned($id)
+    {
+        $label = self::logged()->find($id);
+
+        if (!$label) {
+            throw new LabelNotFoundException;
+        }
+
+        return $label;
+    }
 
     /**
      * Notes that belong to the label.

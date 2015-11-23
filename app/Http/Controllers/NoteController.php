@@ -5,7 +5,6 @@ namespace Codice\Http\Controllers;
 use Auth;
 use Codice\Label;
 use Codice\Note;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Input;
 use Redirect;
 use Validator;
@@ -80,12 +79,7 @@ class NoteController extends Controller
      */
     public function getEdit($id)
     {
-        try {
-            $note = Note::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('note.not-found'))
-                ->with('message_type', 'danger');
-        }
+        $note = Note::findOwned($id);
 
         return View::make('note.edit', [
             'labels' => Label::orderBy('name')->lists('name', 'id'),
@@ -101,12 +95,7 @@ class NoteController extends Controller
      */
     public function postEdit($id)
     {
-        try {
-            $note = Note::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('note.not-found'))
-                ->with('message_type', 'danger');
-        }
+        $note = Note::findOwned($id);
 
         $validator = Validator::make(Input::all(), $this->rules);
 
@@ -132,12 +121,7 @@ class NoteController extends Controller
      */
     public function getChangeStatus($id)
     {
-        try {
-            $note = Note::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('note.not-found'))
-                ->with('message_type', 'danger');
-        }
+        $note = Note::findOwned($id);
 
         $newStatus = (int) !$note->status;
 
@@ -157,13 +141,7 @@ class NoteController extends Controller
      */
     public function getRemove($id)
     {
-        try {
-            $note = Note::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('note.not-found'))
-                ->with('message_type', 'danger');
-        }
-
+        $note = Note::findOwned($id);
         $note->delete();
 
         return Redirect::route('index')->with('message', trans('note.removed'));

@@ -5,7 +5,6 @@ namespace Codice\Http\Controllers;
 use Auth;
 use Codice\Label;
 use Codice\Note;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Input;
 use Redirect;
 use Validator;
@@ -44,12 +43,7 @@ class LabelController extends Controller
     public function getNotes($id)
     {
         // First, validate existence of label owned by current user
-        try {
-            $label = Label::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('labels.not-found'))
-                ->with('message_type', 'danger');
-        }
+        $label = Label::findOwned($id);
 
         // Then fetch the notes associated with this label
         $notes = Note::whereHas('labels', function ($q) use ($id) {
@@ -102,15 +96,8 @@ class LabelController extends Controller
      */
     public function getEdit($id)
     {
-        try {
-            $label = Label::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('labels.not-found'))
-                ->with('message_type', 'danger');
-        }
-
         return View::make('label.edit', [
-            'label' => $label,
+            'label' => Label::findOwned($id),
         ]);
     }
 
@@ -121,12 +108,7 @@ class LabelController extends Controller
      */
     public function postEdit($id)
     {
-        try {
-            $label = Label::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('labels.not-found'))
-                ->with('message_type', 'danger');
-        }
+        $label = Label::findOwned($id);
 
         $validator = Validator::make(Input::all(), $this->rules);
 
@@ -149,13 +131,7 @@ class LabelController extends Controller
      */
     public function getRemove($id)
     {
-        try {
-            $label = Label::logged()->findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            return Redirect::route('index')->with('message', trans('labels.not-found'))
-                ->with('message_type', 'danger');
-        }
-
+        $label = Label::findOwned($id);
         $label->delete();
 
         return Redirect::route('labels')->with('message', trans('labels.removed'));
