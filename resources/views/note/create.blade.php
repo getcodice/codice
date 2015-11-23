@@ -3,10 +3,10 @@
 @section('content')
 <h2 class="codice-header">@lang('note.create.title')</h2>
 
-{!! BootForm::open(['route' => 'note.create']) !!}
+{!! BootForm::open()->action(route('note.create')) !!}
     <div class="row">
         <div class="col-md-9">
-            {!! BootForm::textarea(trans('note.labels.content'), 'content', ['class' => 'content-textareaa']) !!}
+            {!! BootForm::textarea(trans('note.labels.content'), 'content') !!}
         </div>
         <div class="col-md-3 well">
             {!! BootForm::text(trans('note.labels.expires_at'), 'expires_at')->placeholder(trans('note.expires_at_placeholder'))->helpBlock(trans('note.expires_at_help')) !!}
