@@ -38,10 +38,12 @@
                     </li>
                 </ul>
                 <form action="" method="post" class="navbar-form navbar-right hidden">
-                    <div class="form-group">
+                    <div class="input-group">
                         <input type="search" name="search" class="form-control" placeholder="@lang('app.menu.search-placeholder')" value="" required>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary">@icon('search')</button>
+                        </span>
                     </div>
-                    <button type="submit" class="btn btn-primary">@icon('search')</button>
                 </form>
             </div>
         </div>
