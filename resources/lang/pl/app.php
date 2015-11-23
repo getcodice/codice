@@ -9,5 +9,6 @@ return [
         'settings' => 'Ustawienia',
         'stats' => 'Statystyki',
         'toggle' => 'Rozwiń menu',
+        'upcoming' => 'Nadchodzące',
     ],
 ];

@@ -146,4 +146,22 @@ class NoteController extends Controller
 
         return Redirect::route('index')->with('message', trans('note.removed'));
     }
+
+    /**
+     * Display only upcoming undone notes.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUpcoming()
+    {
+        $notes = Note::logged()
+            ->where('status', 0)
+            ->whereNotNull('expires_at')
+            ->orderBy('expires_at', 'asc')
+            ->get();
+
+        return View::make('index', [
+            'notes' => $notes,
+        ]);
+    }
 }
