@@ -32,6 +32,7 @@ class LabelController extends Controller
             'colors' => config('labels.colors'),
             // @todo: getting number of labeled notes, sorting by it
             'labels' => Label::logged()->get(),
+            'title' => trans('labels.index.title'),
         ]);
     }
 
@@ -54,6 +55,7 @@ class LabelController extends Controller
             'colors' => config('labels.colors'),
             'label' => $label,
             'notes' => $notes,
+            'title' => trans('labels.notes.title', ['label' => $label->name]),
         ]);
     }
 
@@ -64,7 +66,9 @@ class LabelController extends Controller
      */
     public function getCreate()
     {
-        return View::make('label.create');
+        return View::make('label.create', [
+            'title' => trans('labels.create.title'),
+        ]);
     }
 
     /**
@@ -98,6 +102,7 @@ class LabelController extends Controller
     {
         return View::make('label.edit', [
             'label' => Label::findOwned($id),
+            'title' => trans('labels.edit.title'),
         ]);
     }
 

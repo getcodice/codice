@@ -8,6 +8,7 @@ return [
     ],
     'create' => [
         'title' => 'Dodaj nową notatkę',
+        'title_head' => 'Dodaj notatkę',
         'submit' => 'Zapisz',
         'success' => 'Notatka została dodana!',
     ],
@@ -39,4 +40,7 @@ return [
     ],
     'not-found' => 'Nie znaleziono notatki.',
     'removed' => 'Notatka została usunięta.',
+    'upcoming' => [
+        'title' => 'Nadchodzące notatki',
+    ],
 ];

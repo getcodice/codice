@@ -43,6 +43,7 @@ class NoteController extends Controller
     {
         return View::make('note.create', [
             'labels' => Label::orderBy('name')->lists('name', 'id'),
+            'title' => trans('note.create.title_head'),
         ]);
     }
 
@@ -85,6 +86,7 @@ class NoteController extends Controller
             'labels' => Label::orderBy('name')->lists('name', 'id'),
             'note' => $note,
             'note_labels' => $note->labels()->lists('id')->toArray(),
+            'title' => trans('note.edit.title'),
         ]);
     }
 
@@ -162,6 +164,7 @@ class NoteController extends Controller
 
         return View::make('index', [
             'notes' => $notes,
+            'title' => trans('note.upcoming.title'),
         ]);
     }
 }

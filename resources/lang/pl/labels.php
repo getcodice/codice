@@ -29,6 +29,9 @@ return [
         'color' => 'Kolor',
         'name' => 'Nazwa',
     ],
+    'notes' => [
+        'title' => 'Etykieta ":label"',
+    ],
     'not-found' => 'Nie znaleziono etykiety',
     'removed' => 'Etykieta została usunięta.',
 ];
