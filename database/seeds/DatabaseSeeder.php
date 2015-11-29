@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'test',
             'email' => 'test@example.com',
             'password' => bcrypt('test'),
+            'options' => User::$defaultOptions,
         ]);
 
         Note::create([

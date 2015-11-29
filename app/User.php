@@ -17,18 +17,26 @@ class User extends Model implements AuthenticatableContract,
     use Authenticatable, Authorizable, CanResetPassword;
 
     /**
-     * The database table used by the model.
+     * Options and their defaults for every new user.
      *
-     * @var string
+     * @var array
      */
-    protected $table = 'users';
+    public static $defaultOptions = [
+        'notes_per_page' => 15,
+        'phone' => '',
+        'upcoming_period' => 24,
+    ];
+
+    protected $casts = [
+        'options' => 'array',
+    ];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'options'];
 
     /**
      * The attributes excluded from the model's JSON form.

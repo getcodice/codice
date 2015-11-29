@@ -33,4 +33,7 @@ Route::get('label/{id}/edit', ['as' => 'label.edit', 'uses' => 'LabelController@
 Route::post('label/{id}/edit', 'LabelController@postEdit');
 Route::get('label/{id}/remove', ['as' => 'label.remove', 'uses' => 'LabelController@getRemove']);
 
+Route::get('settings', ['as' => 'settings', 'uses' => 'UserController@getSettings']);
+Route::post('settings', 'UserController@postSettings');
+
 Route::get('upcoming', ['as' => 'upcoming', 'uses' => 'NoteController@getUpcoming']);
