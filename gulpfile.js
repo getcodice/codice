@@ -10,6 +10,7 @@ gulp.task('scripts', function () {
         './bower_components/jquery/dist/jquery.min.js',
         './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         './bower_components/select2/dist/js/select2.min.js',
+        './bower_components/jscroll/jquery.jscroll.min.js',
         './resources/assets/scripts/codice.js',
     ]).pipe(concat('codice.js', { separator: ';' }))
       .pipe(gulp.dest('./public/assets/js'));
