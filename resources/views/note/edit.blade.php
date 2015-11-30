@@ -36,7 +36,6 @@
 @stop
 
 @section('footer')
-<script src="{!! asset('assets/js/select2.min.js') !!}"></script>
 <script>
 $("#labels").select2({
     placeholder: "@lang('note.labels.labels-select')",

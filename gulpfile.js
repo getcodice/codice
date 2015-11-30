@@ -3,6 +3,7 @@
 var plugins = require('gulp-load-plugins')();
 var gulp    = require('gulp');
 var gutil   = require('gulp-util');
+var concat  = require('gulp-concat-util');
 
 gulp.task('scripts', function () {
     return gulp.src([
@@ -10,7 +11,8 @@ gulp.task('scripts', function () {
         './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         './bower_components/select2/dist/js/select2.min.js',
         './resources/assets/scripts/codice.js',
-    ]).pipe(gulp.dest('./public/assets/js'));
+    ]).pipe(concat('codice.js', { separator: ';' }))
+      .pipe(gulp.dest('./public/assets/js'));
 });
 
 gulp.task('styles', function () {

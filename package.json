@@ -2,6 +2,7 @@
   "private": true,
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-concat-util": "^0.5.2",
     "gulp-csso": "^1.0.0",
     "gulp-load-plugins": "^0.10.0",
     "gulp-sass": "^2.0.4",
