@@ -158,11 +158,13 @@ class NoteController extends Controller
      */
     public function getUpcoming()
     {
+        $perPage = Auth::user()->options['notes_per_page'];
+
         $notes = Note::logged()
             ->where('status', 0)
             ->whereNotNull('expires_at')
             ->orderBy('expires_at', 'asc')
-            ->get();
+            ->simplePaginate($perPage);
 
         return View::make('index', [
             'notes' => $notes,
