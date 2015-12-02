@@ -33,7 +33,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@icon('user') {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{!! route('settings') !!}">@icon('cog') @lang('app.menu.settings')</a></li>
-                            <li><a href="">@icon('bar-chart') @lang('app.menu.stats')</a></li>
+                            <li><a href="{!! route('stats') !!}">@icon('bar-chart') @lang('app.menu.stats')</a></li>
                             <li><a href="{!! route('user.logout') !!}">@icon('sign-out') @lang('app.menu.logout')</a></li>
                         </ul>
                     </li>

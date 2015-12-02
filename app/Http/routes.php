@@ -36,4 +36,6 @@ Route::get('label/{id}/remove', ['as' => 'label.remove', 'uses' => 'LabelControl
 Route::get('settings', ['as' => 'settings', 'uses' => 'UserController@getSettings']);
 Route::post('settings', 'UserController@postSettings');
 
+Route::get('stats', ['as' => 'stats', 'uses' => 'StatisticsController@getIndex']);
+
 Route::get('upcoming', ['as' => 'upcoming', 'uses' => 'NoteController@getUpcoming']);
