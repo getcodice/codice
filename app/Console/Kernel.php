@@ -13,8 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Codice\Console\Commands\Inspire::class,
-        \Codice\Console\Commands\RemindersSend::class,
+        Commands\RemindersSend::class,
     ];
 
     /**
