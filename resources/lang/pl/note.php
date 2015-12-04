@@ -12,6 +12,7 @@ return [
         'submit' => 'Zapisz',
         'success' => 'Notatka została dodana!',
     ],
+    'datetime-placeholder' => 'DD.MM.YYYY HH:MM',
     'done' => [
         'done' => 'Notatka oznaczona jako wykonana!',
         'undone' => 'Notatka oznaczona jako niewykonana.'
@@ -21,8 +22,6 @@ return [
         'submit' => 'Edytuj',
         'success' => 'Notatka została zmieniona.',
     ],
-    'expires_at_help' => 'Zostaw puste, aby nie określać.',
-    'expires_at_placeholder' => 'DD.MM.YYYY HH:MM',
     'heading' => [
         'danger' => 'Termin upłynął :expires',
         'default' => 'Notatka',
@@ -36,9 +35,10 @@ return [
         'labels' => 'Etykiety',
         'labels-select' => 'Wyierz etykiety',
         'reminder_email' => 'Przypomnienie mailowe',
-        'reminder_sms' => 'Przypomnienie SMS',
+        'reminder_smsapi' => 'Przypomnienie SMS',
     ],
     'not-found' => 'Nie znaleziono notatki.',
+    'optional-field' => 'Zostaw puste, aby nie określać.',
     'removed' => 'Notatka została usunięta.',
     'upcoming' => [
         'title' => 'Nadchodzące notatki',

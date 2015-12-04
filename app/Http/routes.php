@@ -33,6 +33,9 @@ Route::get('label/{id}/edit', ['as' => 'label.edit', 'uses' => 'LabelController@
 Route::post('label/{id}/edit', 'LabelController@postEdit');
 Route::get('label/{id}/remove', ['as' => 'label.remove', 'uses' => 'LabelController@getRemove']);
 
+Route::get('reminders', ['as' => 'reminders', 'uses' => 'ReminderController@getIndex']);
+Route::get('reminder/{id}/remove', ['as' => 'reminder.remove', 'uses' => 'ReminderController@getRemove']);
+
 Route::get('settings', ['as' => 'settings', 'uses' => 'UserController@getSettings']);
 Route::post('settings', 'UserController@postSettings');
 

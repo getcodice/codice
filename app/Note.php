@@ -4,6 +4,7 @@ namespace Codice;
 
 use Auth;
 use Codice\Exceptions\NoteNotFoundException;
+use Codice\Reminder;
 use Illuminate\Database\Eloquent\Model;
 use League\CommonMark\CommonMarkConverter;
 
@@ -118,12 +119,23 @@ class Note extends Model
     }
 
     /**
-     * Labels that belong to the note
+     * Labels that belong to the note.
      *
      */
     public function labels()
     {
         return $this->belongsToMany('Codice\Label');
+    }
+
+    /**
+     * Returns note reminder of given type.
+     *
+     * @param  int $type
+     * @return Codice\Reminder
+     */
+    public function reminder($type)
+    {
+        return Reminder::where('note_id', $this->id)->where('type', $type)->logged()->first();
     }
 
     /**
@@ -141,6 +153,6 @@ class Note extends Model
      */
     public function user()
     {
-        $this->belongsTo('Codice\User');
+        return $this->belongsTo('Codice\User');
     }
 }

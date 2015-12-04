@@ -62,6 +62,6 @@ class Label extends Model
      */
     public function user()
     {
-        $this->belongsTo('Codice\User');
+        return $this->belongsTo('Codice\User');
     }
 }

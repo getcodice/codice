@@ -9,11 +9,11 @@
             {!! BootForm::textarea(trans('note.labels.content'), 'content') !!}
         </div>
         <div class="col-md-3 well">
-            {!! BootForm::text(trans('note.labels.expires_at'), 'expires_at')->placeholder(trans('note.expires_at_placeholder'))->helpBlock(trans('note.expires_at_help')) !!}
+            {!! BootForm::text(trans('note.labels.expires_at'), 'expires_at')->placeholder(trans('note.datetime-placeholder'))->helpBlock(trans('note.optional-field')) !!}
 
-            {!! BootForm::text(trans('note.labels.reminder_email'), 'reminder_email') !!}
+            {!! BootForm::text(trans('note.labels.reminder_email'), 'reminder_email')->placeholder(trans('note.datetime-placeholder'))->helpBlock(trans('note.optional-field')) !!}
 
-            {!! BootForm::text(trans('note.labels.reminder_sms'), 'reminder_sms') !!}
+            {!! BootForm::text(trans('note.labels.reminder_smsapi'), 'reminder_smsapi')->placeholder(trans('note.datetime-placeholder'))->helpBlock(trans('note.optional-field'))->disabled() !!}
         </div>
     </div>
 

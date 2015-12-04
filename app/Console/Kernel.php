@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \Codice\Console\Commands\Inspire::class,
+        \Codice\Console\Commands\RemindersSend::class,
     ];
 
     /**

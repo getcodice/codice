@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{!! route('note.create') !!}">@icon('plus') @lang('app.menu.add')</a></li>
                     <li><a href="{!! route('labels') !!}">@icon('tags') @lang('app.menu.labels')</a></li>
-                    <li><a href="">@icon('bell') @lang('app.menu.reminders')</a></li>
+                    <li><a href="{!! route('reminders') !!}">@icon('bell') @lang('app.menu.reminders')</a></li>
                     <li><a href="{!! route('upcoming') !!}">@icon('calendar') @lang('app.menu.upcoming')</a></li>
                 </ul>
 
