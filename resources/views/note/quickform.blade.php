@@ -3,13 +3,14 @@ Just @include the view and pass following parameters:
 - $quickform_labels - list of labels, preferably Label::orderBy('name')->lists('name', 'id') call
 - $quickform_label (optional) - currently selected label
 --}}
+
 <div class="quickform">
     <form action="{!! route('note.create') !!}" method="post">
         <div class="form-group">
             <label for="quickform_content" class="sr-only">@lang('note.labels.content')</label>
             <textarea name="content" id="quickform_content" rows="1" class="form-control" placeholder="@lang('note.quickform.content')" required></textarea>
         </div>
-        <div class="row">
+        <div class="row sr-only">
             <div class="form-group col-md-6">
                 <label for="quickform_labels" class="sr-only">@lang('note.labels.labels')</label>
                 <select name="labels[]" class="form-control" id="quickform_labels" multiple>
