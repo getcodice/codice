@@ -204,6 +204,7 @@ class NoteController extends Controller
         $notes = $query->orderBy('expires_at', 'asc')->simplePaginate($perPage);
 
         return View::make('note.upcoming', [
+            'mode' => $mode,
             'notes' => $notes,
             'title' => trans('note.upcoming.title'),
         ]);

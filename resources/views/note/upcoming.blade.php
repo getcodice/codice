@@ -3,7 +3,11 @@
 @section('content')
 <h2>
     @lang('note.upcoming.title')
+    @if ($mode == 'no-expired')
+    <a href="{!! route('upcoming') !!}" class="btn btn-default btn-sm active">
+    @else
     <a href="{!! route('upcoming', ['mode' => 'no-expired']) !!}" class="btn btn-default btn-sm">
+    @endif
         @lang('note.upcoming.no-expired')
     </a>
 </h2>
