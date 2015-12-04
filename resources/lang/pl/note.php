@@ -33,12 +33,15 @@ return [
         'content' => 'Treść',
         'expires_at' => 'Termin wykonania',
         'labels' => 'Etykiety',
-        'labels-select' => 'Wyierz etykiety',
+        'labels-select' => 'Wybierz etykiety',
         'reminder_email' => 'Przypomnienie mailowe',
         'reminder_smsapi' => 'Przypomnienie SMS',
     ],
     'not-found' => 'Nie znaleziono notatki.',
     'optional-field' => 'Zostaw puste, aby nie określać.',
+    'quickform' => [
+        'content' => 'Dodaj nową notatkę...',
+    ],
     'removed' => 'Notatka została usunięta.',
     'upcoming' => [
         'title' => 'Nadchodzące notatki',

@@ -1,6 +1,8 @@
 @extends('app')
 
 @section('content')
+@include('note.quickform')
+
 <div class="jscroll-container">
     @each('note.single', $notes, 'note')
 
@@ -19,6 +21,11 @@ $('.jscroll-container').jscroll({
     callback: function () {
         $('.pager').hide();
     }
+});
+
+$("#quickform_labels").select2({
+    placeholder: "@lang('note.labels.labels-select')",
+    theme: "bootstrap",
 });
 </script>
 @stop

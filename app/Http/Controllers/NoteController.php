@@ -34,6 +34,7 @@ class NoteController extends Controller
 
         return View::make('index', [
             'notes' => Note::logged()->orderBy('created_at', 'desc')->simplePaginate($perPage),
+            'quickform_labels' => Label::orderBy('name')->lists('name', 'id'),
         ]);
     }
 
@@ -78,7 +79,13 @@ class NoteController extends Controller
                 );
             }
 
-            return Redirect::route('index')->with('message', trans('note.create.success'));
+            if (Input::has('quickform_label') && is_numeric(Input::get('quickform_label'))) {
+                $response = Redirect::route('label', ['id' => Input::get('quickform_label')]);
+            } else {
+                $response = Redirect::route('index');
+            }
+
+            return $response->with('message', trans('note.create.success'));
         } else {
             return Redirect::back()->withErrors($validator)->withInput();
         }

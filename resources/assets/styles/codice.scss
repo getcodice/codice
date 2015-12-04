@@ -1,6 +1,5 @@
 @import "variables";
 @import "../../../bower_components/font-awesome/scss/font-awesome";
-@import "../../../bower_components/select2/dist/css/select2.min";
 
 /*****************************************************************
  * Bootstrap imports
@@ -59,6 +58,11 @@
 // Utility classes
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
+
+// Select2 with bootstrap theme.
+// It needs to be here as bootstrap themes makes use of Sass variables
+@import "../../../bower_components/select2/dist/css/select2.min";
+@import "../../../bower_components/select2-bootstrap-theme/src/select2-bootstrap.scss";
 
 /*****************************************************************
  * Codice styles

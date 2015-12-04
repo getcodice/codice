@@ -57,6 +57,8 @@ class LabelController extends Controller
             'colors' => config('labels.colors'),
             'label' => $label,
             'notes' => $notes,
+            'quickform_label' => $id,
+            'quickform_labels' => Label::orderBy('name')->lists('name', 'id'),
             'title' => trans('labels.notes.title', ['label' => $label->name]),
         ]);
     }

@@ -22,3 +22,15 @@ $('.alert-fixed').on('click', function () {
         $(this).remove();
     });
 });
+
+$('#quickform_content').on('focus', function () {
+    $(this).slideDown('slow', function() {
+        $(this).attr('rows', '4');
+    });
+});
+
+$('#quickform_content').on('focusout', function () {
+    if ($(this).val() == '') {
+        $(this).attr('rows', '1');
+    }
+});
