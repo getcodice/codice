@@ -53,6 +53,7 @@ class InfoController extends Controller
             return Redirect::route('about')->with([
                 'message' => trans('info.updates.available', ['version' => $version]),
                 'message_type' => 'info',
+                'message_raw' => true,
             ]);
         } else {
             return Redirect::route('about')->with([

@@ -54,7 +54,11 @@
     <main class="container">
         @if (Session::has('message'))
             <div class="alert alert-{{ Session::get('message_type') ?: 'success' }} alert-fixed">
+                @if (Session::get('message_raw') === true)
+                <p>{!! Session::get('message') !!}</p>
+                @else
                 <p>{{ Session::get('message') }}</p>
+                @endif
             </div>
         @endif
 
