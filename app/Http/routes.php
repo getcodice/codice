@@ -44,4 +44,4 @@ Route::post('settings', 'UserController@postSettings');
 
 Route::get('stats', ['as' => 'stats', 'uses' => 'StatisticsController@getIndex']);
 
-Route::get('upcoming', ['as' => 'upcoming', 'uses' => 'NoteController@getUpcoming']);
+Route::get('upcoming/{mode?}', ['as' => 'upcoming', 'uses' => 'NoteController@getUpcoming']);

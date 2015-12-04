@@ -44,6 +44,7 @@ return [
     ],
     'removed' => 'Notatka została usunięta.',
     'upcoming' => [
+        'no-expired' => 'Bez przekroczonych',
         'title' => 'Nadchodzące notatki',
     ],
 ];

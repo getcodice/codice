@@ -189,17 +189,21 @@ class NoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getUpcoming()
+    public function getUpcoming($mode = null)
     {
         $perPage = Auth::user()->options['notes_per_page'];
 
-        $notes = Note::logged()
+        $query = Note::logged()
             ->where('status', 0)
-            ->whereNotNull('expires_at')
-            ->orderBy('expires_at', 'asc')
-            ->simplePaginate($perPage);
+            ->whereNotNull('expires_at');
 
-        return View::make('index', [
+        if ($mode == 'no-expired') {
+            $query->whereRaw('expires_at > NOW()');
+        }
+
+        $notes = $query->orderBy('expires_at', 'asc')->simplePaginate($perPage);
+
+        return View::make('note.upcoming', [
             'notes' => $notes,
             'title' => trans('note.upcoming.title'),
         ]);
