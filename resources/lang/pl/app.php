@@ -1,6 +1,7 @@
 <?php
 return [
     'menu' => [
+        'about' => 'O Codice',
         'add' => 'Dodaj',
         'labels' => 'Etykiety',
         'logout' => 'Wyloguj',

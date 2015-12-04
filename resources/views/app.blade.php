@@ -35,6 +35,7 @@
                             <li><a href="{!! route('settings') !!}">@icon('cog') @lang('app.menu.settings')</a></li>
                             <li><a href="{!! route('stats') !!}">@icon('bar-chart') @lang('app.menu.stats')</a></li>
                             <li><a href="{!! route('user.logout') !!}">@icon('sign-out') @lang('app.menu.logout')</a></li>
+                            <li><a href="{!! route('about') !!}">@icon('info-circle') @lang('app.menu.about')</a></li>
                         </ul>
                     </li>
                 </ul>
