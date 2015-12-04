@@ -14,6 +14,7 @@
 Route::get('/', ['as' => 'index', 'uses' => 'NoteController@getIndex']);
 
 Route::get('about', ['as' => 'about', 'uses' => 'InfoController@getAbout']);
+Route::get('about/check-updates', ['as' => 'about.updates', 'uses' => 'InfoController@getUpdates']);
 
 Route::get('create', ['as' => 'note.create', 'uses' => 'NoteController@getCreate']);
 Route::post('create', 'NoteController@postCreate');
