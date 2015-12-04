@@ -87,7 +87,7 @@ class NoteController extends Controller
 
             return $response->with('message', trans('note.create.success'));
         } else {
-            return Redirect::back()->withErrors($validator)->withInput();
+            return Redirect::route('note.create')->withErrors($validator)->withInput();
         }
     }
 
