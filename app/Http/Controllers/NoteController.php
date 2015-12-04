@@ -150,6 +150,20 @@ class NoteController extends Controller
     }
 
     /**
+     * Display single note.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getNote($id)
+    {
+        return View('note.note', [
+            'note' => Note::findOwned($id),
+            'single' => true,
+        ]);
+    }
+
+    /**
      * Delete a note.
      *
      * @param  int  $id

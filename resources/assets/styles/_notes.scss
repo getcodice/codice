@@ -47,7 +47,8 @@
     }
 }
 
-article.panel:hover .note-buttons {
+article.panel:hover .note-buttons,
+.note-single .note-buttons {
     display: block;
 }
 

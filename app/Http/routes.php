@@ -20,6 +20,7 @@ Route::get('login', ['as' => 'user.login', 'uses' => 'UserController@getLogin'])
 Route::post('login', 'UserController@postLogin');
 Route::get('logout', ['as' => 'user.logout', 'uses' => 'UserController@getLogout']);
 
+Route::get('note/{id}', ['as' => 'note', 'uses' => 'NoteController@getNote']);
 Route::get('note/{id}/edit', ['as' => 'note.edit', 'uses' => 'NoteController@getEdit']);
 Route::post('note/{id}/edit', 'NoteController@postEdit');
 Route::get('note/{id}/mark', ['as' => 'note.change', 'uses' => 'NoteController@getChangeStatus']);

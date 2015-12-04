@@ -16,7 +16,9 @@
         @foreach ($reminders as $reminder)
             <tr>
                 <td>
-                    <a href="">{{ trans('reminder.index.note-link', ['id' => $reminder->note_id]) }}</a>
+                    <a href="{!! route('note', ['id' => $reminder->note_id]) !!}">
+                        {{ trans('reminder.index.note-link', ['id' => $reminder->note_id]) }}
+                    </a>
                 </td>
                 <td>
                     {{ $reminder->remind_at->format('d.m.Y H:i') }}
