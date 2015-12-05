@@ -10,6 +10,11 @@
         <textarea class="form-control" rows="7" style="resize:none" readonly>{{ $changelog }}</textarea>
     </div>
     <div class="col-md-4">
+        <ul class="fa-ul">
+            <li>@icon('check fa-li') <a href="http://codice.eu">@lang('info.about.link.main')</a></li>
+            <li>@icon('check fa-li') <a href="http://docs.codice.eu">@lang('info.about.link.documentation')</a></li>
+        </ul>
+
         <a href="{!! route('about.updates') !!}" class="btn btn-success btn-block">
             @lang('info.updates.check')
         </a>

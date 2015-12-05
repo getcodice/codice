@@ -6,6 +6,10 @@ return [
             'na przechowywanie wszystkich zapisków w jednym, bezpiecznym miejscu, które jest ' .
             'dostępne z dowolnego miejsca na świecie, za pośrednictwem internetu.',
         'changelog-error' => 'Błąd podczas pobierania wykazu zmian',
+        'link' => [
+            'documentation' => 'Dokumentacja',
+            'main' => 'Strona projektu',
+        ],
         'title' => 'O Codice',
     ],
     'updates' => [
