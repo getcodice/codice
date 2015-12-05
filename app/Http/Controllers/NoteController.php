@@ -248,10 +248,6 @@ class NoteController extends Controller
         // Note have a reminder but it's not set in form - remove reminder
         } elseif (empty($input) && !empty($reminder)) {
             $reminder->delete();
-        // Unknown conditions
-        } else {
-            // @todo: remove debug statement after tests
-            throw new \Exception('Assertion failed');
         }
     }
 }
