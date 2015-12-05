@@ -10,7 +10,7 @@ return [
     ],
     'updates' => [
         'available' => 'Dostępna jest nowsza wersja Codice (:version). Odwiedź ' .
-            '<a href="http://codice.eu">stronę projektu</a>.',
+            '<a href="http://codice.eu" class="alert-link">stronę projektu</a>.',
         'check' => 'Sprawdź dostępność aktualizacji',
         'error' => 'Wystąpił błąd podczas sprawdzania aktualizacji',
         'none' => 'Gratulacje! Twoja wersja Codice jest aktualna.'
