@@ -69,6 +69,7 @@ class NoteController extends Controller
             ]);
 
             $labels = Input::get('labels', []);
+            $labels = $this->processNewLabels($labels);
             $note->labels()->sync($labels);
 
             if (Input::has('reminder_email')) {
@@ -126,6 +127,7 @@ class NoteController extends Controller
             $note->save();
 
             $labels = Input::get('labels', []);
+            $labels = $this->processNewLabels($labels);
             $note->labels()->sync($labels);
 
             $this->processReminder($note, Reminder::TYPE_EMAIL, Input::get('reminder_email'));
@@ -208,6 +210,28 @@ class NoteController extends Controller
             'notes' => $notes,
             'title' => trans('note.upcoming.title'),
         ]);
+    }
+
+    private function processNewLabels($labels)
+    {
+        $existingLabels = Label::orderBy('name')->lists('id')->toArray();
+
+        foreach ($labels as $labelKey =>$label) {
+            if (!in_array($label, $existingLabels)) {
+                $newLabel = Label::create([
+                    'user_id' => Auth::id(),
+                    'name' => $label,
+                    'color' => 1, // Let's give it default color
+                ]);
+
+                // We need to replace label name with its ID in $labels in order to get
+                // Laravel's sync() working and happy...
+                unset($labels[$labelKey]);
+                $labels[] = $newLabel->id;
+            }
+        }
+
+        return $labels;
     }
 
     private function processReminder(Note $note, $type, $input)

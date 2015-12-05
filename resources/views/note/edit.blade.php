@@ -44,6 +44,7 @@
 <script>
 $("#labels").select2({
     placeholder: "@lang('note.labels.labels-select')",
+    tags: true,
     theme: "bootstrap",
 });
 </script>
