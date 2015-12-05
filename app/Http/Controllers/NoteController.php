@@ -34,7 +34,7 @@ class NoteController extends Controller
 
         return View::make('index', [
             'notes' => Note::logged()->orderBy('created_at', 'desc')->simplePaginate($perPage),
-            'quickform_labels' => Label::orderBy('name')->lists('name', 'id'),
+            'quickform_labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
         ]);
     }
 
@@ -46,7 +46,7 @@ class NoteController extends Controller
     public function getCreate()
     {
         return View::make('note.create', [
-            'labels' => Label::orderBy('name')->lists('name', 'id'),
+            'labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
             'title' => trans('note.create.title_head'),
         ]);
     }
@@ -102,7 +102,7 @@ class NoteController extends Controller
         $note = Note::findOwned($id);
 
         return View::make('note.edit', [
-            'labels' => Label::orderBy('name')->lists('name', 'id'),
+            'labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
             'note' => $note,
             'note_labels' => $note->labels()->lists('id')->toArray(),
             'reminder_email' => $note->reminder(Reminder::TYPE_EMAIL),
