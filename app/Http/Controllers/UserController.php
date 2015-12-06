@@ -80,6 +80,8 @@ class UserController extends Controller
     public function getSettings()
     {
         return View::make('user.settings', [
+            'currentLanguage' => Auth::user()['options']['language'],
+            'languages' => config('app.languages'),
             'title' => trans('user.settings.title'),
             'user' => Auth::user(),
         ]);
@@ -92,12 +94,15 @@ class UserController extends Controller
      */
     public function postSettings()
     {
+        $allowedLanguages = implode(',', array_keys(config('app.languages')));
+
         $validator = Validator::make(Input::all(), [
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             // FIXME: regex would be fine, but what about other i18n support?
             //'options.phone' => 'numeric',
             'password_new' => 'confirmed',
-            'options.notes_per_page' => 'numeric'
+            'options.language' => "required|in:$allowedLanguages",
+            'options.notes_per_page' => 'required|numeric',
         ]);
 
         if ($validator->passes()) {

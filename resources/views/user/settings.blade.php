@@ -52,6 +52,13 @@
         <div class="row">
             <div class="col-md-4">
                 {!!
+                    BootForm::select(trans('user.settings.language'), 'options[language]')
+                        ->options($languages)
+                        ->select($currentLanguage)
+                !!}
+            </div>
+            <div class="col-md-4">
+                {!!
                     BootForm::text(trans('user.settings.notes_per_page'), 'options[notes_per_page]')
                         ->type('number')
                         ->value($user->options['notes_per_page'])

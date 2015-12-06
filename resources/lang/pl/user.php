@@ -9,6 +9,7 @@ return [
     ],
     'settings' => [
         'email' => 'Adres email',
+        'language' => 'Język',
         'login' => 'Nazwa użytkownika',
         'notes_per_page' => 'Ilość notatek na stronę',
         'panel-account' => 'Ustawienia konta',
