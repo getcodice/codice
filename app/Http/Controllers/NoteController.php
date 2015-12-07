@@ -199,7 +199,7 @@ class NoteController extends Controller
             ->where('status', 0)
             ->whereNotNull('expires_at');
 
-        if ($mode == 'no-expired') {
+        if ($mode != 'with-expired') {
             $query->whereRaw('expires_at > NOW()');
         }
 
