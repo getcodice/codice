@@ -4,7 +4,7 @@
 @include('note.quickform')
 
 <div class="jscroll-container">
-    @each('note.single', $notes, 'note')
+    @each('note.single', $notes, 'note', 'note.none')
 
     {!! $notes->render() !!}
 </div>

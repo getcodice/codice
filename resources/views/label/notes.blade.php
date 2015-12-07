@@ -7,7 +7,7 @@
 
     @include('note.quickform')
 
-    @each('note.single', $notes, 'note')
+    @each('note.single', $notes, 'note', 'note.none')
 @stop
 
 @section('footer')

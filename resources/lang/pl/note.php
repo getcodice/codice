@@ -37,6 +37,10 @@ return [
         'reminder_email' => 'Przypomnienie mailowe',
         'reminder_smsapi' => 'Przypomnienie SMS',
     ],
+    'none' => [
+        'content' => 'Nie znaleziono notatek dla podanych kryteriów',
+        'title' => 'Brak notatek',
+    ],
     'not-found' => 'Nie znaleziono notatki.',
     'optional-field' => 'Zostaw puste, aby nie określać.',
     'quickform' => [
