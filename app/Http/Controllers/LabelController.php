@@ -54,7 +54,6 @@ class LabelController extends Controller
         })->logged()->orderBy('created_at', 'desc')->simplePaginate($perPage);
 
         return View::make('label.notes', [
-            'colors' => config('labels.colors'),
             'label' => $label,
             'notes' => $notes,
             'quickform_label' => $id,

@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h2>@lang('user.settings.title')</h2>
+<h2 class="page-heading">@lang('user.settings.title')</h2>
 
 {!! BootForm::open()->action(route('settings')) !!}
 <div class="panel panel-default">

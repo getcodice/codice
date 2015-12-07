@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h2 class="codice-header">@lang('note.edit.title')</h2>
+<h2 class="page-heading">@lang('note.edit.title')</h2>
 
 {!! BootForm::open()->action(route('note.edit', ['id' => $note->id])) !!}
     <div class="row">

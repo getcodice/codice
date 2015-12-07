@@ -1,7 +1,9 @@
 @extends('app')
 
 @section('content')
-    <h2><span class="label label-{{ $colors[$label->color] }}">@icon('tag') {{ $label->name }}</span></h2>
+    <h2 class="page-heading">
+        {!! trans('labels.notes.page-heading', ['label' => $label->name]) !!}
+    </h2>
 
     @include('note.quickform')
 

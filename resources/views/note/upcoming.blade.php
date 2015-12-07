@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h2>
+<h2 class="page-heading">
     @lang('note.upcoming.title')
     @if ($mode == 'no-expired')
     <a href="{!! route('upcoming') !!}" class="btn btn-default btn-sm active">

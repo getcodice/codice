@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h2>@lang('stats.title')</h2>
+<h2 class="page-heading">@lang('stats.title')</h2>
 
 <table class="table table-bordered">
     <thead>

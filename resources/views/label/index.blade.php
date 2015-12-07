@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <h2>
+    <h2 class="page-heading">
         @lang('labels.index.title')
         <a href="{!! route('label.create') !!}" class="btn btn-success btn-sm">
             @icon('plus') @lang('labels.index.create')

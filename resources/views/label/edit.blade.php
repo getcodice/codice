@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h2 class="codice-header">@lang('labels.edit.title')</h2>
+<h2 class="page-heading">@lang('labels.edit.title')</h2>
 
 {!! BootForm::open()->action(route('label.edit', ['id' => $label->id])) !!}
     {!! BootForm::text(trans('labels.labels.name'), 'name')->value($label->name) !!}

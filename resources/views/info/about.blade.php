@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h2>Codice <small>{{ $version }}</small></h2>
+<h2 class="page-heading">Codice <small>{{ $version }}</small></h2>
 
 <p class="lead text-justify"><strong>Codice</strong> @lang('info.about.about-codice')</p>
 

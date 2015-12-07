@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h2 class="codice-header">@lang('note.create.title')</h2>
+<h2 class="page-heading">@lang('note.create.title')</h2>
 
 {!! BootForm::open()->action(route('note.create')) !!}
     <div class="row">

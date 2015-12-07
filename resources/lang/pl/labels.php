@@ -30,6 +30,7 @@ return [
         'name' => 'Nazwa',
     ],
     'notes' => [
+        'page-heading' => 'Etykieta <em>:label</em>',
         'title' => 'Etykieta ":label"',
     ],
     'not-found' => 'Nie znaleziono etykiety',
