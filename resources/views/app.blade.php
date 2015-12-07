@@ -21,10 +21,10 @@
             </div>
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav">
-                    <li><a href="{!! route('note.create') !!}">@icon('plus') @lang('app.menu.add')</a></li>
-                    <li><a href="{!! route('labels') !!}">@icon('tags') @lang('app.menu.labels')</a></li>
-                    <li><a href="{!! route('reminders') !!}">@icon('bell') @lang('app.menu.reminders')</a></li>
-                    <li><a href="{!! route('upcoming') !!}">@icon('calendar') @lang('app.menu.upcoming')</a></li>
+                    {!! navbar_link('note.create', 'plus', 'add') !!}
+                    {!! navbar_link('labels', 'tags', 'labels')!!}
+                    {!! navbar_link('reminders', 'bell', 'reminders') !!}
+                    {!! navbar_link('upcoming', 'calendar', 'upcoming') !!}
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -32,10 +32,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@icon('user') {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{!! route('settings') !!}">@icon('cog fa-fw') @lang('app.menu.settings')</a></li>
-                            <li><a href="{!! route('stats') !!}">@icon('bar-chart fa-fw') @lang('app.menu.stats')</a></li>
-                            <li><a href="{!! route('user.logout') !!}">@icon('sign-out fa-fw') @lang('app.menu.logout')</a></li>
-                            <li><a href="{!! route('about') !!}">@icon('info-circle fa-fw') @lang('app.menu.about')</a></li>
+                            {!! navbar_link('settings', 'cog fa-fw', 'settings') !!}
+                            {!! navbar_link('stats', 'bar-chart fa-fw', 'stats') !!}
+                            {!! navbar_link('user.logout', 'sign-out fa-fw', 'logout') !!}
+                            {!! navbar_link('about', 'info-circle fa-fw', 'about') !!}
                         </ul>
                     </li>
                 </ul>

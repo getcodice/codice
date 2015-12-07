@@ -22,7 +22,10 @@
         ],
         "psr-4": {
             "Codice\\": "app/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [
