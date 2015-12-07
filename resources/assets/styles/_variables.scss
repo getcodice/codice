@@ -3,6 +3,8 @@ $codice-danger:  #e6262e;
 $codice-info:    #74a0db;
 $codice-success: #68b92c;
 $codice-warning: #f6af00;
+$codice-navbar-bg: #04498D;
+$codice-navbar-hover-bg: #022F5A;
 
 // Customize bootstrap using variables
 $alert-danger-text:  #fff;
@@ -17,9 +19,14 @@ $brand-warning: $codice-warning;
 
 $font-family-base: 'Roboto', sans-serif;
 
-$navbar-inverse-bg: #000;
+$navbar-inverse-bg: $codice-navbar-bg;
 $navbar-inverse-color: #fff;
 $navbar-inverse-link-color: #fff;
+$navbar-inverse-brand-hover-bg: $codice-navbar-hover-bg;
+$navbar-inverse-link-hover-bg: $codice-navbar-hover-bg;
+$navbar-inverse-toggle-icon-bar-bg: $codice-navbar-hover-bg;
+$navbar-inverse-toggle-border-color: #fff;
+$navbar-inverse-toggle-icon-bar-bg: #fff;
 
 $state-danger-bg:  $codice-danger;
 $state-info-bg:    $codice-info;
