@@ -12,6 +12,16 @@ return [
         ],
         'title' => 'O Codice',
     ],
+    'stats' => [
+        'all' => 'Wszystkich notatek',
+        'amount' => 'Ilość',
+        'awaiting' => 'Oczekujących',
+        'done' => 'Wykonanych',
+        'expired' => 'Przekroczonych',
+        'labels' => 'Etykiet',
+        'title' => 'Statystyki',
+        'type' => 'Typ',
+    ],
     'updates' => [
         'available' => 'Dostępna jest nowsza wersja Codice (:version). Odwiedź ' .
             '<a href="http://codice.eu" class="alert-link">stronę projektu</a>.',

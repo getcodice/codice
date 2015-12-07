@@ -52,6 +52,6 @@ Route::get('reminder/{id}/remove', ['as' => 'reminder.remove', 'uses' => 'Remind
 Route::get('settings', ['as' => 'settings', 'uses' => 'UserController@getSettings']);
 Route::post('settings', 'UserController@postSettings');
 
-Route::get('stats', ['as' => 'stats', 'uses' => 'StatisticsController@getIndex']);
+Route::get('stats', ['as' => 'stats', 'uses' => 'InfoController@getStats']);
 
 Route::get('upcoming/{mode?}', ['as' => 'upcoming', 'uses' => 'NoteController@getUpcoming']);

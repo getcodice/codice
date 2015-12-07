@@ -3,6 +3,8 @@
 namespace Codice\Http\Controllers;
 
 use Codice\Codice;
+use Codice\Label;
+use Codice\Note;
 use Redirect;
 use View;
 
@@ -66,6 +68,40 @@ class InfoController extends Controller
             'changelog' => $changelog,
             'title' => trans('info.about.title'),
             'version' => Codice::VERSION,
+        ]);
+    }
+
+    /**
+     * Displays statistics.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getStats()
+    {
+        $stats = [
+            'all' => [
+                'query' => Note::logged()->count(),
+            ],
+            'done' => [
+                'class' => 'success',
+                'query' => Note::whereStatus(1)->logged()->count(),
+            ],
+            'awaiting' => [
+                'class' => 'info',
+                'query' => Note::whereStatus(0)->whereRaw('expires_at > NOW()')->logged()->count(),
+            ],
+            'expired' => [
+                'class' => 'danger',
+                'query' => Note::whereStatus(0)->whereRaw('expires_at < NOW()')->logged()->count(),
+            ],
+            'labels' => [
+                'query' => Label::logged()->count(),
+            ],
+        ];
+
+        return View::make('info.stats', [
+            'stats' => $stats,
+            'title' => trans('info.stats.title'),
         ]);
     }
 }
