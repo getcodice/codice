@@ -1,4 +1,4 @@
-<article class="panel panel-{{ $note->state }} {{ isset($single) && $single === true ? 'note-single' : '' }}">
+<article class="note panel panel-{{ $note->state }} {{ isset($single) && $single === true ? 'note-single' : '' }}">
     <div class="panel-heading">
         <a href="{!! route('note', ['id' => $note->id]) !!}" title="Przejdź do widoku szczegółowego">{{ trans('note.heading.' . $note->state, ['expires' => isset($note->expires_at) ? $note->expires_at->format('d.m.Y H:i') : null]) }}</a>
     </div>
