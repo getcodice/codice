@@ -6,7 +6,7 @@
 function navbar_link($route, $icon, $transKey)
 {
     $out = '<li' . (is_link_active($route) ? ' class="active"' : '') . '><a href="';
-    $out .= route($route) . '">' . icon($icon) . ' ' . trans('app.menu' . $transKey) . '</a>';
+    $out .= route($route) . '">' . icon($icon) . ' ' . trans('app.menu.' . $transKey) . '</a>';
     return $out;
 }
 
