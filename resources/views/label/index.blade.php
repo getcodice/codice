@@ -8,7 +8,7 @@
         </a>
     </h2>
 
-    <table class="table">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th class="col-md-5">Nazwa</th>
