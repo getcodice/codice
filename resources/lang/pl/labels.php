@@ -22,7 +22,12 @@ return [
         'success' => 'Etykieta została zmieniona.',
     ],
     'index' => [
+        'controls' => 'Akcje',
+        'count' => 'Notatek',
         'create' => 'Nowa',
+        'edit' => 'Edytuj',
+        'name' => 'Nazwa',
+        'remove' => 'Usuń',
         'title' => 'Etykiety',
     ],
     'labels' => [

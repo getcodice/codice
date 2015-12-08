@@ -22,7 +22,12 @@ return [
         'success' => 'Label has been edited.',
     ],
     'index' => [
+        'controls' => 'Controls',
+        'count' => 'Notes',
         'create' => 'New',
+        'edit' => 'Edit',
+        'name' => 'Name',
+        'remove' => 'Remove',
         'title' => 'Labels',
     ],
     'labels' => [

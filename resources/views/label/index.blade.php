@@ -11,9 +11,9 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th class="col-md-5">Nazwa</th>
-                <th class="col-md-3">Notatek</th>
-                <th class="col-md-4">Akcje</th>
+                <th class="col-md-5">@lang('labels.index.name')</th>
+                <th class="col-md-3">@lang('labels.index.count')</th>
+                <th class="col-md-4">@lang('labels.index.controls')</th>
             </tr>
         </thead>
         <tbody>
@@ -26,8 +26,8 @@
                     {{ $label->count }}
                 </td>
                 <td>
-                    <a href="{!! route('label.edit', ['id' => $label->id]) !!}" class="action">@icon('pencil') Edytuj</a>
-                    <a href="{!! route('label.remove', ['id' => $label->id]) !!}" class="action confirm-deletion">@icon('trash-o') Usuń</a>
+                    <a href="{!! route('label.edit', ['id' => $label->id]) !!}" class="action">@icon('pencil') @lang('labels.index.edit')</a>
+                    <a href="{!! route('label.remove', ['id' => $label->id]) !!}" class="action confirm-deletion">@icon('trash-o') @lang('labels.index.remove')</a>
                 </td>
             </tr>
         @endforeach
