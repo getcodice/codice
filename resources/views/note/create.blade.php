@@ -6,7 +6,7 @@
 {!! BootForm::open()->action(route('note.create')) !!}
     <div class="row">
         <div class="col-md-9">
-            {!! BootForm::textarea(trans('note.labels.content'), 'content') !!}
+            {!! BootForm::textarea(trans('note.labels.content'), 'content')->required() !!}
         </div>
         <div class="col-md-3 well">
             {!! BootForm::text(trans('note.labels.expires_at'), 'expires_at')->placeholder(trans('note.datetime-placeholder'))->helpBlock(trans('note.optional-field')) !!}

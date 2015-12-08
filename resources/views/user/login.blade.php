@@ -17,8 +17,8 @@
 
         {!! BootForm::open()->action(route('user.login'))->class('form-login') !!}
             <h2 class="form-login-heading">@lang('user.login.title')</h2>
-            {!! BootForm::email(trans('user.login.email'), 'email')->placeholder(trans('user.login.email'))->hideLabel() !!}
-            {!! BootForm::password(trans('user.login.password'), 'password')->placeholder(trans('user.login.password'))->hideLabel() !!}
+            {!! BootForm::email(trans('user.login.email'), 'email')->placeholder(trans('user.login.email'))->required()->hideLabel() !!}
+            {!! BootForm::password(trans('user.login.password'), 'password')->placeholder(trans('user.login.password'))->required()->hideLabel() !!}
             {!! BootForm::submit(trans('user.login.submit'), 'btn-lg btn-primary btn-block') !!}
         {!! BootForm::close() !!}
     </main>
