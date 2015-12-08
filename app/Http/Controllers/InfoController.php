@@ -63,12 +63,6 @@ class InfoController extends Controller
                 'message_type' => 'success',
             ]);
         }
-
-        return View::make('info.about', [
-            'changelog' => $changelog,
-            'title' => trans('info.about.title'),
-            'version' => Codice::VERSION,
-        ]);
     }
 
     /**
