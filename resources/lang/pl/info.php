@@ -15,7 +15,7 @@ return [
     'stats' => [
         'all' => 'Wszystkich notatek',
         'amount' => 'Ilość',
-        'awaiting' => 'Oczekujących',
+        'pending' => 'Oczekujących',
         'done' => 'Wykonanych',
         'expired' => 'Przekroczonych',
         'labels' => 'Etykiet',

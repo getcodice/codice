@@ -2,8 +2,7 @@
 
 @section('content')
 <h2 class="page-heading">@lang('info.stats.title')</h2>
-
-<table class="table table-bordered">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>@lang('info.stats.type')</th>
@@ -11,10 +10,10 @@
         </tr>
     </thead>
     <tbody>
-    @foreach ($stats as $name => $props)
-        <tr class="{{ $props['class'] or '' }}">
-            <td>{{ trans('info.stats.' . $name) }}
-            <td>{{ $props['query'] }}</td>
+    @foreach ($stats as $type => $amount)
+        <tr>
+            <td>{{ trans('info.stats.' . $type) }}</td>
+            <td>{{ $amount }}</td>
         </tr>
     @endforeach
     </tbody>

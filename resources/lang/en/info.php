@@ -15,7 +15,7 @@ return [
     'stats' => [
         'all' => 'All notes',
         'amount' => 'Amount',
-        'awaiting' => 'Pending',
+        'pending' => 'Pending',
         'done' => 'Done',
         'expired' => 'Expired',
         'labels' => 'Labels',

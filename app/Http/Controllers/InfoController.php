@@ -73,24 +73,11 @@ class InfoController extends Controller
     public function getStats()
     {
         $stats = [
-            'all' => [
-                'query' => Note::logged()->count(),
-            ],
-            'done' => [
-                'class' => 'success',
-                'query' => Note::whereStatus(1)->logged()->count(),
-            ],
-            'awaiting' => [
-                'class' => 'info',
-                'query' => Note::whereStatus(0)->whereRaw('expires_at > NOW()')->logged()->count(),
-            ],
-            'expired' => [
-                'class' => 'danger',
-                'query' => Note::whereStatus(0)->whereRaw('expires_at < NOW()')->logged()->count(),
-            ],
-            'labels' => [
-                'query' => Label::logged()->count(),
-            ],
+            'all' => Note::logged()->count(),
+            'done' => Note::whereStatus(1)->logged()->count(),
+            'pending' => Note::whereStatus(0)->whereRaw('expires_at > NOW()')->logged()->count(),
+            'expired' => Note::whereStatus(0)->whereRaw('expires_at < NOW()')->logged()->count(),
+            'labels' => Label::logged()->count(),
         ];
 
         return View::make('info.stats', [
