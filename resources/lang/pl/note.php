@@ -19,7 +19,7 @@ return [
     ],
     'edit' => [
         'title' => 'Edytuj notatkę',
-        'submit' => 'Edytuj',
+        'submit' => 'Zapisz',
         'success' => 'Notatka została zmieniona.',
     ],
     'heading' => [
