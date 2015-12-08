@@ -28,10 +28,17 @@ class LabelController extends Controller
      */
     public function getIndex()
     {
+        $labels = Label::selectRaw('labels.*, COUNT(notes.id) AS count')
+            ->leftJoin('label_note', 'labels.id', '=', 'label_note.label_id')
+            ->leftJoin('notes', 'label_note.note_id', '=', 'notes.id')
+            ->where('labels.user_id', '=', Auth::id())
+            ->groupBy('labels.id')
+            ->orderBy('count', 'desc')
+            ->get();
+
         return View::make('label.index', [
             'colors' => config('labels.colors'),
-            // @todo: getting number of labeled notes, sorting by it
-            'labels' => Label::logged()->get(),
+            'labels' => $labels,
             'title' => trans('labels.index.title'),
         ]);
     }

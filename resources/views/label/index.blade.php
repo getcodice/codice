@@ -23,7 +23,7 @@
                     <a href="{!! route('label', ['id' => $label->id]) !!}" class="label label-{{ $colors[$label->color] }}">{{ $label->name }}</a>
                 </td>
                 <td>
-                    15
+                    {{ $label->count }}
                 </td>
                 <td>
                     <a href="{!! route('label.edit', ['id' => $label->id]) !!}" class="action">@icon('pencil') Edytuj</a>
