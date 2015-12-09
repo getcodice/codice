@@ -25,7 +25,6 @@ class User extends Model implements AuthenticatableContract,
         'language' => 'pl',
         'notes_per_page' => 15,
         'phone' => '',
-        'upcoming_period' => 24,
     ];
 
     protected $casts = [
