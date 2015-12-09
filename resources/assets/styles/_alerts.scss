@@ -15,6 +15,10 @@
     background-color: rgba($state-danger-bg, 0.9);
 }
 
+.alert-fixed.alert-info {
+    background-color: rgba($state-info-bg, 0.9);
+}
+
 .alert-fixed.alert-success {
     background-color: rgba($state-success-bg, 0.9);
 }
