@@ -155,7 +155,7 @@ class NoteController extends Controller
 
         $message = $newStatus === 1 ? 'note.done.done' : 'note.done.undone';
 
-        return Redirect::route('index')->with('message', trans($message));
+        return Redirect::back()->with('message', trans($message));
     }
 
     /**
@@ -183,7 +183,7 @@ class NoteController extends Controller
         $note = Note::findOwned($id);
         $note->delete();
 
-        return Redirect::route('index')->with('message', trans('note.removed'));
+        return Redirect::back()->with('message', trans('note.removed'));
     }
 
     /**
