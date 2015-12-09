@@ -47,6 +47,7 @@ return [
         'content' => 'Create new note...',
     ],
     'removed' => 'Note have been removed.',
+    'single' => 'Go to the detailed view',
     'upcoming' => [
         'title' => 'Upcoming notes',
         'with-expired' => 'Show expired tasks',

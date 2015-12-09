@@ -1,6 +1,6 @@
 <article class="note panel panel-{{ $note->state }} {{ isset($single) && $single === true ? 'note-single' : '' }}">
     <div class="panel-heading">
-        <a href="{!! route('note', ['id' => $note->id]) !!}" title="Przejdź do widoku szczegółowego">{{ trans('note.heading.' . $note->state, ['expires' => isset($note->expires_at) ? $note->expires_at->format(trans('app.datetime')) : null]) }}</a>
+        <a href="{!! route('note', ['id' => $note->id]) !!}" title="@lang('note.single')">{{ trans('note.heading.' . $note->state, ['expires' => isset($note->expires_at) ? $note->expires_at->format(trans('app.datetime')) : null]) }}</a>
     </div>
     <div class="panel-body">
         @if (count($note->labels))
