@@ -6,7 +6,7 @@
 {!! BootForm::open()->action(route('note.edit', ['id' => $note->id])) !!}
     <div class="row">
         <div class="col-md-9">
-            {!! BootForm::textarea(trans('note.labels.content'), 'content')->value($note->content_raw)->required() !!}
+            {!! BootForm::textarea(trans('note.labels.content'), 'content')->value($note->content_raw)->required()->autofocus() !!}
         </div>
         <div class="col-md-3 well">
             {!!

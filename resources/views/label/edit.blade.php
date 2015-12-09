@@ -4,7 +4,7 @@
 <h2 class="page-heading">@lang('labels.edit.title')</h2>
 
 {!! BootForm::open()->action(route('label.edit', ['id' => $label->id])) !!}
-    {!! BootForm::text(trans('labels.labels.name'), 'name')->value($label->name)->required() !!}
+    {!! BootForm::text(trans('labels.labels.name'), 'name')->value($label->name)->required()->autofocus() !!}
 
     <div class="form-group">
         <span class="form-group-title">@lang('labels.labels.color')</span>
