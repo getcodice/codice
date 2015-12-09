@@ -21,7 +21,7 @@
                     </a>
                 </td>
                 <td>
-                    {{ $reminder->remind_at->format('d.m.Y H:i') }}
+                    {{ $reminder->remind_at->format(trans('app.datetime')) }}
                     ({{ $reminder->remind_at->diffForHumans() }})
                 </td>
                 <td>

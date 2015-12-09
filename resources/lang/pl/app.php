@@ -1,5 +1,7 @@
 <?php
 return [
+    // Format zgodny z php.net/date
+    'datetime' => 'd.m.Y H:i',
     'error' => [
         'back-to-index' => 'Wróć na stronę główną',
         'http' => [

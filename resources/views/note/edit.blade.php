@@ -11,14 +11,14 @@
         <div class="col-md-3 well">
             {!!
                 BootForm::text(trans('note.labels.expires_at'), 'expires_at')
-                    ->value(isset($note->expires_at) ? $note->expires_at->format('d.m.Y H:i') : null)
+                    ->value(isset($note->expires_at) ? $note->expires_at->format(trans('app.datetime')) : null)
                     ->placeholder(trans('note.datetime-placeholder'))
                     ->helpBlock(trans('note.optional-field'))
             !!}
 
             {!!
                 BootForm::text(trans('note.labels.reminder_email'), 'reminder_email')
-                    ->value(isset($reminder_email->remind_at) ? $reminder_email->remind_at->format('d.m.Y H:i') : null)
+                    ->value(isset($reminder_email->remind_at) ? $reminder_email->remind_at->format(trans('app.datetime')) : null)
                     ->placeholder(trans('note.datetime-placeholder'))
                     ->helpBlock(trans('note.optional-field'))
             !!}

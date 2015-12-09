@@ -6,7 +6,7 @@
 <body>
     {!!
         trans('reminder.email.content', [
-            'expires' => (isset($note->expires_at) ? $note->expires_at->format('d.m.Y H:i') : ''),
+            'expires' => (isset($note->expires_at) ? $note->expires_at->format(trans('app.datetime')) : ''),
             'name' => e($user->name),
         ])
     !!}

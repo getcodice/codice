@@ -1,6 +1,6 @@
 <article class="note panel panel-{{ $note->state }} {{ isset($single) && $single === true ? 'note-single' : '' }}">
     <div class="panel-heading">
-        <a href="{!! route('note', ['id' => $note->id]) !!}" title="Przejdź do widoku szczegółowego">{{ trans('note.heading.' . $note->state, ['expires' => isset($note->expires_at) ? $note->expires_at->format('d.m.Y H:i') : null]) }}</a>
+        <a href="{!! route('note', ['id' => $note->id]) !!}" title="Przejdź do widoku szczegółowego">{{ trans('note.heading.' . $note->state, ['expires' => isset($note->expires_at) ? $note->expires_at->format(trans('app.datetime')) : null]) }}</a>
     </div>
     <div class="panel-body">
         @if (count($note->labels))
@@ -19,7 +19,7 @@
         @endif
     </div>
     <div class="panel-footer">
-        <span data-toggle="tooltip" title="{{ $note->created_at->format('d.m.Y H:i') }}">@icon('clock-o') {{ $note->created_at->diffForHumans() }}</span>
+        <span data-toggle="tooltip" title="{{ $note->created_at->format(trans('app.datetime')) }}">@icon('clock-o') {{ $note->created_at->diffForHumans() }}</span>
         <span class="pull-right hidden-print note-buttons">
              <a href="{!! route('note.change', ['id' => $note->id]) !!}">
                 @if ($note->status)
