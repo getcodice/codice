@@ -2,10 +2,13 @@
 
 namespace Codice\Exceptions;
 
+use App;
+use Auth;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Redirect;
+use Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -45,6 +48,24 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof HttpException) {
+            $code = $e->getStatusCode();
+
+            if (Auth::check()) {
+                $view = 'authorized';
+            } else {
+                $view = 'unauthorized';
+                // We don't know language of the visitor so let's provide English version
+                App::setLocale('en');
+            }
+
+            return Response::view("error.$view", [
+                'error' => "HTTP $code",
+                'message' => trans("app.error.http.$code"),
+                'title' => "HTTP $code",
+            ], $code);
+        }
+
         if ($e instanceof LabelNotFoundException) {
             return Redirect::route('index')->with('message', trans('labels.not-found'))
                 ->with('message_type', 'danger');
