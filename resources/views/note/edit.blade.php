@@ -11,7 +11,7 @@
         <div class="col-md-3 well">
             {!!
                 BootForm::text(trans('note.labels.expires_at'), 'expires_at')
-                    ->value(isset($note->expires_at) ? $note->expires_at->format(trans('app.datetime')) : null)
+                    ->value($note->expires_at_fmt)
                     ->placeholder(trans('note.datetime-placeholder'))
                     ->helpBlock(trans('note.optional-field'))
             !!}

@@ -3,6 +3,7 @@
 namespace Codice;
 
 use Auth;
+use Carbon\Carbon;
 use Codice\Exceptions\NoteNotFoundException;
 use Codice\Reminder;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ class Note extends Model
      */
     protected $appends = [
         'content_raw',
+        'expires_at_fmt',
         'state',
     ];
 
@@ -86,6 +88,21 @@ class Note extends Model
     public function getContentRawAttribute($content)
     {
         return $this->attributes['content'];
+    }
+
+    /**
+     * Returns formatted expiration date if it's set, null otherwise.
+     *
+     * @return null|string
+     */
+    public function getExpiresAtFmtAttribute()
+    {
+        if (isset($this->attributes['expires_at'])) {
+            return Carbon::parse($this->attributes['expires_at'])
+                ->format(trans('app.datetime'));
+        }
+
+        return null;
     }
 
     /**
