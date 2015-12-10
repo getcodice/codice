@@ -85,7 +85,7 @@ class Note extends Model
      *
      * @return string
      */
-    public function getContentRawAttribute($content)
+    public function getContentRawAttribute()
     {
         return $this->attributes['content'];
     }
