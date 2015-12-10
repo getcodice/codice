@@ -14,6 +14,10 @@ return [
         'title' => 'Reminders',
         'type' => 'Reminder type',
     ],
+    'none' => [
+        'content' => 'There are no reminders scheduled',
+        'title' => 'No reminders',
+    ],
     'not-found' => 'Reminder not found',
     'type' => [
         'email' => 'Email message',

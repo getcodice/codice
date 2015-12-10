@@ -3,6 +3,7 @@
 @section('content')
     <h2 class="page-heading">@lang('reminder.index.title')</h2>
 
+    @if (count($reminders))
     <table class="table">
         <thead>
             <tr>
@@ -34,4 +35,8 @@
         @endforeach
         </tbody>
     </table>
+    @else
+    <h1 class="app-error">@lang('reminder.none.title')</h1>
+    <h2 class="app-error">@lang('reminder.none.content')</h2>
+    @endif
 @stop

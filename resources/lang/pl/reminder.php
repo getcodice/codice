@@ -14,6 +14,10 @@ return [
         'title' => 'Przypomnienia',
         'type' => 'Typ przypomnienia',
     ],
+    'none' => [
+        'content' => 'Nie masz żadnych zaplanowanych przypomnień',
+        'title' => 'Brak przypomnień',
+    ],
     'not-found' => 'Nie znaleziono przypomnienia',
     'type' => [
         'email' => 'Wiadomość email',
