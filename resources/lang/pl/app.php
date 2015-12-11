@@ -2,6 +2,8 @@
 return [
     // Format zgodny z php.net/date
     'datetime' => 'd.m.Y H:i',
+    // Oczekiwany format daty (wyświetlany użytkownikowi)
+    'datetime-human' => 'DD.MM.YYYY HH:MM',
     'error' => [
         'back-to-index' => 'Wróć na stronę główną',
         'http' => [

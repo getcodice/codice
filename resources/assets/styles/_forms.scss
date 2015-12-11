@@ -5,13 +5,13 @@
   font-weight: bold;
 }
 
+textarea#content,
+textarea#quickform_content {
+      resize: vertical;
+}
+
 .quickform {
     margin-bottom: 15px;
-
-    textarea {
-      resize: vertical;
-    }
-
     .form-group {
         margin-bottom: 3px;
     }

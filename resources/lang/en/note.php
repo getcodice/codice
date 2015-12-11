@@ -12,7 +12,6 @@ return [
         'submit' => 'Save',
         'success' => 'Note has been created!',
     ],
-    'datetime-placeholder' => 'mm/dd/yyyy hh:mm',
     'done' => [
         'done' => 'Note marked as done!',
         'undone' => 'Note marked as undone.'
@@ -30,7 +29,7 @@ return [
         'warning' => 'Will expire soon (:expires)',
     ],
     'labels' => [
-        'content' => 'Content',
+        'content' => 'Content <span style="color:red">*</span>',
         'expires_at' => 'Expires at',
         'labels' => 'Labels',
         'labels-select' => 'Choose labels',
@@ -42,7 +41,6 @@ return [
         'title' => 'No notes',
     ],
     'not-found' => 'Note not found.',
-    'optional-field' => 'Optional.',
     'quickform' => [
         'content' => 'Create new note...',
     ],

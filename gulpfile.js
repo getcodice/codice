@@ -11,6 +11,9 @@ gulp.task('scripts', function () {
         './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         './bower_components/select2/dist/js/select2.min.js',
         './bower_components/jscroll/jquery.jscroll.min.js',
+        './bower_components/moment/min/moment.min.js',
+        './bower_components/moment/locale/pl.js',
+        './bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
         './resources/assets/scripts/codice.js',
     ]).pipe(concat('codice.js', { separator: ';' }))
       .pipe(gulp.dest('./public/assets/js'));

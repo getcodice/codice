@@ -12,7 +12,6 @@ return [
         'submit' => 'Zapisz',
         'success' => 'Notatka została dodana!',
     ],
-    'datetime-placeholder' => 'DD.MM.YYYY HH:MM',
     'done' => [
         'done' => 'Notatka oznaczona jako wykonana!',
         'undone' => 'Notatka oznaczona jako niewykonana.'
@@ -30,7 +29,7 @@ return [
         'warning' => 'Termin wykonania zbliża się (:expires)',
     ],
     'labels' => [
-        'content' => 'Treść',
+        'content' => 'Treść <span style="color:red">*</span>',
         'expires_at' => 'Termin wykonania',
         'labels' => 'Etykiety',
         'labels-select' => 'Wybierz etykiety',
@@ -42,7 +41,6 @@ return [
         'title' => 'Brak notatek',
     ],
     'not-found' => 'Nie znaleziono notatki.',
-    'optional-field' => 'Zostaw puste, aby nie określać.',
     'quickform' => [
         'content' => 'Dodaj nową notatkę...',
     ],

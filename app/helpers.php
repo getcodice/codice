@@ -1,5 +1,10 @@
 <?php
 
+function datetime_placeholder($placehoderTranslationKey)
+{
+    return trans($placehoderTranslationKey) . ' (' . trans('app.datetime-human') . ')';
+}
+
 /**
  * Prints a link for navbar with "active" class set if needed.
  */
