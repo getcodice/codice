@@ -7,7 +7,6 @@ use Codice\User;
 use Hash;
 use Input;
 use Redirect;
-use Session;
 use Validator;
 use View;
 
@@ -48,11 +47,7 @@ class UserController extends Controller
 
         if ($validator->passes()) {
             if (Auth::attempt($credentials)) {
-                if (Session::has('url.intended')) {
-                    return Redirect::to(Session::get('url.intended'));
-                }
-
-                return Redirect::route('index');
+                return Redirect::intended(route('index'));
             }
 
             return Redirect::back()->with('message', trans('user.login.invalid'));
