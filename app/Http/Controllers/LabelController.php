@@ -46,6 +46,7 @@ class LabelController extends Controller
     /**
      * Display notes associated with given label.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function getNotes($id)
@@ -82,7 +83,7 @@ class LabelController extends Controller
     }
 
     /**
-     * Processes a form for creating new label.
+     * Process a form for creating new label.
      *
      * @return \Illuminate\Http\Response
      */
@@ -106,6 +107,7 @@ class LabelController extends Controller
     /**
      * Display a form for editing a label.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function getEdit($id)
@@ -117,8 +119,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Processes a form for editing label.
+     * Process a form for editing label.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function postEdit($id)

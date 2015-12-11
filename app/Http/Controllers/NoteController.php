@@ -52,7 +52,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Processes a form for creating new note.
+     * Process a form for creating new note.
      *
      * @return \Illuminate\Http\Response
      */
@@ -95,6 +95,7 @@ class NoteController extends Controller
     /**
      * Display a form for editing a note.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function getEdit($id)
@@ -111,8 +112,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Processes a form for editing note.
+     * Process a form for editing note.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function postEdit($id)
@@ -189,6 +191,7 @@ class NoteController extends Controller
     /**
      * Display only upcoming undone notes.
      *
+     * @param  string  $mode
      * @return \Illuminate\Http\Response
      */
     public function getUpcoming($mode = null)
@@ -212,7 +215,13 @@ class NoteController extends Controller
         ]);
     }
 
-    private function processNewLabels($labels)
+    /**
+     * Process new labels added while creating/editing a note.
+     *
+     * @param  array  $labels
+     * @return array
+     */
+    private function processNewLabels(array $labels)
     {
         $existingLabels = Label::orderBy('name')->lists('id')->toArray();
 

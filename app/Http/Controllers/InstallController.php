@@ -33,6 +33,11 @@ class InstallController extends Controller
         ]);
     }
 
+    /**
+     * Check for software requirements.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getRequirements()
     {
         $requiredExtensions = [
@@ -79,7 +84,7 @@ class InstallController extends Controller
     }
 
     /**
-     * Creating of .env file.
+     * Display form for creating .env file.
      *
      * @return \Illuminate\Http\Response
      */
@@ -90,6 +95,11 @@ class InstallController extends Controller
         ]);
     }
 
+    /**
+     * Create .env file.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function postEnvironment()
     {
         $validator = Validator::make(Input::all(), [
@@ -115,6 +125,11 @@ class InstallController extends Controller
         return Redirect::route('install.database');
     }
 
+    /**
+     * Fill a database with content.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getDatabase()
     {
         $error = null;
@@ -131,6 +146,11 @@ class InstallController extends Controller
         ]);
     }
 
+    /**
+     * Display form for creating first user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getUser()
     {
         return View::make('install.user', [
@@ -138,6 +158,11 @@ class InstallController extends Controller
         ]);
     }
 
+    /**
+     * Create first user.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function postUser()
     {
         $validator = Validator::make(Input::all(), [
@@ -162,6 +187,11 @@ class InstallController extends Controller
         return Redirect::route('install.final');
     }
 
+    /**
+     * Display final screen.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getFinal()
     {
         $unlink = @unlink(storage_path('.install-pending'));

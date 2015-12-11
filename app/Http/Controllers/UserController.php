@@ -29,7 +29,7 @@ class UserController extends Controller
     }
 
     /**
-     * Processes a login form.
+     * Process a login form.
      *
      * @return \Illuminate\Http\Response
      */
@@ -57,7 +57,7 @@ class UserController extends Controller
     }
 
     /**
-     * Logs user out
+     * Log user out
      *
      * @return \Illuminate\Http\Response
      */
@@ -68,7 +68,7 @@ class UserController extends Controller
     }
 
     /**
-     * Displays settings section for current user.
+     * Display settings section for current user.
      *
      * @return \Illuminate\Http\Response
      */
@@ -83,7 +83,7 @@ class UserController extends Controller
     }
 
     /**
-     * Processes settings form.
+     * Process settings form.
      *
      * @return \Illuminate\Http\Response
      */

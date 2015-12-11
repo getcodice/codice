@@ -16,7 +16,7 @@ class InfoController extends Controller
     }
 
     /**
-     * Displays "About Codice" page.
+     * Display "About Codice" page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -66,7 +66,7 @@ class InfoController extends Controller
     }
 
     /**
-     * Displays statistics.
+     * Display statistics.
      *
      * @return \Illuminate\Http\Response
      */
