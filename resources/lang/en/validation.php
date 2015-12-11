@@ -104,6 +104,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'reminder_email' => 'E-mail reminder',
+        'reminder_sms' => 'SMS reminder',
+    ],
 
 ];

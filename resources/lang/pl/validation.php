@@ -58,7 +58,7 @@ return [
     'not_in' => 'Zaznaczony :attribute jest nieprawidłowy.',
     'numeric' => ':attribute musi być liczbą.',
     'regex' => 'Format :attribute jest nieprawidłowy.',
-    'required' => 'Pole :attribute jest wymagane.',
+    'required' => ':attribute jest polem obowiązkowym.',
     'required_if' => 'Pole :attribute jest wymagane gdy :other jest :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
     'required_with' => 'Pole :attribute jest wymagane gdy :values jest obecny.',
@@ -105,6 +105,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'content' => 'Treść',
+        'expires_at' => 'Termin wykonania',
+        'reminder_email' => 'Przypomnienie email',
+        'reminder_sms' => 'Przypomnienie SMS',
+    ],
 
 ];
