@@ -21,7 +21,7 @@ Just @include the view and pass following parameters:
             </div>
             <div class="form-group col-md-4">
                 <label for="quickform_expires_at" class="sr-only">@lang('note.labels.expires_at')</label>
-                <input type="text" name="expires_at" id="quickform_expires_at" class="form-control" placeholder="@lang('note.labels.expires_at') (@lang('note.datetime-placeholder'))"></textarea>
+                <input type="text" name="expires_at" id="quickform_expires_at" class="form-control" placeholder="{{ datetime_placeholder('note.labels.expires_at') }}">
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-primary btn-block">@lang('note.create.submit')</button>
