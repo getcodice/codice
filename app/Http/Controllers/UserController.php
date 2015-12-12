@@ -2,6 +2,7 @@
 
 namespace Codice\Http\Controllers;
 
+use App;
 use Auth;
 use Codice\User;
 use Hash;
@@ -101,6 +102,10 @@ class UserController extends Controller
         ]);
 
         if ($validator->passes()) {
+            // Set app's locale so correct message is displayed when language has
+            // been just changed.
+            App::setLocale(Input::get('options')['language']);
+
             $message = trans('user.settings.success');
 
             $user = Auth::user();
