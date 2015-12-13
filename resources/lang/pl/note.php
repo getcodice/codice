@@ -50,4 +50,5 @@ return [
         'title' => 'Nadchodzące notatki',
         'with-expired' => 'Pokaż zadania po terminie',
     ],
+    'updated' => 'akt.:',
 ];

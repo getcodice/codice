@@ -50,4 +50,5 @@ return [
         'title' => 'Upcoming notes',
         'with-expired' => 'Show expired tasks',
     ],
+    'updated' => 'updated:',
 ];

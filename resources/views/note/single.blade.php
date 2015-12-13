@@ -22,7 +22,16 @@
         @endif
     </div>
     <div class="panel-footer">
-        <span data-toggle="tooltip" title="{{ $note->created_at->format(trans('app.datetime')) }}">@icon('clock-o') {{ $note->created_at->diffForHumans() }}</span>
+        @if ($note->updated_at > $note->created_at)
+        <span data-toggle="tooltip" title="
+            {{ $note->created_at->format(trans('app.datetime')) }}
+            (@lang('note.updated') {{ $note->updated_at->format(trans('app.datetime')) }})
+        ">
+        @else
+        <span data-toggle="tooltip" title="{{ $note->created_at->format(trans('app.datetime')) }}">
+        @endif
+            @icon('clock-o') {{ $note->created_at->diffForHumans() }}
+        </span>
         <span class="pull-right hidden-print note-buttons">
              <a href="{!! route('note.change', ['id' => $note->id]) !!}">
                 @if ($note->status)
