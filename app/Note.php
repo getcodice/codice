@@ -156,6 +156,18 @@ class Note extends Model
     }
 
     /**
+     * Saves a note but without bumping updated_at property
+     */
+    public function saveWithoutTouching(array $options = [])
+    {
+        $this->timestamps = false;
+        $result = parent::save($options);
+        $this->timestamps = true;
+
+        return $result;
+    }
+
+    /**
      * Set query scope to currently logged user.
      *
      */

@@ -153,7 +153,7 @@ class NoteController extends Controller
         $newStatus = (int) !$note->status;
 
         $note->status = $newStatus;
-        $note->save();
+        $note->saveWithoutTouching();
 
         $message = $newStatus === 1 ? 'note.done.done' : 'note.done.undone';
 
