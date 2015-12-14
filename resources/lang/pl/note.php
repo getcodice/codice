@@ -32,7 +32,6 @@ return [
         'content' => 'Treść <span style="color:red">*</span>',
         'expires_at' => 'Termin wykonania',
         'labels' => 'Etykiety',
-        'labels-select' => 'Wybierz etykiety',
         'reminder_email' => 'Przypomnienie mailowe',
         'reminder_smsapi' => 'Przypomnienie SMS',
     ],

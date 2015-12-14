@@ -65,6 +65,7 @@
         @yield('content')
     </main>
 
+    <script src="{!! asset('assets/js/locales/' . Auth::user()->options['language'] . '.js') !!}"></script>
     <script src="{!! asset('assets/js/codice.js') !!}"></script>
     @yield('footer')
 </body>

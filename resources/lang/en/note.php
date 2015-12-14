@@ -32,7 +32,6 @@ return [
         'content' => 'Content <span style="color:red">*</span>',
         'expires_at' => 'Expires at',
         'labels' => 'Labels',
-        'labels-select' => 'Choose labels',
         'reminder_email' => 'Email reminder',
         'reminder_smsapi' => 'SMS reminder',
     ],

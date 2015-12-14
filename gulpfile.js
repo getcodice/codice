@@ -6,6 +6,10 @@ var gutil   = require('gulp-util');
 var concat  = require('gulp-concat-util');
 
 gulp.task('scripts', function () {
+    // Copy JS locales
+    gulp.src('./resources/assets/scripts/locales/*.js')
+    .pipe(gulp.dest('./public/assets/js/locales'));
+
     return gulp.src([
         './bower_components/jquery/dist/jquery.min.js',
         './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',

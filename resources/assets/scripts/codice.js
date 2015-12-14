@@ -38,3 +38,40 @@ $('#quickform_content').on('focusout', function () {
         $quickformControls.addClass('sr-only');
     }
 });
+
+function codiceDatetimePicker(domSelector) {
+    $(domSelector).datetimepicker({
+        locale: codiceLang.languageCode,
+        icons: {
+            time: 'fa fa-clock-o',
+            date: 'fa fa-calendar',
+            up: 'fa fa-arrow-up',
+            down: 'fa fa-arrow-down',
+            previous: 'fa fa-arrow-left',
+            next: 'fa fa-arrow-right',
+            clear: 'fa fa-trash-o',
+            close: 'fa fa-times'
+        }
+    });
+}
+
+function codiceLabelSelector(domSelector) {
+    $(domSelector).select2({
+        placeholder: codiceLang.selectLabels,
+        tags: true,
+        theme: "bootstrap",
+    });
+}
+
+function codiceNotesPager() {
+    $('.pager').hide();
+    $('.jscroll-container').jscroll({
+        loadingHtml: '<i class="fa fa-spinner fa-spin"></i>',
+        padding: 10,
+        nextSelector: '.pager a[rel="next"]',
+        contentSelector: '.jscroll-container',
+        callback: function () {
+            $('.pager').hide();
+        }
+    });
+}

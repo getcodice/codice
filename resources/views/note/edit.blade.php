@@ -65,37 +65,9 @@
 $('#expires_at').parent().addClass('date').attr('id', 'expires_at_picker');
 $('#reminder_email').parent().addClass('date').attr('id', 'reminder_email_picker');
 
-$('#expires_at_picker').datetimepicker({
-    locale: '{{ Auth::user()->options['language'] }}',
-    icons: {
-        time: 'fa fa-clock-o',
-        date: 'fa fa-calendar',
-        up: 'fa fa-arrow-up',
-        down: 'fa fa-arrow-down',
-        previous: 'fa fa-arrow-left',
-        next: 'fa fa-arrow-right',
-        clear: 'fa fa-trash-o',
-        close: 'fa fa-times'
-    }
-});
-$('#reminder_email_picker').datetimepicker({
-    locale: '{{ Auth::user()->options['language'] }}',
-    icons: {
-        time: 'fa fa-clock-o',
-        date: 'fa fa-calendar',
-        up: 'fa fa-arrow-up',
-        down: 'fa fa-arrow-down',
-        previous: 'fa fa-arrow-left',
-        next: 'fa fa-arrow-right',
-        clear: 'fa fa-trash-o',
-        close: 'fa fa-times'
-    }
-});
+codiceDatetimePicker('#expires_at_picker');
+codiceDatetimePicker('#reminder_email_picker');
 
-$("#labels").select2({
-    placeholder: "@lang('note.labels.labels-select')",
-    tags: true,
-    theme: "bootstrap",
-});
+codiceLabelSelector("#labels");
 </script>
 @stop
