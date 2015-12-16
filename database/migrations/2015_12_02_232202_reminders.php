@@ -18,7 +18,7 @@ class Reminders extends Migration
             $table->integer('note_id');
             $table->text('data');
             $table->dateTime('remind_at');
-            $table->tinyInteger('type');
+            $table->string('type', 10);
         });
     }
 

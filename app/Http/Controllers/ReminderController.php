@@ -4,6 +4,7 @@ namespace Codice\Http\Controllers;
 
 use Auth;
 use Codice\Reminder;
+use Codice\Reminders\ReminderService;
 use Redirect;
 use View;
 
@@ -21,15 +22,9 @@ class ReminderController extends Controller
      */
     public function getIndex()
     {
-        $types = [
-            Reminder::TYPE_EMAIL => trans('reminder.type.email'),
-            Reminder::TYPE_SMSAPI => trans('reminder.type.sms'),
-        ];
-
         return View::make('reminder.index', [
             'reminders' => Reminder::logged()->orderBy('remind_at', 'asc')->get(),
             'title' => trans('reminder.index.title'),
-            'types' => $types,
         ]);
     }
 
@@ -48,8 +43,8 @@ class ReminderController extends Controller
                 ->with('message_type', 'danger');
         }
 
-        $reminder->delete();
+        ReminderService::get($reminder->type)->cancel($reminder);
 
-        return Redirect::route('reminders')->with('message', trans('reminder.removed'));
+        return Redirect::route('reminders')->with('message', trans('reminder.cancelled'));
     }
 }

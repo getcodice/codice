@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
 {
-    const TYPE_EMAIL = 1;
-    const TYPE_SMSAPI = 2;
-
     public $timestamps = false;
 
     /**
@@ -37,27 +34,6 @@ class Reminder extends Model
      * @var array
      */
     protected $guarded = [];
-
-    public static function addReminder(Note $note, $remindAt, $type)
-    {
-        if ($type === self::TYPE_EMAIL) {
-            $content = $note->content;
-        } elseif ($type === self::TYPE_SMSAPI) {
-            $content = substr(strip_tags($note->content_raw), 0, 60);
-        }
-
-        if ($type === self::TYPE_SMSAPI) {
-            // Send API request
-        }
-
-        return self::create([
-            'user_id' => Auth::id(),
-            'note_id' => $note->id,
-            'data' => [],
-            'remind_at' => $remindAt,
-            'type' => $type,
-        ]);
-    }
 
     /**
      * Relation to the Note

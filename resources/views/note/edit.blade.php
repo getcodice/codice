@@ -25,20 +25,20 @@
         </div>
         <div class="col-md-4">
             {!!
-                BootForm::inputGroup(trans('note.labels.reminder_email'), 'reminder_email')
+                BootForm::inputGroup(trans('reminder.services.email'), 'reminder_email')
                     ->type('datetime')
                     ->value(isset($reminder_email->remind_at) ? $reminder_email->remind_at->format(trans('app.datetime')) : null)
                     ->afterAddon(icon('calendar'))
-                    ->placeholder(datetime_placeholder('note.labels.reminder_email'))
+                    ->placeholder(datetime_placeholder('reminder.services.email'))
                     ->hideLabel();
             !!}
         </div>
         <div class="col-md-4">
             {!!
-                BootForm::inputGroup(trans('note.labels.reminder_smsapi'), 'reminder_smsapi')
+                BootForm::inputGroup(trans('reminder.services.smsapi'), 'reminder_smsapi')
                     ->type('datetime')
                     ->afterAddon(icon('calendar'))
-                    ->placeholder(datetime_placeholder('note.labels.reminder_smsapi'))
+                    ->placeholder(datetime_placeholder('reminder.services.smsapi'))
                     ->hideLabel()
                     ->disabled();
             !!}

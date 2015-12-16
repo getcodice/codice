@@ -5,7 +5,7 @@ namespace Codice\Http\Controllers;
 use Auth;
 use Codice\Label;
 use Codice\Note;
-use Codice\Reminder;
+use Codice\Reminders\ReminderService;
 use Input;
 use Redirect;
 use Validator;
@@ -58,7 +58,9 @@ class NoteController extends Controller
      */
     public function postCreate()
     {
-        $validator = Validator::make(Input::all(), $this->rules);
+        $input = Input::all();
+
+        $validator = Validator::make($input, $this->rules);
 
         if ($validator->passes()) {
             $note = Note::create([
@@ -72,12 +74,11 @@ class NoteController extends Controller
             $labels = $this->processNewLabels($labels);
             $note->labels()->sync($labels);
 
-            if (Input::has('reminder_email')) {
-                Reminder::addReminder(
-                    $note,
-                    strtotime(Input::get('reminder_email')),
-                    Reminder::TYPE_EMAIL
-                );
+            // Handle reminders
+            foreach (ReminderService::getRegisteredKeys() as $reminderID) {
+                if (Input::has("reminder_$reminderID")) {
+                    ReminderService::get($reminderID)->set($note, $input);
+                }
             }
 
             if (Input::has('quickform_label') && is_numeric(Input::get('quickform_label'))) {
@@ -106,7 +107,8 @@ class NoteController extends Controller
             'labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
             'note' => $note,
             'note_labels' => $note->labels()->lists('id')->toArray(),
-            'reminder_email' => $note->reminder(Reminder::TYPE_EMAIL),
+            // @todo: temporary
+            'reminder_email' => $note->reminder('email'),
             'title' => trans('note.edit.title'),
         ]);
     }
@@ -120,8 +122,9 @@ class NoteController extends Controller
     public function postEdit($id)
     {
         $note = Note::findOwned($id);
+        $input = Input::all();
 
-        $validator = Validator::make(Input::all(), $this->rules);
+        $validator = Validator::make($input, $this->rules);
 
         if ($validator->passes()) {
             $note->content = Input::get('content');
@@ -132,7 +135,10 @@ class NoteController extends Controller
             $labels = $this->processNewLabels($labels);
             $note->labels()->sync($labels);
 
-            $this->processReminder($note, Reminder::TYPE_EMAIL, Input::get('reminder_email'));
+            // Handle reminders
+            foreach (ReminderService::getRegisteredKeys() as $reminderID) {
+                ReminderService::get($reminderID)->processs($note, $input);
+            }
 
             return Redirect::route('index')->with('message', trans('note.edit.success'));
         } else {
@@ -241,22 +247,5 @@ class NoteController extends Controller
         }
 
         return $labels;
-    }
-
-    private function processReminder(Note $note, $type, $input)
-    {
-        $reminder = $note->reminder($type);
-
-        // Note has a reminder and form has it - update existing one
-        if (!empty($input) && !empty($reminder)) {
-            $reminder->remind_at = strtotime($input);
-            $reminder->save();
-        // Note doesn't have a reminder but it is set in form - just add one
-        } elseif (!empty($input) && $reminder === null) {
-            Reminder::addReminder($note, strtotime($input), $type);
-        // Note have a reminder but it's not set in form - remove reminder
-        } elseif (empty($input) && !empty($reminder)) {
-            $reminder->delete();
-        }
     }
 }

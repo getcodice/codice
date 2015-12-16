@@ -32,8 +32,6 @@ return [
         'content' => 'Content <span style="color:red">*</span>',
         'expires_at' => 'Expires at',
         'labels' => 'Labels',
-        'reminder_email' => 'Email reminder',
-        'reminder_smsapi' => 'SMS reminder',
     ],
     'none' => [
         'content' => 'No notes matching given criteria',

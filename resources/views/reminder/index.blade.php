@@ -26,10 +26,10 @@
                     ({{ $reminder->remind_at->diffForHumans() }})
                 </td>
                 <td>
-                    {{ $types[$reminder->type] }}
+                    {{ trans("reminder.services.{$reminder->type}") }}
                 </td>
                 <td>
-                    <a href="{!! route('reminder.remove', ['id' => $reminder->id]) !!}" class="action confirm-deletion">@icon('trash-o') @lang('reminder.index.remove')</a>
+                    <a href="{!! route('reminder.remove', ['id' => $reminder->id]) !!}" class="action confirm-deletion">@icon('trash-o') @lang('reminder.index.cancel')</a>
                 </td>
             </tr>
         @endforeach
