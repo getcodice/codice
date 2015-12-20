@@ -4,7 +4,7 @@ namespace Codice;
 
 use Illuminate\Support\ServiceProvider;
 
-class PluginBase extends ServiceProvider
+abstract class PluginBase extends ServiceProvider
 {
     /**
      * Return basic plugin informations.

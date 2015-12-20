@@ -3,6 +3,7 @@
 namespace Codice;
 
 use App;
+use Codice\PluginBase;
 use Codice\Support\Traits\Singleton;
 use Config;
 use File;
@@ -150,7 +151,7 @@ class PluginManager {
      */
     public function isDisabled($id)
     {
-        return $this->storage[$id]['enabled'];
+        return !$this->storage[$id]['enabled'];
     }
 
     /**
@@ -187,6 +188,12 @@ class PluginManager {
         }
 
         $classObj = new $className($this->app);
+
+        // Check if plugin class inherits PluginBase and therefore an interface
+        if (!$classObj instanceof PluginBase) {
+            return;
+        }
+
         $classId = $this->getIdentifier($classObj);
 
         $this->plugins[$classId] = $classObj;
