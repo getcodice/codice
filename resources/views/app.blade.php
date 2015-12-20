@@ -33,6 +33,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@icon('user') {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {!! navbar_link('settings', 'cog fa-fw', 'settings') !!}
+                            {!! navbar_link('plugins', 'plug fa-fw', 'plugins') !!}
                             {!! navbar_link('stats', 'bar-chart fa-fw', 'stats') !!}
                             {!! navbar_link('about', 'info-circle fa-fw', 'about') !!}
                             {!! navbar_link('user.logout', 'sign-out fa-fw', 'logout') !!}

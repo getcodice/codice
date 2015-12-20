@@ -18,6 +18,7 @@ return [
         'add' => 'Create',
         'labels' => 'Labels',
         'logout' => 'Logout',
+        'plugins' => 'Plugins',
         'reminders' => 'Reminders',
         'search-placeholder' => 'Search...',
         'settings' => 'Settings',

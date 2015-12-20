@@ -18,6 +18,7 @@ return [
         'add' => 'Dodaj',
         'labels' => 'Etykiety',
         'logout' => 'Wyloguj',
+        'plugins' => 'Wtyczki',
         'reminders' => 'Przypomnienia',
         'search-placeholder' => 'Szukaj...',
         'settings' => 'Ustawienia',
