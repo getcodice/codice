@@ -47,6 +47,11 @@ class MenuManager {
         unset($this->items[$route]);
     }
 
+    /**
+     * Return registered menu items, sorted by their position.
+     *
+     * @return array
+     */
     public function getItems()
     {
         // Sort items by their position
