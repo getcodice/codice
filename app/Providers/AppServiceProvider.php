@@ -3,6 +3,7 @@
 namespace Codice\Providers;
 
 use Blade;
+use Codice\MenuManager;
 use Codice\PluginManager;
 use Codice\Reminders\ReminderService;
 use Illuminate\Support\ServiceProvider;
@@ -16,6 +17,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Register menu manager instances
+        $this->app->singleton('menu.main', function ($app) {
+            return new MenuManager;
+        });
+        $this->app->singleton('menu.user', function ($app) {
+            return new MenuManager;
+        });
+
+        // Register application's menus
+        $this->registerMainMenu();
+        $this->registerUserMenu();
+
         // Boot plugins
         PluginManager::instance()->bootAll();
 
@@ -35,5 +48,24 @@ class AppServiceProvider extends ServiceProvider
 
         // Register plugins
         PluginManager::instance()->registerAll();
+    }
+
+    protected function registerMainMenu() {
+        $m = $this->app->make('menu.main');
+
+        $m->add('note.create', 'app.menu.add', 'plus', 5);
+        $m->add('labels', 'app.menu.labels', 'tags', 10);
+        $m->add('reminders', 'app.menu.reminders', 'bell', 15);
+        $m->add('upcoming', 'app.menu.upcoming', 'calendar', 20);
+    }
+
+    protected function registerUserMenu() {
+        $m = $this->app->make('menu.user');
+
+        $m->add('settings', 'app.menu.settings', 'cog fa-fw', 5);
+        $m->add('plugins', 'app.menu.plugins', 'plug fa-fw', 10);
+        $m->add('stats', 'app.menu.stats', 'bar-chart fa-fw', 15);
+        $m->add('about', 'app.menu.about', 'info-circle fa-fw', 20);
+        $m->add('user.logout', 'app.menu.logout', 'sign-out fa-fw', 25);
     }
 }

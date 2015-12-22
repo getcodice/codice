@@ -21,10 +21,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav">
-                    {!! navbar_link('note.create', 'plus', 'add') !!}
-                    {!! navbar_link('labels', 'tags', 'labels')!!}
-                    {!! navbar_link('reminders', 'bell', 'reminders') !!}
-                    {!! navbar_link('upcoming', 'calendar', 'upcoming') !!}
+                    {!! App::make('menu.main')->render() !!}
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -32,11 +29,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@icon('user') {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            {!! navbar_link('settings', 'cog fa-fw', 'settings') !!}
-                            {!! navbar_link('plugins', 'plug fa-fw', 'plugins') !!}
-                            {!! navbar_link('stats', 'bar-chart fa-fw', 'stats') !!}
-                            {!! navbar_link('about', 'info-circle fa-fw', 'about') !!}
-                            {!! navbar_link('user.logout', 'sign-out fa-fw', 'logout') !!}
+                            {!! App::make('menu.user')->render() !!}
                         </ul>
                     </li>
                 </ul>
