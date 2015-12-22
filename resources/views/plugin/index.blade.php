@@ -42,14 +42,14 @@
                             @lang('plugin.index.enable')
                         </a>
                     @endif
-                    <br><a href="{!! route('plugin.uninstall', ['id' => $id]) !!}" class="confirm-deletion">
+                    <br><a href="{!! route('plugin.uninstall', ['id' => $id]) !!}" data-confirm="uninstall">
                         @lang('plugin.index.uninstall')
                     </a>
                 @else
                     <a href="{!! route('plugin.install', ['id' => $id]) !!}">
                         @lang('plugin.index.install')
                     </a><br>
-                    <a href="{!! route('plugin.remove', ['id' => $id]) !!}" class="confirm-deletion">
+                    <a href="{!! route('plugin.remove', ['id' => $id]) !!}" data-confirm="delete">
                         @lang('plugin.index.remove')
                     </a>
                 @endif

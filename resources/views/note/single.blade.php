@@ -41,7 +41,7 @@
                 @endif
             </a>
              <a href="{!! route('note.edit', ['id' => $note->id]) !!}">@icon('pencil') <span class="text">@lang('note.buttons.edit')</span></a>
-             <a href="{!! route('note.remove', ['id' => $note->id]) !!}" class="confirm-deletion">@icon('trash-o') <span class="text">@lang('note.buttons.remove')</span></a>
+             <a href="{!! route('note.remove', ['id' => $note->id]) !!}" data-confirm="delete">@icon('trash-o') <span class="text">@lang('note.buttons.remove')</span></a>
         </span>
     </div>
 </article>

@@ -27,7 +27,7 @@
                 </td>
                 <td>
                     <a href="{!! route('label.edit', ['id' => $label->id]) !!}" class="action">@icon('pencil') @lang('labels.index.edit')</a>
-                    <a href="{!! route('label.remove', ['id' => $label->id]) !!}" class="action confirm-deletion">@icon('trash-o') @lang('labels.index.remove')</a>
+                    <a href="{!! route('label.remove', ['id' => $label->id]) !!}" class="action" data-confirm="delete">@icon('trash-o') @lang('labels.index.remove')</a>
                 </td>
             </tr>
         @endforeach

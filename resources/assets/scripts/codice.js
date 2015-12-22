@@ -1,13 +1,16 @@
-function prepare() {
-    $('span[data-toggle="tooltip"]').tooltip();
-    $('.confirm-deletion').click(function() {
-        if (!confirm("Czy na pewno skasować?")) {
-            return false;
-        }
-    });
+$('span[data-toggle="tooltip"]').tooltip();
+
+// Confirmations
+String.prototype.ucfirst = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-prepare();
+$('a[data-confirm]').on('click', function () {
+    langKey = 'confirm' + $(this).data('confirm').ucfirst();
+    if (!confirm(codiceLang[langKey])) {
+        return false;
+    }
+});
 
 var $navSearchLabel = $('.nav-search-label');
 var $navSearchForm = $('.navbar-form');
