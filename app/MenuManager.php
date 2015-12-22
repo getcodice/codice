@@ -68,6 +68,7 @@ class MenuManager {
 
         foreach ($this->getItems() as $item) {
             if (!empty($item['additionalRoutes'])) {
+                $route = [];
                 $route[] = $item['route'];
                 $route = array_merge($route, $item['additionalRoutes']);
             } else {

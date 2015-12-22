@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
         $m = $this->app->make('menu.main');
 
         $m->add('note.create', 'app.menu.add', 'plus', 5);
-        $m->add('labels', 'app.menu.labels', 'tags', 10);
+        $m->add('labels', 'app.menu.labels', 'tags', 10, ['label']);
         $m->add('reminders', 'app.menu.reminders', 'bell', 15);
         $m->add('upcoming', 'app.menu.upcoming', 'calendar', 20);
     }
