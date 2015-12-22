@@ -13,10 +13,7 @@ abstract class PluginBase extends ServiceProvider
      *
      * @return array
      */
-    public function pluginDetails()
-    {
-        return [];
-    }
+    abstract public function pluginDetails();
 
     /**
      * All operations to perform on plugin installation.
