@@ -92,11 +92,13 @@ class LabelController extends Controller
         $validator = Validator::make(Input::all(), $this->rules);
 
         if ($validator->passes()) {
-            Label::create([
+            $label = Label::create([
                 'user_id' => Auth::id(),
                 'name' => Input::get('name'),
                 'color' => Input::get('color'),
             ]);
+
+            event('label.save.create', [$label]);
 
             return Redirect::route('labels')->with('message', trans('labels.create.success'));
         } else {
@@ -135,6 +137,8 @@ class LabelController extends Controller
             $label->color = Input::get('color');
             $label->save();
 
+            event('label.save.edit', [$label]);
+
             return Redirect::route('labels')->with('message', trans('labels.edit.success'));
         } else {
             return Redirect::back()->withErrors($validator)->withInput();
@@ -151,6 +155,8 @@ class LabelController extends Controller
     {
         $label = Label::findOwned($id);
         $label->delete();
+
+        event('label.drop', [$label]);
 
         return Redirect::route('labels')->with('message', trans('labels.removed'));
     }

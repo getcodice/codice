@@ -70,6 +70,8 @@ class NoteController extends Controller
                 'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null,
             ]);
 
+            event('note.save.create', [$note]);
+
             $labels = Input::get('labels', []);
             $labels = $this->processNewLabels($labels);
             $note->labels()->sync($labels);
@@ -131,6 +133,8 @@ class NoteController extends Controller
             $note->expires_at = Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null;
             $note->save();
 
+            event('note.save.edit', [$note]);
+
             $labels = Input::get('labels', []);
             $labels = $this->processNewLabels($labels);
             $note->labels()->sync($labels);
@@ -161,6 +165,9 @@ class NoteController extends Controller
         $note->status = $newStatus;
         $note->saveWithoutTouching();
 
+        // Read target status using $note->status
+        event('note.changeStatus', [$note]);
+
         $message = $newStatus === 1 ? 'note.done.done' : 'note.done.undone';
 
         return Redirect::back()->with('message', trans($message));
@@ -190,6 +197,8 @@ class NoteController extends Controller
     {
         $note = Note::findOwned($id);
         $note->delete();
+
+        event('note.drop', [$note]);
 
         return Redirect::back()->with('message', trans('note.removed'));
     }
