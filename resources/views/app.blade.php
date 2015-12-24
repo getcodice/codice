@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic&amp;subset=latin,latin-ext">
     <link rel="stylesheet" href="{!! asset('assets/css/codice.css') !!}">
+    @hook('template.header')
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -56,11 +57,14 @@
             </div>
         @endif
 
+        @hook('template.content.before')
         @yield('content')
+        @hook('template.content.after')
     </main>
 
     <script src="{!! asset('assets/js/locales/' . Auth::user()->options['language'] . '.js') !!}"></script>
     <script src="{!! asset('assets/js/codice.js') !!}"></script>
     @yield('footer')
+    @hook('template.footer')
 </body>
 </html>

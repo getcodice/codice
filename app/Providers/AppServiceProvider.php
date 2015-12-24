@@ -32,6 +32,10 @@ class AppServiceProvider extends ServiceProvider
         // Boot plugins
         PluginManager::instance()->bootAll();
 
+        Blade::directive('hook', function($name) {
+            return "<?php event('" . substr($name, 2, -2) . "'); ?>";
+        });
+
         Blade::directive('icon', function($name) {
             return '<span class="fa fa-' . substr($name, 2, -2) . '"></span>';
         });
