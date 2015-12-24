@@ -122,6 +122,8 @@ class UserController extends Controller
             $user->options = Input::get('options');
             $user->save();
 
+            event('user.save', [$user]);
+
             return Redirect::back()->with('message', $message);
         } else {
             return Redirect::back()->withErrors($validator)->withInput();
