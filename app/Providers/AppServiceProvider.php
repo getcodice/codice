@@ -7,6 +7,7 @@ use Codice\MenuManager;
 use Codice\PluginManager;
 use Codice\Reminders\ReminderService;
 use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Register menu manager instances
+        // They still need to be located in the Container in order to allow
+        // menu modification using plugins.
         $this->app->singleton('menu.main', function ($app) {
             return new MenuManager;
         });
@@ -26,8 +29,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Register application's menus
-        $this->registerMainMenu();
-        $this->registerUserMenu();
+        View::composer('app', function ($view) {
+            $this->registerMainMenu();
+            $this->registerUserMenu();
+        });
 
         // Boot plugins
         PluginManager::instance()->bootAll();
