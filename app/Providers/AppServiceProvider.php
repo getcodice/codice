@@ -53,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Register service for email reminders
         ReminderService::register(\Codice\Reminders\EmailReminder::class);
 
         // Register plugins
