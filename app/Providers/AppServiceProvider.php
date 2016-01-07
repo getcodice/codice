@@ -59,7 +59,8 @@ class AppServiceProvider extends ServiceProvider
         PluginManager::instance()->registerAll();
     }
 
-    protected function registerMainMenu() {
+    protected function registerMainMenu()
+    {
         $m = $this->app->make('menu.main');
 
         $m->add('note.create', 'app.menu.add', 'plus', 5);
@@ -68,7 +69,8 @@ class AppServiceProvider extends ServiceProvider
         $m->add('upcoming', 'app.menu.upcoming', 'calendar', 20);
     }
 
-    protected function registerUserMenu() {
+    protected function registerUserMenu()
+    {
         $m = $this->app->make('menu.user');
 
         $m->add('settings', 'app.menu.settings', 'cog fa-fw', 5);
