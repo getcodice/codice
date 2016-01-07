@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
         PluginManager::instance()->registerAll();
     }
 
-    protected function registerMainMenu()
+    private function registerMainMenu()
     {
         $m = $this->app->make('menu.main');
 
@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
         $m->add('upcoming', 'app.menu.upcoming', 'calendar', 20);
     }
 
-    protected function registerUserMenu()
+    private function registerUserMenu()
     {
         $m = $this->app->make('menu.user');
 
