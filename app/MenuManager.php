@@ -15,7 +15,7 @@ class MenuManager {
      * Add menu item.
      *
      * @param string $route Name of the target route
-     * @param string $transKey Key in translation file which will be used as a name
+     * @param string $translationKey Key in translation file which will be used as a name
      * @param string $icon Valid fontawesome icon class, without fa-* prefix
      * @param int $position Position of the menu item
      * @param array $additionalRoutes Additional routes which should mark item as active

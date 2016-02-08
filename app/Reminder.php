@@ -3,7 +3,6 @@
 namespace Codice;
 
 use Auth;
-use Codice\Note;
 use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model

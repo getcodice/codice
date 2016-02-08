@@ -24,8 +24,8 @@ class Label extends Model
      * Find label owned by currently logged user.
      *
      * @param  $id Label ID
-     * @return Codice\Label
-     * @throws Codice\Exceptions\NoteNotFoundException
+     * @return \Codice\Label
+     * @throws \Codice\Exceptions\LabelNotFoundException
      */
     public static function findOwned($id)
     {

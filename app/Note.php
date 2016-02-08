@@ -54,8 +54,8 @@ class Note extends Model
      * Find note owned by currently logged user.
      *
      * @param  $id Note ID
-     * @return Codice\Note
-     * @throws Codice\Exceptions\NoteNotFoundException
+     * @return \Codice\Note
+     * @throws \Codice\Exceptions\NoteNotFoundException
      */
     public static function findOwned($id)
     {
@@ -148,7 +148,7 @@ class Note extends Model
      * Returns note reminder of given type.
      *
      * @param  int $type
-     * @return Codice\Reminder
+     * @return \Codice\Reminder
      */
     public function reminder($type)
     {
@@ -156,7 +156,10 @@ class Note extends Model
     }
 
     /**
-     * Saves a note but without bumping updated_at property
+     * Saves a note but without bumping updated_at property.
+     *
+     * @param  array $options
+     * @return \Codice\Note
      */
     public function saveWithoutTouching(array $options = [])
     {
@@ -170,6 +173,7 @@ class Note extends Model
     /**
      * Set query scope to currently logged user.
      *
+     * @param object $query
      */
     public function scopeLogged($query)
     {

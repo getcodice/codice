@@ -3,7 +3,6 @@
 namespace Codice;
 
 use App;
-use Codice\PluginBase;
 use Codice\Support\Traits\Singleton;
 use Config;
 use File;
@@ -170,7 +169,7 @@ class PluginManager {
      * Loads a single plugin in to the manager.
      * @param string $namespace Eg: Acme\Blog
      * @param string $path Eg: plugins/acme/blog
-     * @return void
+     * @return bool|PluginBase
      */
     public function loadPlugin($namespace, $path)
     {
@@ -184,14 +183,14 @@ class PluginManager {
 
         // Not a valid plugin!
         if (!class_exists($className)) {
-            return;
+            return false;
         }
 
         $classObj = new $className($this->app);
 
         // Check if plugin class inherits PluginBase and therefore an interface
         if (!$classObj instanceof PluginBase) {
-            return;
+            return false;
         }
 
         $classId = $this->getIdentifier($classObj);
@@ -350,6 +349,7 @@ class PluginManager {
     /**
      * Write database of plugin informations.
      *
+     * @param  array $content Plugins data
      * @return bool
      */
     public function setStorage($content)
@@ -358,7 +358,10 @@ class PluginManager {
     }
 
     /**
-     * Return a plugin registration class based on its identifier (Vendor.Plugin).
+     * Return a plugin registration class based on its identifier.
+     *
+     * @param  string $identifier Plugin's identifier in format ofVendor.Plugin
+     * @return PluginBase
      */
     public function findByIdentifier($identifier)
     {
@@ -431,7 +434,7 @@ class PluginManager {
 
     /**
      * Returns a plugin identifier from a Plugin class name or object
-     * @param mixed Plugin class name or object
+     * @param  mixed $namespace Plugin class name or object
      * @return string Identifier in format of Vendor.Plugin
      */
     protected function getIdentifier($namespace)
@@ -486,6 +489,9 @@ class PluginManager {
 
     /**
      * Remove the starting slash from a class namespace.
+     *
+     * @param  object|string $name Class object or fully qualified name
+     * @return string
      */
     protected static function normalizeClassName($name)
     {

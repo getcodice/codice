@@ -12,11 +12,16 @@ use View;
 
 class InstallController extends Controller
 {
+    /**
+     * InstallController constructor.
+     */
     public function __construct()
     {
         if (file_exists(base_path('.env')) && !file_exists(storage_path('.install-pending'))) {
             return Redirect::route('index')->send();
         }
+
+        return true;
     }
 
     /**
@@ -54,6 +59,7 @@ class InstallController extends Controller
             'storage/logs/',
         ];
 
+        $requirements = $permissions = [];
         $requirementsOk = $permissionsOk = true;
 
         foreach ($requiredExtensions as $extension) {
