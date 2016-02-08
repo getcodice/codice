@@ -156,6 +156,7 @@ return [
         Codice\Providers\RouteServiceProvider::class,
 
         AdamWathan\BootForms\BootFormsServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

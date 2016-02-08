@@ -5,6 +5,7 @@
 /public/assets/fonts
 /public/assets/js
 /vendor
+_ide_helper.php
 Homestead.yaml
 Homestead.json
 .env

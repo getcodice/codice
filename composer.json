@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "adamwathan/bootforms": "0.7.*",
-        "league/commonmark": "^0.12"
+        "league/commonmark": "^0.12",
+        "barryvdh/laravel-ide-helper": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
