@@ -4,7 +4,6 @@ namespace Codice;
 
 use App;
 use Codice\Support\Traits\Singleton;
-use Config;
 use File;
 use Lang;
 use View;
@@ -66,7 +65,7 @@ class PluginManager {
         $this->plugins = [];
 
         foreach ($this->storage as $identifier => $class) {
-            $this->plugins[$identifier] = $this->loadPlugin($identifier, $class);
+            $this->plugins[$identifier] = $this->loadPlugin($class);
         }
 
         return $this->plugins;
@@ -79,7 +78,7 @@ class PluginManager {
      */
     public function loadAllPlugins()
     {
-        $directories = glob(base_path('plugins/*'));
+        $directories = glob(plugin_path('*'));
         $plugins = [];
 
         foreach ($directories as $directory) {
@@ -87,69 +86,33 @@ class PluginManager {
             $identifier = end($tmp);
             $class = $this->findClassByIdentifier($identifier);
 
-            $plugins[$identifier] = $this->loadPlugin($identifier, $class);
+            $plugins[$identifier] = $this->loadPlugin($class);
         }
 
         return $plugins;
     }
 
     /**
-     * Enable a single plugin.
-     *
-     * @param string $identifier Plugin's identifier (its directory)
-     */
-    public function enable($identifier)
-    {
-        $this->storage[$identifier] = $this->findClassByIdentifier($identifier);
-        $this->setStorage($this->storage);
-    }
-
-    /**
-     * Disable a single plugin.
-     *
-     * @param string $identifier Plugin's identifier (its directory)
-     */
-    public function disable($identifier)
-    {
-        unset($this->storage[$identifier]);
-        $this->setStorage($this->storage);
-    }
-
-    /**
-     * Determine if a plugin is disabled.
-     *
-     * @param string $identifier Plugin's identifier (its directory)
-     * @return bool
-     */
-    public function isEnabled($identifier)
-    {
-        return isset($this->storage[$identifier]);
-    }
-
-    /**
      * Loads a single plugin into the manager.
      *
-     * @param string $identifier Plugin's directory in /plugins
      * @param string $class Fully Qualified Name of the respective Plugin class
      * @return bool|PluginBase
      */
-    public function loadPlugin($identifier, $class)
+    public function loadPlugin($class)
     {
         // Not a valid plugin!
         if (!class_exists($class)) {
             return false;
         }
 
-        $classObj = new $class($this->app);
+        $pluginObject = new $class($this->app);
 
         // Check if plugin class inherits PluginBase and therefore an interface
-        if (!$classObj instanceof PluginBase) {
+        if (!$pluginObject instanceof PluginBase) {
             return false;
         }
 
-        //$this->plugins[$identifier] = $classObj;
-
-        return $classObj;
+        return $pluginObject;
     }
 
     /**
@@ -173,17 +136,17 @@ class PluginManager {
      * Register a single plugin object.
      *
      * @param PluginBase $plugin
-     * @param string $pluginId
+     * @param string $identifier
      * @return void
      */
-    public function registerPlugin($plugin, $pluginId)
+    public function registerPlugin(PluginBase $plugin, $identifier)
     {
         if (!$plugin) {
             return;
         }
 
-        $pluginPath = base_path('plugins/' . $pluginId);
-        $pluginNamespace = strtolower($pluginId);
+        $pluginPath = plugin_path($identifier);
+        $pluginNamespace = strtolower($identifier);
 
         $plugin->register();
 
@@ -198,10 +161,7 @@ class PluginManager {
         /*
          * Register configuration path
          */
-        $configPath = $pluginPath . '/config';
-        if (File::isDirectory($configPath)) {
-            Config::package($pluginNamespace, $configPath, $pluginNamespace);
-        }
+        // @FIXME Config::package() doesn't exists
 
         /*
          * Register views path
@@ -250,27 +210,42 @@ class PluginManager {
      * @param PluginBase $plugin
      * @return void
      */
-    public function bootPlugin($plugin)
+    public function bootPlugin(PluginBase $plugin)
     {
         $plugin->boot();
     }
 
     /**
-     * Returns an array with all registered plugins.
+     * Enable a single plugin.
      *
-     * @param bool $withDisabled Wwhether to return disabled plugins
-     * @return array Plugin identifier => plugin object
+     * @param string $identifier Plugin's identifier (its directory)
      */
-    public function getPlugins($withDisabled = false)
+    public function enable($identifier)
     {
-        if ($withDisabled) {
-            return $this->plugins;
-        }
+        $this->storage[$identifier] = $this->findClassByIdentifier($identifier);
+        $this->setStorage($this->storage);
+    }
 
-        return array_filter($this->plugins, function($plugin) {
-            $id = $this->getIdentifier($plugin);
-            return $this->storage[$id]['enabled'];
-        });
+    /**
+     * Disable a single plugin.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     */
+    public function disable($identifier)
+    {
+        unset($this->storage[$identifier]);
+        $this->setStorage($this->storage);
+    }
+
+    /**
+     * Determine if a plugin is disabled.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
+     */
+    public function isEnabled($identifier)
+    {
+        return isset($this->storage[$identifier]);
     }
 
     /**
@@ -278,7 +253,7 @@ class PluginManager {
      *
      * @return array
      */
-    public function getStorage()
+    protected function getStorage()
     {
         return json_decode(file_get_contents(storage_path('app/plugins.json')), true);
     }
@@ -289,7 +264,7 @@ class PluginManager {
      * @param  array $content Plugins data
      * @return bool
      */
-    public function setStorage($content)
+    protected function setStorage($content)
     {
         return file_put_contents(storage_path('app/plugins.json'), json_encode($content));
     }
@@ -300,7 +275,7 @@ class PluginManager {
      * @param  string $identifier Plugin's identifier (its directory)
      * @return string
      */
-    public function findClassByIdentifier($identifier)
+    protected function findClassByIdentifier($identifier)
     {
         $composerData = json_decode(file_get_contents(base_path("plugins/$identifier/composer.json")), true);
 
@@ -313,18 +288,8 @@ class PluginManager {
      * @param  string $identifier Plugin's identifier (its directory)
      * @return PluginBase|null
      */
-    public function findObjectByIdentifier($identifier)
+    protected function findObjectByIdentifier($identifier)
     {
         return $this->plugins[$identifier];
-    }
-
-    /**
-     * Returns a plugin identifier from a Plugin class name or object
-     * @param  mixed $namespace Plugin class name or object
-     * @return string Identifier in format of Vendor.Plugin
-     */
-    protected function getIdentifier($namespace)
-    {
-        // @TODO: is such method still needed?
     }
 }
