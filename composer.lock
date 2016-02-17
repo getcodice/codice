@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b701b272a06eeac9215df13349277cbd",
-    "content-hash": "338c243f399cc80263e847bb99340db9",
+    "hash": "48f2ee79397299cb277ab0b597c23c60",
+    "content-hash": "20415c8a2defc881b916f3743d1bf6b2",
     "packages": [
         {
             "name": "adamwathan/bootforms",
@@ -207,6 +207,61 @@
                 "preload"
             ],
             "time": "2015-11-09 22:51:51"
+        },
+        {
+            "name": "codice/plugin-installer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "../codice-plugin-installer",
+                "reference": "ad6d2d28feae8cb47e5d3ea56437e3bdfa46797d"
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Codice\\Composer\\PluginInstallerPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Codice\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Composer custom installer for Codice plugins",
+            "time": "2016-02-12 06:08:13"
+        },
+        {
+            "name": "codice/sample-plugin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "D:\\WWW\\htdocs\\codice-sample-plugin",
+                "reference": "46d6d596103aeeedb1f82fa1061dcfc03a8f24e6"
+            },
+            "type": "codice-plugin",
+            "extra": {
+                "codice-plugin-class": "Sobak\\CodiceSamplePlugin\\Plugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Sobak": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maciej Sobaczewski",
+                    "email": "sobak@sobak.pl"
+                }
+            ],
+            "description": "Sample composer-enabled plugin for Codice",
+            "time": "2016-02-16 22:55:58"
         },
         {
             "name": "danielstjules/stringy",
@@ -2818,16 +2873,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.22",
+            "version": "4.8.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "dfb11aa5236376b4fc63853cf746af39fe780e72"
+                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/dfb11aa5236376b4fc63853cf746af39fe780e72",
-                "reference": "dfb11aa5236376b4fc63853cf746af39fe780e72",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6e351261f9cd33daf205a131a1ba61c6d33bd483",
+                "reference": "6e351261f9cd33daf205a131a1ba61c6d33bd483",
                 "shasum": ""
             },
             "require": {
@@ -2886,7 +2941,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-02-02 09:01:21"
+            "time": "2016-02-11 14:56:33"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3367,7 +3422,10 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "codice/plugin-installer": 20,
+        "codice/sample-plugin": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

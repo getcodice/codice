@@ -21,36 +21,20 @@
                 <p class="small">@lang('plugin.index.author') {{ $plugin['details']['author'] }}</p>
             </td>
             <td>
-                @if ($plugin['installed'])
-                    @if ($plugin['enabled'])
-                        @lang('plugin.index.enabled')
-                    @else
-                        @lang('plugin.index.disabled')
-                    @endif
+                @if ($plugin['enabled'])
+                    @lang('plugin.index.enabled')
                 @else
-                    @lang('plugin.index.not-installed')
+                    @lang('plugin.index.disabled')
                 @endif
             </td>
             <td>
-                @if ($plugin['installed'])
-                    @if ($plugin['enabled'])
-                        <a href="{!! route('plugin.disable', ['id' => $id]) !!}">
-                            @lang('plugin.index.disable')
-                        </a>
-                    @else
-                        <a href="{!! route('plugin.enable', ['id' => $id]) !!}">
-                            @lang('plugin.index.enable')
-                        </a>
-                    @endif
-                    <br><a href="{!! route('plugin.uninstall', ['id' => $id]) !!}" data-confirm="uninstall">
-                        @lang('plugin.index.uninstall')
+                @if ($plugin['enabled'])
+                    <a href="{!! route('plugin.disable', ['id' => $id]) !!}">
+                        @lang('plugin.index.disable')
                     </a>
                 @else
-                    <a href="{!! route('plugin.install', ['id' => $id]) !!}">
-                        @lang('plugin.index.install')
-                    </a><br>
-                    <a href="{!! route('plugin.remove', ['id' => $id]) !!}" data-confirm="delete">
-                        @lang('plugin.index.remove')
+                    <a href="{!! route('plugin.enable', ['id' => $id]) !!}">
+                        @lang('plugin.index.enable')
                     </a>
                 @endif
             </td>

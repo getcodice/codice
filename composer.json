@@ -9,7 +9,9 @@
         "laravel/framework": "5.1.*",
         "adamwathan/bootforms": "0.7.*",
         "league/commonmark": "^0.12",
-        "barryvdh/laravel-ide-helper": "^2.1"
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "codice/plugin-installer": "dev-master",
+        "codice/sample-plugin": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
