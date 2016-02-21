@@ -141,7 +141,7 @@ class NoteController extends Controller
 
             // Handle reminders
             foreach (ReminderService::getRegisteredKeys() as $reminderID) {
-                ReminderService::get($reminderID)->processs($note, $input);
+                ReminderService::get($reminderID)->process($note, $input);
             }
 
             return Redirect::route('index')->with('message', trans('note.edit.success'));
