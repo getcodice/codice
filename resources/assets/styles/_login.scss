@@ -1,17 +1,29 @@
 body#login {
+    background-color: $codice-body;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #eee;
 }
 
 .form-login {
     max-width: 330px;
-    padding: 15px;
+    padding: 30px;
     margin: 0 auto;
+    background: $codice-success;
+    border-radius: 10px;
 }
-.form-signin .form-signin-heading {
-  margin-bottom: 10px;
+
+.form-login-heading {
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
 }
+
 .form-login .form-control {
     position: relative;
     height: auto;
@@ -22,15 +34,10 @@ body#login {
 .form-login .form-control:focus {
     z-index: 2;
 }
-.form-login input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-.form-login input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+
+.form-login button {
+    background-color: $codice-success-hover;
+    color: #fff;
 }
 
 .alert-login {

@@ -3,7 +3,7 @@
 @section('content')
 @include('note.quickform')
 
-<div class="jscroll-container">
+<div class="notes-container">
     @each('note.single', $notes, 'note', 'note.none')
 
     {!! $notes->render() !!}

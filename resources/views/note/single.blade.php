@@ -1,13 +1,8 @@
 <?php $state = $note->state ?>
-<article class="note panel panel-{{ $state }} {{ isset($single) && $single === true ? 'note-single' : '' }}">
-    <div class="panel-heading">
-        <a href="{!! route('note', ['id' => $note->id]) !!}" title="@lang('note.single')">
-            {{ trans("note.heading.$state", ['expires' => $note->expires_at_fmt]) }}
-        </a>
-    </div>
-    <div class="panel-body">
+<article class="note note-{{ $state }} {{ isset($single) && $single === true ? 'note-single' : '' }}">
+    <div class="note-body">
         @if (count($note->labels))
-        <ul class="note-labels list-inline pull-right">
+        <ul class="note-labels">
             @foreach ($note->labels as $label)
             <li><a href="{!! route('label', ['id' => $label->id]) !!}" class="label label-{{ config('labels.colors.' . $label->color) }}">{{ $label->name }}</a></li>
             @endforeach
@@ -21,7 +16,7 @@
         </div>
         @endif
     </div>
-    <div class="panel-footer">
+    <footer class="note-footer">
         @if ($note->updated_at > $note->created_at)
         <span data-toggle="tooltip" title="
             {{ $note->created_at->format(trans('app.datetime')) }}
@@ -32,7 +27,10 @@
         @endif
             @icon('clock-o') {{ $note->created_at->diffForHumans() }}
         </span>
-        <span class="pull-right hidden-print note-buttons">
+        @if ($state != 'default' && $state != 'success')
+            @icon('warning') Termin wykonania: 12.02.2016
+        @endif
+        <span class="note-buttons">
              <a href="{!! route('note.change', ['id' => $note->id]) !!}">
                 @if ($note->status)
                     @icon('times') <span class="text">@lang('note.buttons.undone')</span>
@@ -43,5 +41,5 @@
              <a href="{!! route('note.edit', ['id' => $note->id]) !!}">@icon('pencil') <span class="text">@lang('note.buttons.edit')</span></a>
              <a href="{!! route('note.remove', ['id' => $note->id]) !!}" data-confirm="delete">@icon('trash-o') <span class="text">@lang('note.buttons.remove')</span></a>
         </span>
-    </div>
+    </footer>
 </article>

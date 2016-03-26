@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{!! asset('assets/css/codice.css') !!}">
     @hook('template.header')
 </head>
-<body>
+<body {!! in_array(Request::route()->getName(), ['index', 'note', 'label']) ? 'class="notes-container"' : ''  !!}>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">

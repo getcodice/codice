@@ -1,10 +1,11 @@
 // Codice brand colors
+$codice-body:    #e1f0d7;
 $codice-danger:  #e6262e;
 $codice-info:    #74a0db;
 $codice-success: #68b92c;
+$codice-success-hover: #519022;
 $codice-warning: #f6af00;
-$codice-navbar-bg: #04498D;
-$codice-navbar-hover-bg: #022F5A;
+$codice-navbar-hover-bg: $codice-success-hover;
 
 // Customize bootstrap using variables
 $alert-danger-text:  #fff;
@@ -19,12 +20,12 @@ $brand-warning: $codice-warning;
 
 $font-family-base: 'Roboto', sans-serif;
 
-$navbar-inverse-bg: $codice-navbar-bg;
+$navbar-inverse-bg: $codice-success;
 $navbar-inverse-color: #fff;
 $navbar-inverse-link-color: #fff;
 $navbar-inverse-brand-hover-bg: $codice-navbar-hover-bg;
 $navbar-inverse-link-hover-bg: $codice-navbar-hover-bg;
-$navbar-inverse-toggle-icon-bar-bg: $codice-navbar-hover-bg;
+$navbar-inverse-toggle-hover-bg: $codice-navbar-hover-bg;
 $navbar-inverse-toggle-border-color: #fff;
 $navbar-inverse-toggle-icon-bar-bg: #fff;
 
