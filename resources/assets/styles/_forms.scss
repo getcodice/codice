@@ -1,7 +1,3 @@
-.form-control {
-  border: 0;
-}
-
 .form-group-title {
   display: block;
   max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
@@ -16,6 +12,9 @@ textarea#quickform_content {
 
 .quickform {
     margin-bottom: 15px;
+    .form-control {
+        border: 0;
+    }
     .form-group {
         margin-bottom: 3px;
     }

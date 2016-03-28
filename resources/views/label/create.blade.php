@@ -1,8 +1,9 @@
 @extends('app')
 
 @section('content')
-<h2 class="page-heading">@lang('labels.create.title')</h2>
+<h2 class="page-heading info">@lang('labels.create.title')</h2>
 
+<div class="codice-container">
 {!! BootForm::open()->action(route('label.create')) !!}
     {!! BootForm::text(trans('labels.labels.name'), 'name')->required()->autofocus() !!}
 
@@ -20,4 +21,5 @@
 
     {!! BootForm::submit(trans('labels.create.submit'), 'btn-primary') !!}
 {!! BootForm::close() !!}
+</div>
 @stop

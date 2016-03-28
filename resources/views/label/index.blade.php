@@ -1,13 +1,12 @@
 @extends('app')
 
 @section('content')
-    <h2 class="page-heading">
+    <h2 class="page-heading info">
         @lang('labels.index.title')
-        <a href="{!! route('label.create') !!}" class="btn btn-success btn-sm">
-            @icon('plus') @lang('labels.index.create')
-        </a>
+        <a href="{!! route('label.create') !!}" class="page-heading-link">@lang('labels.index.create')</a>
     </h2>
 
+    <div class="codice-container">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -33,4 +32,5 @@
         @endforeach
         </tbody>
     </table>
+    </div>
 @stop

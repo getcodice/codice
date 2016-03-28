@@ -24,7 +24,7 @@ return [
     'index' => [
         'controls' => 'Controls',
         'count' => 'Notes',
-        'create' => 'New',
+        'create' => 'Create new',
         'edit' => 'Edit',
         'name' => 'Name',
         'remove' => 'Remove',

@@ -24,7 +24,7 @@ return [
     'index' => [
         'controls' => 'Akcje',
         'count' => 'Notatek',
-        'create' => 'Nowa',
+        'create' => 'Dodaj nową',
         'edit' => 'Edytuj',
         'name' => 'Nazwa',
         'remove' => 'Usuń',

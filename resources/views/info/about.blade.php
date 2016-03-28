@@ -1,8 +1,9 @@
 @extends('app')
 
 @section('content')
-<h2 class="page-heading">Codice <small>{{ $version }}</small></h2>
+<h2 class="page-heading danger">Codice <small>{{ $version }}</small></h2>
 
+<div class="codice-container">
 <p class="lead text-justify"><strong>Codice</strong> @lang('info.about.about-codice')</p>
 
 <div class="row">
@@ -20,5 +21,6 @@
             @lang('info.updates.check')
         </a>
     </div>
+</div>
 </div>
 @stop

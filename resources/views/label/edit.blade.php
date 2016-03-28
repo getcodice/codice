@@ -1,8 +1,9 @@
 @extends('app')
 
 @section('content')
-<h2 class="page-heading">@lang('labels.edit.title')</h2>
+<h2 class="page-heading info">@lang('labels.edit.title')</h2>
 
+<div class="codice-container">
 {!! BootForm::open()->action(route('label.edit', ['id' => $label->id])) !!}
     {!! BootForm::text(trans('labels.labels.name'), 'name')->value($label->name)->required()->autofocus() !!}
 
@@ -20,4 +21,5 @@
 
     {!! BootForm::submit(trans('labels.edit.submit'), 'btn-primary') !!}
 {!! BootForm::close() !!}
+</div>
 @stop

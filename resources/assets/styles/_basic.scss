@@ -1,4 +1,5 @@
 body {
+    background-color: $codice-body;
     padding-top: 70px;
 }
 
@@ -34,14 +35,52 @@ ul.dropdown-menu .fa {
     cursor: pointer;
 }
 
+// Styles for page headings
 .page-heading {
+    background-color: white;
+    border-left: solid 8px;
+    font-weight: 300;
     margin-top: 0;
+    padding: 10px 0 10px 15px;
+
+    &.danger {
+        border-color: $codice-danger;
+    }
+    &.info {
+        border-color: $codice-info;
+    }
+    &.primary {
+        border-color: $brand-primary;
+    }
+    &.success {
+        border-color: $codice-success;
+    }
+    &.warning {
+        border-color: $codice-warning;
+    }
 }
 
 // With label's page in mind
-.page-heading em {
-    font-style: normal;
+/*.page-heading em {
     font-weight: 300;
+}*/
+
+.page-heading-link {
+    color: #999;
+    font-size: 14px;
+    letter-spacing: .12em;
+    margin-left: 5px;
+    text-transform: uppercase;
+
+    &:hover {
+        color: #000;
+        text-decoration: none;
+    }
+}
+
+.codice-container {
+    background-color: #fff;
+    padding: 20px;
 }
 
 .app-error {

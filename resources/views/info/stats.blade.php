@@ -1,7 +1,9 @@
 @extends('app')
 
 @section('content')
-<h2 class="page-heading">@lang('info.stats.title')</h2>
+<h2 class="page-heading danger">@lang('info.stats.title')</h2>
+
+<div class="codice-container">
 <table class="table table-hover">
     <thead>
         <tr>
@@ -18,4 +20,5 @@
     @endforeach
     </tbody>
 </table>
+</div>
 @stop

@@ -3,6 +3,7 @@
 @section('content')
 <h2 class="page-heading">@lang('plugin.index.title')</h2>
 
+<div class="codice-container">
 @if (count($plugins))
 <table class="table table-bordered">
     <thead>
@@ -46,4 +47,5 @@
 <h1 class="app-error">@lang('plugin.none.title')</h1>
 <h2 class="app-error">@lang('plugin.none.content')</h2>
 @endif
+</div>
 @stop

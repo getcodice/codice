@@ -1,9 +1,9 @@
 @extends('app')
 
 @section('content')
-<h2 class="page-heading">@lang('note.create.title')</h2>
+<h2 class="page-heading primary">@lang('note.create.title')</h2>
 
-
+<div class="codice-container">
 {!! BootForm::open()->action(route('note.create')) !!}
     {!!
         BootForm::textarea(trans('note.labels.content'), 'content')
@@ -54,6 +54,7 @@
 
     {!! BootForm::submit(trans('note.create.submit'), 'btn-primary') !!}
 {!! BootForm::close() !!}
+</div>
 @stop
 
 @section('footer')
