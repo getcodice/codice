@@ -28,9 +28,19 @@
             @icon('clock-o') {{ $note->created_at->diffForHumans() }}
         </span>
         @if ($state != 'default' && $state != 'success')
-            @icon('warning') Termin wykonania: 12.02.2016
+            <span class="note-expired">
+                @icon('warning') @lang('note.expires_at')
+                @if ($note->expires_at->hour === 0 && $note->expires_at->minute === 0)
+                    {{ $note->expires_at->format(trans('app.date')) }}
+                @else
+                    {{ $note->expires_at->format(trans('app.datetime')) }}
+                @endif
+            </span>
         @endif
         <span class="note-buttons">
+            @if (!isset($single) || $single !== true)
+            <a href="{!! route('note', ['id' => $note->id]) !!}">@icon('eye') <span class="text">@lang('note.buttons.details')</span></a>
+            @endif
              <a href="{!! route('note.change', ['id' => $note->id]) !!}">
                 @if ($note->status)
                     @icon('times') <span class="text">@lang('note.buttons.undone')</span>

@@ -1,6 +1,7 @@
 <?php
 return [
     'buttons' => [
+        'details' => 'Szczegóły',
         'edit' => 'Edytuj',
         'done' => 'Wykonano',
         'remove' => 'Usuń',
@@ -21,13 +22,7 @@ return [
         'submit' => 'Zapisz',
         'success' => 'Notatka została zmieniona.',
     ],
-    'heading' => [
-        'danger' => 'Termin upłynął :expires',
-        'default' => 'Notatka',
-        'info' => 'Oczekuje na wykonanie do :expires',
-        'success' => 'Wykonano',
-        'warning' => 'Termin wykonania zbliża się (:expires)',
-    ],
+    'expires_at' => 'Termin wykonania:',
     'labels' => [
         'content' => 'Treść <span style="color:red">*</span>',
         'expires_at' => 'Termin wykonania',

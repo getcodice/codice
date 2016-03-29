@@ -1,6 +1,7 @@
 <?php
 return [
     // Formatted accordingly to php.net/date
+    'date' => 'd/m/Y',
     'datetime' => 'm/d/Y H:i',
     // Expected datetime format (displayed to the end user)
     'datetime-human' => 'mm/dd/yyyy hh:mm',

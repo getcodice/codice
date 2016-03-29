@@ -1,6 +1,7 @@
 <?php
 return [
     'buttons' => [
+        'details' => 'Details',
         'edit' => 'Edit',
         'done' => 'Done',
         'remove' => 'Remove',
@@ -21,13 +22,7 @@ return [
         'submit' => 'Save',
         'success' => 'Note has been edited.',
     ],
-    'heading' => [
-        'danger' => 'Deadline expired at :expires',
-        'default' => 'Note',
-        'info' => 'Deadline till :expires',
-        'success' => 'Done',
-        'warning' => 'Will expire soon (:expires)',
-    ],
+    'expries_at' => 'Expires at',
     'labels' => [
         'content' => 'Content <span style="color:red">*</span>',
         'expires_at' => 'Expires at',
