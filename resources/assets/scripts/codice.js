@@ -1,16 +1,21 @@
-$('span[data-toggle="tooltip"]').tooltip();
-
-// Confirmations
 String.prototype.ucfirst = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-$('a[data-confirm]').on('click', function () {
-    langKey = 'confirm' + $(this).data('confirm').ucfirst();
-    if (!confirm(codiceLang[langKey])) {
-        return false;
-    }
-});
+// Operations performed on each page of notes
+function codicePrepare() {
+    $('span[data-toggle="tooltip"]').tooltip();
+
+    $('a[data-confirm]').on('click', function () {
+        langKey = 'confirm' + $(this).data('confirm').ucfirst();
+        if (!confirm(codiceLang[langKey])) {
+            return false;
+        }
+    });
+}
+
+// Call codicePrepare() on first page
+codicePrepare();
 
 var $navSearchLabel = $('.nav-search-label');
 var $navSearchForm = $('.navbar-form');
@@ -75,6 +80,7 @@ function codiceNotesPager() {
         contentSelector: '.jscroll-container',
         callback: function () {
             $('.pager').hide();
+            codicePrepare();
         }
     });
 }
