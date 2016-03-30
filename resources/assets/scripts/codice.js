@@ -33,17 +33,24 @@ $('.alert-fixed').on('click', function () {
 });
 
 var $quickformControls = $('.quickform .row');
-$('#quickform_content').on('focus', function () {
+var $quickformContent = $('#quickform_content');
+
+$quickformContent.on('focus', function () {
     $(this).slideDown('slow', function() {
         $(this).attr('rows', '4');
         $quickformControls.removeClass('sr-only');
     });
 });
 
-$('#quickform_content').on('focusout', function () {
-    if ($(this).val() == '') {
-        $(this).attr('rows', '1');
+$('.quickform').on('focusout', function (e) {
+    var $this = $(this);
+    if (
+        $quickformContent.val() === '' &&
+        !$(e.relatedTarget).parent().closest('.row').length
+    ) {
+        $quickformContent.attr('rows', '1');
         $quickformControls.addClass('sr-only');
+        e.stopPropagation();
     }
 });
 
