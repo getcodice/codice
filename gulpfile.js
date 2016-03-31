@@ -41,6 +41,8 @@ gulp.task('icons', function() {
         .pipe(gulp.dest('./public/assets/fonts'));
 });
 
+gulp.task('assets', ['scripts', 'styles', 'icons']);
+
 function onError(error) {
     gutil.log(gutil.colors.red('Error:'), error.toString());
     this.emit('end');
