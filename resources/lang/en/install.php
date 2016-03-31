@@ -46,7 +46,7 @@ return [
     ],
     'welcome' => [
         'title' => 'Welcome',
-        'para1' => 'Witaj in Codice installer!',
+        'para1' => 'Welcome to Codice installer!',
         'para2' => 'Go through few steps to install a script on your server.',
     ],
 ];
