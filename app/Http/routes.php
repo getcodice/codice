@@ -33,6 +33,7 @@ Route::get('install/database', ['as' => 'install.database', 'uses' => 'InstallCo
 Route::get('install/user', ['as' => 'install.user', 'uses' => 'InstallController@getUser']);
 Route::post('install/user', 'InstallController@postUser');
 Route::get('install/final', ['as' => 'install.final', 'uses' => 'InstallController@getFinal']);
+Route::get('install/change-language/{lang}', ['as' => 'install.language', 'uses' => 'InstallController@getChangeLanguage']);
 
 Route::get('login', ['as' => 'user.login', 'uses' => 'UserController@getLogin']);
 Route::post('login', 'UserController@postLogin');

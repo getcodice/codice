@@ -1,7 +1,6 @@
 @extends('install.template')
 
 @section('content')
-<h2>@lang('install.requirements.title')</h2>
 <p>@lang('install.requirements.content')</p>
 
 <table class="table table-bordered">

@@ -2,11 +2,14 @@
 
 namespace Codice\Http\Controllers;
 
+use App;
 use Artisan;
 use Codice\User;
 use Exception;
 use Input;
+use Lang;
 use Redirect;
+use Session;
 use Validator;
 use View;
 
@@ -22,6 +25,10 @@ class InstallController extends Controller
         if (file_exists(base_path('.env')) && !file_exists(storage_path('app/.install-pending'))) {
             $this->denyInstallation = true;
             return Redirect::route('index')->send();
+        }
+
+        if (Session::has('install-lang')) {
+            App::setLocale(Session::get('install-lang'));
         }
 
         return true;
@@ -40,7 +47,20 @@ class InstallController extends Controller
 
         touch(storage_path('app/.install-pending'));
 
+        $languages = config('app.languages');
+        unset($languages[Lang::getLocale()]);
+
+        $languagesDisplay = [];
+        foreach ($languages as $code => $name) {
+            $languagesDisplay[] = '<a href="' . route('install.language', ['lang' => $code]) . '">' . $name . '</a>';
+        }
+
+        $languages = implode(', ', $languagesDisplay);
+
         return View::make('install.welcome', [
+            'languages' => $languages,
+            'progress' => 10,
+            'step' => 1,
             'title' => trans('install.welcome.title'),
         ]);
     }
@@ -90,8 +110,10 @@ class InstallController extends Controller
         return View::make('install.requirements', [
             'permissions' => $permissions,
             'permissionsOk' => $permissionsOk,
+            'progress' => 30,
             'requirements' => $requirements,
             'requirementsOk' => $requirementsOk,
+            'step' => 2,
             'title' => trans('install.requirements.title'),
         ]);
     }
@@ -104,6 +126,8 @@ class InstallController extends Controller
     public function getEnvironment()
     {
         return View::make('install.environment', [
+            'progress' => 50,
+            'step' => 3,
             'title' => trans('install.environment.title'),
         ]);
     }
@@ -155,6 +179,8 @@ class InstallController extends Controller
 
         return View::make('install.database', [
             'error' => $error,
+            'progress' => 70,
+            'step' => 4,
             'title' => trans('install.database.title'),
         ]);
     }
@@ -167,6 +193,8 @@ class InstallController extends Controller
     public function getUser()
     {
         return View::make('install.user', [
+            'progress' => 90,
+            'step' => 5,
             'title' => trans('install.user.title'),
         ]);
     }
@@ -210,8 +238,17 @@ class InstallController extends Controller
         $unlink = @unlink(storage_path('.install-pending'));
 
         return View::make('install.final', [
+            'progress' => 100,
+            'step' => 6,
             'title' => trans('install.final.title'),
             'unlink' => $unlink,
         ]);
+    }
+
+    public function getChangeLanguage($lang)
+    {
+        Session::put('install-lang', $lang);
+
+        return Redirect::action('InstallController@getWelcome');
     }
 }

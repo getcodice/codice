@@ -1,7 +1,6 @@
 @extends('install.template')
 
 @section('content')
-<h2>@lang('install.user.title')</h2>
 <p>@lang('install.user.content')</p>
 
 {!! BootForm::open()->action(route('install.user')) !!}

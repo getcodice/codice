@@ -9,9 +9,17 @@
 </head>
 <body class="install">
     <main class="container">
-        @yield('content')
+        <div class="progress install-progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped" style="width: {{ $progress }}%">
+                <span class="sr-only">{{ $progress}}%</span>
+            </div>
+        </div>
+        <h2 class="page-heading info">{{$title }} <span class="page-heading-aside">@lang('install.step') {{ $step }}/6</span></h2>
+        <div class="codice-container">
+            @yield('content')
+        </div>
     </main>
 
-    <!--<script src="{!! asset('assets/js/codice.js') !!}"></script>-->
+    <script src="{!! asset('assets/js/codice.js') !!}"></script>
 </body>
 </html>

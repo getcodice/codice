@@ -1,8 +1,6 @@
 @extends('install.template')
 
 @section('content')
-<h2>@lang('install.database.title')</h2>
-
 @if ($error)
 <div class="alert alert-danger">{{ $error }}</div>
 @else

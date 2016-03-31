@@ -3,14 +3,13 @@
 return [
     'btn-next' => 'Dalej',
     'database' => [
-        'success' => 'Baza danych została wypełniona. To już prawie koniec!',
+        'success' => 'Baza danych została utworzona i wypełniona. To już prawie koniec!',
         'title' => 'Baza danych',
     ],
     'environment' => [
-        'content' => 'Najpierw ustawimy podstawową konfigurację skryptu.',
+        'content' => 'Najpierw ustawimy podstawową konfigurację skryptu - informacje niezbędne do połączenia z bazą danych.',
         'db-host' => 'Host',
         'db-host-help' => 'Najczęściej <code>localhost</code>',
-        'db-legend' => 'Ustawienia bazy danych',
         'db-name' => 'Nazwa bazy',
         'db-password' => 'Hasło',
         'db-user' => 'Użytkownik',
@@ -20,7 +19,7 @@ return [
         'content' => 'Gratulacje! Instalacja Codice została zakończona.',
         'login' => 'Logowanie',
         'title' => 'Koniec',
-        'unlink-failed' => 'Koniecznie usuń plik <code>storage/.install-pending</code>!',
+        'unlink-failed' => 'Koniecznie usuń plik <code>storage/app/.install-pending</code>!',
     ],
     'requirements' => [
         'content' => 'Szybkie sprawdzenie czy Twój serwer spełnia wymagania skryptu.',
@@ -35,6 +34,7 @@ return [
         'status-ext-ok' => 'Dostępne',
         'title' => 'Wymagania',
     ],
+    'step' => 'Krok',
     'title' => 'Instalacja Codice',
     'user' => [
         'content' => 'Na koniec utworzymy Twoje konto użytkownika',
@@ -46,6 +46,7 @@ return [
     ],
     'welcome' => [
         'title' => 'Witaj',
-        'content' => 'Przejdź przez kolejne etapy, aby bezproblemowo zaintalować Codice.',
+        'para1' => 'Witaj w instalatorze Codice!',
+        'para2' => 'Przejdź przez kolejne etapy, aby zainstalować skrypt na Twoim serwerze.',
     ],
 ];

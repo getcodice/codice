@@ -1,7 +1,6 @@
 @extends('install.template')
 
 @section('content')
-<h2>@lang('install.final.title')!</h2>
 <p>@lang('install.final.content')</p>
 
 @if (!$unlink)
