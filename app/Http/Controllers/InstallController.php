@@ -235,7 +235,7 @@ class InstallController extends Controller
      */
     public function getFinal()
     {
-        $unlink = @unlink(storage_path('.install-pending'));
+        $unlink = @unlink(storage_path('app/.install-pending'));
 
         return View::make('install.final', [
             'progress' => 100,
