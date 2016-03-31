@@ -12,12 +12,15 @@ use View;
 
 class InstallController extends Controller
 {
+    private $denyInstallation = false;
+
     /**
      * InstallController constructor.
      */
     public function __construct()
     {
         if (file_exists(base_path('.env')) && !file_exists(storage_path('.install-pending'))) {
+            $this->denyInstallation = true;
             return Redirect::route('index')->send();
         }
 
@@ -31,6 +34,10 @@ class InstallController extends Controller
      */
     public function getWelcome()
     {
+        if ($this->denyInstallation) {
+            die;
+        }
+
         touch(storage_path('.install-pending'));
 
         return View::make('install.welcome', [
