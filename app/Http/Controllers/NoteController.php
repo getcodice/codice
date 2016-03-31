@@ -204,33 +204,6 @@ class NoteController extends Controller
     }
 
     /**
-     * Display only upcoming undone notes.
-     *
-     * @param  string  $mode
-     * @return \Illuminate\Http\Response
-     */
-    public function getUpcoming($mode = null)
-    {
-        $perPage = Auth::user()->options['notes_per_page'];
-
-        $query = Note::logged()
-            ->where('status', 0)
-            ->whereNotNull('expires_at');
-
-        if ($mode != 'with-expired') {
-            $query->whereRaw('expires_at > NOW()');
-        }
-
-        $notes = $query->orderBy('expires_at', 'asc')->simplePaginate($perPage);
-
-        return View::make('note.upcoming', [
-            'mode' => $mode,
-            'notes' => $notes,
-            'title' => trans('note.upcoming.title'),
-        ]);
-    }
-
-    /**
      * Process new labels added while creating/editing a note.
      *
      * @param  array  $labels

@@ -17,6 +17,7 @@ return [
     'menu' => [
         'about' => 'O Codice',
         'add' => 'Dodaj',
+        'calendar' => 'Kalendarz',
         'labels' => 'Etykiety',
         'logout' => 'Wyloguj',
         'plugins' => 'Wtyczki',
@@ -25,6 +26,5 @@ return [
         'settings' => 'Ustawienia',
         'stats' => 'Statystyki',
         'toggle' => 'Rozwiń menu',
-        'upcoming' => 'Nadchodzące',
     ],
 ];

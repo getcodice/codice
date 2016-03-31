@@ -38,9 +38,5 @@ return [
     ],
     'removed' => 'Notatka została usunięta.',
     'single' => 'Przejdź do widoku szczegółowego',
-    'upcoming' => [
-        'title' => 'Nadchodzące notatki',
-        'with-expired' => 'Pokaż zadania po terminie',
-    ],
     'updated' => 'akt.:',
 ];

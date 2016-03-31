@@ -1,0 +1,46 @@
+table.calendar {
+  border-collapse: separate;
+  border-spacing: 15px;
+  margin: 0 auto;
+
+  th, td {
+    background-color: white;
+    padding: 5px 10px 10px 10px;
+    width: 100px;
+  }
+
+  th {
+    text-align: center;
+  }
+
+  td.blur {
+    color: #c6bfbf;
+  }
+
+  td.created {
+    border-left: 8px solid $codice-info;
+  }
+
+  td.expiring {
+    border-left: 8px solid $codice-warning;
+  }
+}
+
+.calendar-day {
+  font-size: 45px;
+  font-weight: 300;
+  height: 85px;
+  text-align: right;
+
+  a {
+    color: inherit;
+  }
+  a:hover {
+    color: #555;
+    text-decoration: none;
+  }
+
+  &.today {
+    color: $codice-danger;
+  }
+}

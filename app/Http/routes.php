@@ -16,6 +16,12 @@ Route::get('/', ['as' => 'index', 'uses' => 'NoteController@getIndex']);
 Route::get('about', ['as' => 'about', 'uses' => 'InfoController@getAbout']);
 Route::get('about/check-updates', ['as' => 'about.updates', 'uses' => 'InfoController@getUpdates']);
 
+Route::get('calendar', ['as' => 'calendar', 'uses' => 'CalendarController@getIndex']);
+Route::get('calendar/{year}-{month}', ['as' => 'calendar.month', 'uses' => 'CalendarController@getMonth'])
+    ->where(['year' => '[0-9]{4}', 'month' => '[0-9]{2}']);
+Route::get('calendar/{year}-{month}-{day}', ['as' => 'calendar.day', 'uses' => 'CalendarController@getDay'])
+    ->where(['year' => '[0-9]{4}', 'month' => '[0-9]{2}', 'day' => '[0-9]{2}']);
+
 Route::get('create', ['as' => 'note.create', 'uses' => 'NoteController@getCreate']);
 Route::post('create', 'NoteController@postCreate');
 
@@ -60,5 +66,3 @@ Route::get('settings', ['as' => 'settings', 'uses' => 'UserController@getSetting
 Route::post('settings', 'UserController@postSettings');
 
 Route::get('stats', ['as' => 'stats', 'uses' => 'InfoController@getStats']);
-
-Route::get('upcoming/{mode?}', ['as' => 'upcoming', 'uses' => 'NoteController@getUpcoming']);
