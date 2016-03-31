@@ -19,7 +19,7 @@ class InstallController extends Controller
      */
     public function __construct()
     {
-        if (file_exists(base_path('.env')) && !file_exists(storage_path('.install-pending'))) {
+        if (file_exists(base_path('.env')) && !file_exists(storage_path('app/.install-pending'))) {
             $this->denyInstallation = true;
             return Redirect::route('index')->send();
         }
@@ -38,7 +38,7 @@ class InstallController extends Controller
             die;
         }
 
-        touch(storage_path('.install-pending'));
+        touch(storage_path('app/.install-pending'));
 
         return View::make('install.welcome', [
             'title' => trans('install.welcome.title'),
