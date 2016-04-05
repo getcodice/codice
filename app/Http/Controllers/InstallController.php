@@ -228,11 +228,14 @@ class InstallController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
+        $options = User::$defaultOptions;
+        $options['language'] = Lang::getLocale();
+
         User::create([
             'name' => Input::get('name'),
             'email' => Input::get('email'),
             'password' => bcrypt(Input::get('password')),
-            'options' => User::$defaultOptions,
+            'options' => $options,
         ]);
 
         // @todo: add welcome note
