@@ -3,7 +3,7 @@
 @section('content')
 <h2 class="page-heading">@lang('user.settings.title')</h2>
 
-{!! BootForm::open()->action(route('settings')) !!}
+{!! BootForm::open()->action(route('settings'))->class('settingsForm') !!}
 <div class="panel panel-default">
     <div class="panel-heading">@lang('user.settings.panel-account')</div>
     <div class="panel-body">
@@ -71,4 +71,20 @@
     {!! BootForm::submit(trans('user.settings.submit'), 'btn-primary') !!}
 </div>
 {!! BootForm::close() !!}
+@stop
+
+@section('footer')
+<script>
+    var $currentEmail = $("#email").val();
+    var $settingsForm = $('form.settingsForm');
+
+    $settingsForm.on('submit', function() {
+        if ($("#email").val() != $currentEmail) {
+            if (!confirm(codiceLang.confirmEmailChange)) {
+                return false;
+            }
+        }
+    })
+
+</script>
 @stop
