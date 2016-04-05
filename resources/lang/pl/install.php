@@ -49,4 +49,6 @@ return [
         'para1' => 'Witaj w instalatorze Codice!',
         'para2' => 'Przejdź przez kolejne etapy, aby zainstalować skrypt na Twoim serwerze.',
     ],
+    // Name of the label assigned to welcome note
+    'welcome-note-label' => 'Ważne',
 ];

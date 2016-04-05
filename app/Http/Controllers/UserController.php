@@ -129,4 +129,16 @@ class UserController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
     }
+
+    /**
+     * (Re-)insert welcome note on demand.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getInsertWelcomeNote()
+    {
+        Auth::user()->addWelcomeNote(false);
+
+        return Redirect::route('index');
+    }
 }

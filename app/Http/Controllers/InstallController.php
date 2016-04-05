@@ -231,14 +231,14 @@ class InstallController extends Controller
         $options = User::$defaultOptions;
         $options['language'] = Lang::getLocale();
 
-        User::create([
-            'name' => Input::get('name'),
-            'email' => Input::get('email'),
-            'password' => bcrypt(Input::get('password')),
-            'options' => $options,
-        ]);
+        $user = new User;
+        $user->name = Input::get('name');
+        $user->email = Input::get('email');
+        $user->password = bcrypt(Input::get('password'));
+        $user->options = $options;
+        $user->save();
 
-        // @todo: add welcome note
+        $user->addWelcomeNote();
 
         return Redirect::route('install.final');
     }
