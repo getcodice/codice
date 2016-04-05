@@ -29,7 +29,7 @@ Route::get('install', 'InstallController@getWelcome');
 Route::get('install/requirements', ['as' => 'install.requirements', 'uses' => 'InstallController@getRequirements']);
 Route::get('install/env', ['as' => 'install.environment', 'uses' => 'InstallController@getEnvironment']);
 Route::post('install/env', 'InstallController@postEnvironment');
-Route::get('install/database', ['as' => 'install.database', 'uses' => 'InstallController@getDatabase']);
+Route::get('install/database/{lang}', ['as' => 'install.database', 'uses' => 'InstallController@getDatabase']);
 Route::get('install/user', ['as' => 'install.user', 'uses' => 'InstallController@getUser']);
 Route::post('install/user', 'InstallController@postUser');
 Route::get('install/final', ['as' => 'install.final', 'uses' => 'InstallController@getFinal']);

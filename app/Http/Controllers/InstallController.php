@@ -159,16 +159,28 @@ class InstallController extends Controller
 
         file_put_contents(base_path('.env'), $env);
 
-        return Redirect::route('install.database');
+        // Watch out!
+        // We have just filled in .env file...
+        // what is going to change app key for the next request...
+        // what is then going to make it impossible to decrypt our session...
+        // what is then going to reset installer language
+        // We are sneaky bastards so we'll pass it in URL and set it again in next step!
+        return Redirect::route('install.database', ['lang' => Lang::getLocale()]);
     }
 
     /**
      * Fill a database with content.
      *
+     * @param  string $lang Currently used installer language
      * @return \Illuminate\Http\Response
      */
-    public function getDatabase()
+    public function getDatabase($lang)
     {
+        // We are reading installer language from the URL and setting it again
+        // @see: postEnvironment()
+        App::setLocale($lang);
+        Session::put('install-lang', $lang);
+
         $error = null;
 
         try {
