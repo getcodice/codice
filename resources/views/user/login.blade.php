@@ -9,6 +9,7 @@
 </head>
 <body id="login">
     <main class="container">
+        <noscript class="alert alert-warning alert-fixed alert-login">@lang('app.noscript')</noscript>
         @if (Session::has('message'))
             <div class="alert alert-danger alert-fixed alert-login">
                 <p>{{ Session::get('message') }}</p>

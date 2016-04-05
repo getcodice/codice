@@ -27,4 +27,5 @@ return [
         'stats' => 'Statistics',
         'toggle' => 'Toggle menu',
     ],
+    'noscript' => 'Codice has limited feature set when JavaScript is disabled. You are highly encouraged to enable it.',
 ];

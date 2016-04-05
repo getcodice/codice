@@ -47,6 +47,7 @@
     </nav>
 
     <main class="container">
+        <noscript class="alert alert-warning alert-fixed">@lang('app.noscript')</noscript>
         @if (Session::has('message'))
             <div class="alert alert-{{ Session::get('message_type') ?: 'info' }} alert-fixed">
                 @if (Session::get('message_raw') === true)
