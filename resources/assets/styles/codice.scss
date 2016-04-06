@@ -1,5 +1,5 @@
 @import "variables";
-@import "../../../bower_components/font-awesome/scss/font-awesome";
+@import "../../../node_modules/font-awesome/scss/font-awesome";
 
 /*****************************************************************
  * Bootstrap imports
@@ -61,9 +61,9 @@
 
 // Select2 with bootstrap theme.
 // It needs to be here as bootstrap themes makes use of Sass variables
-@import "../../../bower_components/select2/dist/css/select2.min";
-@import "../../../bower_components/select2-bootstrap-theme/src/select2-bootstrap.scss";
-@import "../../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min";
+@import "../../../node_modules/select2/dist/css/select2.min";
+@import "../../../node_modules/select2-bootstrap-theme/src/select2-bootstrap.scss";
+@import "../../../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min";
 
 /*****************************************************************
  * Codice styles
