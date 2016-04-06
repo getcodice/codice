@@ -17,7 +17,7 @@ return [
     'menu' => [
         'about' => 'About Codice',
         'add' => 'Create',
-        'calendar' => 'Kalendarz',
+        'calendar' => 'Calendar',
         'labels' => 'Labels',
         'logout' => 'Logout',
         'plugins' => 'Plugins',
