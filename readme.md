@@ -10,8 +10,6 @@ Installing from source:
 
 1. Clone this repository
 2. `composer install`
-3. `npm install -g bower` if needed
-4. `npm install`
-5. `bower install`
-6. `gulp assets`
-7. Open `[your-domain]/codice/install` and follow the instructions
+3. `npm install`
+4. `gulp assets`
+5. Open `[your-domain]/codice/install` and follow the instructions
