@@ -11,7 +11,7 @@ return [
         'niedziela',
     ],
     'months' => [
-        1 =>'styczeń',
+        1 => 'styczeń',
         2 => 'luty',
         3 => 'marzec',
         4 => 'kwiecień',
@@ -25,7 +25,7 @@ return [
         12 => 'grudzień',
     ],
     'months-genitive' => [
-        1 =>'stycznia',
+        1 => 'stycznia',
         2 => 'lutego',
         3 => 'marca',
         4 => 'kwietnia',
