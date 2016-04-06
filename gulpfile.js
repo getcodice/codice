@@ -11,13 +11,13 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('./public/assets/js/locales'));
 
     return gulp.src([
-        './bower_components/jquery/dist/jquery.min.js',
-        './bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js',
-        './bower_components/select2/dist/js/select2.min.js',
-        './bower_components/jscroll/jquery.jscroll.min.js',
-        './bower_components/moment/min/moment.min.js',
-        './bower_components/moment/locale/pl.js',
-        './bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+        './node_modules/jquery/dist/jquery.min.js',
+        './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+        './node_modules/select2/dist/js/select2.min.js',
+        './node_modules/jscroll/jquery.jscroll.min.js',
+        './node_modules/moment/min/moment.min.js',
+        './node_modules/moment/locale/pl.js',
+        './node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
         './resources/assets/scripts/codice.js',
     ]).pipe(concat('codice.js', { separator: ';' }))
       .pipe(gulp.dest('./public/assets/js'));
@@ -27,7 +27,7 @@ gulp.task('styles', function () {
     return gulp.src('./resources/assets/styles/codice.scss')
         .pipe(plugins.sass({
             includePaths: [
-                './bower_components/bootstrap-sass/assets/stylesheets/',
+                './node_modules/bootstrap-sass/assets/stylesheets/',
             ],
             outputStyle: 'compressed'
         }))
@@ -37,7 +37,7 @@ gulp.task('styles', function () {
 });
 
 gulp.task('icons', function() {
-    return gulp.src('./bower_components/font-awesome/fonts/**.*')
+    return gulp.src('./node_modules/font-awesome/fonts/**.*')
         .pipe(gulp.dest('./public/assets/fonts'));
 });
 
