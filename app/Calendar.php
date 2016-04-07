@@ -26,7 +26,7 @@ class Calendar
     public function createMonthArray()
     {
         $current = Carbon::createFromDate($this->year, $this->month, 1);
-        $current->subDays($current->dayOfWeek - 1);
+        $current->subDays(6 - $current->dayOfWeek);
 
         $weeks = [];
         do {
