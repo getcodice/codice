@@ -10,6 +10,10 @@ return [
         'sobota',
         'niedziela',
     ],
+    'month' => [
+        'next' => 'Następny',
+        'previous' => 'Poprzedni',
+    ],
     'months' => [
         1 => 'styczeń',
         2 => 'luty',

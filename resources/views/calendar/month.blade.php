@@ -3,7 +3,11 @@
 @section('content')
 <h2 class="page-heading primary">
     @lang('calendar.title')
-    <span class="page-heading-aside">@lang("calendar.months.$month") {{ $year }}</span>
+    <span class="page-heading-aside">
+        <a href="{!! $month_previous !!}">@icon('arrow-left') <span class="sr-only">@lang('calendar.month.previous')</span></a>
+        @lang("calendar.months.$month") {{ $year }}
+        <a href="{!! $month_next !!}"><span class="sr-only">@lang('calendar.month.next')</span> @icon('arrow-right')</a>
+    </span>
 </h2>
 
 <table class="calendar">

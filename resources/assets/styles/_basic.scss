@@ -71,11 +71,15 @@ ul.dropdown-menu .fa {
     letter-spacing: .12em;
     margin-left: 5px;
     text-transform: uppercase;
-}
 
-a.page-heading-aside:hover {
-    color: #000;
-    text-decoration: none;
+    a {
+        color: inherit;
+    }
+
+    a:hover {
+        color: #000;
+        text-decoration: none;
+    }
 }
 
 .codice-container {

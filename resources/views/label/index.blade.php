@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="page-heading info">
         @lang('labels.index.title')
-        <a href="{!! route('label.create') !!}" class="page-heading-aside">@lang('labels.index.create')</a>
+        <span class="page-heading-aside"><a href="{!! route('label.create') !!}">@lang('labels.index.create')</a></span>
     </h2>
 
     <div class="codice-container">

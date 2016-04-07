@@ -3,6 +3,7 @@
 namespace Codice\Http\Controllers;
 
 use Auth;
+use Carbon\Carbon;
 use Codice\Calendar;
 use Codice\Note;
 use View;
@@ -65,9 +66,14 @@ class CalendarController extends Controller {
             $events[$event->expires_at->month . '-' . $event->expires_at->day]['expiring'] = true;
         }
 
+        $nextMonth = Carbon::create($year, $month)->addMonth();
+        $previousMonth = Carbon::create($year, $month)->subMonth();
+
         return View::make('calendar.month', [
             'events' => $events,
             'month' => $month,
+            'month_next' => route('calendar.month', ['year' => $nextMonth->year, 'month' => pad_zero($nextMonth->month)]),
+            'month_previous' => route('calendar.month', ['year' => $previousMonth->year, 'month' => pad_zero($previousMonth->month)]),
             'title' => trans('calendar.title'),
             'weeks' => $calendar->createMonthArray(),
             'year' => $year,

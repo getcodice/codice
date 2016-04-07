@@ -27,6 +27,11 @@ function icon($icon)
     return '<span class="fa fa-' . $icon . '"></span>';
 }
 
+function pad_zero($int)
+{
+    return $int < 10 ? '0'.$int : $int;
+}
+
 function plugin_path($pluginName = '')
 {
     return base_path("plugins/$pluginName");
