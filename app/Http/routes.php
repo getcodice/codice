@@ -53,12 +53,14 @@ Route::get('label/{id}/edit', ['as' => 'label.edit', 'uses' => 'LabelController@
 Route::post('label/{id}/edit', 'LabelController@postEdit');
 Route::get('label/{id}/remove', ['as' => 'label.remove', 'uses' => 'LabelController@getRemove']);
 
+/*
 Route::get('plugin/{id}/disable', ['as' => 'plugin.disable', 'uses' => 'PluginController@getDisable']);
 Route::get('plugin/{id}/enable', ['as' => 'plugin.enable', 'uses' => 'PluginController@getEnable']);
 Route::get('plugin/{id}/install', ['as' => 'plugin.install', 'uses' => 'PluginController@getInstall']);
 Route::get('plugin/{id}/remove', ['as' => 'plugin.remove', 'uses' => 'PluginController@getRemove']);
 Route::get('plugin/{id}/uninstall', ['as' => 'plugin.uninstall', 'uses' => 'PluginController@getUninstall']);
 Route::get('plugins', ['as' => 'plugins', 'uses' => 'PluginController@getIndex']);
+*/
 
 Route::get('reminders', ['as' => 'reminders', 'uses' => 'ReminderController@getIndex']);
 Route::get('reminder/{id}/remove', ['as' => 'reminder.remove', 'uses' => 'ReminderController@getRemove']);
