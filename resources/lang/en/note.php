@@ -22,7 +22,7 @@ return [
         'submit' => 'Save',
         'success' => 'Note has been edited.',
     ],
-    'expries_at' => 'Expires at',
+    'expires_at' => 'Expires at',
     'labels' => [
         'content' => 'Content <span style="color:red">*</span>',
         'expires_at' => 'Expires at',
