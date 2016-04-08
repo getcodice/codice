@@ -105,7 +105,7 @@ return [
     |
     */
 
-    'log' => 'single',
+    'log' => 'daily',
 
     /*
     |--------------------------------------------------------------------------
@@ -155,6 +155,9 @@ return [
         Codice\Providers\EventServiceProvider::class,
         Codice\Providers\RouteServiceProvider::class,
 
+        /*
+         * 3rd Party Providers...
+         */
         AdamWathan\BootForms\BootFormsServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
