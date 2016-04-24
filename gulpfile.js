@@ -18,6 +18,7 @@ gulp.task('scripts', function () {
         './node_modules/moment/min/moment.min.js',
         './node_modules/moment/locale/pl.js',
         './node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+        './node_modules/bootbox/bootbox.min.js',
         './resources/assets/scripts/codice.js',
     ]).pipe(concat('codice.js', { separator: ';' }))
       .pipe(gulp.dest('./public/assets/js'));

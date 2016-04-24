@@ -9,6 +9,7 @@
     "gulp-util": "^3.0.6"
   },
   "dependencies": {
+    "bootbox": "^4.4.0",
     "bootstrap-sass": "^3.3.6",
     "eonasdan-bootstrap-datetimepicker": "^4.15.35",
     "font-awesome": "^4.5.0",

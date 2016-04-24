@@ -2,15 +2,24 @@ String.prototype.ucfirst = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+bootbox.setLocale(codiceLang['languageCode']);
+
 // Operations performed on each page of notes
 function codicePrepare() {
     $('span[data-toggle="tooltip"]').tooltip();
 
-    $('a[data-confirm]').on('click', function () {
-        langKey = 'confirm' + $(this).data('confirm').ucfirst();
-        if (!confirm(codiceLang[langKey])) {
-            return false;
-        }
+    // Links with client-side confirmation
+    $('a[data-confirm]').on('click', function (e) {
+        e.preventDefault();
+
+        var langKey = 'confirm' + $(this).data('confirm').ucfirst();
+        var location = $(this).attr('href');
+
+        bootbox.confirm(codiceLang[langKey], function(result) {
+            if (result) {
+                window.location.replace(location);
+            }
+        });
     });
 }
 
