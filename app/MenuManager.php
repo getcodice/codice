@@ -55,7 +55,7 @@ class MenuManager {
     public function getItems()
     {
         // Sort items by their position
-        usort($this->items, function ($a, $b) {
+        uasort($this->items, function ($a, $b) {
             return $a['position'] - $b['position'];
         });
 
