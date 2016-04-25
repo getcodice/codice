@@ -30,7 +30,8 @@ class MenuManager {
         ];
 
         if ($position === null) {
-            $lastPosition = max(array_column($this->items, 'position'));
+            $positions = array_column($this->items, 'position');
+            $lastPosition = !empty($positions) ? max($positions) : 0;
             $position = $lastPosition + 1;
         }
 
