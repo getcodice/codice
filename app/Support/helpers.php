@@ -29,7 +29,7 @@ function icon($icon)
 
 function pad_zero($int)
 {
-    return $int < 10 ? '0'.$int : $int;
+    return $int < 10 ? '0'.$int : (string) $int;
 }
 
 function plugin_path($pluginName = '')

@@ -69,6 +69,6 @@ class HelpersTest extends TestCase
     public function testPadZeroHelper($input, $excepted)
     {
         $actual = pad_zero($input);
-        $this->assertEquals($excepted, $actual);
+        $this->assertSame($excepted, $actual);
     }
 }
