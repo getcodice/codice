@@ -62,6 +62,11 @@ Route::get('plugin/{id}/uninstall', ['as' => 'plugin.uninstall', 'uses' => 'Plug
 Route::get('plugins', ['as' => 'plugins', 'uses' => 'PluginController@getIndex']);
 */
 
+Route::get('password/email', ['as' => 'password.email', 'uses' => 'UserController@getEmail']);
+Route::post('password/email', 'UserController@postEmail');
+Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'UserController@getReset']);
+Route::post('password/reset', 'UserController@postReset');
+
 Route::get('reminders', ['as' => 'reminders', 'uses' => 'ReminderController@getIndex']);
 Route::get('reminder/{id}/remove', ['as' => 'reminder.remove', 'uses' => 'ReminderController@getRemove']);
 

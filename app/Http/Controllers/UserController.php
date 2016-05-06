@@ -6,6 +6,7 @@ use App;
 use Auth;
 use Codice\User;
 use Hash;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Input;
 use Redirect;
 use Validator;
@@ -13,10 +14,15 @@ use View;
 
 class UserController extends Controller
 {
+    use ResetsPasswords;
+
     public function __construct()
     {
         $this->middleware('guest', ['only' => 'getLogin']);
-        $this->middleware('auth', ['except' => ['getLogin', 'postLogin']]);
+        $this->middleware('auth', ['except' => ['getLogin', 'postLogin', 'getEmail', 'postEmail', 'getReset', 'postReset']]);
+
+        // Set redirectPath so that user is redirected correctly after the password reset
+        $this->redirectTo = '/';
     }
 
     /**
@@ -26,7 +32,9 @@ class UserController extends Controller
      */
     public function getLogin()
     {
-        return View::make('user.login');
+        return View::make('user.login', [
+            'title' => trans('user.login.title'),
+        ]);
     }
 
     /**
@@ -140,5 +148,13 @@ class UserController extends Controller
         Auth::user()->addWelcomeNote(false);
 
         return Redirect::route('index');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getEmailSubject()
+    {
+        return trans('passwords.email.subject');
     }
 }

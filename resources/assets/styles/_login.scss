@@ -37,6 +37,11 @@ body#login {
 .form-login button {
     background-color: $codice-success-hover;
     color: #fff;
+    margin-bottom: 10px;
+}
+
+.form-login a {
+    color: white;
 }
 
 .alert-login {
