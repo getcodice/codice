@@ -9,11 +9,10 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-4">
-                {!!
-                    BootForm::text(trans('user.settings.login'), 'login')
-                        ->disabled()
-                        ->value($user->name)
-                !!}
+                <div class="form-group">
+                    <label class="control-label">@lang('user.settings.login')</label>
+                    <p class="form-control-static">{{ $user->name }}</p>
+                </div>
             </div>
             <div class="col-md-4">
                 {!!
