@@ -87,11 +87,17 @@
     var $currentEmail = $("#email").val();
     var $settingsForm = $('form.settingsForm');
 
-    $settingsForm.on('submit', function() {
+    $settingsForm.on('submit', function(e) {
         if ($("#email").val() != $currentEmail) {
-            if (!confirm(codiceLang.confirmEmailChange)) {
-                return false;
-            }
+            e.preventDefault();
+
+            bootbox.confirm(codiceLang.confirmEmailChange, function(result) {
+                if (result) {
+                    $settingsForm[0].submit();
+                } else {
+                    $("#email").val($currentEmail);
+                }
+            });
         }
     })
 
