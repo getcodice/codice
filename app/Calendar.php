@@ -19,14 +19,14 @@ class Calendar
 
     /**
      * @author Kacper "Kadet" Donat <kacper@kadet.net>
-     * @return array
+     * @return DatePeriod[]
      *
      * Probably the cleanest solution to generate a calendar in PHP ever written.
      */
     public function createMonthArray()
     {
         $current = Carbon::createFromDate($this->year, $this->month, 1);
-        $current->subDays(6 - $current->dayOfWeek);
+        $current->subDays($current->dayOfWeek - 1 < 0 ? $current->dayOfWeek + 6 : $current->dayOfWeek - 1);
 
         $weeks = [];
         do {
