@@ -31,7 +31,7 @@ class CalendarController extends Controller {
         $day = intval($day);
         $month = intval($month);
 
-        $notes = Note::whereDate('created_at', '=', "{$year}-{$month}-{$day}")
+        $notes = Note::logged()->whereDate('created_at', '=', "{$year}-{$month}-{$day}")
             ->orWhere(function($query) use ($year, $month, $day) {
                 $query->whereDate('expires_at', '=', "{$year}-{$month}-{$day}");
             })
@@ -50,10 +50,10 @@ class CalendarController extends Controller {
     {
         $calendar = new Calendar($month, $year);
 
-        $eventsCreated = Note::where(function ($query) use ($month, $year) {
+        $eventsCreated = Note::logged()->where(function ($query) use ($month, $year) {
             $query->whereMonth('created_at', '=', $month)->whereYear('created_at', '=', $year);
         })->get();
-        $eventsExpiring = Note::where(function($query) use ($month, $year) {
+        $eventsExpiring = Note::logged()->where(function($query) use ($month, $year) {
             $query->whereMonth('expires_at', '=', $month)->whereYear('expires_at', '=', $year);
         })->get();
 
