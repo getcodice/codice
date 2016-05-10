@@ -27,5 +27,5 @@ return [
         'stats' => 'Statystyki',
         'toggle' => 'Rozwiń menu',
     ],
-    'noscript' => 'Codice posiada ograniczone możliwości przy wyłączonym JavaScricie. Zachęcamy abyś jednak go włączył.',
+    'noscript' => 'Codice posiada ograniczone możliwości przy wyłączonym JavaScripcie. Zachęcamy abyś jednak go włączył.',
 ];
