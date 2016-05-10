@@ -14,8 +14,7 @@
     @yield('content')
 </main>
 
-<script src="{!! asset('assets/js/jquery.min.js') !!}"></script>
-<script src="{!! asset('assets/js/bootstrap.min.js') !!}"></script>
+<script src="{!! asset('assets/js/locales/' . App::getLocale() . '.js') !!}"></script>
 <script src="{!! asset('assets/js/codice.js') !!}"></script>
 </body>
 </html>
