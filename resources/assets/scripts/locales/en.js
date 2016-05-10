@@ -5,4 +5,5 @@ var codiceLang = {
     confirmUninstall: "Do you really want to uninstall?",
     languageCode: "en",
     selectLabels: "Choose labels",
+    collapse: "Collapse",
 };

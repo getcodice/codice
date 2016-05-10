@@ -23,4 +23,8 @@ textarea#quickform_content {
     .select2-search__field {
         width: 100% !important;
     }
+
+    .quickform-collapse + .quickform-submit {
+        float: right;
+    }
 }

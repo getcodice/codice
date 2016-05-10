@@ -5,4 +5,5 @@ var codiceLang = {
     confirmUninstall: "Czy na pewno odinstalować?",
     languageCode: "pl",
     selectLabels: "Wybierz etykiety",
+    collapse: "Zwiń",
 };

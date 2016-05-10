@@ -24,7 +24,7 @@ Just @include the view and pass following parameters:
                 <input type="text" name="expires_at" id="quickform_expires_at" class="form-control" placeholder="{{ datetime_placeholder('note.labels.expires_at') }}">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn btn-primary btn-block">@lang('note.create.submit')</button>
+                <button type="submit" class="btn btn-primary quickform-submit">@lang('note.create.submit')</button>
             </div>
         </div>
         {{ csrf_field() }}
