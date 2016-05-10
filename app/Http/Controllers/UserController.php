@@ -4,7 +4,6 @@ namespace Codice\Http\Controllers;
 
 use App;
 use Auth;
-use Codice\User;
 use Hash;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Input;
