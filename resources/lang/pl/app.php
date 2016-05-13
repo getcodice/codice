@@ -22,7 +22,6 @@ return [
         'logout' => 'Wyloguj',
         'plugins' => 'Wtyczki',
         'reminders' => 'Przypomnienia',
-        'search-placeholder' => 'Szukaj...',
         'settings' => 'Ustawienia',
         'stats' => 'Statystyki',
         'toggle' => 'Rozwiń menu',
