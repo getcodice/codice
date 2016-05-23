@@ -35,7 +35,7 @@ class CalendarController extends Controller {
             ->orWhere(function($query) use ($year, $month, $day) {
                 $query->whereDate('expires_at', '=', "{$year}-{$month}-{$day}");
             })
-            ->orderBy('created_at', 'desc')
+            ->latest()
             ->simplePaginate($perPage);
 
         return View::make('calendar.day', [

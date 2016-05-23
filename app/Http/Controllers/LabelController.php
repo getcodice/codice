@@ -59,7 +59,7 @@ class LabelController extends Controller
 
         $notes = Note::whereHas('labels', function ($q) use ($id) {
             $q->where('id', $id);
-        })->logged()->orderBy('created_at', 'desc')->simplePaginate($perPage);
+        })->logged()->latest()->simplePaginate($perPage);
 
         return View::make('label.notes', [
             'label' => $label,
