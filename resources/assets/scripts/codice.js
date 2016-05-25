@@ -23,8 +23,14 @@ function codicePrepare() {
     });
 }
 
-// Call codicePrepare() on first page
-codicePrepare();
+// Call codicePrepare() on first page load
+$(function () {
+    codicePrepare();
+    setTimeout(function () {
+        // Nice trick, so we don't duplicate code
+        $('.alert-fixed').trigger('click');
+    }, 5000);
+});
 
 $('.alert-fixed').on('click', function () {
     $(this).slideUp('slow', function () {
