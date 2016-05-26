@@ -13,6 +13,7 @@ return [
             '500' => 'Błąd serwera',
             '503' => 'Wracamy niedługo',
         ],
+        'token-mismatch' => 'Przepraszamy, Twoja sesja wygasła. Spróbuj wysłać formularz ponownie.',
     ],
     'menu' => [
         'about' => 'O Codice',

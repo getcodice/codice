@@ -7,6 +7,7 @@ use Auth;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Redirect;
 use Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -64,6 +65,12 @@ class Handler extends ExceptionHandler
                 'message' => trans("app.error.http.$code"),
                 'title' => "HTTP $code",
             ], $code);
+        }
+
+        if ($e instanceof TokenMismatchException) {
+            return Redirect::back()->with('message', trans('app.error.token-mismatch'))
+                ->with('message_type', 'danger')
+                ->withInput();
         }
 
         if ($e instanceof LabelNotFoundException) {
