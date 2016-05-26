@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/badge/version-v0.3.0-blue.svg)](https://github.com/Sobak/Codice/releases)
 ![Developed Version](https://img.shields.io/badge/developed-v0.4.0--dev-orange.svg)
 
-Codice is an onilne notebook and task management application. It allows you to keep your notes in one, safe place, accessible from almost every place in the world, via Internet.
+Codice is an online notebook and task management application. It allows you to keep your notes in one, safe place, accessible from almost every place in the world, via Internet.
 
 ## Installing
 
