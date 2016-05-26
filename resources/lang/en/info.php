@@ -2,7 +2,7 @@
 
 return [
     'about' => [
-        'about-codice' => 'is an onilne notebook and task management application. It allows you to ' .
+        'about-codice' => 'is an online notebook and task management application. It allows you to ' .
             'keep your notes in one, safe place, accessible from almost every place in the ' .
             'world, via Internet.',
         'changelog-error' => 'Error while fetching change log',
