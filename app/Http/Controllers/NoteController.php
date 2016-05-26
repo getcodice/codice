@@ -188,6 +188,19 @@ class NoteController extends Controller
     }
 
     /**
+     * Show server-side confirmation before removing a note.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getRemoveConfirm($id)
+    {
+        return View::make('note.remove', [
+            'id' => $id,
+        ]);
+    }
+
+    /**
      * Delete a note.
      *
      * @param  int  $id

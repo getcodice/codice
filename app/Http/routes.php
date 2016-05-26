@@ -44,6 +44,7 @@ Route::get('note/{id}/edit', ['as' => 'note.edit', 'uses' => 'NoteController@get
 Route::post('note/{id}/edit', 'NoteController@postEdit');
 Route::get('note/{id}/mark', ['as' => 'note.change', 'uses' => 'NoteController@getChangeStatus']);
 Route::get('note/{id}/remove', ['as' => 'note.remove', 'uses' => 'NoteController@getRemove']);
+Route::get('note/{id}/remove/confirm', ['as' => 'note.remove.confirm', 'uses' => 'NoteController@getRemoveConfirm']);
 
 Route::get('labels', ['as' => 'labels', 'uses' => 'LabelController@getIndex']);
 Route::get('labels/create', ['as' => 'label.create', 'uses' => 'LabelController@getCreate']);

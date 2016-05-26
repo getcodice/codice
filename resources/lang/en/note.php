@@ -36,6 +36,12 @@ return [
     'quickform' => [
         'content' => 'Create new note...',
     ],
+    'remove' => [
+        'cancel' => 'Cancel',
+        'confirm' => 'Do you really want to delete this note?',
+        'ok' => 'Confirm',
+        'title' => 'Confirm removal',
+    ],
     'removed' => 'Note have been removed.',
     'single' => 'Go to the detailed view',
     'updated' => 'updated:',

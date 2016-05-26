@@ -36,6 +36,12 @@ return [
     'quickform' => [
         'content' => 'Dodaj nową notatkę...',
     ],
+    'remove' => [
+        'cancel' => 'Anuluj',
+        'confirm' => 'Czy na pewno skasować notatkę?',
+        'ok' => 'Potwierdź',
+        'title' => 'Potwierdź usunięcie',
+    ],
     'removed' => 'Notatka została usunięta.',
     'single' => 'Przejdź do widoku szczegółowego',
     'updated' => 'akt.:',
