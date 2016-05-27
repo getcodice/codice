@@ -35,8 +35,7 @@ class Reminder extends Model
     protected $guarded = [];
 
     /**
-     * Relation to the Note
-     *
+     * Note the reminder belongs to.
      */
     public function note()
     {
@@ -46,6 +45,8 @@ class Reminder extends Model
     /**
      * Set query scope to currently logged user.
      *
+     * @param $query \Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Query\Builder
      */
     public function scopeLogged($query)
     {
@@ -53,8 +54,7 @@ class Reminder extends Model
     }
 
     /**
-     * Relation to the User model.
-     *
+     * User owning the reminder.
      */
     public function user()
     {

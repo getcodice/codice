@@ -53,7 +53,7 @@ class Note extends Model
     /**
      * Find note owned by currently logged user.
      *
-     * @param  $id Note ID
+     * @param  int $id Note ID
      * @return \Codice\Note
      * @throws \Codice\Exceptions\NoteNotFoundException
      */
@@ -137,7 +137,6 @@ class Note extends Model
 
     /**
      * Labels that belong to the note.
-     *
      */
     public function labels()
     {
@@ -173,7 +172,8 @@ class Note extends Model
     /**
      * Set query scope to currently logged user.
      *
-     * @param object $query
+     * @param $query \Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Query\Builder
      */
     public function scopeLogged($query)
     {
@@ -181,8 +181,7 @@ class Note extends Model
     }
 
     /**
-     * Relation to the User model.
-     *
+     * User owning the note.
      */
     public function user()
     {

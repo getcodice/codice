@@ -23,7 +23,7 @@ class Label extends Model
     /**
      * Find label owned by currently logged user.
      *
-     * @param  $id Label ID
+     * @param  int $id Label ID
      * @return \Codice\Label
      * @throws \Codice\Exceptions\LabelNotFoundException
      */
@@ -55,7 +55,6 @@ class Label extends Model
 
     /**
      * Notes that belong to the label.
-     *
      */
     public function notes()
     {
@@ -65,6 +64,8 @@ class Label extends Model
     /**
      * Set query scope to currently logged user.
      *
+     * @param $query \Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Query\Builder
      */
     public function scopeLogged($query)
     {
@@ -72,8 +73,7 @@ class Label extends Model
     }
 
     /**
-     * Relation to the User model.
-     *
+     * User owning the label.
      */
     public function user()
     {
