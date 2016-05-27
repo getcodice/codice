@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "adamwathan/bootforms": "0.7.*",
+        "adamwathan/bootforms": "0.8.*",
         "league/commonmark": "^0.12",
         "barryvdh/laravel-ide-helper": "^2.1"
     },
