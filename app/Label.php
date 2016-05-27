@@ -39,6 +39,21 @@ class Label extends Model
     }
 
     /**
+     * Fall back to default if provided label color doesn't exist.
+     *
+     * @param  int $color Color selected by user
+     * @return int
+     */
+    public static function ensureColorIsValid($color)
+    {
+        if (!in_array($color, array_keys(config('labels.colors'))))  {
+            $color = 1;
+        }
+
+        return $color;
+    }
+
+    /**
      * Notes that belong to the label.
      *
      */
