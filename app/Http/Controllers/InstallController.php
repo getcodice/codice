@@ -154,7 +154,8 @@ class InstallController extends Controller
         $env .= 'DB_HOST=' . Input::get('db_host') . "\n";
         $env .= 'DB_DATABASE=' . Input::get('db_name') . "\n";
         $env .= 'DB_USERNAME=' . Input::get('db_user') . "\n";
-        $env .= 'DB_PASSWORD=' . Input::get('db_password') . "\n\n";
+        $env .= 'DB_PASSWORD=' . Input::get('db_password') . "\n";
+        $env .= 'DB_PREFIX=' . Input::get('db_prefix') . "\n\n";
         $env .= "CACHE_DRIVER=file\nSESSION_DRIVER=file\nQUEUE_DRIVER=sync\n\nMAIL_DRIVER=mail";
 
         file_put_contents(base_path('.env'), $env);

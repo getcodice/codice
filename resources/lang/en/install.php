@@ -13,6 +13,8 @@ return [
         'db-name' => 'Database name',
         'db-password' => 'Password',
         'db-user' => 'Username',
+        'db-prefix' => 'Table prefix',
+        'db-prefix-help' => 'Recommended. Helps to avoid conflict with parallel installations in same database.',
         'title' => 'Script configuration',
     ],
     'final' => [

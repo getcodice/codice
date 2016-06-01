@@ -13,6 +13,8 @@ return [
         'db-name' => 'Nazwa bazy',
         'db-password' => 'Hasło',
         'db-user' => 'Użytkownik',
+        'db-prefix' => 'Prefiks tabel',
+        'db-prefix-help' => 'Zalecany. Pozwala uniknąć konfliktów przy kilku równoległych instalacjach w tej samej bazie.',
         'title' => 'Konfiguracja skryptu',
     ],
     'final' => [
