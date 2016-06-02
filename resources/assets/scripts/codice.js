@@ -10,7 +10,7 @@ function codicePrepare() {
 
     // Remove server-side confirmation of removal
     $('.note-buttons a[data-confirm="delete"]').attr('href', function (i, val) {
-        return val.substr(0, val.length - 8);
+        return val.substr(0, val.length - 'confirm/'.length);
     })
 
     // Links with client-side confirmation
