@@ -1,6 +1,6 @@
 <?php
 
-namespace Codice;
+namespace Codice\Plugins;
 
 use App;
 use Codice\Support\Traits\Singleton;
@@ -8,7 +8,7 @@ use File;
 use Lang;
 use View;
 
-class PluginManager {
+class Manager {
     use Singleton;
 
     /**
@@ -96,7 +96,7 @@ class PluginManager {
      * Loads a single plugin into the manager.
      *
      * @param string $class Fully Qualified Name of the respective Plugin class
-     * @return bool|PluginBase
+     * @return bool|Plugin
      */
     public function loadPlugin($class)
     {
@@ -107,8 +107,8 @@ class PluginManager {
 
         $pluginObject = new $class($this->app);
 
-        // Check if plugin class inherits PluginBase and therefore an interface
-        if (!$pluginObject instanceof PluginBase) {
+        // Check if plugin class inherits Plugin and therefore an interface
+        if (!$pluginObject instanceof Plugin) {
             return false;
         }
 
@@ -135,11 +135,11 @@ class PluginManager {
     /**
      * Register a single plugin object.
      *
-     * @param PluginBase $plugin
+     * @param Plugin $plugin
      * @param string $identifier
      * @return void
      */
-    public function registerPlugin(PluginBase $plugin, $identifier)
+    public function registerPlugin(Plugin $plugin, $identifier)
     {
         if (!$plugin) {
             return;
@@ -207,10 +207,10 @@ class PluginManager {
     /**
      * Boot a single plugin object.
      *
-     * @param PluginBase $plugin
+     * @param Plugin $plugin
      * @return void
      */
-    public function bootPlugin(PluginBase $plugin)
+    public function bootPlugin(Plugin $plugin)
     {
         $plugin->boot();
     }
@@ -286,7 +286,7 @@ class PluginManager {
      * Return a plugin registration class based on its identifier.
      *
      * @param  string $identifier Plugin's identifier (its directory)
-     * @return PluginBase|null
+     * @return Plugin|null
      */
     protected function findObjectByIdentifier($identifier)
     {

@@ -1,8 +1,8 @@
 <?php
 
-use Codice\MenuManager;
+use Codice\Plugins\Menu;
 
-class MenuManagerTest extends TestCase
+class MenuTest extends TestCase
 {
     /**
      * Test adding one item to the menu and then fetching it.
@@ -11,7 +11,7 @@ class MenuManagerTest extends TestCase
      */
     public function testAddingItem()
     {
-        $manager = new MenuManager;
+        $manager = new Menu;
         $manager->add('about', 'non-existent', 'foo', 1);
 
         $actual = $manager->getItems();
@@ -37,7 +37,7 @@ class MenuManagerTest extends TestCase
      */
     public function testAddingItemWithNoPositionSet()
     {
-        $manager = new MenuManager;
+        $manager = new Menu;
         $manager->add('about', 'non-existent', 'foo', 3);
         $manager->add('another', 'non-existent', 'foo');
 
@@ -72,7 +72,7 @@ class MenuManagerTest extends TestCase
      */
     public function testSortingItems()
     {
-        $manager = new MenuManager;
+        $manager = new Menu;
         $manager->add('third', 'foo', 'foo', 3);
         $manager->add('second', 'foo', 'foo', 2);
         $manager->add('first', 'foo', 'foo', 1);
@@ -92,7 +92,7 @@ class MenuManagerTest extends TestCase
      */
     public function testRemovingItems()
     {
-        $manager = new MenuManager;
+        $manager = new Menu;
         $manager->add('third', 'foo', 'foo', 3);
         $manager->add('second', 'foo', 'foo', 2);
         $manager->add('first', 'foo', 'foo', 1);
@@ -114,7 +114,7 @@ class MenuManagerTest extends TestCase
      */
     public function testDuplicatedItems()
     {
-        $manager = new MenuManager;
+        $manager = new Menu;
         $manager->add('foo', 'invalid', 'icon');
         $manager->add('foo', 'valid', 'icon');
 

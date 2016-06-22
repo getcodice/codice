@@ -1,10 +1,10 @@
 <?php
 
-namespace Codice;
+namespace Codice\Plugins;
 
 use Illuminate\Support\ServiceProvider;
 
-abstract class PluginBase extends ServiceProvider
+abstract class Plugin extends ServiceProvider
 {
     /**
      * Return basic plugin informations.

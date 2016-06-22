@@ -3,8 +3,8 @@
 namespace Codice\Providers;
 
 use Blade;
-use Codice\MenuManager;
-use Codice\PluginManager;
+use Codice\Plugins\Menu;
+use Codice\Plugins\Manager as PluginManager;
 use Codice\Reminders\ReminderService;
 use Illuminate\Support\ServiceProvider;
 use View;
@@ -22,10 +22,10 @@ class AppServiceProvider extends ServiceProvider
         // They still need to be located in the Container in order to allow
         // menu modification using plugins.
         $this->app->singleton('menu.main', function ($app) {
-            return new MenuManager;
+            return new Menu;
         });
         $this->app->singleton('menu.user', function ($app) {
-            return new MenuManager;
+            return new Menu;
         });
 
         // Register application's menus

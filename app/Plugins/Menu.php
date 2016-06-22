@@ -1,11 +1,11 @@
 <?php
 
-namespace Codice;
+namespace Codice\Plugins;
 
 use Route;
 use URL;
 
-class MenuManager {
+class Menu {
     /**
      * @var array Added menu items.
      */
