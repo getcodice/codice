@@ -1,5 +1,7 @@
 <?php
 
+use Codice\Support\Calendar;
+
 class CalendarTest extends TestCase
 {
     public function monthDataProvider()
@@ -26,7 +28,7 @@ class CalendarTest extends TestCase
      */
     public function testDateRange($month, $year, $first, $last)
     {
-        $array = (new \Codice\Calendar($month, $year))->createMonthArray();
+        $array = (new Calendar($month, $year))->createMonthArray();
         $this->assertSame($first, iterator_to_array(reset($array))[0]->format('Y.m.d'));
         $this->assertSame($last, iterator_to_array(end($array))[6]->format('Y.m.d'));
     }

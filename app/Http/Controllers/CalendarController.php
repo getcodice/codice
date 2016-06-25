@@ -4,8 +4,8 @@ namespace Codice\Http\Controllers;
 
 use Auth;
 use Carbon\Carbon;
-use Codice\Calendar;
 use Codice\Note;
+use Codice\Support\Calendar;
 use View;
 
 class CalendarController extends Controller {

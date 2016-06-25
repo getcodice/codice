@@ -1,6 +1,6 @@
 <?php
 
-namespace Codice;
+namespace Codice\Support;
 
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
