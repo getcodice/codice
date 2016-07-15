@@ -5,6 +5,7 @@ namespace Codice\Plugins;
 use App;
 use Codice\Support\Traits\Singleton;
 use File;
+use Illuminate\Support\Str;
 use Lang;
 use View;
 
@@ -72,9 +73,9 @@ class Manager {
     }
 
     /**
-     * Load all installed (enabled or not) plugins.
+     * Load all plugins found in the directory, regardless of their status.
      *
-     * @return array
+     * @return Plugin[]
      */
     public function loadAllPlugins()
     {
@@ -84,9 +85,12 @@ class Manager {
         foreach ($directories as $directory) {
             $tmp = explode('/', $directory);
             $identifier = end($tmp);
-            $class = $this->findClassByIdentifier($identifier);
 
-            $plugins[$identifier] = $this->loadPlugin($class);
+            $plugin = $this->loadPlugin($identifier);
+
+            if ($plugin) {
+                $plugins[$identifier] = $plugin;
+            }
         }
 
         return $plugins;
@@ -95,11 +99,15 @@ class Manager {
     /**
      * Loads a single plugin into the manager.
      *
-     * @param string $class Fully Qualified Name of the respective Plugin class
+     * @param string $identifier
      * @return bool|Plugin
      */
-    public function loadPlugin($class)
+    public function loadPlugin($identifier)
     {
+        require plugin_path($identifier . '/Plugin.php');
+
+        $class = $this->findClassByIdentifier($identifier);
+
         // Not a valid plugin!
         if (!class_exists($class)) {
             return false;
@@ -277,9 +285,7 @@ class Manager {
      */
     protected function findClassByIdentifier($identifier)
     {
-        $composerData = json_decode(file_get_contents(base_path("plugins/$identifier/composer.json")), true);
-
-        return $composerData['extra']['codice-plugin-class'];
+        return "CodicePlugin\\" . Str::camel($identifier) . "\\Plugin";
     }
 
     /**
