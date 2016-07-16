@@ -2,7 +2,7 @@
 
 return [
     'index' => [
-        'author' => 'Author:',
+        'author' => 'Author',
         'controls' => 'Controls',
         'disable' => 'Disable',
         'disabled' => 'Disabled',
