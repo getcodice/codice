@@ -3,49 +3,42 @@
 @section('content')
 <h2 class="page-heading">@lang('plugin.index.title')</h2>
 
-<div class="codice-container">
 @if (count($plugins))
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>@lang('plugin.index.plugin')</th>
-            <th>@lang('plugin.index.state')</th>
-            <th>@lang('plugin.index.controls')</th>
-        </tr>
-    </thead>
-    <tbody>
     @foreach ($plugins as $id => $plugin)
-        <tr>
-            <td>
-                <b>{{ $plugin['details']['name'] }} ({{ $plugin['details']['version'] }})</b>
-                <p>{{ $plugin['details']['description'] }}</p>
-                <p class="small">@lang('plugin.index.author') {{ $plugin['details']['author'] }}</p>
-            </td>
-            <td>
-                @if ($plugin['enabled'])
-                    @lang('plugin.index.enabled')
-                @else
-                    @lang('plugin.index.disabled')
+        <div class="plugin plugin-{{ $plugin['enabled'] ? 'enabled' : 'disabled' }}">
+            <h3 class="plugin-header">
+                @if (!$plugin['enabled'])
+                <span class="shield plugin-status">
+                    <span class="shield-only label-warning">Disabled</span>
+                </span>
                 @endif
-            </td>
-            <td>
+                {{ $plugin['details']['name'] }}
+                <span class="plugin-version">{{ $plugin['details']['version'] }}</span>
+                <span class="shield shield-divided">
+                    <span class="shield-left label-default">@lang('plugin.index.author')</span>
+                    <span class="shield-right label-light">{{ $plugin['details']['author'] }}</span>
+                </span>
+            </h3>
+            <div class="plugin-meta">
+                <p class="plugin-description">{{ $plugin['details']['description'] }}</p>
+                <p class="plugin-shields">
+                </p>
+            </div>
+            <div class="plugin-controls">
                 @if ($plugin['enabled'])
-                    <a href="{!! route('plugin.disable', ['id' => $id]) !!}">
+                    <a class="plugin-control plugin-control-disable" href="{!! route('plugin.disable', ['id' => $id]) !!}">
                         @lang('plugin.index.disable')
                     </a>
                 @else
-                    <a href="{!! route('plugin.enable', ['id' => $id]) !!}">
+                    <a class="plugin-control plugin-control-enable" href="{!! route('plugin.enable', ['id' => $id]) !!}">
                         @lang('plugin.index.enable')
                     </a>
                 @endif
-            </td>
-        </tr>
+            </div>
+        </div>
     @endforeach
-    </tbody>
-</table>
 @else
 <h1 class="app-error">@lang('plugin.none.title')</h1>
 <h2 class="app-error">@lang('plugin.none.content')</h2>
 @endif
-</div>
 @stop

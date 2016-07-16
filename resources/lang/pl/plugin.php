@@ -2,7 +2,7 @@
 
 return [
     'index' => [
-        'author' => 'Autor:',
+        'author' => 'Autor',
         'controls' => 'Akcje',
         'disable' => 'Wyłącz',
         'disabled' => 'Wyłączona',
