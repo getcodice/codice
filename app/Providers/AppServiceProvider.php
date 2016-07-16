@@ -75,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
         $m = $this->app->make('menu.user');
 
         $m->add('settings', 'app.menu.settings', 'cog fa-fw', 5);
-        //$m->add('plugins', 'app.menu.plugins', 'plug fa-fw', 10);
+        $m->add('plugins', 'app.menu.plugins', 'plug fa-fw', 10);
         $m->add('stats', 'app.menu.stats', 'bar-chart fa-fw', 15);
         $m->add('about', 'app.menu.about', 'info-circle fa-fw', 20);
         $m->add('user.logout', 'app.menu.logout', 'sign-out fa-fw', 25);

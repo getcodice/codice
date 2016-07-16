@@ -2,7 +2,7 @@
 
 namespace Codice\Http\Controllers;
 
-use Codice\PluginManager;
+use Codice\Plugins\Manager;
 use Redirect;
 use View;
 
@@ -20,7 +20,7 @@ class PluginController extends Controller
      */
     public function getIndex()
     {
-        $manager = PluginManager::instance();
+        $manager = Manager::instance();
 
         $allPlugins = $manager->loadAllPlugins();
 
@@ -40,14 +40,14 @@ class PluginController extends Controller
 
     public function getEnable($id)
     {
-        PluginManager::instance()->enable($id);
+        Manager::instance()->enable($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.enable'));
     }
 
     public function getDisable($id)
     {
-        PluginManager::instance()->disable($id);
+        Manager::instance()->disable($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.disable'));
     }
