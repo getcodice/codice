@@ -66,7 +66,7 @@ class Manager {
         $this->plugins = [];
 
         foreach ($this->storage as $identifier => $class) {
-            $this->plugins[$identifier] = $this->loadPlugin($class);
+            $this->plugins[$identifier] = $this->loadPlugin($identifier);
         }
 
         return $this->plugins;
@@ -104,7 +104,7 @@ class Manager {
      */
     public function loadPlugin($identifier)
     {
-        require plugin_path($identifier . '/Plugin.php');
+        require_once plugin_path($identifier . '/Plugin.php');
 
         $class = $this->findClassByIdentifier($identifier);
 
