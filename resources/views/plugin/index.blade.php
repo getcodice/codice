@@ -5,11 +5,11 @@
 
 @if (count($plugins))
     @foreach ($plugins as $id => $plugin)
-        <div class="plugin plugin-{{ $plugin['enabled'] ? 'enabled' : 'disabled' }}">
+        <div class="plugin plugin-{{ $plugin['state'] }}">
             <h3 class="plugin-header">
-                @if (!$plugin['enabled'])
-                <span class="shield plugin-status">
-                    <span class="shield-only label-warning">Disabled</span>
+                @if ($plugin['state'] != 'enabled')
+                <span class="shield plugin-state">
+                    <span class="shield-only label-warning">@lang('plugin.index.' . $plugin['state'])</span>
                 </span>
                 @endif
                 {{ $plugin['details']['name'] }}
@@ -25,13 +25,22 @@
                 </p>
             </div>
             <div class="plugin-controls">
-                @if ($plugin['enabled'])
-                    <a class="plugin-control plugin-control-disable" href="{!! route('plugin.disable', ['id' => $id]) !!}">
-                        @lang('plugin.index.disable')
+                @if ($plugin['state'] == 'not-installed')
+                    <a class="plugin-control plugin-control-enable" href="{!! route('plugin.install', ['id' => $id]) !!}">
+                        @lang('plugin.index.install')
                     </a>
                 @else
-                    <a class="plugin-control plugin-control-enable" href="{!! route('plugin.enable', ['id' => $id]) !!}">
-                        @lang('plugin.index.enable')
+                    @if ($plugin['state'] == 'enabled')
+                        <a class="plugin-control plugin-control-disable" href="{!! route('plugin.disable', ['id' => $id]) !!}">
+                            @lang('plugin.index.disable')
+                        </a>
+                    @else
+                        <a class="plugin-control plugin-control-enable" href="{!! route('plugin.enable', ['id' => $id]) !!}">
+                            @lang('plugin.index.enable')
+                        </a>
+                    @endif
+                    <a class="plugin-control plugin-control-disable" href="{!! route('plugin.uninstall', ['id' => $id]) !!}">
+                        @lang('plugin.index.uninstall')
                     </a>
                 @endif
             </div>

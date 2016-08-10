@@ -17,7 +17,8 @@
     }
 }
 
-.plugin-disabled {
+.plugin-disabled,
+.plugin-not-installed {
     opacity: .65;
     &:hover {
         opacity: 1;

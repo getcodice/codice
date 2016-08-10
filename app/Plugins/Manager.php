@@ -7,6 +7,7 @@ use Codice\Support\Traits\Singleton;
 use File;
 use Illuminate\Support\Str;
 use Lang;
+use Log;
 use View;
 
 class Manager {
@@ -47,8 +48,11 @@ class Manager {
     {
         $this->app = App::make('app');
 
-        if (!file_exists(storage_path('app/plugins.json'))) {
-            $this->setStorage([]);
+        $storageFile = storage_path('app/plugins.json');
+
+        if (!file_exists($storageFile) || filesize($storageFile) == 0) {
+            $this->setInitialStorage();
+            Log::info('Plugins storage is empty or could not be found - empty array initialized.');
         }
 
         $this->storage = $this->getStorage();
@@ -65,7 +69,7 @@ class Manager {
     {
         $this->plugins = [];
 
-        foreach ($this->storage as $identifier => $class) {
+        foreach ($this->getEnabledPlugins($this->storage) as $identifier) {
             $this->plugins[$identifier] = $this->loadPlugin($identifier);
         }
 
@@ -227,22 +231,79 @@ class Manager {
      * Enable a single plugin.
      *
      * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
      */
     public function enable($identifier)
     {
-        $this->storage[$identifier] = $this->findClassByIdentifier($identifier);
+        $this->storage[$identifier] = true;
+
         $this->setStorage($this->storage);
+
+        return true;
     }
 
     /**
      * Disable a single plugin.
      *
      * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
      */
     public function disable($identifier)
     {
-        unset($this->storage[$identifier]);
+        $this->storage[$identifier] = false;
+
         $this->setStorage($this->storage);
+
+        return true;
+    }
+
+    /**
+     * Install a single plugin.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
+     */
+    public function install($identifier)
+    {
+        if ($this->isInstalled($identifier)) {
+            return true;
+        }
+
+        $this->enable($identifier);
+
+        // Load installed plugin's object so it can be accessed in next step
+        $this->plugins[$identifier] = $plugin = $this->loadPlugin($identifier);
+
+        $plugin->install();
+
+        return true;
+    }
+
+    /**
+     * Uninstall a single plugin.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
+     */
+    public function uninstall($identifier)
+    {
+        if (!$this->isInstalled($identifier)) {
+            return false;
+        }
+
+        $this->disable($identifier);
+
+        // Load plugin's object so it can be accessed in next step
+        $plugin = $this->loadPlugin($identifier);
+        $plugin->uninstall();
+
+        // Remove plugin's directory
+        $pluginDir = plugin_path($identifier);
+        if (File::isDirectory($pluginDir)) {
+            File::deleteDirectory($pluginDir);
+        }
+
+        return true;
     }
 
     /**
@@ -251,7 +312,29 @@ class Manager {
      * @param string $identifier Plugin's identifier (its directory)
      * @return bool
      */
+    public function isDisabled($identifier)
+    {
+        return $this->storage[$identifier] === false;
+    }
+
+    /**
+     * Determine if a plugin is enabled.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
+     */
     public function isEnabled($identifier)
+    {
+        return $this->storage[$identifier] === true;
+    }
+
+    /**
+     * Determine if a plugin is installed.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
+     */
+    public function isInstalled($identifier)
     {
         return isset($this->storage[$identifier]);
     }
@@ -278,6 +361,16 @@ class Manager {
     }
 
     /**
+     * Write initial structure for plugis storage.
+     *
+     * @return bool
+     */
+    protected function setInitialStorage()
+    {
+        $this->setStorage([]);
+    }
+
+    /**
      * Return a Fully Qualified Name for plugin registration class based on its identifier.
      *
      * @param  string $identifier Plugin's identifier (its directory)
@@ -297,5 +390,25 @@ class Manager {
     protected function findObjectByIdentifier($identifier)
     {
         return $this->plugins[$identifier];
+    }
+
+    /**
+     * Filters plugin storage to return only enabled plugins.
+     *
+     * @param  array $storage Array being plugin storage
+     * @return array
+     */
+    protected function getEnabledPlugins($storage) {
+        // @todo: can be refactored using ARRAY_FILTER_USE_BOTH which, however, is PHP 5.6.0+
+
+        $output = [];
+
+        foreach($storage as $pluginIdentifier => $pluginState) {
+            if ($pluginState === true) {
+                $output[] = $pluginIdentifier;
+            }
+        }
+
+        return $output;
     }
 }

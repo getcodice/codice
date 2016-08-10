@@ -27,8 +27,10 @@ class PluginController extends Controller
         $plugins = [];
         foreach ($allPlugins as $identifier => $class) {
             $plugins[$identifier] = [
-                'enabled' => $manager->isEnabled($identifier),
                 'details' => $class->pluginDetails(),
+                'state' => $manager->isInstalled($identifier)
+                    ? ($manager->isEnabled($identifier) ? 'enabled' : 'disabled')
+                    : 'not-installed',
             ];
         }
 
@@ -50,5 +52,19 @@ class PluginController extends Controller
         Manager::instance()->disable($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.disable'));
+    }
+
+    public function getInstall($id)
+    {
+        Manager::instance()->install($id);
+
+        return Redirect::route('plugins')->with('message', trans('plugin.success.install'));
+    }
+
+    public function getUninstall($id)
+    {
+        Manager::instance()->uninstall($id);
+
+        return Redirect::route('plugins')->with('message', trans('plugin.success.uninstall'));
     }
 }
