@@ -2,7 +2,7 @@
 
 namespace Codice\Http\Controllers;
 
-use Codice\PluginManager;
+use Codice\Plugins\Manager;
 use Redirect;
 use View;
 
@@ -20,15 +20,17 @@ class PluginController extends Controller
      */
     public function getIndex()
     {
-        $manager = PluginManager::instance();
+        $manager = Manager::instance();
 
         $allPlugins = $manager->loadAllPlugins();
 
         $plugins = [];
         foreach ($allPlugins as $identifier => $class) {
             $plugins[$identifier] = [
-                'enabled' => $manager->isEnabled($identifier),
                 'details' => $class->pluginDetails(),
+                'state' => $manager->isInstalled($identifier)
+                    ? ($manager->isEnabled($identifier) ? 'enabled' : 'disabled')
+                    : 'not-installed',
             ];
         }
 
@@ -40,15 +42,29 @@ class PluginController extends Controller
 
     public function getEnable($id)
     {
-        PluginManager::instance()->enable($id);
+        Manager::instance()->enable($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.enable'));
     }
 
     public function getDisable($id)
     {
-        PluginManager::instance()->disable($id);
+        Manager::instance()->disable($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.disable'));
+    }
+
+    public function getInstall($id)
+    {
+        Manager::instance()->install($id);
+
+        return Redirect::route('plugins')->with('message', trans('plugin.success.install'));
+    }
+
+    public function getUninstall($id)
+    {
+        Manager::instance()->uninstall($id);
+
+        return Redirect::route('plugins')->with('message', trans('plugin.success.uninstall'));
     }
 }
