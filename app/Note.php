@@ -5,7 +5,6 @@ namespace Codice;
 use Auth;
 use Carbon\Carbon;
 use Codice\Exceptions\NoteNotFoundException;
-use Codice\Reminder;
 use Illuminate\Database\Eloquent\Model;
 use League\CommonMark\CommonMarkConverter;
 
