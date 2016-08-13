@@ -10,6 +10,9 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
+        <testsuite name="functional">
+            <directory>./tests/functional/</directory>
+        </testsuite>
         <testsuite name="unit">
             <directory>./tests/unit/</directory>
         </testsuite>
