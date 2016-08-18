@@ -30,21 +30,6 @@ class PluginActionsTest extends TestCase
         $this->assertEquals('foobar', $output);
     }
 
-    public function testSortingWithSamePriority()
-    {
-        Action::register('test.hook3', 'first_action', function() {
-            echo '1';
-        });
-
-        Action::register('test.hook3', 'second_action', function() {
-            echo '2';
-        });
-
-        $output = $this->getCallOutput('test.hook3');
-
-        $this->assertEquals('12', $output);
-    }
-
     public function testDuplicatedActionNames()
     {
         Action::register('test.hook4', 'action', function() {

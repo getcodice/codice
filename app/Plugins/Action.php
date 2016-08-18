@@ -17,8 +17,7 @@ class Action
      * @param string $hook Name of the hook
      * @param string $actionName Name of the action, must be unique within a hook
      * @param callable $callable Callable containing action to run
-     * @param int $priority Order of calling action, when priority is equal actions are called in reversed order they
-     *                      were registered
+     * @param int $priority Order of calling action, when priority is equal order is undefined
      * @return bool
      */
     public static function register($hook, $actionName, callable $callable, $priority = 10)
