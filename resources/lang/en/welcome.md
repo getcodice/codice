@@ -10,5 +10,7 @@ You can find labels assigned to this task on top right. You can add new using a 
 or right from the note <span class="note-btn"><i class="fa fa-pencil"></i> Edit</span> screen!
 
 That should be enough for now - you can finally click on that <span class="note-btn"><i class="fa fa-trash-o"></i>
-Remove</span> button ;) In case of any trobles take a look at [the docs](http://docs.codice.eu) or insert this note
-again, using settings screen, available from the menu expanded when you click your username on top bar.
+Remove</span> button ;)
+
+Read [The Basics](http://docs.codice.eu/basics) chapter in the documentation - it is short introduction to Codice,
+containing informations written here and even more.

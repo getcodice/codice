@@ -14,7 +14,6 @@ return [
         'notes_per_page' => 'Ilość notatek na stronę',
         'panel-account' => 'Ustawienia konta',
         'panel-application' => 'Ustawienia aplikacji',
-        'panel-other' => 'Inne opcje',
         'panel-password' => 'Zmiana hasła (wypełniaj tylko jeśli chcesz zmienić)',
         'password' => 'Aktualne hasło',
         'password-wrong' => 'Aktualne hasło jest niepoprawne!',
@@ -24,7 +23,6 @@ return [
         'submit' => 'Zapisz ustawienia',
         'success' => 'Ustawienia zostały zapisane!',
         'success-password' => 'Ustawienia i nowe hasło zostały zapisane!',
-        'welcome-note' => 'Wstaw notatkę powitalną',
         'title' => 'Ustawienia',
     ],
 ];

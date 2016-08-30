@@ -138,18 +138,6 @@ class UserController extends Controller
     }
 
     /**
-     * (Re-)insert welcome note on demand.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getInsertWelcomeNote()
-    {
-        Auth::user()->addWelcomeNote(false);
-
-        return Redirect::route('index');
-    }
-
-    /**
      * @inheritdoc
      */
     protected function getEmailSubject()

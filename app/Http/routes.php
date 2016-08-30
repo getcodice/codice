@@ -71,6 +71,5 @@ Route::get('reminder/{id}/remove', ['as' => 'reminder.remove', 'uses' => 'Remind
 
 Route::get('settings', ['as' => 'settings', 'uses' => 'UserController@getSettings']);
 Route::post('settings', 'UserController@postSettings');
-Route::get('settings/insert-welcome-note', ['as' => 'settings.welcome-note', 'uses' => 'UserController@getInsertWelcomeNote']);
 
 Route::get('stats', ['as' => 'stats', 'uses' => 'InfoController@getStats']);

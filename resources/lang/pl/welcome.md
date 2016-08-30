@@ -10,5 +10,7 @@ Na górze znajdą się też etykiety przypisane do zadania. Możesz dodać nowe 
 w menu albo prosto z panelu <span class="note-btn"><i class="fa fa-pencil"></i> Edycji</span> tej notatki!
 
 To powinno Ci wystarczyć na początek - teraz nareszcie możesz kliknąć <span class="note-btn"><i class="fa fa-trash-o"></i>
-Usuń</span> ;) W razie jakichkolwiek problemów zapoznaj się z [dokumentacją](http://docs.codice.eu) lub przywróć tę
-notatkę z poziomu ustawień, dostępnych po kliknęciu w Twoją nazwę użytkownika w górnym menu.
+Usuń</span> ;)
+
+Warto przeczytać rozdział [The Basics](http://docs.codice.eu/basics) w dokumentacji - jest to krótkie wprowadzenie do Codice,
+zawierające zarówno informacje przedstawione tutaj, jak i nieco więcej szczegółów.
