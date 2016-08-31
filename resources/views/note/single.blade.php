@@ -17,16 +17,11 @@
         @endif
     </div>
     <footer class="note-footer">
-        @if ($note->updated_at > $note->created_at)
-        <span data-toggle="tooltip" title="
-            {{ $note->created_at->format(trans('app.datetime')) }}
-            (@lang('note.updated') {{ $note->updated_at->format(trans('app.datetime')) }})
-        ">
-        @else
-        <span data-toggle="tooltip" title="{{ $note->created_at->format(trans('app.datetime')) }}">
-        @endif
+        <a href="{!! route('note', ['id' => $note->id]) !!}"
+           data-toggle="tooltip"
+           title="{{ $note->created_at->format(trans('app.datetime')) }}">
             @icon('clock-o') {{ $note->created_at->diffForHumans() }}
-        </span>
+        </a>
         @if ($state != 'default' && $state != 'success')
             <span class="note-expired">
                 @icon('warning') @lang('note.expires_at')
@@ -38,10 +33,7 @@
             </span>
         @endif
         <span class="note-buttons">
-            @if (!isset($single) || $single !== true)
-            <a href="{!! route('note', ['id' => $note->id]) !!}">@icon('eye') <span class="text">@lang('note.buttons.details')</span></a>
-            @endif
-             <a href="{!! route('note.change', ['id' => $note->id]) !!}">
+            <a href="{!! route('note.change', ['id' => $note->id]) !!}">
                 @if ($note->status)
                     @icon('times') <span class="text">@lang('note.buttons.undone')</span>
                 @else

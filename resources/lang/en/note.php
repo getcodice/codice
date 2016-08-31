@@ -1,7 +1,6 @@
 <?php
 return [
     'buttons' => [
-        'details' => 'Details',
         'edit' => 'Edit',
         'done' => 'Done',
         'remove' => 'Remove',
@@ -43,6 +42,4 @@ return [
         'title' => 'Confirm removal',
     ],
     'removed' => 'Note have been removed.',
-    'single' => 'Go to the detailed view',
-    'updated' => 'updated:',
 ];

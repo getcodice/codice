@@ -1,7 +1,6 @@
 <?php
 return [
     'buttons' => [
-        'details' => 'Szczegóły',
         'edit' => 'Edytuj',
         'done' => 'Wykonano',
         'remove' => 'Usuń',
@@ -43,6 +42,4 @@ return [
         'title' => 'Potwierdź usunięcie',
     ],
     'removed' => 'Notatka została usunięta.',
-    'single' => 'Przejdź do widoku szczegółowego',
-    'updated' => 'akt.:',
 ];

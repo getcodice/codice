@@ -109,7 +109,7 @@ function bindKeys(descriptor, handler, options) {
 
 // Operations performed on each page of notes
 function codicePrepare() {
-    $('span[data-toggle="tooltip"]').tooltip();
+    $('span[data-toggle="tooltip"], a[data-toggle="tooltip"]').tooltip();
 
     // Remove server-side confirmation of removal
     $('.note-buttons a[data-confirm="delete"]').attr('href', function (i, val) {
