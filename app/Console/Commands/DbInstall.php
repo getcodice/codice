@@ -13,7 +13,7 @@ class DbInstall extends Command
      *
      * @var string
      */
-    protected $signature = 'db:install {--username=} {--email=}  {--password=}';
+    protected $signature = 'db:install {--username=} {--email=} {--password=}';
 
     /**
      * The console command description.
@@ -23,48 +23,34 @@ class DbInstall extends Command
     protected $description = 'Installs the database';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        if ($this->option('username') && $this->option('email') && $this->option('password')) {
-            $this->stepMigrate();
-            $this->output->newLine();
+        $this->stepMigrate();
+        $this->output->newLine(2);
 
-            $this->stepCreateUser($this->option('username'), $this->option('email'), $this->option('password'));
+        $username = $this->option('username') ?: $this->ask('What will be your username?');
+        $email    = $this->option('email')    ?: $this->ask('What will be your e-mail (used in login form)?');
 
+        if(!($password = $this->option('password'))) {
+            do {
+                $password = $this->secret('Finally, what password would you like to use?');
+            } while($password != $this->secret('Retype it'));
+        }
+
+        $this->table(
+            ['Username', 'E-mail', 'Password'],
+            [[$username, $email, str_repeat('*', strlen($password))]]
+        );
+
+        if ($this->option('no-interaction') || $this->confirm('Do you confirm those are valid credentials and wish to continue?')) {
+            $this->stepCreateUser($username, $email, $password);
             $this->stepFinish();
         } else {
-            $this->stepMigrate();
-            $this->output->newLine(2);
-
-            $username = $this->ask('What will be your username?');
-            $email = $this->ask('What will be your e-mail (used in login form)?');
-            $password = $this->secret('Finally, what password would you like to use?');
-
-            $this->table(
-                ['Username', 'E-mail', 'Password'],
-                [[$username, $email, $password]]
-            );
-
-            if ($this->confirm('Do you confirm those are valid credentials and wish to continue?')) {
-                $this->stepCreateUser($username, $email, $password);
-                $this->stepFinish();
-            } else {
-                $this->error('Installation cancelled');
-            }
+            $this->error('Installation cancelled');
         }
     }
 
