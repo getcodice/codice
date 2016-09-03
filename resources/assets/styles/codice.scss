@@ -63,7 +63,7 @@
 // It needs to be here as bootstrap themes makes use of Sass variables
 @import "../../../node_modules/select2/dist/css/select2.min";
 @import "../../../node_modules/select2-bootstrap-theme/src/select2-bootstrap.scss";
-@import "../../../node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min";
+@import "../../../node_modules/flatpickr/dist/flatpickr.min";
 
 /*****************************************************************
  * Codice styles
@@ -78,3 +78,4 @@
 @import "calendar";
 @import "install";
 @import "plugins";
+@import "picker";

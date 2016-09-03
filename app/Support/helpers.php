@@ -36,3 +36,21 @@ function plugin_path($pluginName = '')
 {
     return base_path("plugins/$pluginName");
 }
+
+function form_picker($labelTranslationKey, $inputName)
+{
+?>
+    <div class="form-group form-picker" id="<?= $inputName ?>_picker" data-wrap="true">
+        <label class="control-label sr-only" for="<?= trans($inputName) ?>"><?= trans($labelTranslationKey) ?></label>
+        <div class="input-group">
+            <input type="datetime"
+                   data-input
+                   name="<?= trans($inputName) ?>"
+                   id="<?= trans($inputName) ?>"
+                   class="form-control"
+                   placeholder="<?= datetime_placeholder($labelTranslationKey) ?>">
+            <span class="input-group-addon" data-toggle><?= icon('calendar') ?></span>
+        </div>
+    </div>
+<?php
+}

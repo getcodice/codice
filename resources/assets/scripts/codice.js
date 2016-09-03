@@ -182,18 +182,10 @@ function codiceQuickForm() {
 
 
 function codiceDatetimePicker(domSelector) {
-    $(domSelector).datetimepicker({
-        locale: codiceLang.languageCode,
-        icons: {
-            time: 'fa fa-clock-o',
-            date: 'fa fa-calendar',
-            up: 'fa fa-arrow-up',
-            down: 'fa fa-arrow-down',
-            previous: 'fa fa-arrow-left',
-            next: 'fa fa-arrow-right',
-            clear: 'fa fa-trash-o',
-            close: 'fa fa-times'
-        }
+    flatpickr($(domSelector)[0], {
+        allowInput: true,
+        clickOpens: false,
+        enableTime: true,
     });
 }
 
