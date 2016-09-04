@@ -2,6 +2,7 @@
 
 namespace Codice\Support\Traits;
 
+use Exception;
 use Log;
 
 trait Hookable
@@ -25,7 +26,7 @@ trait Hookable
         $hookableType = self::getHookableType();
 
         if (self::isRegistered($hook, $hookableName)) {
-            Log::warning($hookableType . " '$hookableName' was already registered within '$hook' hook and has been overwritten.");
+            Log::warning("$hookableType '$hookableName' was already registered within '$hook' hook and has been overwritten.");
         }
 
         self::$hookables[$hook][$hookableName] = [
@@ -72,11 +73,7 @@ trait Hookable
      */
     private static function getHookables($hook)
     {
-        if (isset(self::$hookables[$hook])) {
-            $hookables = self::$hookables[$hook];
-        } else {
-            $hookables = [];
-        }
+        $hookables = isset(self::$hookables[$hook]) ? self::$hookables[$hook] : [];
 
         return self::sortHookables($hookables);
     }
@@ -103,7 +100,11 @@ trait Hookable
     /**
      * Return human readable name of hookable
      *
+     * @throws Exception
      * @return string
      */
-    protected abstract static function getHookableType();
+    protected static function getHookableType()
+    {
+        throw new Exception('getHookableType() must be implemented');
+    }
 }
