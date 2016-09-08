@@ -185,6 +185,7 @@ function codiceDatetimePicker(domSelector) {
     flatpickr($(domSelector)[0], {
         allowInput: true,
         clickOpens: false,
+        dateFormat: codiceLang.datetimeFormat,
         enableTime: true,
     });
 }
