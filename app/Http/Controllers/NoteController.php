@@ -54,7 +54,7 @@ class NoteController extends Controller
     /**
      * Process a form for creating new note.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postCreate()
     {
@@ -119,7 +119,7 @@ class NoteController extends Controller
      * Process a form for editing note.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postEdit($id)
     {
@@ -154,7 +154,7 @@ class NoteController extends Controller
      * Change status of a note.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function getChangeStatus($id)
     {
@@ -181,7 +181,7 @@ class NoteController extends Controller
      */
     public function getNote($id)
     {
-        return View('note.note', [
+        return View::make('note.note', [
             'note' => Note::findOwned($id),
             'single' => true,
         ]);
@@ -204,7 +204,7 @@ class NoteController extends Controller
      * Delete a note.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function getRemove($id)
     {

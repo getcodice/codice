@@ -85,7 +85,7 @@ class LabelController extends Controller
     /**
      * Process a form for creating new label.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postCreate()
     {
@@ -124,7 +124,7 @@ class LabelController extends Controller
      * Process a form for editing label.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postEdit($id)
     {
@@ -149,7 +149,7 @@ class LabelController extends Controller
      * Delete a label.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function getRemove($id)
     {

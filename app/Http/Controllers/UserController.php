@@ -39,7 +39,7 @@ class UserController extends Controller
     /**
      * Process a login form.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postLogin()
     {
@@ -93,7 +93,7 @@ class UserController extends Controller
     /**
      * Process settings form.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postSettings()
     {

@@ -135,7 +135,7 @@ class InstallController extends Controller
     /**
      * Create .env file.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postEnvironment()
     {
@@ -215,7 +215,7 @@ class InstallController extends Controller
     /**
      * Create first user.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postUser()
     {
