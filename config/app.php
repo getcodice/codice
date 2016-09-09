@@ -159,7 +159,6 @@ return [
          * 3rd Party Providers...
          */
         AdamWathan\BootForms\BootFormsServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
