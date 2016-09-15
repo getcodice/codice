@@ -3,6 +3,7 @@
 namespace Codice\Providers;
 
 use Blade;
+use Codice\Plugins\Action;
 use Codice\Plugins\Menu;
 use Codice\Plugins\Manager as PluginManager;
 use Codice\Reminders\ReminderService;
@@ -46,6 +47,16 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('icon', function($name) {
             return '<span class="fa fa-' . substr($name, 2, -2) . '"></span>';
+        });
+
+        // Register hook for shutdown actions
+        register_shutdown_function(function() {
+            /**
+             * Executed right before script is terminated (it's a handler for register_shutdown_function())
+             *
+             * @since 0.3
+             */
+            Action::call('core.shutdown');
         });
     }
 

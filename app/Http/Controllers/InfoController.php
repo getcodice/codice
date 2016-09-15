@@ -30,7 +30,7 @@ class InfoController extends Controller
         return View::make('info.about', [
             'changelog' => $changelog,
             'title' => trans('info.about.title'),
-            'version' => Codice::VERSION,
+            'version' => (new Codice)->getVersion(),
         ]);
     }
 
@@ -51,7 +51,7 @@ class InfoController extends Controller
 
         $version = trim($version);
 
-        if (version_compare($version, Codice::VERSION, 'gt')) {
+        if (version_compare($version, (new Codice)->getVersion(), 'gt')) {
             return Redirect::route('about')->with([
                 'message' => trans('info.updates.available', ['version' => $version]),
                 'message_type' => 'info',

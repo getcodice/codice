@@ -4,6 +4,7 @@ namespace Codice\Http\Controllers;
 
 use App;
 use Auth;
+use Codice\Plugins\Action;
 use Hash;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Input;
@@ -54,7 +55,24 @@ class UserController extends Controller
         ]);
 
         if ($validator->passes()) {
-            if (Auth::attempt($credentials)) {
+            $isValid = Auth::attempt($credentials);
+
+            /**
+             * Executed on login attempt
+             *
+             * @since 0.3
+             *
+             * @param string $email E-mail address used to log in
+             * @param bool $isValid Whether user logged in successfully
+             * @param \Codice\User|null $user User object if credentials were correct, null otherwise
+             */
+            Action::call('user.login', [
+                'email' => $credentials['email'],
+                'isValid' => $isValid,
+                'user' => $isValid ? Auth::user() : null,
+            ]);
+
+            if ($isValid) {
                 return Redirect::intended(route('index'));
             }
 
