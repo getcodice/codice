@@ -66,7 +66,6 @@ class NoteController extends Controller
             $note = Note::create([
                 'user_id' => Auth::id(),
                 'content' => Input::get('content'),
-                'status' => 0,
                 'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null,
             ]);
 
@@ -231,7 +230,6 @@ class NoteController extends Controller
                 $newLabel = Label::create([
                     'user_id' => Auth::id(),
                     'name' => $label,
-                    'color' => 1, // Let's give it default color
                 ]);
 
                 // We need to replace label name with its ID in $labels in order to get

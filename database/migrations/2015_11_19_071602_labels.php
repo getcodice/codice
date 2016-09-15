@@ -16,7 +16,7 @@ class Labels extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('name', 50);
-            $table->tinyInteger('color');
+            $table->tinyInteger('color')->default(1);
         });
 
         Schema::create('label_note', function (Blueprint $table) {

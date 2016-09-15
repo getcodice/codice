@@ -60,8 +60,6 @@ class LabelsTest extends TestCase
         $note = Note::create([
             'user_id' => 1,
             'content' => 'lorem ipsum dolor si amet',
-            'status'  => 0,
-            'expires_at' => null
         ]);
 
         $labels = [
@@ -93,13 +91,11 @@ class LabelsTest extends TestCase
     {
         Label::create([
             'name' => 'foo',
-            'color' => 1,
             'user_id' => 1
         ]);
 
         Label::create([
             'name' => 'bar',
-            'color' => 1,
             'user_id' => 1
         ]);
 
