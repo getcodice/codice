@@ -6,7 +6,7 @@ use Auth;
 use Codice\Label;
 use Codice\Note;
 use Codice\Reminders\ReminderService;
-use Input;
+use Illuminate\Http\Request;
 use Redirect;
 use Validator;
 use View;
@@ -54,35 +54,35 @@ class NoteController extends Controller
     /**
      * Process a form for creating new note.
      *
+     * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postCreate()
+    public function postCreate(Request $request)
     {
-        $input = Input::all();
+        $input = $request->all();
 
         $validator = Validator::make($input, $this->rules);
 
         if ($validator->passes()) {
             $note = Note::create([
                 'user_id' => Auth::id(),
-                'content' => Input::get('content'),
-                'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null,
+                'content' => $request->input('content'),
+                'expires_at' => $request->has('expires_at') ? strtotime($request->input('expires_at')) : null,
             ]);
 
-            $labels = Input::get('labels', []);
-            $note->reTag($labels);
+            $note->reTag($request->input('labels', []));
 
             event('note.save.create', [$note]);
 
             // Handle reminders
             foreach (ReminderService::getRegisteredKeys() as $reminderID) {
-                if (Input::has("reminder_$reminderID")) {
+                if ($request->has("reminder_$reminderID")) {
                     ReminderService::get($reminderID)->set($note, $input);
                 }
             }
 
-            if (Input::has('quickform_label') && is_numeric(Input::get('quickform_label'))) {
-                $response = Redirect::route('label', ['id' => Input::get('quickform_label')]);
+            if (is_numeric($labelID = $request->input('quickform_label'))) {
+                $response = Redirect::route('label', ['id' => $labelID]);
             } else {
                 $response = Redirect::route('index');
             }
@@ -116,23 +116,23 @@ class NoteController extends Controller
     /**
      * Process a form for editing note.
      *
+     * @param  Request $request
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postEdit($id)
+    public function postEdit(Request $request, $id)
     {
         $note = Note::findOwned($id);
-        $input = Input::all();
+        $input = $request->all();
 
         $validator = Validator::make($input, $this->rules);
 
         if ($validator->passes()) {
-            $note->content = Input::get('content');
-            $note->expires_at = Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null;
+            $note->content = $request->input('content');
+            $note->expires_at = $request->has('expires_at') ? strtotime($request->input('expires_at')) : null;
             $note->save();
 
-            $labels = Input::get('labels', []);
-            $note->reTag($labels);
+            $note->reTag($request->input('labels', []));
 
             event('note.save.edit', [$note]);
 
