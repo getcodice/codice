@@ -5,11 +5,14 @@ namespace Codice;
 use Auth;
 use Carbon\Carbon;
 use Codice\Exceptions\NoteNotFoundException;
+use Codice\Support\Traits\Taggable;
 use Illuminate\Database\Eloquent\Model;
 use League\CommonMark\CommonMarkConverter;
 
 class Note extends Model
 {
+    use Taggable;
+
     /**
      * Attributes appended to the model representation, which are
      * not database columns.

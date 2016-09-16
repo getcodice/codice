@@ -1,6 +1,5 @@
 <?php
 
-use Codice\Http\Controllers\NoteController;
 use Codice\Label;
 use Codice\Note;
 use Codice\User;
@@ -32,13 +31,7 @@ class LabelsTest extends TestCase
             0 => "1", // numeric ID
         ];
 
-        // Ehh, I know, I know... refactor is coming...
-        $noteController = new NoteController;
-
-        // In theory should do nothing in this case - all labels already exist
-        $labels = $this->invokeMethod($noteController, 'processNewLabels', [$labels]);
-
-        $note->labels()->sync($labels);
+        $note->reTag($labels);
 
         $this->seeInDatabase('label_note', [
             'label_id' => 1,
@@ -65,17 +58,11 @@ class LabelsTest extends TestCase
         $labels = [
             0 => "1", // numeric ID
             // non-numeric (string) means that user created new label
-            // (this is how select2 behaves)
+            // (this is how select2.js behaves)
             1 => "new label",
         ];
 
-        // Ehh, I know, I know... refactor is coming...
-        $noteController = new NoteController;
-
-        // "new label" should be added to the "labels" table
-        $labels = $this->invokeMethod($noteController, 'processNewLabels', [$labels]);
-
-        $note->labels()->sync($labels);
+        $note->reTag($labels);
 
         $this->seeInDatabase('label_note', [
             'label_id' => 1,
@@ -106,7 +93,7 @@ class LabelsTest extends TestCase
         ]);
     }
 
-    public function seedTestUser()
+    private function seedTestUser()
     {
         return User::create([
             'name' => 'JohnDoe',
@@ -114,14 +101,5 @@ class LabelsTest extends TestCase
             'password' => bcrypt('test'),
             'options' => [],
         ]);
-    }
-
-    public function invokeMethod(&$object, $methodName, array $parameters = array())
-    {
-        $reflection = new \ReflectionClass(get_class($object));
-        $method = $reflection->getMethod($methodName);
-        $method->setAccessible(true);
-
-        return $method->invokeArgs($object, $parameters);
     }
 }

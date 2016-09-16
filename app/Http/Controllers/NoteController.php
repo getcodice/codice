@@ -69,11 +69,10 @@ class NoteController extends Controller
                 'expires_at' => Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null,
             ]);
 
-            event('note.save.create', [$note]);
-
             $labels = Input::get('labels', []);
-            $labels = $this->processNewLabels($labels);
-            $note->labels()->sync($labels);
+            $note->reTag($labels);
+
+            event('note.save.create', [$note]);
 
             // Handle reminders
             foreach (ReminderService::getRegisteredKeys() as $reminderID) {
@@ -132,11 +131,10 @@ class NoteController extends Controller
             $note->expires_at = Input::has('expires_at') ? strtotime(Input::get('expires_at')) : null;
             $note->save();
 
-            event('note.save.edit', [$note]);
-
             $labels = Input::get('labels', []);
-            $labels = $this->processNewLabels($labels);
-            $note->labels()->sync($labels);
+            $note->reTag($labels);
+
+            event('note.save.edit', [$note]);
 
             // Handle reminders
             foreach (ReminderService::getRegisteredKeys() as $reminderID) {
@@ -213,32 +211,5 @@ class NoteController extends Controller
         event('note.drop', [$note]);
 
         return Redirect::back()->with('message', trans('note.removed'));
-    }
-
-    /**
-     * Process new labels added while creating/editing a note.
-     *
-     * @param  array  $labels
-     * @return array
-     */
-    private function processNewLabels(array $labels)
-    {
-        $existingLabels = Label::orderBy('name')->lists('id')->toArray();
-
-        foreach ($labels as $labelKey =>$label) {
-            if (!in_array($label, $existingLabels)) {
-                $newLabel = Label::create([
-                    'user_id' => Auth::id(),
-                    'name' => $label,
-                ]);
-
-                // We need to replace label name with its ID in $labels in order to get
-                // Laravel's sync() working and happy...
-                unset($labels[$labelKey]);
-                $labels[] = $newLabel->id;
-            }
-        }
-
-        return $labels;
     }
 }

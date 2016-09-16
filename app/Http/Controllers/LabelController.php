@@ -57,9 +57,7 @@ class LabelController extends Controller
         // Then fetch the notes associated with this label
         $perPage = Auth::user()->options['notes_per_page'];
 
-        $notes = Note::whereHas('labels', function ($q) use ($id) {
-            $q->where('id', $id);
-        })->logged()->latest()->simplePaginate($perPage);
+        $notes = Note::tagged($id)->logged()->latest()->simplePaginate($perPage);
 
         return View::make('label.notes', [
             'label' => $label,
