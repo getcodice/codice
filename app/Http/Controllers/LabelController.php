@@ -94,7 +94,7 @@ class LabelController extends Controller
             $label = Label::create([
                 'user_id' => Auth::id(),
                 'name' => $request->input('name'),
-                'color' => Label::ensureColorIsValid($request->input('color')),
+                'color' => $request->input('color'),
             ]);
 
             event('label.save.create', [$label]);
@@ -134,7 +134,7 @@ class LabelController extends Controller
 
         if ($validator->passes()) {
             $label->name = $request->input('name');
-            $label->color = Label::ensureColorIsValid($request->input('color'));
+            $label->color = $request->input('color');
             $label->save();
 
             event('label.save.edit', [$label]);

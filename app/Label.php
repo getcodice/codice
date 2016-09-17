@@ -39,21 +39,6 @@ class Label extends Model
     }
 
     /**
-     * Fall back to default if provided label color doesn't exist.
-     *
-     * @param  int $color Color selected by user
-     * @return int
-     */
-    public static function ensureColorIsValid($color)
-    {
-        if (!in_array($color, array_keys(config('labels.colors'))))  {
-            $color = 1;
-        }
-
-        return $color;
-    }
-
-    /**
      * Notes that belong to the label.
      */
     public function notes()
@@ -70,6 +55,17 @@ class Label extends Model
     public function scopeLogged($query)
     {
         return $query->where('user_id', '=', Auth::id());
+    }
+
+    /**
+     * Setter for label color, with simple sanitization.
+     *
+     * @param  string $color
+     * @return void
+     */
+    public function setColorAttribute($color)
+    {
+        $this->attributes['color'] = in_array($color, array_keys(config('labels.colors'))) ? $color : 1;
     }
 
     /**
