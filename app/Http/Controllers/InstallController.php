@@ -6,7 +6,7 @@ use App;
 use Artisan;
 use Codice\User;
 use Exception;
-use Input;
+use Illuminate\Http\Request;
 use Lang;
 use Redirect;
 use Session;
@@ -135,11 +135,12 @@ class InstallController extends Controller
     /**
      * Create .env file.
      *
+     * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postEnvironment()
+    public function postEnvironment(Request $request)
     {
-        $validator = Validator::make(Input::all(), [
+        $validator = Validator::make($request->all(), [
             'db_host' => 'required',
             'db_name' => 'required',
             'db_user' => 'required',
@@ -151,11 +152,11 @@ class InstallController extends Controller
 
         $env = "APP_ENV=production\nAPP_DEBUG=false\n";
         $env .= 'APP_KEY=' . str_random(32) . "\n\n";
-        $env .= 'DB_HOST=' . Input::get('db_host') . "\n";
-        $env .= 'DB_DATABASE=' . Input::get('db_name') . "\n";
-        $env .= 'DB_USERNAME=' . Input::get('db_user') . "\n";
-        $env .= 'DB_PASSWORD=' . Input::get('db_password') . "\n";
-        $env .= 'DB_PREFIX=' . Input::get('db_prefix') . "\n\n";
+        $env .= 'DB_HOST=' . $request->input('db_host') . "\n";
+        $env .= 'DB_DATABASE=' . $request->input('db_name') . "\n";
+        $env .= 'DB_USERNAME=' . $request->input('db_user') . "\n";
+        $env .= 'DB_PASSWORD=' . $request->input('db_password') . "\n";
+        $env .= 'DB_PREFIX=' . $request->input('db_prefix') . "\n\n";
         $env .= "CACHE_DRIVER=file\nSESSION_DRIVER=file\nQUEUE_DRIVER=sync\n\nMAIL_DRIVER=mail";
 
         file_put_contents(base_path('.env'), $env);
@@ -215,11 +216,12 @@ class InstallController extends Controller
     /**
      * Create first user.
      *
+     * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postUser()
+    public function postUser(Request $request)
     {
-        $validator = Validator::make(Input::all(), [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',
@@ -233,9 +235,9 @@ class InstallController extends Controller
         $options['language'] = Lang::getLocale();
 
         $user = new User;
-        $user->name = Input::get('name');
-        $user->email = Input::get('email');
-        $user->password = bcrypt(Input::get('password'));
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
         $user->options = $options;
         $user->save();
 

@@ -7,7 +7,7 @@ use Auth;
 use Codice\Plugins\Action;
 use Hash;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Input;
+use Illuminate\Http\Request;
 use Redirect;
 use Validator;
 use View;
@@ -40,13 +40,14 @@ class UserController extends Controller
     /**
      * Process a login form.
      *
+     * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postLogin()
+    public function postLogin(Request $request)
     {
         $credentials = [
-            'email' => Input::get('email'),
-            'password' => Input::get('password')
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ];
 
         $validator = Validator::make($credentials, [
@@ -111,13 +112,14 @@ class UserController extends Controller
     /**
      * Process settings form.
      *
+     * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postSettings()
+    public function postSettings(Request $request)
     {
         $allowedLanguages = implode(',', array_keys(config('app.languages')));
 
-        $validator = Validator::make(Input::all(), [
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             // FIXME: regex would be fine, but what about other i18n support?
             //'options.phone' => 'numeric',
@@ -129,22 +131,22 @@ class UserController extends Controller
         if ($validator->passes()) {
             // Set app's locale so correct message is displayed when language has
             // been just changed.
-            App::setLocale(Input::get('options')['language']);
+            App::setLocale($request->input('options')['language']);
 
             $message = trans('user.settings.success');
 
             $user = Auth::user();
-            if (Input::has('password') && Input::has('password_new')) {
-                if (!Hash::check(Input::get('password'), $user->password)) {
+            if ($request->has('password', 'password_new')) {
+                if (!Hash::check($request->input('password'), $user->password)) {
                     return Redirect::back()->with('message', trans('user.settings.password-wrong'))
                         ->with('message_type', 'danger');
                 }
 
-                $user->password = bcrypt(Input::get('password_new'));
+                $user->password = bcrypt($request->input('password_new'));
                 $message = trans('user.settings.success-password');
             }
-            $user->email = Input::get('email');
-            $user->options = Input::get('options');
+            $user->email = $request->input('email');
+            $user->options = $request->input('options');
             $user->save();
 
             event('user.save', [$user]);

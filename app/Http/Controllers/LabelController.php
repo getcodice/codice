@@ -5,7 +5,7 @@ namespace Codice\Http\Controllers;
 use Auth;
 use Codice\Label;
 use Codice\Note;
-use Input;
+use Illuminate\Http\Request;
 use Redirect;
 use Validator;
 use View;
@@ -83,17 +83,18 @@ class LabelController extends Controller
     /**
      * Process a form for creating new label.
      *
+     * @param  Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postCreate()
+    public function postCreate(Request $request)
     {
-        $validator = Validator::make(Input::all(), $this->rules);
+        $validator = Validator::make($request->all(), $this->rules);
 
         if ($validator->passes()) {
             $label = Label::create([
                 'user_id' => Auth::id(),
-                'name' => Input::get('name'),
-                'color' => Label::ensureColorIsValid(Input::get('color')),
+                'name' => $request->input('name'),
+                'color' => Label::ensureColorIsValid($request->input('color')),
             ]);
 
             event('label.save.create', [$label]);
@@ -121,18 +122,19 @@ class LabelController extends Controller
     /**
      * Process a form for editing label.
      *
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postEdit($id)
+    public function postEdit(Request $request, $id)
     {
         $label = Label::findOwned($id);
 
-        $validator = Validator::make(Input::all(), $this->rules);
+        $validator = Validator::make($request->all(), $this->rules);
 
         if ($validator->passes()) {
-            $label->name = Input::get('name');
-            $label->color = Label::ensureColorIsValid(Input::get('color'));
+            $label->name = $request->input('name');
+            $label->color = Label::ensureColorIsValid($request->input('color'));
             $label->save();
 
             event('label.save.edit', [$label]);
