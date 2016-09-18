@@ -6,6 +6,7 @@ use Auth;
 use Carbon\Carbon;
 use Codice\Note;
 use Codice\Support\Calendar;
+use Lang;
 use View;
 
 class CalendarController extends Controller {
@@ -38,11 +39,17 @@ class CalendarController extends Controller {
             ->latest()
             ->simplePaginate($perPage);
 
+        $title = trans('calendar.day-title', [
+            'day' => $day,
+            'month' => trans(Lang::has('calendar.months-genitive', null, false) ?
+                           "calendar.months-genitive.$month" :
+                           "calendar.months.$month"),
+            'year' => $year,
+        ]);
+
         return View::make('calendar.day', [
             'notes' => $notes,
-            'day' => $day,
-            'month' => $month,
-            'year' => $year,
+            'title' => $title,
         ]);
     }
 

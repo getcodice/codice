@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'day-title' => ':month :day, :year',
     'days' => [
         'Monday',
         'Tuesday',
