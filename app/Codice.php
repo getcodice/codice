@@ -5,7 +5,7 @@ namespace Codice;
 use Codice\Plugins\Filter;
 
 class Codice {
-    private $version = '0.4.0-dev';
+    private $version = '0.4.0';
 
     public function getVersion()
     {
