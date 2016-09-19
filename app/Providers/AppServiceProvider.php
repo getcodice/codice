@@ -74,7 +74,8 @@ class AppServiceProvider extends ServiceProvider
         PluginManager::instance()->registerAll();
 
         // Register laravel-ide-helper unless we are in prouduction env
-        if ($this->app->environment() !== 'production') {
+        if ($this->app->environment() !== 'production'
+                && class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class)) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 
