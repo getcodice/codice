@@ -7,7 +7,11 @@
 
     @include('note.quickform')
 
-    @each('note.single', $notes, 'note', 'note.none')
+    <div class="jscroll-container">
+        @each('note.single', $notes, 'note', 'note.none')
+
+        {!! $notes->render() !!}
+    </div>
 @stop
 
 @section('footer')
