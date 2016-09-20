@@ -13,6 +13,7 @@ return [
         'password_confirmation' => 'Nowe hasło (potwierdzenie)',
         'submit' => 'Wyślij link do resetu hasła',
         'submit-reset' => 'Zresetuj hasło',
+        'title' => 'Zresetuj zapomniane hasło',
     ],
     'password' => 'Hasło musi mieć minimum 6 znaków i pasować do potwierdzenia.',
     'reset' => 'Twoje hasło zostało zresetowane!',

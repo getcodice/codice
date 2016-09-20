@@ -13,6 +13,7 @@ return [
         'password_confirmation' => 'New password (confirmation)',
         'submit' => 'Send password reset link',
         'submit-reset' => 'Reset password',
+        'title' => 'Reset forgotten password',
     ],
     'password' => 'Passwords must be at least six characters and match the confirmation.',
     'reset' => 'Your password has been reset!',
