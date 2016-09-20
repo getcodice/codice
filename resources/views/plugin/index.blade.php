@@ -47,7 +47,9 @@
         </div>
     @endforeach
 @else
-<h1 class="app-error">@lang('plugin.none.title')</h1>
-<h2 class="app-error">@lang('plugin.none.content')</h2>
+<div class="codice-container">
+    <h1 class="app-error">@lang('plugin.none.title')</h1>
+    <h2 class="app-error">@lang('plugin.none.content')</h2>
+</div>
 @endif
 @stop
