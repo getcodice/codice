@@ -1,8 +1,8 @@
 # Codice
 
 [![Build Status](https://travis-ci.com/Sobak/Codice.svg?token=56jJWzdqW9ZYp8m68yDz&branch=master)](https://travis-ci.com/Sobak/Codice)
-[![Version](https://img.shields.io/badge/version-v0.4.1-blue.svg)](https://github.com/Sobak/Codice/releases)
-![Developed Version](https://img.shields.io/badge/developed-v0.4.2--dev-orange.svg)
+[![Version](https://img.shields.io/badge/version-v0.4.2-blue.svg)](https://github.com/Sobak/Codice/releases)
+![Developed Version](https://img.shields.io/badge/developed-v0.5.0--dev-orange.svg)
 
 > **Codice** is online note-taking and task-management application.
 
