@@ -54,3 +54,7 @@ function form_picker($labelTranslationKey, $inputName)
     </div>
 <?php
 }
+
+function note_creation_date(Carbon\Carbon $date) {
+    return $date->diffInDays() > 7 ? $date->format(trans('app.date')) : $date->diffForHumans();
+}

@@ -20,7 +20,7 @@
         <a href="{!! route('note', ['id' => $note->id]) !!}"
            data-toggle="tooltip"
            title="{{ $note->created_at->format(trans('app.datetime')) }}">
-            @icon('clock-o') {{ $note->created_at->diffForHumans() }}
+            @icon('clock-o') {{ note_creation_date($note->created_at) }}
         </a>
         @if ($state != 'default' && $state != 'success')
             <span class="note-expired">
