@@ -8,20 +8,20 @@
             <div class="form-group col-md-6">
                 <label for="quickform_labels" class="sr-only">@lang('note.labels.labels')</label>
                 <select name="labels[]" class="form-control" id="quickform_labels" multiple>
-                @foreach ($quickform['labels'] as $id => $label)
-                    <option value="{{ $id }}" {{ $quickform['label'] == $id ? 'selected' : '' }}>{{ $label }}</option>
+                @foreach ($options['labels'] as $id => $label)
+                    <option value="{{ $id }}" {{ $options['label'] == $id ? 'selected' : '' }}>{{ $label }}</option>
                 @endforeach
                 </select>
             </div>
             <div class="form-group col-md-4">
                 <label for="quickform_expires_at" class="sr-only">@lang('note.labels.expires_at')</label>
-                <input type="text" name="expires_at" id="quickform_expires_at" class="form-control" value="{{ $quickform['expires_at'] }}" placeholder="{{ datetime_placeholder('note.labels.expires_at') }}">
+                <input type="text" name="expires_at" id="quickform_expires_at" class="form-control" value="{{ $options['expires_at'] }}" placeholder="{{ datetime_placeholder('note.labels.expires_at') }}">
             </div>
             <div class="col-md-2">
                 <button type="submit" class="btn btn-primary quickform-submit">@lang('note.create.submit')</button>
             </div>
         </div>
         {{ csrf_field() }}
-        <input type="hidden" name="quickform_target" value="{!! $quickform['target_url'] !!}">
+        <input type="hidden" name="quickform_target" value="{!! $options['target_url'] !!}">
     </form>
 </div>

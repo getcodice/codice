@@ -72,7 +72,7 @@ function quickform(array $options = [])
     ], $options);
 
     $html = View::make('note.quickform', [
-        'quickform' => $options,
+        'options' => $options,
     ]);
 
     return new Expression($html);
