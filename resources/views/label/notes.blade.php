@@ -5,7 +5,7 @@
         {!! trans('labels.notes.page-heading', ['label' => $label->name]) !!}
     </h2>
 
-    @include('note.quickform')
+    {{ $quickform }}
 
     <div class="jscroll-container">
         @each('note.single', $notes, 'note', 'note.none')

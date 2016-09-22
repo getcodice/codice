@@ -1,9 +1,3 @@
-{{--
-Just @include the view and pass following parameters:
-- $quickform_labels - list of labels, preferably Label::orderBy('name')->lists('name', 'id') call
-- $quickform_label (optional) - currently selected label
---}}
-
 <div class="quickform">
     <form action="{!! route('note.create') !!}" method="post">
         <div class="form-group">
@@ -14,8 +8,8 @@ Just @include the view and pass following parameters:
             <div class="form-group col-md-6">
                 <label for="quickform_labels" class="sr-only">@lang('note.labels.labels')</label>
                 <select name="labels[]" class="form-control" id="quickform_labels" multiple>
-                @foreach ($quickform_labels as $id => $label)
-                    <option value="{{ $id }}" {{ isset($quickform_label) && $quickform_label == $id ? 'selected' : '' }}>{{ $label }}</option>
+                @foreach ($quickform['labels'] as $id => $label)
+                    <option value="{{ $id }}" {{ $quickform['label'] == $id ? 'selected' : '' }}>{{ $label }}</option>
                 @endforeach
                 </select>
             </div>
@@ -28,8 +22,6 @@ Just @include the view and pass following parameters:
             </div>
         </div>
         {{ csrf_field() }}
-        @if (isset($quickform_label))
-        <input type="hidden" name="quickform_label" value="{{ $quickform_label }}">
-        @endif
+        <input type="hidden" name="quickform_target" value="{!! $quickform['target_url'] !!}">
     </form>
 </div>

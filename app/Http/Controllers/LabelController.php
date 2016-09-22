@@ -59,11 +59,15 @@ class LabelController extends Controller
 
         $notes = Note::tagged($id)->logged()->latest()->simplePaginate($perPage);
 
+        $quickform = quickform([
+            'label' => $id,
+            'target_url' => route('label', ['id' => $id]),
+        ]);
+
         return View::make('label.notes', [
             'label' => $label,
             'notes' => $notes,
-            'quickform_label' => $id,
-            'quickform_labels' => Label::orderBy('name')->lists('name', 'id'),
+            'quickform' => $quickform,
             'title' => trans('labels.notes.title', ['label' => $label->name]),
         ]);
     }

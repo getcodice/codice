@@ -1,5 +1,8 @@
 <?php
 
+use Codice\Label;
+use Illuminate\View\Expression;
+
 function calendar_class($day, $month, $events)
 {
     $classes = [];
@@ -57,4 +60,19 @@ function form_picker($labelTranslationKey, $inputName)
 
 function note_creation_date(Carbon\Carbon $date) {
     return $date->diffInDays() > 7 ? $date->format(trans('app.date')) : $date->diffForHumans();
+}
+
+function quickform(array $options = [])
+{
+    $options = array_merge([
+        'label' => null,
+        'labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
+        'target_url' => route('index'),
+    ], $options);
+
+    $html = View::make('note.quickform', [
+        'quickform' => $options,
+    ]);
+
+    return new Expression($html);
 }

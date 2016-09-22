@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-@include('note.quickform')
+{{ $quickform  }}
 
 <div class="jscroll-container">
     @each('note.single', $notes, 'note', 'note.none')
