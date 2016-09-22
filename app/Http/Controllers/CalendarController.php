@@ -39,6 +39,10 @@ class CalendarController extends Controller {
             ->latest()
             ->simplePaginate($perPage);
 
+        $quickform = quickform([
+            'expires_at' => Carbon::createFromDate($year, $month, $day)->format(trans('app.date')),
+        ]);
+
         $title = trans('calendar.day-title', [
             'day' => $day,
             'month' => trans(Lang::has('calendar.months-genitive', null, false) ?
@@ -49,6 +53,7 @@ class CalendarController extends Controller {
 
         return View::make('calendar.day', [
             'notes' => $notes,
+            'quickform' => $quickform,
             'title' => $title,
         ]);
     }

@@ -65,6 +65,7 @@ function note_creation_date(Carbon\Carbon $date) {
 function quickform(array $options = [])
 {
     $options = array_merge([
+        'expires_at' => null,
         'label' => null,
         'labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
         'target_url' => route('index'),
