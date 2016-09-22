@@ -4,6 +4,7 @@
 /public/assets/css
 /public/assets/fonts
 /public/assets/js
+/storage/debugbar
 /vendor
 _ide_helper.php
 Homestead.yaml

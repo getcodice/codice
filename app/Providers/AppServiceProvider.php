@@ -75,10 +75,14 @@ class AppServiceProvider extends ServiceProvider
 
         // Register laravel-ide-helper unless we are in prouduction env
         if ($this->app->environment() !== 'production'
-                && class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class)) {
+               && class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class)) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 
+        if (config('app.debug') === true
+               && class_exists(\Barryvdh\Debugbar\ServiceProvider::class)) {
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        }
     }
 
     private function registerMainMenu()
