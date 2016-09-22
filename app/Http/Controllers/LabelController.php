@@ -57,7 +57,7 @@ class LabelController extends Controller
         // Then fetch the notes associated with this label
         $perPage = Auth::user()->options['notes_per_page'];
 
-        $notes = Note::tagged($id)->logged()->latest()->simplePaginate($perPage);
+        $notes = Note::tagged($id)->with('labels')->logged()->latest()->simplePaginate($perPage);
 
         $quickform = quickform([
             'label' => $id,

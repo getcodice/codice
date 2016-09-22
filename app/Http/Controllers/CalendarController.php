@@ -32,7 +32,7 @@ class CalendarController extends Controller {
         $day = intval($day);
         $month = intval($month);
 
-        $notes = Note::logged()->whereDate('created_at', '=', "{$year}-{$month}-{$day}")
+        $notes = Note::with('labels')->logged()->whereDate('created_at', '=', "{$year}-{$month}-{$day}")
             ->orWhere(function($query) use ($year, $month, $day) {
                 $query->whereDate('expires_at', '=', "{$year}-{$month}-{$day}");
             })

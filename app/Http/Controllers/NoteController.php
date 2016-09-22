@@ -33,7 +33,7 @@ class NoteController extends Controller
         $perPage = Auth::user()->options['notes_per_page'];
 
         return View::make('index', [
-            'notes' => Note::logged()->latest()->simplePaginate($perPage),
+            'notes' => Note::with('labels')->logged()->latest()->simplePaginate($perPage),
             'quickform' => quickform(),
         ]);
     }
