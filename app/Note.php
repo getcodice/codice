@@ -20,7 +20,6 @@ class Note extends Model
      * @var array
      */
     protected $appends = [
-        'content_raw',
         'expires_at_fmt',
         'state',
     ];
@@ -68,28 +67,6 @@ class Note extends Model
         }
 
         return $note;
-    }
-
-    /**
-     * Mutator for content attribute, which automagically parses Markdown
-     *
-     * @param  string $content
-     * @return string
-     */
-    public function getContentAttribute($content)
-    {
-        $converter = new CommonMarkConverter();
-        return $converter->convertToHtml($content);
-    }
-
-    /**
-     * Returns unparsed Markdown.
-     *
-     * @return string
-     */
-    public function getContentRawAttribute()
-    {
-        return $this->attributes['content'];
     }
 
     /**
@@ -180,6 +157,18 @@ class Note extends Model
     public function scopeLogged($query)
     {
         return $query->where('user_id', '=', Auth::id());
+    }
+
+    /**
+     * Convert note content from Markdown to HTML.
+     *
+     * @param  $content string
+     * @return string
+     */
+    public static function toHtml($content)
+    {
+        $converter = new CommonMarkConverter();
+        return $converter->convertToHtml($content);
     }
 
     /**
