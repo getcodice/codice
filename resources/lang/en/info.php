@@ -19,6 +19,8 @@ return [
         'done' => 'Done',
         'expired' => 'Expired',
         'labels' => 'Labels',
+        'notes_by_label' => 'Notes by the label',
+        'show' => 'Show',
         'title' => 'Statistics',
         'type' => 'Type',
     ],

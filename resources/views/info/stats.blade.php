@@ -15,7 +15,7 @@
     @foreach ($stats as $type => $amount)
         <tr>
             <td>{{ trans('info.stats.' . $type) }}</td>
-            <td>{{ $amount }}</td>
+            <td>{!! $amount !!}</td>
         </tr>
     @endforeach
     </tbody>

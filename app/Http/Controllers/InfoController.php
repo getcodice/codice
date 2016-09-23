@@ -78,6 +78,7 @@ class InfoController extends Controller
             'pending' => Note::whereStatus(0)->whereRaw('expires_at > NOW()')->logged()->count(),
             'expired' => Note::whereStatus(0)->whereRaw('expires_at < NOW()')->logged()->count(),
             'labels' => Label::logged()->count(),
+            'notes_by_label' => '<a href="' . route('labels') . '">' . trans('info.stats.show') . '</a>',
         ];
 
         return View::make('info.stats', [
