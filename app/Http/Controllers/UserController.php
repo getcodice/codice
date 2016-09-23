@@ -102,7 +102,6 @@ class UserController extends Controller
     public function getSettings()
     {
         return View::make('user.settings', [
-            'currentLanguage' => Auth::user()['options']['language'],
             'languages' => config('app.languages'),
             'title' => trans('user.settings.title'),
             'user' => Auth::user(),

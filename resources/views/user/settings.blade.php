@@ -53,7 +53,7 @@
                 {!!
                     BootForm::select(trans('user.settings.language'), 'options[language]')
                         ->options($languages)
-                        ->select($currentLanguage)
+                        ->select($user->options['language']);
                 !!}
             </div>
             <div class="col-md-4">
