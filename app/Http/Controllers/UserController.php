@@ -120,8 +120,6 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|unique:users,email,' . Auth::id(),
-            // FIXME: regex would be fine, but what about other i18n support?
-            //'options.phone' => 'numeric',
             'password_new' => 'confirmed',
             'options.language' => "required|in:$allowedLanguages",
             'options.notes_per_page' => 'required|numeric',

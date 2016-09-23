@@ -19,7 +19,6 @@ return [
         'password-wrong' => 'Aktualne hasło jest niepoprawne!',
         'password-new' => 'Nowe hasło',
         'password-new-confirmation' => 'Nowe hasło (potwierdź)',
-        'phone' => 'Numer telefonu',
         'submit' => 'Zapisz ustawienia',
         'success' => 'Ustawienia zostały zapisane!',
         'success-password' => 'Ustawienia i nowe hasło zostały zapisane!',

@@ -20,12 +20,6 @@
                         ->value($user->email)
                 !!}
             </div>
-            <div class="col-md-4">
-                {!!
-                    BootForm::text(trans('user.settings.phone'), 'options[phone]')
-                        ->value($user->options['phone'])
-                !!}
-            </div>
         </div>
     </div>
 </div>
