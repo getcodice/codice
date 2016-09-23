@@ -38,6 +38,7 @@ class CalendarController extends Controller {
 
         $quickform = quickform([
             'expires_at' => Carbon::createFromDate($year, $month, $day)->format(trans('app.date')),
+            'target_url' => route('calendar.day', ['year' => $year, 'month' => $month, 'day' => $day]),
         ]);
 
         $title = trans('calendar.day-title', [
