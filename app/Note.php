@@ -160,7 +160,7 @@ class Note extends Model
      * Saves a note but without bumping updated_at property.
      *
      * @param  array $options
-     * @return \Codice\Note
+     * @return bool
      */
     public function saveWithoutTouching(array $options = [])
     {
