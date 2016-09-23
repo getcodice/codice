@@ -17,20 +17,17 @@ class CalendarController extends Controller {
 
     public function getIndex()
     {
-        return $this->displayMonth(date('n'), date('Y'));
+        return $this->displayMonth(date('m'), date('Y'));
     }
 
     public function getMonth($year, $month)
     {
-        return $this->displayMonth((int) $month, $year);
+        return $this->displayMonth($month, $year);
     }
 
     public function getDay($year, $month, $day)
     {
         $perPage = Auth::user()->options['notes_per_page'];
-
-        $day = intval($day);
-        $month = intval($month);
 
         $notes = Note::logged()->whereDate('created_at', '=', "{$year}-{$month}-{$day}")
             ->orWhere(function($query) use ($year, $month, $day) {
