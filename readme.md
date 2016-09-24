@@ -8,7 +8,7 @@
 
 ![Codice screenshot](http://codice.eu/screenshot.png)
 
-**[Project homepage](http://codice.eu)** | **[Documentation](http://docs.codice.eu)** | **[Releases](https://github.com/Sobak/Codice/releases)**
+**[Project homepage](http://codice.eu)** | **[Documentation](http://docs.codice.eu)** | **[Downloads](https://github.com/Sobak/Codice/releases)**
 
 ## Features
 - organizing notes using labels
