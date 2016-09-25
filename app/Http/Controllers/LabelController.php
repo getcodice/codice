@@ -7,7 +7,6 @@ use Codice\Label;
 use Codice\Note;
 use Illuminate\Http\Request;
 use Redirect;
-use Validator;
 use View;
 
 class LabelController extends Controller
@@ -92,21 +91,17 @@ class LabelController extends Controller
      */
     public function postCreate(Request $request)
     {
-        $validator = Validator::make($request->all(), $this->rules);
+        $this->validate($request, $this->rules);
 
-        if ($validator->passes()) {
-            $label = Label::create([
-                'user_id' => Auth::id(),
-                'name' => $request->input('name'),
-                'color' => $request->input('color'),
-            ]);
+        $label = Label::create([
+            'user_id' => Auth::id(),
+            'name' => $request->input('name'),
+            'color' => $request->input('color'),
+        ]);
 
-            event('label.save.create', [$label]);
+        event('label.save.create', [$label]);
 
-            return Redirect::route('labels')->with('message', trans('labels.create.success'));
-        } else {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
+        return Redirect::route('labels')->with('message', trans('labels.create.success'));
     }
 
     /**
@@ -134,19 +129,15 @@ class LabelController extends Controller
     {
         $label = Label::findOwned($id);
 
-        $validator = Validator::make($request->all(), $this->rules);
+        $this->validate($request, $this->rules);
 
-        if ($validator->passes()) {
-            $label->name = $request->input('name');
-            $label->color = $request->input('color');
-            $label->save();
+        $label->name = $request->input('name');
+        $label->color = $request->input('color');
+        $label->save();
 
-            event('label.save.edit', [$label]);
+        event('label.save.edit', [$label]);
 
-            return Redirect::route('labels')->with('message', trans('labels.edit.success'));
-        } else {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
+        return Redirect::route('labels')->with('message', trans('labels.edit.success'));
     }
 
     /**

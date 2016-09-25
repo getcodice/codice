@@ -9,7 +9,6 @@ use Hash;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Redirect;
-use Validator;
 use View;
 
 class UserController extends Controller
@@ -50,37 +49,33 @@ class UserController extends Controller
             'password' => $request->input('password')
         ];
 
-        $validator = Validator::make($credentials, [
+        $this->validate($request, [
             'email' => 'email|required',
             'password' => 'required',
         ]);
 
-        if ($validator->passes()) {
-            $isValid = Auth::attempt($credentials);
+        $isValid = Auth::attempt($credentials);
 
-            /**
-             * Executed on login attempt
-             *
-             * @since 0.3
-             *
-             * @param string $email E-mail address used to log in
-             * @param bool $isValid Whether user logged in successfully
-             * @param \Codice\User|null $user User object if credentials were correct, null otherwise
-             */
-            Action::call('user.login', [
-                'email' => $credentials['email'],
-                'isValid' => $isValid,
-                'user' => $isValid ? Auth::user() : null,
-            ]);
+        /**
+         * Executed on login attempt
+         *
+         * @since 0.3
+         *
+         * @param string $email E-mail address used to log in
+         * @param bool $isValid Whether user logged in successfully
+         * @param \Codice\User|null $user User object if credentials were correct, null otherwise
+         */
+        Action::call('user.login', [
+            'email' => $credentials['email'],
+            'isValid' => $isValid,
+            'user' => $isValid ? Auth::user() : null,
+        ]);
 
-            if ($isValid) {
-                return Redirect::intended(route('index'));
-            }
-
-            return Redirect::back()->with('message', trans('user.login.invalid'));
-        } else {
-            return Redirect::back()->withErrors($validator)->withInput();
+        if ($isValid) {
+            return Redirect::intended(route('index'));
         }
+
+        return Redirect::back()->with('message', trans('user.login.invalid'));
     }
 
     /**
@@ -118,40 +113,36 @@ class UserController extends Controller
     {
         $allowedLanguages = implode(',', array_keys(config('app.languages')));
 
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             'password_new' => 'confirmed',
             'options.language' => "required|in:$allowedLanguages",
             'options.notes_per_page' => 'required|numeric',
         ]);
 
-        if ($validator->passes()) {
-            // Set app's locale so correct message is displayed when language has
-            // been just changed.
-            App::setLocale($request->input('options')['language']);
+        // Set app's locale so correct message is displayed when language has
+        // been just changed.
+        App::setLocale($request->input('options')['language']);
 
-            $message = trans('user.settings.success');
+        $message = trans('user.settings.success');
 
-            $user = Auth::user();
-            if ($request->has('password', 'password_new')) {
-                if (!Hash::check($request->input('password'), $user->password)) {
-                    return Redirect::back()->with('message', trans('user.settings.password-wrong'))
-                        ->with('message_type', 'danger');
-                }
-
-                $user->password = bcrypt($request->input('password_new'));
-                $message = trans('user.settings.success-password');
+        $user = Auth::user();
+        if ($request->has('password', 'password_new')) {
+            if (!Hash::check($request->input('password'), $user->password)) {
+                return Redirect::back()->with('message', trans('user.settings.password-wrong'))
+                    ->with('message_type', 'danger');
             }
-            $user->email = $request->input('email');
-            $user->options = $request->input('options');
-            $user->save();
 
-            event('user.save', [$user]);
-
-            return Redirect::back()->with('message', $message);
-        } else {
-            return Redirect::back()->withErrors($validator)->withInput();
+            $user->password = bcrypt($request->input('password_new'));
+            $message = trans('user.settings.success-password');
         }
+        $user->email = $request->input('email');
+        $user->options = $request->input('options');
+        $user->save();
+
+        event('user.save', [$user]);
+
+        return Redirect::back()->with('message', $message);
     }
 
     /**

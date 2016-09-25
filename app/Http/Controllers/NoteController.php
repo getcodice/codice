@@ -8,7 +8,6 @@ use Codice\Note;
 use Codice\Reminders\ReminderService;
 use Illuminate\Http\Request;
 use Redirect;
-use Validator;
 use View;
 
 class NoteController extends Controller
@@ -61,36 +60,32 @@ class NoteController extends Controller
     {
         $input = $request->all();
 
-        $validator = Validator::make($input, $this->rules);
+        $this->validate($request, $this->rules, 'note.create');
 
-        if ($validator->passes()) {
-            $note = Note::create([
-                'user_id' => Auth::id(),
-                'content' => $request->input('content'),
-                'expires_at' => $request->has('expires_at') ? strtotime($request->input('expires_at')) : null,
-            ]);
+        $note = Note::create([
+            'user_id' => Auth::id(),
+            'content' => $request->input('content'),
+            'expires_at' => $request->has('expires_at') ? strtotime($request->input('expires_at')) : null,
+        ]);
 
-            $note->reTag($request->input('labels', []));
+        $note->reTag($request->input('labels', []));
 
-            event('note.save.create', [$note]);
+        event('note.save.create', [$note]);
 
-            // Handle reminders
-            foreach (ReminderService::getRegisteredKeys() as $reminderID) {
-                if ($request->has("reminder_$reminderID")) {
-                    ReminderService::get($reminderID)->set($note, $input);
-                }
+        // Handle reminders
+        foreach (ReminderService::getRegisteredKeys() as $reminderID) {
+            if ($request->has("reminder_$reminderID")) {
+                ReminderService::get($reminderID)->set($note, $input);
             }
-
-            if ($request->has('quickform_target')) {
-                $response = Redirect::to($request->input('quickform_target'));
-            } else {
-                $response = Redirect::route('index');
-            }
-
-            return $response->with('message', trans('note.create.success'));
-        } else {
-            return Redirect::route('note.create')->withErrors($validator)->withInput();
         }
+
+        if ($request->has('quickform_target')) {
+            $response = Redirect::to($request->input('quickform_target'));
+        } else {
+            $response = Redirect::route('index');
+        }
+
+        return $response->with('message', trans('note.create.success'));
     }
 
     /**
@@ -125,26 +120,22 @@ class NoteController extends Controller
         $note = Note::findOwned($id);
         $input = $request->all();
 
-        $validator = Validator::make($input, $this->rules);
+        $this->validate($request, $this->rules);
 
-        if ($validator->passes()) {
-            $note->content = $request->input('content');
-            $note->expires_at = $request->has('expires_at') ? strtotime($request->input('expires_at')) : null;
-            $note->save();
+        $note->content = $request->input('content');
+        $note->expires_at = $request->has('expires_at') ? strtotime($request->input('expires_at')) : null;
+        $note->save();
 
-            $note->reTag($request->input('labels', []));
+        $note->reTag($request->input('labels', []));
 
-            event('note.save.edit', [$note]);
+        event('note.save.edit', [$note]);
 
-            // Handle reminders
-            foreach (ReminderService::getRegisteredKeys() as $reminderID) {
-                ReminderService::get($reminderID)->process($note, $input);
-            }
-
-            return Redirect::route('index')->with('message', trans('note.edit.success'));
-        } else {
-            return Redirect::back()->withErrors($validator)->withInput();
+        // Handle reminders
+        foreach (ReminderService::getRegisteredKeys() as $reminderID) {
+            ReminderService::get($reminderID)->process($note, $input);
         }
+
+        return Redirect::route('index')->with('message', trans('note.edit.success'));
     }
 
     /**

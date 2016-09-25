@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Lang;
 use Redirect;
 use Session;
-use Validator;
 use View;
 
 class InstallController extends Controller
@@ -140,15 +139,11 @@ class InstallController extends Controller
      */
     public function postEnvironment(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'db_host' => 'required',
             'db_name' => 'required',
             'db_user' => 'required',
         ]);
-
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
 
         $env = "APP_ENV=production\nAPP_DEBUG=false\n";
         $env .= 'APP_KEY=' . str_random(32) . "\n\n";
@@ -221,15 +216,11 @@ class InstallController extends Controller
      */
     public function postUser(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',
         ]);
-
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput();
-        }
 
         $options = User::$defaultOptions;
         $options['language'] = Lang::getLocale();
