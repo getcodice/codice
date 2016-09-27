@@ -38,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
         // Boot plugins
         PluginManager::instance()->bootAll();
 
+        Blade::directive('filter', function($expression) {
+            return "<?php echo Codice\\Plugins\\Filter::call{$expression}; ?>";
+        });
+
         Blade::directive('hook', function($expression) {
             return "<?php Codice\\Plugins\\Action::call{$expression}; ?>";
         });
