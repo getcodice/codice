@@ -38,11 +38,8 @@ class AppServiceProvider extends ServiceProvider
         // Boot plugins
         PluginManager::instance()->bootAll();
 
-        Blade::directive('hook', function($parameters) {
-            // Strip redundant parenthesis
-            $parameters = substr($parameters, 1, -1);
-
-            return "<?php Codice\\Plugins\\Action::call(" . $parameters . "); ?>";
+        Blade::directive('hook', function($expression) {
+            return "<?php Codice\\Plugins\\Action::call{$expression}; ?>";
         });
 
         Blade::directive('icon', function($name) {
