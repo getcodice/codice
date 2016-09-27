@@ -59,7 +59,7 @@ class UserController extends Controller
         /**
          * Executed on login attempt
          *
-         * @since 0.3
+         * @since 0.4
          *
          * @param string $email E-mail address used to log in
          * @param bool $isValid Whether user logged in successfully

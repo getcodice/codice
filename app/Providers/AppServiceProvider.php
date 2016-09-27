@@ -55,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
             /**
              * Executed right before script is terminated (it's a handler for register_shutdown_function())
              *
-             * @since 0.3
+             * @since 0.4
              */
             Action::call('core.shutdown');
         });
