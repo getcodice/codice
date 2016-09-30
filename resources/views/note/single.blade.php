@@ -11,7 +11,12 @@
         @if (count($note->labels))
         <div class="note-content has-labels">
         @endif
-        {!! $note->content !!}
+        <?php
+        /**
+         * Filters note content shown to the user
+         */
+        ?>
+        @filter('note.content', $note->content)
         @if (count($note->labels))
         </div>
         @endif
