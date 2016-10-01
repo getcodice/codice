@@ -19,7 +19,6 @@ return [
         'password-wrong' => 'Current password is incorrect!',
         'password-new' => 'New password',
         'password-new-confirmation' => 'New password (confirm)',
-        'phone' => 'Phone number',
         'submit' => 'Save settings',
         'success' => 'Setting have been saved!',
         'success-password' => 'Settings and new password have been saved!',

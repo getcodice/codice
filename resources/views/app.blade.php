@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic&amp;subset=latin,latin-ext">
     <link rel="stylesheet" href="{!! asset('assets/css/codice.css') !!}">
+    <?php
+    /**
+     * Before closing `</head>` tag
+     *
+     * @since 0.4
+     */
+    ?>
     @hook('template.header')
 </head>
 <body>
@@ -49,14 +56,35 @@
             </div>
         @endif
 
+        <?php
+        /**
+         * Before the content is rendered
+         *
+         * @since 0.4
+         */
+        ?>
         @hook('template.content.before')
         @yield('content')
+        <?php
+        /**
+         * After the content is rendered
+         *
+         * @since 0.4
+         */
+        ?>
         @hook('template.content.after')
     </main>
 
     <script src="{!! asset('assets/js/locales/' . Auth::user()->options['language'] . '.js') !!}"></script>
     <script src="{!! asset('assets/js/codice.js') !!}"></script>
     @yield('footer')
+    <?php
+    /**
+     * Right before closing `</body>`
+     *
+     * @since 0.4
+     */
+    ?>
     @hook('template.footer')
 </body>
 </html>

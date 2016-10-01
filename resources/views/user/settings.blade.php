@@ -20,12 +20,6 @@
                         ->value($user->email)
                 !!}
             </div>
-            <div class="col-md-4">
-                {!!
-                    BootForm::text(trans('user.settings.phone'), 'options[phone]')
-                        ->value($user->options['phone'])
-                !!}
-            </div>
         </div>
     </div>
 </div>
@@ -53,7 +47,7 @@
                 {!!
                     BootForm::select(trans('user.settings.language'), 'options[language]')
                         ->options($languages)
-                        ->select($currentLanguage)
+                        ->select($user->options['language']);
                 !!}
             </div>
             <div class="col-md-4">

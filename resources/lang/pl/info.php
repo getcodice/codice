@@ -19,6 +19,8 @@ return [
         'done' => 'Wykonanych',
         'expired' => 'Przekroczonych',
         'labels' => 'Etykiet',
+        'notes_by_label' => 'Notatek wg etykiety',
+        'show' => 'Pokaż',
         'title' => 'Statystyki',
         'type' => 'Typ',
     ],

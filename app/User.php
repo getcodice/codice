@@ -25,7 +25,6 @@ class User extends Model implements AuthenticatableContract,
     public static $defaultOptions = [
         'language' => 'pl',
         'notes_per_page' => 15,
-        'phone' => '',
     ];
 
     protected $casts = [

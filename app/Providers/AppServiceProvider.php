@@ -38,11 +38,12 @@ class AppServiceProvider extends ServiceProvider
         // Boot plugins
         PluginManager::instance()->bootAll();
 
-        Blade::directive('hook', function($parameters) {
-            // Strip redundant parenthesis
-            $parameters = substr($parameters, 1, -1);
+        Blade::directive('filter', function($expression) {
+            return "<?php echo Codice\\Plugins\\Filter::call{$expression}; ?>";
+        });
 
-            return "<?php Codice\\Plugins\\Action::call(" . $parameters . "); ?>";
+        Blade::directive('hook', function($expression) {
+            return "<?php Codice\\Plugins\\Action::call{$expression}; ?>";
         });
 
         Blade::directive('icon', function($name) {
@@ -54,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
             /**
              * Executed right before script is terminated (it's a handler for register_shutdown_function())
              *
-             * @since 0.3
+             * @since 0.4
              */
             Action::call('core.shutdown');
         });

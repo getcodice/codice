@@ -12,7 +12,7 @@ class Codice {
         /**
          * Filters Codice version returned by the core.
          *
-         * @since 0.3
+         * @since 0.4
          *
          * @return string
          */
