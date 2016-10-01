@@ -14,6 +14,10 @@
         <?php
         /**
          * Filters note content shown to the user
+         *
+         * @since 0.5
+         *
+         * @return string
          */
         ?>
         @filter('note.content', $note->content)
