@@ -23,6 +23,7 @@ class LabelsTest extends TestCase
         $note = Note::create([
             'user_id' => 1,
             'content' => 'lorem ipsum dolor si amet',
+            'content_raw' => 'lorem ipsum dolor si amet',
             'status'  => 0,
             'expires_at' => null
         ]);
@@ -53,6 +54,7 @@ class LabelsTest extends TestCase
         $note = Note::create([
             'user_id' => 1,
             'content' => 'lorem ipsum dolor si amet',
+            'content_raw' => 'lorem ipsum dolor si amet',
         ]);
 
         $labels = [

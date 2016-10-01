@@ -16,6 +16,7 @@ class CreateNotesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->text('content');
+            $table->text('content_raw');
             $table->boolean('status')->default(0);
             $table->timestamps();
             $table->dateTime('expires_at')->nullable();

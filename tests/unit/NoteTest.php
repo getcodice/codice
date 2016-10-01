@@ -46,7 +46,8 @@ class NoteTest extends TestCase
     {
         $note = new Note;
         $note->user_id = 1;
-        $note->content = '';
+        $note->content = 'foobar';
+        $note->content_raw = 'foobar';
         $note->status = (int) $status;
         $note->expires_at = is_null($expiresAt) ? null : Carbon::now()->modify($expiresAt);
         $note->save();
