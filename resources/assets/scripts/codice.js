@@ -4,7 +4,7 @@ String.prototype.ucfirst = function () {
 
 if (!Object.entries) {
     Object.entries = function objectValues(object) {
-        return Object.keys.map(function (key) {
+        return Object.keys(object).map(function (key) {
             return [key, object[key]];
         });
     };
@@ -13,7 +13,10 @@ if (!Object.entries) {
 bootbox.setLocale(codiceLang.languageCode);
 
 $(document).on('keydown', function (e) {
-    if (e.ctrlKey && e.keyCode === 83) {
+    if (!e.altKey && e.ctrlKey && e.keyCode === 83) {
+        // On Windows, AltGr is represented as Alt+Ctrl, so we should check against
+        // alt key, because user could have typed Alt+Ctrl+S which is "ś".
+
         e.preventDefault();
 
         return false;
