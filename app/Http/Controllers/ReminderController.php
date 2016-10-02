@@ -23,7 +23,7 @@ class ReminderController extends Controller
     public function getIndex()
     {
         return View::make('reminder.index', [
-            'reminders' => Reminder::logged()->orderBy('remind_at', 'asc')->get(),
+            'reminders' => Reminder::owned()->orderBy('remind_at', 'asc')->get(),
             'title' => trans('reminder.index.title'),
         ]);
     }

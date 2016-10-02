@@ -2,12 +2,13 @@
 
 namespace Codice;
 
-use Auth;
-use Codice\Exceptions\LabelNotFoundException;
+use Codice\Support\Traits\Owned;
 use Illuminate\Database\Eloquent\Model;
 
 class Label extends Model
 {
+    use Owned;
+
     /**
      * Allow all attributes to be mass assigned.
      *
@@ -21,40 +22,11 @@ class Label extends Model
     public $timestamps = false;
 
     /**
-     * Find label owned by currently logged user.
-     *
-     * @param  int $id Label ID
-     * @return \Codice\Label
-     * @throws \Codice\Exceptions\LabelNotFoundException
-     */
-    public static function findOwned($id)
-    {
-        $label = self::logged()->find($id);
-
-        if (!$label) {
-            throw new LabelNotFoundException;
-        }
-
-        return $label;
-    }
-
-    /**
      * Notes that belong to the label.
      */
     public function notes()
     {
         return $this->belongsToMany('Codice\Note');
-    }
-
-    /**
-     * Set query scope to currently logged user.
-     *
-     * @param $query \Illuminate\Database\Query\Builder
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function scopeLogged($query)
-    {
-        return $query->where('user_id', '=', Auth::id());
     }
 
     /**
@@ -66,13 +38,5 @@ class Label extends Model
     public function setColorAttribute($color)
     {
         $this->attributes['color'] = in_array($color, array_keys(config('labels.colors'))) ? $color : 1;
-    }
-
-    /**
-     * User owning the label.
-     */
-    public function user()
-    {
-        return $this->belongsTo('Codice\User');
     }
 }

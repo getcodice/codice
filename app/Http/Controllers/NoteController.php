@@ -32,7 +32,7 @@ class NoteController extends Controller
         $perPage = Auth::user()->options['notes_per_page'];
 
         return View::make('index', [
-            'notes' => Note::with('labels')->logged()->latest()->simplePaginate($perPage),
+            'notes' => Note::with('labels')->owned()->latest()->simplePaginate($perPage),
             'quickform' => quickform(),
         ]);
     }
@@ -45,7 +45,7 @@ class NoteController extends Controller
     public function getCreate()
     {
         return View::make('note.create', [
-            'labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
+            'labels' => Label::owned()->orderBy('name')->lists('name', 'id'),
             'title' => trans('note.create.title_head'),
         ]);
     }
@@ -103,7 +103,7 @@ class NoteController extends Controller
         $note = Note::findOwned($id);
 
         return View::make('note.edit', [
-            'labels' => Label::logged()->orderBy('name')->lists('name', 'id'),
+            'labels' => Label::owned()->orderBy('name')->lists('name', 'id'),
             'note' => $note,
             'note_labels' => $note->labels()->lists('id')->toArray(),
             // @todo: temporary

@@ -2,11 +2,13 @@
 
 namespace Codice;
 
-use Auth;
+use Codice\Support\Traits\Owned;
 use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
 {
+    use Owned;
+
     public $timestamps = false;
 
     /**
@@ -40,24 +42,5 @@ class Reminder extends Model
     public function note()
     {
         return $this->belongsTo('Codice\Note');
-    }
-
-    /**
-     * Set query scope to currently logged user.
-     *
-     * @param $query \Illuminate\Database\Query\Builder
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function scopeLogged($query)
-    {
-        return $query->where('user_id', '=', Auth::id());
-    }
-
-    /**
-     * User owning the reminder.
-     */
-    public function user()
-    {
-        return $this->belongsTo('Codice\User');
     }
 }

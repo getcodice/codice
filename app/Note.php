@@ -2,16 +2,15 @@
 
 namespace Codice;
 
-use Auth;
 use Carbon\Carbon;
-use Codice\Exceptions\NoteNotFoundException;
+use Codice\Support\Traits\Owned;
 use Codice\Support\Traits\Taggable;
 use Illuminate\Database\Eloquent\Model;
 use League\CommonMark\CommonMarkConverter;
 
 class Note extends Model
 {
-    use Taggable;
+    use Owned, Taggable;
 
     /**
      * Attributes appended to the model representation, which are
@@ -50,24 +49,6 @@ class Note extends Model
      * @var array
      */
     protected $guarded = [];
-
-    /**
-     * Find note owned by currently logged user.
-     *
-     * @param  int $id Note ID
-     * @return \Codice\Note
-     * @throws \Codice\Exceptions\NoteNotFoundException
-     */
-    public static function findOwned($id)
-    {
-        $note = self::logged()->find($id);
-
-        if (!$note) {
-            throw new NoteNotFoundException;
-        }
-
-        return $note;
-    }
 
     /**
      * Returns formatted expiration date if it's set, null otherwise.
@@ -130,7 +111,7 @@ class Note extends Model
      */
     public function reminder($type)
     {
-        return Reminder::where('note_id', $this->id)->where('type', $type)->logged()->first();
+        return Reminder::where('note_id', $this->id)->where('type', $type)->owned()->first();
     }
 
     /**
@@ -149,17 +130,6 @@ class Note extends Model
     }
 
     /**
-     * Set query scope to currently logged user.
-     *
-     * @param $query \Illuminate\Database\Query\Builder
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function scopeLogged($query)
-    {
-        return $query->where('user_id', '=', Auth::id());
-    }
-
-    /**
      * Convert note content from Markdown to HTML.
      *
      * @param  $content string
@@ -169,13 +139,5 @@ class Note extends Model
     {
         $converter = new CommonMarkConverter();
         return $converter->convertToHtml($content);
-    }
-
-    /**
-     * User owning the note.
-     */
-    public function user()
-    {
-        return $this->belongsTo('Codice\User');
     }
 }

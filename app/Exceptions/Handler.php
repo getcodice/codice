@@ -23,8 +23,6 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         HttpException::class,
         ModelNotFoundException::class,
-        LabelNotFoundException::class,
-        NoteNotFoundException::class,
     ];
 
     /**
@@ -45,7 +43,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $e
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function render($request, Exception $e)
     {
@@ -71,16 +69,6 @@ class Handler extends ExceptionHandler
             return Redirect::back()->with('message', trans('app.error.token-mismatch'))
                 ->with('message_type', 'danger')
                 ->withInput();
-        }
-
-        if ($e instanceof LabelNotFoundException) {
-            return Redirect::route('index')->with('message', trans('labels.not-found'))
-                ->with('message_type', 'danger');
-        }
-
-        if ($e instanceof NoteNotFoundException) {
-            return Redirect::route('index')->with('message', trans('note.not-found'))
-                ->with('message_type', 'danger');
         }
 
         if ($e instanceof ModelNotFoundException) {

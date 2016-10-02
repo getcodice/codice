@@ -73,11 +73,11 @@ class InfoController extends Controller
     public function getStats()
     {
         $stats = [
-            'all' => Note::logged()->count(),
-            'done' => Note::whereStatus(1)->logged()->count(),
-            'pending' => Note::whereStatus(0)->whereRaw('expires_at > NOW()')->logged()->count(),
-            'expired' => Note::whereStatus(0)->whereRaw('expires_at < NOW()')->logged()->count(),
-            'labels' => Label::logged()->count(),
+            'all' => Note::owned()->count(),
+            'done' => Note::whereStatus(1)->owned()->count(),
+            'pending' => Note::whereStatus(0)->whereRaw('expires_at > NOW()')->owned()->count(),
+            'expired' => Note::whereStatus(0)->whereRaw('expires_at < NOW()')->owned()->count(),
+            'labels' => Label::owned()->count(),
             'notes_by_label' => '<a href="' . route('labels') . '">' . trans('info.stats.show') . '</a>',
         ];
 
