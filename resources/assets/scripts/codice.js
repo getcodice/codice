@@ -4,7 +4,7 @@ String.prototype.ucfirst = function () {
 
 if (!Object.entries) {
     Object.entries = function objectValues(object) {
-        return Object.keys.map(function (key) {
+        return Object.keys(object).map(function (key) {
             return [key, object[key]];
         });
     };
