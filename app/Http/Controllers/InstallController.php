@@ -124,9 +124,12 @@ class InstallController extends Controller
      */
     public function getEnvironment()
     {
+        $timezones = \DateTimeZone::listIdentifiers();
+
         return View::make('install.environment', [
             'progress' => 50,
             'step' => 3,
+            'timezones' => array_combine($timezones, $timezones),
             'title' => trans('install.environment.title'),
         ]);
     }
@@ -143,10 +146,12 @@ class InstallController extends Controller
             'db_host' => 'required',
             'db_name' => 'required',
             'db_user' => 'required',
+            'timezone' => 'required',
         ]);
 
         $env = "APP_ENV=production\nAPP_DEBUG=false\n";
-        $env .= 'APP_KEY=' . str_random(32) . "\n\n";
+        $env .= 'APP_KEY=' . str_random(32) . "\n";
+        $env .= 'APP_TIMEZONE=' . $request->input('timezone') . "\n\n";
         $env .= 'DB_HOST=' . $request->input('db_host') . "\n";
         $env .= 'DB_DATABASE=' . $request->input('db_name') . "\n";
         $env .= 'DB_USERNAME=' . $request->input('db_user') . "\n";

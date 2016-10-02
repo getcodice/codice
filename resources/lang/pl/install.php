@@ -15,6 +15,8 @@ return [
         'db-user' => 'Użytkownik',
         'db-prefix' => 'Prefiks tabel',
         'db-prefix-help' => 'Zalecany. Pozwala uniknąć konfliktów przy kilku równoległych instalacjach w tej samej bazie.',
+        'other' => 'Pozostałe',
+        'timezone' => 'Strefa czasowa',
         'title' => 'Konfiguracja skryptu',
     ],
     'final' => [

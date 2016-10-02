@@ -15,6 +15,8 @@ return [
         'db-user' => 'Username',
         'db-prefix' => 'Table prefix',
         'db-prefix-help' => 'Recommended. Helps to avoid conflict with parallel installations in same database.',
+        'other' => 'Other',
+        'timezone' => 'Timezone',
         'title' => 'Script configuration',
     ],
     'final' => [
