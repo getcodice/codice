@@ -68,7 +68,7 @@ function quickform(array $options = [])
     $options = array_merge([
         'expires_at' => null,
         'label' => null,
-        'labels' => Label::owned()->orderBy('name')->lists('name', 'id'),
+        'labels' => Label::mine()->orderBy('name')->lists('name', 'id'),
         'target_url' => route('index'),
     ], $options);
 

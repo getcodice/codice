@@ -51,12 +51,12 @@ class LabelController extends Controller
     public function getNotes($id)
     {
         // First, validate existence of label owned by current user
-        $label = Label::findOwned($id);
+        $label = Label::findMine($id);
 
         // Then fetch the notes associated with this label
         $perPage = Auth::user()->options['notes_per_page'];
 
-        $notes = Note::tagged($id)->with('labels')->owned()->latest()->simplePaginate($perPage);
+        $notes = Note::tagged($id)->with('labels')->mine()->latest()->simplePaginate($perPage);
 
         $quickform = quickform([
             'label' => $id,
@@ -113,7 +113,7 @@ class LabelController extends Controller
     public function getEdit($id)
     {
         return View::make('label.edit', [
-            'label' => Label::findOwned($id),
+            'label' => Label::findMine($id),
             'title' => trans('labels.edit.title'),
         ]);
     }
@@ -127,7 +127,7 @@ class LabelController extends Controller
      */
     public function postEdit(Request $request, $id)
     {
-        $label = Label::findOwned($id);
+        $label = Label::findMine($id);
 
         $this->validate($request, $this->rules);
 
@@ -148,7 +148,7 @@ class LabelController extends Controller
      */
     public function getRemove($id)
     {
-        $label = Label::findOwned($id);
+        $label = Label::findMine($id);
         $label->delete();
 
         event('label.drop', [$label]);

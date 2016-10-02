@@ -13,9 +13,9 @@ trait Owned
      * @param  int $id Model ID
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public static function findOwned($id)
+    public static function findMine($id)
     {
-        $model = self::owned()->find($id);
+        $model = self::mine()->find($id);
 
         if (!$model) {
             $modelLangFile = array_reverse(explode('\\', get_called_class()))[0];
@@ -35,7 +35,7 @@ trait Owned
      * @param $query \Illuminate\Database\Query\Builder
      * @return \Illuminate\Database\Query\Builder
      */
-    public function scopeOwned($query)
+    public function scopeMine($query)
     {
         return $query->where('user_id', '=', Auth::id());
     }

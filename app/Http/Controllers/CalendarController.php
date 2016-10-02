@@ -29,7 +29,7 @@ class CalendarController extends Controller {
     {
         $perPage = Auth::user()->options['notes_per_page'];
 
-        $notes = Note::with('labels')->owned()->whereDate('created_at', '=', "{$year}-{$month}-{$day}")
+        $notes = Note::with('labels')->mine()->whereDate('created_at', '=', "{$year}-{$month}-{$day}")
             ->orWhere(function($query) use ($year, $month, $day) {
                 $query->whereDate('expires_at', '=', "{$year}-{$month}-{$day}");
             })
@@ -60,10 +60,10 @@ class CalendarController extends Controller {
     {
         $calendar = new Calendar($month, $year);
 
-        $eventsCreated = Note::owned()->where(function ($query) use ($month, $year) {
+        $eventsCreated = Note::mine()->where(function ($query) use ($month, $year) {
             $query->whereMonth('created_at', '=', $month)->whereYear('created_at', '=', $year);
         })->get();
-        $eventsExpiring = Note::owned()->where(function($query) use ($month, $year) {
+        $eventsExpiring = Note::mine()->where(function($query) use ($month, $year) {
             $query->whereMonth('expires_at', '=', $month)->whereYear('expires_at', '=', $year);
         })->get();
 

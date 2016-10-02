@@ -32,7 +32,7 @@ class NoteController extends Controller
         $perPage = Auth::user()->options['notes_per_page'];
 
         return View::make('index', [
-            'notes' => Note::with('labels')->owned()->latest()->simplePaginate($perPage),
+            'notes' => Note::with('labels')->mine()->latest()->simplePaginate($perPage),
             'quickform' => quickform(),
         ]);
     }
@@ -45,7 +45,7 @@ class NoteController extends Controller
     public function getCreate()
     {
         return View::make('note.create', [
-            'labels' => Label::owned()->orderBy('name')->lists('name', 'id'),
+            'labels' => Label::mine()->orderBy('name')->lists('name', 'id'),
             'title' => trans('note.create.title_head'),
         ]);
     }
@@ -100,10 +100,10 @@ class NoteController extends Controller
      */
     public function getEdit($id)
     {
-        $note = Note::findOwned($id);
+        $note = Note::findMine($id);
 
         return View::make('note.edit', [
-            'labels' => Label::owned()->orderBy('name')->lists('name', 'id'),
+            'labels' => Label::mine()->orderBy('name')->lists('name', 'id'),
             'note' => $note,
             'note_labels' => $note->labels()->lists('id')->toArray(),
             // @todo: temporary
@@ -121,7 +121,7 @@ class NoteController extends Controller
      */
     public function postEdit(Request $request, $id)
     {
-        $note = Note::findOwned($id);
+        $note = Note::findMine($id);
         $input = $request->all();
 
         $this->validate($request, $this->rules);
@@ -154,7 +154,7 @@ class NoteController extends Controller
      */
     public function getChangeStatus($id)
     {
-        $note = Note::findOwned($id);
+        $note = Note::findMine($id);
 
         $newStatus = (int) !$note->status;
 
@@ -178,7 +178,7 @@ class NoteController extends Controller
     public function getNote($id)
     {
         return View::make('note.note', [
-            'note' => Note::findOwned($id),
+            'note' => Note::findMine($id),
             'single' => true,
         ]);
     }
@@ -204,7 +204,7 @@ class NoteController extends Controller
      */
     public function getRemove($id)
     {
-        $note = Note::findOwned($id);
+        $note = Note::findMine($id);
         $note->delete();
 
         event('note.drop', [$note]);

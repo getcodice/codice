@@ -111,7 +111,7 @@ class Note extends Model
      */
     public function reminder($type)
     {
-        return Reminder::where('note_id', $this->id)->where('type', $type)->owned()->first();
+        return Reminder::where('note_id', $this->id)->where('type', $type)->mine()->first();
     }
 
     /**
