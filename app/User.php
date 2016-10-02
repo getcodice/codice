@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     public static $defaultOptions = [
-        'language' => 'pl',
+        'language' => 'en',
         'notes_per_page' => 15,
     ];
 
