@@ -15,7 +15,8 @@ bootbox.setLocale(codiceLang.languageCode);
 $(document).on('keydown', function (e) {
     if (!e.altKey && e.ctrlKey && e.keyCode === 83) {
         // On Windows, AltGr is represented as Alt+Ctrl, so we should check against
-        // alt key, because user could have typed Alt+Ctrl+S which is "ś".
+        // alt key, because user could have typed Alt+Ctrl+S which represents special
+        // character on some keyboard layouts.
 
         e.preventDefault();
 
