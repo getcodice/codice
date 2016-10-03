@@ -5,6 +5,7 @@ namespace Codice\Http\Controllers;
 use Auth;
 use Codice\Label;
 use Codice\Note;
+use DB;
 use Illuminate\Http\Request;
 use Redirect;
 use View;
@@ -27,7 +28,9 @@ class LabelController extends Controller
      */
     public function getIndex()
     {
-        $labels = Label::selectRaw('labels.*, COUNT(notes.id) AS count')
+        $tablePrefix = DB::getTablePrefix();
+
+        $labels = Label::selectRaw("{$tablePrefix}labels.*, COUNT({$tablePrefix}notes.id) AS count")
             ->leftJoin('label_note', 'labels.id', '=', 'label_note.label_id')
             ->leftJoin('notes', 'label_note.note_id', '=', 'notes.id')
             ->where('labels.user_id', '=', Auth::id())
