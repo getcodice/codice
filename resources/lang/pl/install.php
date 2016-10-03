@@ -8,6 +8,7 @@ return [
     ],
     'environment' => [
         'content' => 'Najpierw ustawimy podstawową konfigurację skryptu - informacje niezbędne do połączenia z bazą danych.',
+        'db' => 'Połączenie z bazą',
         'db-host' => 'Host',
         'db-host-help' => 'Najczęściej <code>localhost</code>',
         'db-name' => 'Nazwa bazy',

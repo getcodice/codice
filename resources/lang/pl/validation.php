@@ -107,9 +107,13 @@ return [
 
     'attributes' => [
         'content' => 'Treść',
+        'db_host' => 'Host',
+        'db_name' => 'Nazwa bazy',
+        'db_user' => 'Użytkownik',
         'expires_at' => 'Termin wykonania',
         'reminder_email' => 'Przypomnienie email',
         'reminder_sms' => 'Przypomnienie SMS',
+        'timezone' => 'Strefa czasowa',
     ],
 
 ];

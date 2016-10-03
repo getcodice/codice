@@ -8,6 +8,7 @@ return [
     ],
     'environment' => [
         'content' => 'First you need to provide basic script configuration - informations for connecting to database.',
+        'db' => 'Database connection',
         'db-host' => 'Host',
         'db-host-help' => 'Usually just <code>localhost</code>',
         'db-name' => 'Database name',
