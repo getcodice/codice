@@ -2,6 +2,7 @@
 
 namespace Codice\Reminders;
 
+use App;
 use Codice\Reminder;
 use Mail;
 
@@ -24,11 +25,17 @@ class EmailReminder extends ReminderService
             'user' => $user,
         ];
 
+        // Send email in user's language
+        App::setLocale($user->options['language']);
+
         Mail::send('emails.reminder', $data, function ($message) use ($user) {
             $message->from('reminders@codice.dev', 'Codice');
             $message->to($user->email);
             $message->subject(trans('reminder.email.subject'));
         });
+
+        // Reset back to default language
+        App::setLocale(config('app.locale'));
 
         $reminder->delete();
     }
