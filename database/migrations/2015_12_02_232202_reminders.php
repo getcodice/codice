@@ -19,6 +19,8 @@ class Reminders extends Migration
             $table->text('data');
             $table->dateTime('remind_at');
             $table->string('type', 10);
+
+            $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
         });
     }
 
