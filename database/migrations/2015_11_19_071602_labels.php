@@ -13,7 +13,7 @@ class Labels extends Migration
     public function up()
     {
         Schema::create('labels', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unsigned();
             $table->integer('user_id');
             $table->string('name', 50);
             $table->tinyInteger('color')->default(1);
