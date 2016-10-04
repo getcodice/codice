@@ -5,9 +5,12 @@ namespace Codice\Http\Controllers;
 use App;
 use Auth;
 use Codice\Plugins\Action;
+use Codice\User;
 use Hash;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Password;
 use Redirect;
 use View;
 
@@ -143,6 +146,36 @@ class UserController extends Controller
         event('user.save', [$user]);
 
         return Redirect::back()->with('message', $message);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function postEmail(Request $request)
+    {
+        // Not the best but the shortest way to localize sent emails properly.
+        // Might consider overwriting Illuminate\Auth\Passwords\PasswordBroker
+        // in the future or create fully customized implementation for resetting
+        // passwords.
+
+        $this->validate($request, ['email' => 'required|email']);
+
+        $user = User::where('email', $request->input('email'))->firstOrFail();
+
+        // It will also result in confirmation message  being localized but this
+        // isn't a bad thing, right?
+        App::setLocale($user->options['language']);
+
+        $response = Password::sendResetLink($request->only('email'), function (Message $message) {
+            $message->subject($this->getEmailSubject());
+        });
+
+        switch ($response) {
+            case Password::RESET_LINK_SENT:
+                return redirect()->back()->with('status', trans($response));
+            case Password::INVALID_USER:
+                return redirect()->back()->withErrors(['email' => trans($response)]);
+        }
     }
 
     /**
