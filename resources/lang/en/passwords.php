@@ -3,7 +3,7 @@
 return [
     'email' => [
         'content' => 'To reset your password please click on this link: ',
-        'subject' => 'Your password reset link',
+        'subject' => '[Codice] Reset your password',
     ],
     'forgotten' => 'Forgotten password',
     'form' => [

@@ -3,7 +3,7 @@
 return [
     'email' => [
         'content' => 'Kliknij na ten link, aby zresetować swoje hasło: ',
-        'subject' => 'Twój link do zresetowania hasła',
+        'subject' => '[Codice] Zresetuj hasło',
     ],
     'forgotten' => 'Zapomniałem hasła',
     'form' => [
