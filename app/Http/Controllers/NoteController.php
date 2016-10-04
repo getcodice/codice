@@ -159,6 +159,12 @@ class NoteController extends Controller
         $newStatus = (int) !$note->status;
 
         $note->status = $newStatus;
+
+        // If note is done, remove reminders for it
+        if ($newStatus) {
+            $note->reminders()->delete();
+        }
+
         $note->saveWithoutTouching();
 
         // Read target status using $note->status

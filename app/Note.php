@@ -115,6 +115,16 @@ class Note extends Model
     }
 
     /**
+     * Returns all reminders for the note.
+     *
+     * @return \Codice\Reminder
+     */
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class);
+    }
+
+    /**
      * Saves a note but without bumping updated_at property.
      *
      * @param  array $options
