@@ -17,7 +17,11 @@ gulp.task('scripts', function () {
         './node_modules/jscroll/jquery.jscroll.min.js',
         './node_modules/flatpickr/dist/flatpickr.min.js',
         './node_modules/bootbox/bootbox.min.js',
-        './resources/assets/scripts/codice.js',
+
+        './resources/assets/scripts/helpers.js',
+        './resources/assets/scripts/keyboard.js',
+        './resources/assets/scripts/quickform.js',
+        './resources/assets/scripts/main.js',
     ]).pipe(concat('codice.js', { separator: ';' }))
       .pipe(gulp.dest('./public/assets/js'));
 });
