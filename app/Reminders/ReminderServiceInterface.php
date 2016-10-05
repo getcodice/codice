@@ -19,7 +19,7 @@ interface ReminderServiceInterface {
     /**
      * Cancel given reminder.
      */
-    public function cancel(Reminder $reminder);
+    public function cancel($id);
 
     /**
      * Perform operations using cron. Method can be left empty.

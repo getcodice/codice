@@ -2,7 +2,6 @@
 
 namespace Codice\Reminders;
 
-use Auth;
 use Codice\Note;
 use Codice\Reminder;
 
@@ -65,7 +64,6 @@ abstract class ReminderService implements ReminderServiceInterface {
     public function set(Note $note, $input, $data = [])
     {
         return Reminder::create([
-            'user_id' => Auth::id(),
             'note_id' => $note->id,
             'remind_at' => strtotime($input["reminder_{$this->id}"]),
             'data' => $data,
@@ -86,9 +84,9 @@ abstract class ReminderService implements ReminderServiceInterface {
     /**
      * {@inheritdoc}
      */
-    public function cancel(Reminder $reminder)
+    public function cancel($id)
     {
-        return $reminder->delete();
+        return Reminder::find($id)->delete();
     }
 
     /**

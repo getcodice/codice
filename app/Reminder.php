@@ -2,6 +2,7 @@
 
 namespace Codice;
 
+use Auth;
 use Codice\Support\Traits\Owned;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,5 +43,22 @@ class Reminder extends Model
     public function note()
     {
         return $this->belongsTo('Codice\Note');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function scopeMine($query)
+    {
+        return $query->leftJoin('notes', 'note_id', '=', 'notes.id')
+            ->where('notes.user_id', '=', Auth::id());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function user()
+    {
+        return $this->belongsTo(Note::class, 'note_id')->getResults()->belongsTo(User::class);
     }
 }

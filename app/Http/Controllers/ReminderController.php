@@ -2,7 +2,7 @@
 
 namespace Codice\Http\Controllers;
 
-use Auth;
+use DB;
 use Codice\Reminder;
 use Codice\Reminders\ReminderService;
 use Redirect;
@@ -22,8 +22,13 @@ class ReminderController extends Controller
      */
     public function getIndex()
     {
+        $tablePrefix = DB::getTablePrefix();
+
         return View::make('reminder.index', [
-            'reminders' => Reminder::mine()->orderBy('remind_at', 'asc')->get(),
+            'reminders' => Reminder::select(["{$tablePrefix}reminders.id", 'note_id', 'remind_at', 'type'])
+                ->mine()
+                ->orderBy('remind_at', 'asc')
+                ->get(),
             'title' => trans('reminder.index.title'),
         ]);
     }
@@ -36,14 +41,9 @@ class ReminderController extends Controller
      */
     public function getRemove($id)
     {
-        $reminder = Reminder::find($id);
+        $reminder = Reminder::findMine($id);
 
-        if ($reminder == null || $reminder->user->id != Auth::id()) {
-            return Redirect::route('reminders')->with('message', trans('reminder.not-found'))
-                ->with('message_type', 'danger');
-        }
-
-        ReminderService::get($reminder->type)->cancel($reminder);
+        ReminderService::get($reminder->type)->cancel($id);
 
         return Redirect::route('reminders')->with('message', trans('reminder.cancelled'));
     }
