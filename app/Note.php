@@ -100,7 +100,7 @@ class Note extends Model
      */
     public function labels()
     {
-        return $this->belongsToMany('Codice\Label');
+        return $this->belongsToMany(Label::class);
     }
 
     /**

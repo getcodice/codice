@@ -26,7 +26,7 @@ class Label extends Model
      */
     public function notes()
     {
-        return $this->belongsToMany('Codice\Note');
+        return $this->belongsToMany(Note::class);
     }
 
     /**
