@@ -22,6 +22,13 @@ function codicePrepare() {
             }
         });
     });
+
+    $savableForm = $('form[data-savable]');
+    bindKeys('ctrl+s', function () {
+        $savableForm.submit();
+    }, {
+        context: $savableForm,
+    });
 }
 
 // Call codicePrepare() on first page load

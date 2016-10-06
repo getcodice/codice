@@ -1,5 +1,4 @@
 function codiceQuickForm() {
-    var $form = $('.quickform form');
     var $quickformControls = $('.quickform .row');
     var $quickformContent = $('#quickform_content');
 
@@ -22,10 +21,4 @@ function codiceQuickForm() {
             $quickformControls.addClass('sr-only');
             $quickformContent.attr('rows', 1);
         });
-
-    bindKeys('ctrl+s', function () {
-        $form.submit();
-    }, {
-        context: $form,
-    });
 }

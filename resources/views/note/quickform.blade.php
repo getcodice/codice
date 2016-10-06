@@ -1,5 +1,5 @@
 <div class="quickform">
-    <form action="{!! route('note.create') !!}" method="post">
+    <form action="{!! route('note.create') !!}" method="post" data-savable>
         <div class="form-group">
             <label for="quickform_content" class="sr-only">@lang('note.labels.content')</label>
             <textarea name="content" id="quickform_content" rows="1" class="form-control" placeholder="@lang('note.quickform.content')" required></textarea>
