@@ -21,10 +21,8 @@ return [
         'title' => 'Script configuration',
     ],
     'final' => [
-        'content' => 'Congratulations! Codice is set up now.',
-        'login' => 'Login',
-        'title' => 'Finish',
-        'unlink-failed' => 'You NEED to remove <code>storage/app/.install-pending</code> file!',
+        'do-unlink' => 'Codice has been installed! Please remove <code>storage/app/.install-pending</code> file.',
+        'success' => 'Codice has been installed!',
     ],
     'requirements' => [
         'content' => 'Quick check of script requirements.',

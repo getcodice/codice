@@ -3,6 +3,7 @@
 namespace Codice\Http\Controllers;
 
 use App;
+use Auth;
 use Artisan;
 use Codice\User;
 use Exception;
@@ -239,24 +240,14 @@ class InstallController extends Controller
 
         $user->addWelcomeNote();
 
-        return Redirect::route('install.final');
-    }
+        Auth::loginUsingId(1);
 
-    /**
-     * Display final screen.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function getFinal()
-    {
         $unlink = @unlink(storage_path('app/.install-pending'));
 
-        return View::make('install.final', [
-            'progress' => 100,
-            'step' => 6,
-            'title' => trans('install.final.title'),
-            'unlink' => $unlink,
-        ]);
+        $message = $unlink ? 'success' : 'do-unlink';
+
+        return Redirect::route('index')->with('message_type', 'success')
+            ->with('message', trans("install.final.$message"));
     }
 
     public function getChangeLanguage($lang)

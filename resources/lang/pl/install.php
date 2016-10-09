@@ -21,10 +21,8 @@ return [
         'title' => 'Konfiguracja skryptu',
     ],
     'final' => [
-        'content' => 'Gratulacje! Instalacja Codice została zakończona.',
-        'login' => 'Logowanie',
-        'title' => 'Koniec',
-        'unlink-failed' => 'Koniecznie usuń plik <code>storage/app/.install-pending</code>!',
+        'do-unlink' => 'Instalacja zakończona powodzeniem! Usuń plik <code>storage/app/.install-pending</code>.',
+        'success' => 'Instalacja zakończona powodzeniem!',
     ],
     'requirements' => [
         'content' => 'Szybkie sprawdzenie czy Twój serwer spełnia wymagania skryptu.',
