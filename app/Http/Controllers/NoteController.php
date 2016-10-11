@@ -62,13 +62,9 @@ class NoteController extends Controller
 
         $this->validate($request, $this->rules, 'note.create');
 
-        $content_raw = $request->input('content');
-        $content_parsed = Note::toHtml($content_raw);
-
         $note = Note::create([
             'user_id' => Auth::id(),
-            'content' => $content_parsed,
-            'content_raw' => $content_raw,
+            'content' => $request->input('content'),
             'expires_at' => $request->has('expires_at') ? strtotime($request->input('expires_at')) : null,
         ]);
 
@@ -126,11 +122,7 @@ class NoteController extends Controller
 
         $this->validate($request, $this->rules);
 
-        $content_raw = $request->input('content');
-        $content_parsed = Note::toHtml($content_raw);
-
-        $note->content = $content_parsed;
-        $note->content_raw = $content_raw;
+        $note->content = $request->input('content');
         $note->expires_at = $request->has('expires_at') ? strtotime($request->input('expires_at')) : null;
         $note->save();
 

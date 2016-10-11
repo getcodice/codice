@@ -140,12 +140,23 @@ class Note extends Model
     }
 
     /**
+     * Sets parsed Markdown in content attribute and raw value in content_raw.
+     *
+     * @param $value string Raw (unparsed) Markdown
+     */
+    public function setContentAttribute($value)
+    {
+        $this->attributes['content_raw'] = $value;
+        $this->attributes['content'] = $this->toHtml($value);
+    }
+
+    /**
      * Convert note content from Markdown to HTML.
      *
      * @param  $content string
      * @return string
      */
-    public static function toHtml($content)
+    private function toHtml($content)
     {
         $converter = new CommonMarkConverter();
         return $converter->convertToHtml($content);
