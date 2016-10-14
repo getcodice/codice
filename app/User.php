@@ -2,6 +2,7 @@
 
 namespace Codice;
 
+use App;
 use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -53,7 +54,9 @@ class User extends Model implements AuthenticatableContract,
      */
     public function addWelcomeNote($withLabel = true)
     {
-        $path = base_path('resources/lang/' . $this->options['language'] . '/welcome.md');
+        $userLang = $this->options['language'];
+
+        $path = base_path("resources/lang/$userLang/welcome.md");
 
         if (!file_exists($path)) {
             $path = base_path('resources/lang/en/welcome.md');
@@ -67,6 +70,8 @@ class User extends Model implements AuthenticatableContract,
         $note->save();
 
         if ($withLabel) {
+            App::setLocale($userLang);
+
             $label = new Label;
             $label->user_id = $this->id;
             $label->name = trans('install.welcome-note-label');
