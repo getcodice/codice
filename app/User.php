@@ -53,9 +53,15 @@ class User extends Model implements AuthenticatableContract,
      */
     public function addWelcomeNote($withLabel = true)
     {
+        $path = base_path('resources/lang/' . $this->options['language'] . '/welcome.md');
+
+        if (!file_exists($path)) {
+            $path = base_path('resources/lang/en/welcome.md');
+        }
+
         $note = new Note;
         $note->user_id = $this->id;
-        $note->content = file_get_contents(base_path('resources/lang/' . $this->options['language'] . '/welcome.md'));
+        $note->content = file_get_contents($path);
         $note->expires_at = Carbon::tomorrow();
         $note->status = 1;
         $note->save();
