@@ -4,7 +4,7 @@
 <h2 class="page-heading primary">@lang('note.edit.title')</h2>
 
 <div class="codice-container">
-{!! BootForm::open()->action(route('note.edit', ['id' => $note->id]))->data('savable', 'true') !!}
+{!! BootForm::open()->action(route('note.edit', ['id' => $note->id]))->data('savable', 'true')->id('note_form') !!}
     {!!
         BootForm::textarea(trans('note.labels.content'), 'content')
             ->value($note->content_raw)
@@ -71,5 +71,7 @@ codiceDatetimePicker('#expires_at_picker');
 codiceDatetimePicker('#reminder_email_picker');
 
 codiceLabelSelector("#labels");
+
+codiceConfirmPageClose('#note_form');
 </script>
 @stop

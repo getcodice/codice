@@ -40,3 +40,20 @@ function codiceNotesPager() {
         }
     });
 }
+
+function codiceConfirmPageClose(formSelector) {
+    // Save form state on page load
+    $(formSelector).data('serialized', $(formSelector).serialize());
+
+    // On page unload, check whether form state has changed
+    $(window).bind('beforeunload', function(e) {
+        var stateOnLoad = $(formSelector).data('serialized');
+        var stateOnUnload = $(formSelector).serialize();
+
+        if (stateOnUnload != stateOnLoad) {
+            return true;
+        } else {
+            e = null;
+        }
+    });
+}
