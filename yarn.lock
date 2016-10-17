@@ -915,11 +915,11 @@ invert-kv@^1.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
 is-absolute@^0.2.3:
-  version "0.2.5"
-  resolved "https://registry.yarnpkg.com/is-absolute/-/is-absolute-0.2.5.tgz#994142b9f468d27c14fbf0cd30fe77db934ca76d"
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/is-absolute/-/is-absolute-0.2.6.tgz#20de69f3db942ef2d87b9c2da36f172235b1b5eb"
   dependencies:
     is-relative "^0.2.1"
-    is-windows "^0.1.1"
+    is-windows "^0.2.0"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -1017,10 +1017,6 @@ is-unc-path@^0.1.1:
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
-
-is-windows@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-0.1.1.tgz#be310715431cfabccc54ab3951210fa0b6d01abe"
 
 is-windows@^0.2.0:
   version "0.2.0"
