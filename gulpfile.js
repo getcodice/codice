@@ -11,7 +11,7 @@ var plugins = {
 gulp.task('scripts', function () {
     // Copy JS locales
     gulp.src('./resources/assets/scripts/locales/*.js')
-    .pipe(gulp.dest('./public/assets/js/locales'));
+        .pipe(gulp.dest('./public/assets/js/locales'));
 
     return gulp.src([
         './node_modules/jquery/dist/jquery.min.js',
