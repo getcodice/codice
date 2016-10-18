@@ -259,9 +259,9 @@ cryptiles@2.x.x:
   dependencies:
     boom "2.x.x"
 
-csso@^1.6.3:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/csso/-/csso-1.8.2.tgz#d3a060ada5d2a16b75061fad9d916d09dc2f4e50"
+csso@^2.0.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/csso/-/csso-2.2.1.tgz#51fbb5347e50e81e6ed51668a48490ae6fe2afe2"
   dependencies:
     clap "^1.0.9"
     source-map "^0.5.3"
@@ -696,7 +696,7 @@ graceful-fs@~1.2.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-gulp-concat:
+gulp-concat@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/gulp-concat/-/gulp-concat-2.6.0.tgz#585cfb115411f348773131140566b6a81c69cb91"
   dependencies:
@@ -704,11 +704,11 @@ gulp-concat:
     gulp-util "^3.0.1"
     through2 "^0.6.3"
 
-gulp-csso@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/gulp-csso/-/gulp-csso-1.1.0.tgz#80d2a8c4c7c9623450c838fbdb9923a14ea210f5"
+gulp-csso@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-csso/-/gulp-csso-2.0.0.tgz#3237bc949736cd6704c929ca3952ce071021ed84"
   dependencies:
-    csso "^1.6.3"
+    csso "^2.0.0"
     gulp-util "^3.0.6"
     vinyl-sourcemaps-apply "^0.2.1"
 
