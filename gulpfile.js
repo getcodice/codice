@@ -1,9 +1,12 @@
 'use strict';
 
-var plugins = require('gulp-load-plugins')();
 var gulp    = require('gulp');
 var gutil   = require('gulp-util');
-var concat  = require('gulp-concat');
+var plugins = {
+    concat: require('gulp-concat'),
+    csso: require('gulp-csso'),
+    sass: require('gulp-sass'),
+};
 
 gulp.task('scripts', function () {
     // Copy JS locales
@@ -22,7 +25,7 @@ gulp.task('scripts', function () {
         './resources/assets/scripts/keyboard.js',
         './resources/assets/scripts/quickform.js',
         './resources/assets/scripts/main.js',
-    ]).pipe(concat('codice.js'))
+    ]).pipe(plugins.concat('codice.js'))
       .pipe(gulp.dest('./public/assets/js'));
 });
 
