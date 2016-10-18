@@ -3,7 +3,7 @@
 var plugins = require('gulp-load-plugins')();
 var gulp    = require('gulp');
 var gutil   = require('gulp-util');
-var concat  = require('gulp-concat-util');
+var concat  = require('gulp-concat');
 
 gulp.task('scripts', function () {
     // Copy JS locales
@@ -22,7 +22,7 @@ gulp.task('scripts', function () {
         './resources/assets/scripts/keyboard.js',
         './resources/assets/scripts/quickform.js',
         './resources/assets/scripts/main.js',
-    ]).pipe(concat('codice.js', { separator: ';' }))
+    ]).pipe(concat('codice.js'))
       .pipe(gulp.dest('./public/assets/js'));
 });
 
