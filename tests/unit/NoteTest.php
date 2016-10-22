@@ -58,12 +58,7 @@ class NoteTest extends TestCase
     public function testSaveWithoutTouching()
     {
         // Create a note first
-        $note = new Note;
-        $note->user_id = 1;
-        $note->content = 'test';
-        $note->content_raw = 'test';
-        $note->status = 0;
-        $note->save();
+        $note = factory(Note::class)->create();
 
         $originalUpdatedAt = $note->updated_at;
 

@@ -13,9 +13,10 @@ class OwnwedTraitTest extends TestCase
     {
         $this->setUpTest();
 
-        $note = Note::findMine(1);
+        $expectedNote = Note::findMine(1);
+        $note = Note::find(1);
 
-        $this->assertEquals('users note', $note->content_raw);
+        $this->assertEquals($note->content_raw, $expectedNote->content_raw);
     }
 
     public function testLimitingToOwnedScope()
@@ -41,8 +42,9 @@ class OwnwedTraitTest extends TestCase
         $this->setUpTest();
 
         $note = Note::findMine(1);
+        $user = User::first();
 
-        $this->assertEquals('JohnDoe', $note->user->name);
+        $this->assertEquals($user->name, $note->user->name);
     }
 
     /**
@@ -53,32 +55,10 @@ class OwnwedTraitTest extends TestCase
      */
     private function setUpTest()
     {
-        // Note ID: 1
-        Note::create([
-            'user_id' => 1,
-            'content' => 'users note'
-        ]);
+        factory(Note::class, 2)->create();
+        factory(Note::class)->create(['user_id' => 2]);
 
-        // Note ID: 2
-        Note::create([
-            'user_id' => 1,
-            'content' => 'another note'
-        ]);
-
-        // Note ID: 3
-        Note::create([
-            'user_id' => 2,
-            'content' => 'secret note of other user'
-        ]);
-
-        // User ID: 1
-        User::create([
-            'name' => 'JohnDoe',
-            'email' => 'john.doe@example.com',
-            'password' => bcrypt('johndoe123'),
-            'options' => User::$defaultOptions,
-        ]);
-
+        factory(User::class)->create();
         Auth::loginUsingId(1);
     }
 }

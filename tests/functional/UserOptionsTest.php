@@ -18,12 +18,7 @@ class UserOptionsTest extends TestCase
     public function testUserOptions()
     {
         // Create test user
-        $user = new User;
-        $user->name = 'JohnDoe';
-        $user->email = 'john.doe@example.com';
-        $user->password = bcrypt('johndoe123');
-        $user->options = $this->testOptions;
-        $user->save();
+        $user = factory(User::class)->create(['options' => $this->testOptions]);
 
         // Read some options ensuring types are valid
         $this->assertEquals(33, $user->options['age']);

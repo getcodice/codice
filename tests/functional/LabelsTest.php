@@ -11,22 +11,12 @@ class LabelsTest extends TestCase
 
     public function testAssigningLabels()
     {
-        // Create new user - it is needed because processNewLabels() uses Auth::id()
-        // Its ID will be 1
-        $this->seedTestUser();
-
-        // Log that user in
+        // Create new user and log it in (processNewLabels() uses Auth::id())
+        factory(User::class)->create();
         Auth::loginUsingId(1);
 
-        $this->seedTestLabels();
-
-        $note = Note::create([
-            'user_id' => 1,
-            'content' => 'lorem ipsum dolor si amet',
-            'content_raw' => 'lorem ipsum dolor si amet',
-            'status'  => 0,
-            'expires_at' => null
-        ]);
+        factory(Label::class, 3)->create();
+        $note = factory(Note::class)->create();
 
         $labels = [
             0 => "1", // numeric ID
@@ -42,20 +32,12 @@ class LabelsTest extends TestCase
 
     public function testAssigningAndCreatingLabels()
     {
-        // Create new user - it is needed because processNewLabels() uses Auth::id()
-        // Its ID will be 1
-        $this->seedTestUser();
-
-        // Log that user in
+        // Create new user and log it in (processNewLabels() uses Auth::id())
+        factory(User::class)->create();
         Auth::loginUsingId(1);
 
-        $this->seedTestLabels();
-
-        $note = Note::create([
-            'user_id' => 1,
-            'content' => 'lorem ipsum dolor si amet',
-            'content_raw' => 'lorem ipsum dolor si amet',
-        ]);
+        factory(Label::class, 3)->create();
+        $note = factory(Note::class)->create();
 
         $labels = [
             0 => "1", // numeric ID
@@ -78,45 +60,11 @@ class LabelsTest extends TestCase
 
     public function testCreatingLabelWithInvalidColor()
     {
-        Label::create([
-            'name' => 'irrelevant',
-            'user_id' => 1,
-            'color' => 'invalid'
-        ]);
+        factory(Label::class)->create(['color' => 'invalid']);
 
         $this->seeInDatabase('labels', [
-            'name' => 'irrelevant',
             'user_id' => 1,
             'color' => 1
-        ]);
-    }
-
-    private function seedTestLabels()
-    {
-        Label::create([
-            'name' => 'foo',
-            'user_id' => 1
-        ]);
-
-        Label::create([
-            'name' => 'bar',
-            'user_id' => 1
-        ]);
-
-        Label::create([
-            'name' => 'other',
-            'color' => 2,
-            'user_id' => 1
-        ]);
-    }
-
-    private function seedTestUser()
-    {
-        return User::create([
-            'name' => 'JohnDoe',
-            'email' => 'john.doe@example.com',
-            'password' => bcrypt('test'),
-            'options' => [],
         ]);
     }
 }
