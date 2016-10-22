@@ -76,6 +76,21 @@ class LabelsTest extends TestCase
         ]);
     }
 
+    public function testCreatingLabelWithInvalidColor()
+    {
+        Label::create([
+            'name' => 'irrelevant',
+            'user_id' => 1,
+            'color' => 'invalid'
+        ]);
+
+        $this->seeInDatabase('labels', [
+            'name' => 'irrelevant',
+            'user_id' => 1,
+            'color' => 1
+        ]);
+    }
+
     private function seedTestLabels()
     {
         Label::create([

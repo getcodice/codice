@@ -54,4 +54,27 @@ class NoteTest extends TestCase
 
         $this->assertEquals($expectedState, $note->state);
     }
+
+    public function testSaveWithoutTouching()
+    {
+        // Create a note first
+        $note = new Note;
+        $note->user_id = 1;
+        $note->content = 'test';
+        $note->content_raw = 'test';
+        $note->status = 0;
+        $note->save();
+
+        $originalUpdatedAt = $note->updated_at;
+
+        // Advance current time by one day
+        Carbon::setTestNow(Carbon::tomorrow());
+
+        // Update a note but without touching timestamps
+        $note = Note::find(1);
+        $note->status = 1;
+        $note->saveWithoutTouching();
+
+        $this->assertEquals($originalUpdatedAt, $note->updated_at);
+    }
 }
