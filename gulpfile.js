@@ -24,6 +24,7 @@ gulp.task('scripts', function () {
         './resources/assets/scripts/helpers.js',
         './resources/assets/scripts/keyboard.js',
         './resources/assets/scripts/quickform.js',
+        './resources/assets/scripts/ajax-note.js',
         './resources/assets/scripts/main.js',
     ]).pipe(plugins.concat('codice.js'))
       .pipe(gulp.dest('./public/assets/js'));

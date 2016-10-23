@@ -141,10 +141,11 @@ class NoteController extends Controller
     /**
      * Change status of a note.
      *
+     * @param  Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse | array
      */
-    public function getChangeStatus($id)
+    public function getChangeStatus(Request $request, $id)
     {
         $note = Note::findMine($id);
 
@@ -164,7 +165,19 @@ class NoteController extends Controller
 
         $message = $newStatus === 1 ? 'note.done.done' : 'note.done.undone';
 
-        return Redirect::back()->with('message', trans($message));
+        if ($request->ajax()) {
+            $data = View::make('note.single', [
+                'note' => $note,
+            ]);
+
+            return [
+                // Casting to string ensures that rendered view is returned instead of an object
+                'data' => (string) $data,
+                'message' => trans($message),
+            ];
+        } else {
+            return Redirect::back()->with('message', trans($message));
+        }
     }
 
     /**

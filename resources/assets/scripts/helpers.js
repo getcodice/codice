@@ -10,6 +10,27 @@ if (!Object.entries) {
     };
 }
 
+function codiceAjax(path, data, success, method, headers) {
+    var defaultHeaders = {
+        'X-CSRF-TOKEN': Codice.csrfToken
+    };
+
+    return $.ajax({
+        data: data,
+        headers: headers || defaultHeaders,
+        success: success,
+        type: method || 'GET',
+        url: Codice.base + '/' + path
+    });
+}
+
+function codiceAddAlert(content, type) {
+    var type = type || 'info';
+
+    $('.alert-fixed').remove();
+    $('body').append($('<div class="alert alert-' + type + ' alert-fixed"><p>' + content + '</p></div>'));
+}
+
 function codiceDatetimePicker(domSelector) {
     flatpickr($(domSelector)[0], {
         allowInput: true,

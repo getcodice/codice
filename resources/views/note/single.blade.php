@@ -1,5 +1,5 @@
 <?php $state = $note->state ?>
-<article class="note note-{{ $state }} {{ isset($single) && $single === true ? 'note-single' : '' }}">
+<article class="note note-{{ $state }} {{ isset($single) && $single === true ? 'note-single' : '' }}" id="note-{{ $note->id }}">
     <div class="note-body">
         @if (count($note->labels))
         <ul class="note-labels">
@@ -42,7 +42,7 @@
             </span>
         @endif
         <span class="note-buttons">
-            <a href="{!! route('note.change', ['id' => $note->id]) !!}">
+            <a href="{!! route('note.change', ['id' => $note->id]) !!}" class="note-change">
                 @if ($note->status)
                     @icon('times') <span class="text">@lang('note.buttons.undone')</span>
                 @else

@@ -42,7 +42,7 @@ $(function () {
     }, 5000);
 });
 
-$('.alert-fixed').on('click', function () {
+$('body').on('click', '.alert-fixed', function () {
     $(this).slideUp('slow', function () {
         $(this).remove();
     });
