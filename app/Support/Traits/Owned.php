@@ -11,7 +11,7 @@ trait Owned
      * Find owned model (limited to the current user).
      *
      * @param  int $id Model ID
-     * @return \Illuminate\Database\Eloquent\Model
+     * @return static
      */
     public static function findMine($id)
     {
