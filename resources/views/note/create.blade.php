@@ -47,6 +47,10 @@
 
 @section('footer')
 <script>
+@if ($wysiwyg)
+codiceEditor();
+@endif
+
 codiceDatetimePicker('#expires_at_picker');
 codiceDatetimePicker('#reminder_email_picker');
 

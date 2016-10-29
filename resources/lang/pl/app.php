@@ -15,6 +15,10 @@ return [
         ],
         'token-mismatch' => 'Przepraszamy, Twoja sesja wygasła. Spróbuj wysłać formularz ponownie.',
     ],
+    'form' => [
+        'no' => 'Nie',
+        'yes' => 'Tak',
+    ],
     'menu' => [
         'about' => 'O Codice',
         'add' => 'Dodaj',

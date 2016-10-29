@@ -67,6 +67,10 @@
 $('#expires_at').parent().addClass('date').attr('id', 'expires_at_picker');
 $('#reminder_email').parent().addClass('date').attr('id', 'reminder_email_picker');
 
+@if ($wysiwyg)
+codiceEditor();
+@endif
+
 codiceDatetimePicker('#expires_at_picker');
 codiceDatetimePicker('#reminder_email_picker');
 

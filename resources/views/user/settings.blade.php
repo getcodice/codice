@@ -57,6 +57,13 @@
                         ->value($user->options['notes_per_page'])
                 !!}
             </div>
+            <div class="col-md-4">
+                {!!
+                    BootForm::select(trans('user.settings.wysiwyg'), 'options[wysiwyg]')
+                        ->options(boolean_select_options())
+                        ->select($user->options['wysiwyg'])
+                !!}
+            </div>
         </div>
     </div>
 </div>

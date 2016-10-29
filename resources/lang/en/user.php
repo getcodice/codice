@@ -23,5 +23,6 @@ return [
         'success' => 'Setting have been saved!',
         'success-password' => 'Settings and new password have been saved!',
         'title' => 'Settings',
+        'wysiwyg' => 'Visual Markdown Editor',
     ],
 ];

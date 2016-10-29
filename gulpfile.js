@@ -20,6 +20,7 @@ gulp.task('scripts', function () {
         './node_modules/jscroll/jquery.jscroll.min.js',
         './node_modules/flatpickr/dist/flatpickr.min.js',
         './node_modules/bootbox/bootbox.min.js',
+        './node_modules/simplemde/dist/simplemde.min.js',
 
         './resources/assets/scripts/helpers.js',
         './resources/assets/scripts/keyboard.js',

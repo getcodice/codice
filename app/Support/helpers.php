@@ -4,6 +4,14 @@ use Carbon\Carbon;
 use Codice\Label;
 use Illuminate\View\Expression;
 
+function boolean_select_options()
+{
+    return [
+        '1' => trans('app.form.yes'),
+        '0' => trans('app.form.no')
+    ];
+}
+
 function calendar_class($day, $month, $events)
 {
     $classes = [];

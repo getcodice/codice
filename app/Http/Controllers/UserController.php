@@ -140,7 +140,12 @@ class UserController extends Controller
             $message = trans('user.settings.success-password');
         }
         $user->email = $request->input('email');
-        $user->options = $request->input('options');
+
+        // Cast types where necessary
+        $optionsRequest = $request->input('options');
+        $optionsRequest['wysiwyg'] = (bool) $optionsRequest['wysiwyg'];
+
+        $user->options = $optionsRequest;
         $user->save();
 
         event('user.save', [$user]);

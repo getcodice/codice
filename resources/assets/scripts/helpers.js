@@ -10,6 +10,22 @@ if (!Object.entries) {
     };
 }
 
+function codiceEditor() {
+    new SimpleMDE({
+        autoDownloadFontAwesome: false,
+        autofocus: true,
+        forceSync: true,
+        hideIcons: ['image', 'side-by-side', 'fullscreen'],
+        shortcuts: {
+            'toggleCodeBlock': null,
+            'toggleOrderedList': null
+        },
+        spellChecker: false,
+        status: false,
+        tabSize: 4
+    });
+}
+
 function codiceDatetimePicker(domSelector) {
     flatpickr($(domSelector)[0], {
         allowInput: true,

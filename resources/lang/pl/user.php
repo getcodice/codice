@@ -23,5 +23,6 @@ return [
         'success' => 'Ustawienia zostały zapisane!',
         'success-password' => 'Ustawienia i nowe hasło zostały zapisane!',
         'title' => 'Ustawienia',
+        'wysiwyg' => 'Edytor wizualny Markdown',
     ],
 ];

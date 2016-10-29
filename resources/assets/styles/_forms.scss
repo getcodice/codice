@@ -28,3 +28,8 @@ textarea#quickform_content {
         float: right;
     }
 }
+
+.CodeMirror, .CodeMirror-scroll {
+    height: 200px;
+    min-height: 200px;
+}
