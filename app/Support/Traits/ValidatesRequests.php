@@ -20,5 +20,4 @@ trait ValidatesRequests
             throw new HttpResponseException($response);
         }
     }
-
 }

@@ -5,7 +5,8 @@ namespace Codice\Reminders;
 use Codice\Note;
 use Codice\Reminder;
 
-abstract class ReminderService implements ReminderServiceInterface {
+abstract class ReminderService implements ReminderServiceInterface
+{
     /**
      * Internal reminder's identifier. Maximum 10 characters!
      *

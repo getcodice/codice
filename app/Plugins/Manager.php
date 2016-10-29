@@ -10,7 +10,8 @@ use Lang;
 use Log;
 use View;
 
-class Manager {
+class Manager
+{
     use Singleton;
 
     /**
@@ -398,12 +399,14 @@ class Manager {
      * @param  array $storage Array being plugin storage
      * @return array
      */
-    protected function getEnabledPlugins($storage) {
+    protected function getEnabledPlugins($storage)
+    {
         // @todo: can be refactored using ARRAY_FILTER_USE_BOTH which, however, is PHP 5.6.0+
 
         $output = [];
 
-        foreach($storage as $pluginIdentifier => $pluginState) {
+        foreach($storage as $pluginIdentifier => $pluginState)
+        {
             if ($pluginState === true) {
                 $output[] = $pluginIdentifier;
             }

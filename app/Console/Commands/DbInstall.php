@@ -35,10 +35,10 @@ class DbInstall extends Command
         $username = $this->option('username') ?: $this->ask('What will be your username?');
         $email    = $this->option('email')    ?: $this->ask('What will be your e-mail (used in login form)?');
 
-        if(!($password = $this->option('password'))) {
+        if (!($password = $this->option('password'))) {
             do {
                 $password = $this->secret('Finally, what password would you like to use?');
-            } while($password != $this->secret('Retype it'));
+            } while ($password != $this->secret('Retype it'));
         }
 
         $this->table(
@@ -46,7 +46,8 @@ class DbInstall extends Command
             [[$username, $email, str_repeat('*', strlen($password))]]
         );
 
-        if ($this->option('no-interaction') || $this->confirm('Do you confirm those are valid credentials and wish to continue?')) {
+        if ($this->option('no-interaction')
+            || $this->confirm('Do you confirm those are valid credentials and wish to continue?')) {
             $this->stepCreateUser($username, $email, $password);
             $this->stepFinish();
         } else {

@@ -5,7 +5,8 @@ namespace Codice\Plugins;
 use Route;
 use URL;
 
-class Menu {
+class Menu
+{
     /**
      * @var array Added menu items.
      */

@@ -86,7 +86,7 @@ trait Hookable
      */
     protected static function sortHookables($hookables)
     {
-        usort($hookables, function($a, $b) {
+        usort($hookables, function ($a, $b) {
             if ($a['priority'] == $b['priority']) {
                 return 0;
             }
