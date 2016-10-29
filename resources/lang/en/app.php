@@ -13,12 +13,12 @@ return [
             '500' => 'Server error',
             '503' => 'Be right back',
         ],
+        'token-mismatch' => 'We are sorry but your session has expired. Try to send the form again.',
     ],
     'form' => [
         'no' => 'No',
         'yes' => 'Yes',
     ],
-    'token-mismatch' => 'We are sorry but your session has expired. Try to send the form again.',
     'menu' => [
         'about' => 'About Codice',
         'add' => 'Create',
