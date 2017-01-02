@@ -1,14 +1,19 @@
-# Codice
+<p align="center">
+<a href="https://travis-ci.com/Sobak/Codice"><img src="https://travis-ci.com/Sobak/Codice.svg?token=56jJWzdqW9ZYp8m68yDz&branch=master" alt="Build Status"></a>
+<a href="https://github.com/Sobak/Codice/releases"><img src="https://img.shields.io/badge/version-v0.4.2-blue.svg" alt="Version"></a>
+<img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License">
+</p>
 
-[![Build Status](https://travis-ci.com/Sobak/Codice.svg?token=56jJWzdqW9ZYp8m68yDz&branch=master)](https://travis-ci.com/Sobak/Codice)
-[![Version](https://img.shields.io/badge/version-v0.4.2-blue.svg)](https://github.com/Sobak/Codice/releases)
-![Developed Version](https://img.shields.io/badge/developed-v0.5.0--dev-orange.svg)
+<p align="center"><a href="http://codice.eu" target="_blank"><img src="http://codice.eu/screenshot.png"></a></p>
 
+<p align="center">
+<strong><a href="http://codice.eu">Project homepage</a></strong> | 
+<strong><a href="http://docs.codice.eu">Documentation</a></strong> | 
+<strong><a href="https://github.com/Sobak/Codice/releases">Downloads</a></strong>
+</p>
+
+## About Codice
 > **Codice** is online note-taking and task-management application.
-
-![Codice screenshot](http://codice.eu/screenshot.png)
-
-**[Project homepage](http://codice.eu)** | **[Documentation](http://docs.codice.eu)** | **[Downloads](https://github.com/Sobak/Codice/releases)**
 
 ## Features
 - organizing notes using labels
