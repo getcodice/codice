@@ -2,7 +2,7 @@
 
 use Carbon\Carbon;
 use Codice\Label;
-use Illuminate\View\Expression;
+use Illuminate\Support\HtmlString;
 
 function boolean_select_options()
 {
@@ -85,5 +85,5 @@ function quickform(array $options = [])
         'options' => $options,
     ]);
 
-    return new Expression($html);
+    return new HtmlString($html);
 }

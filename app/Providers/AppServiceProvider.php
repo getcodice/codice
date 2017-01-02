@@ -38,16 +38,16 @@ class AppServiceProvider extends ServiceProvider
         // Boot plugins
         PluginManager::instance()->bootAll();
 
-        Blade::directive('filter', function ($expression) {
-            return "<?php echo Codice\\Plugins\\Filter::call{$expression}; ?>";
+        Blade::directive('filter', function ($name) {
+            return "<?php echo Codice\\Plugins\\Filter::call($name); ?>";
         });
 
-        Blade::directive('hook', function ($expression) {
-            return "<?php Codice\\Plugins\\Action::call{$expression}; ?>";
+        Blade::directive('hook', function ($name) {
+            return "<?php Codice\\Plugins\\Action::call($name); ?>";
         });
 
         Blade::directive('icon', function ($name) {
-            return '<span class="fa fa-' . substr($name, 2, -2) . '"></span>';
+            return '<span class="fa fa-' . $name . '"></span>';
         });
 
         // Register hook for shutdown actions

@@ -7,6 +7,7 @@ use Auth;
 use Codice\Plugins\Action;
 use Codice\User;
 use Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -154,6 +155,16 @@ class UserController extends Controller
     }
 
     /**
+     * Display the form to request a password reset link.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getEmail()
+    {
+        return view('auth.password');
+    }
+
+    /**
      * @inheritdoc
      */
     public function postEmail(Request $request)
@@ -165,7 +176,12 @@ class UserController extends Controller
 
         $this->validate($request, ['email' => 'required|email']);
 
-        $user = User::where('email', $request->input('email'))->firstOrFail();
+        try {
+            $user = User::where('email', $request->input('email'))->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->with('status', trans('passwords.user'));
+        }
+
 
         // It will also result in confirmation message  being localized but this
         // isn't a bad thing, right?
@@ -184,10 +200,49 @@ class UserController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * Display the password reset view for the given token.
+     *
+     * @param  string  $token
+     * @return \Illuminate\Http\Response
      */
-    protected function getEmailSubject()
+    public function getReset($token = null)
     {
-        return trans('passwords.email.subject');
+        if (is_null($token)) {
+            throw new NotFoundHttpException;
+        }
+
+        return view('auth.reset')->with('token', $token);
+    }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postReset(Request $request)
+    {
+        $this->validate($request, [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $credentials = $request->only(
+            'email', 'password', 'password_confirmation', 'token'
+        );
+
+        $response = Password::reset($credentials, function ($user, $password) {
+            $this->resetPassword($user, $password);
+        });
+
+        switch ($response) {
+            case Password::PASSWORD_RESET:
+                return redirect($this->redirectPath())->with('status', trans($response));
+            default:
+                return redirect()->back()
+                    ->withInput($request->only('email'))
+                    ->withErrors(['email' => trans($response)]);
+        }
     }
 }
