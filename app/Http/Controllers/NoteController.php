@@ -45,7 +45,7 @@ class NoteController extends Controller
     public function getCreate()
     {
         return View::make('note.create', [
-            'labels' => Label::mine()->orderBy('name')->lists('name', 'id'),
+            'labels' => Label::mine()->orderBy('name')->pluck('name', 'id'),
             'title' => trans('note.create.title_head'),
             'wysiwyg' => Auth::user()->options['wysiwyg'],
         ]);
@@ -100,9 +100,9 @@ class NoteController extends Controller
         $note = Note::findMine($id);
 
         return View::make('note.edit', [
-            'labels' => Label::mine()->orderBy('name')->lists('name', 'id'),
+            'labels' => Label::mine()->orderBy('name')->pluck('name', 'id'),
             'note' => $note,
-            'note_labels' => $note->labels()->lists('id')->toArray(),
+            'note_labels' => $note->labels()->pluck('id')->toArray(),
             // @todo: temporary
             'reminder_email' => $note->reminder('email'),
             'title' => trans('note.edit.title'),

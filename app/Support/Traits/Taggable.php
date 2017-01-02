@@ -17,7 +17,7 @@ trait Taggable
      */
     public function reTag(array $tags)
     {
-        $existingTags = Label::orderBy('name')->lists('id')->toArray();
+        $existingTags = Label::orderBy('name')->pluck('id')->toArray();
 
         foreach ($tags as $tagKey => $tagValue) {
             if (!in_array($tagValue, $existingTags)) {
