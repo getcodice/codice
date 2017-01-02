@@ -3,10 +3,14 @@
 namespace Codice;
 
 use Carbon\Carbon;
+use Codice\Support\Markdown\Table\Extension as TableExtension;
 use Codice\Support\Traits\Owned;
 use Codice\Support\Traits\Taggable;
 use Illuminate\Database\Eloquent\Model;
-use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Converter;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
+use League\CommonMark\HtmlRenderer;
 
 class Note extends Model
 {
@@ -158,7 +162,11 @@ class Note extends Model
      */
     private function toHtml($content)
     {
-        $converter = new CommonMarkConverter();
+        $environment = Environment::createCommonMarkEnvironment();
+        $environment->addExtension(new TableExtension());
+
+        $converter = new Converter(new DocParser($environment), new HtmlRenderer($environment));
+
         return $converter->convertToHtml($content);
     }
 }
