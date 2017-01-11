@@ -8,12 +8,12 @@
 
 <p align="center">
 <strong><a href="http://codice.eu">Project homepage</a></strong> | 
-<strong><a href="http://docs.codice.eu">Documentation</a></strong> | 
+<strong><a href="http://codice.eu/docs">Documentation</a></strong> |
 <strong><a href="https://github.com/Sobak/Codice/releases">Downloads</a></strong>
 </p>
 
 ## About Codice
-> **Codice** is online note-taking and task-management application.
+> **Codice** is an online note-taking and task-management application.
 
 ## Features
 - organizing notes using labels
@@ -28,7 +28,7 @@
 2. Upload the files
 3. Open `yourdomain.com/codice/install` in the browser and follow the instructions
 
-If you are more advanced user, read [installation chapter](http://docs.codice.eu/) in
+If you are more advanced user, read [installation chapter](http://codice.eu/docs) in
 the docs, so that you can build Codice from sources and install it step by step, having
 full control over the process.
 
