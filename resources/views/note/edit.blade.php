@@ -15,24 +15,14 @@
 
     <div class="row">
         <div class="col-md-4">
-            {!!
-                BootForm::inputGroup(trans('note.labels.expires_at'), 'expires_at')
-                    ->type('datetime')
-                    ->value($note->expires_at_fmt)
-                    ->afterAddon(icon('calendar'))
-                    ->placeholder(datetime_placeholder('note.labels.expires_at'))
-                    ->hideLabel();
-            !!}
+            {!! form_picker('note.labels.expires_at', 'expires_at', $note->expires_at_fmt) !!}
         </div>
         <div class="col-md-4">
-            {!!
-                BootForm::inputGroup(trans('reminder.services.email'), 'reminder_email')
-                    ->type('datetime')
-                    ->value(isset($reminder_email->remind_at) ? $reminder_email->remind_at->format(trans('app.datetime')) : null)
-                    ->afterAddon(icon('calendar'))
-                    ->placeholder(datetime_placeholder('reminder.services.email'))
-                    ->hideLabel();
-            !!}
+            {!! form_picker(
+                'reminder.services.email',
+                'reminder_email',
+                isset($reminder_email->remind_at) ? $reminder_email->remind_at->format(trans('app.datetime')) : null
+            ) !!}
         </div>
         <div class="col-md-4">
             {!!
@@ -62,11 +52,6 @@
 
 @section('footer')
 <script>
-// Temporary hack
-// @todo: remove after BootForms update
-$('#expires_at').parent().addClass('date').attr('id', 'expires_at_picker');
-$('#reminder_email').parent().addClass('date').attr('id', 'reminder_email_picker');
-
 @if ($wysiwyg)
 codiceEditor();
 @endif
