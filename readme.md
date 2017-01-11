@@ -1,7 +1,7 @@
 <p align="center">
 <a href="https://travis-ci.com/Sobak/Codice"><img src="https://travis-ci.com/Sobak/Codice.svg?token=56jJWzdqW9ZYp8m68yDz&branch=master" alt="Build Status"></a>
 <a href="https://github.com/Sobak/Codice/releases"><img src="https://img.shields.io/badge/version-v0.4.2-blue.svg" alt="Version"></a>
-<img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License">
+<img src="https://img.shields.io/badge/license-MIT-3E8072.svg" alt="License">
 </p>
 
 <p align="center"><a href="http://codice.eu" target="_blank"><img src="http://codice.eu/screenshot.png"></a></p>
