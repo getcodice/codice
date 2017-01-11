@@ -6,21 +6,21 @@ use Codice\Reminder;
 use Codice\Reminders\ReminderService;
 use Illuminate\Console\Command;
 
-class RemindersSend extends Command
+class Reminders extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'reminders:send';
+    protected $signature = 'code:reminders';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send reminders';
+    protected $description = 'Send queued reminders';
 
     /**
      * Execute the console command.
