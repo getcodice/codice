@@ -6,21 +6,21 @@ use Codice\User;
 use Illuminate\Console\Command;
 use Lang;
 
-class DbInstall extends Command
+class Install extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'db:install {--username=} {--email=} {--password=}';
+    protected $signature = 'codice:install {--username=} {--email=} {--password=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Installs the database';
+    protected $description = 'Install Codice from the commandline';
 
     /**
      * Execute the console command.

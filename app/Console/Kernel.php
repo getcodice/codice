@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\DbInstall::class,
+        Commands\Install::class,
         Commands\RemindersSend::class,
     ];
 
