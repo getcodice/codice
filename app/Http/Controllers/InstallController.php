@@ -223,7 +223,6 @@ class InstallController extends Controller
     public function postUser(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',
         ]);
@@ -232,7 +231,6 @@ class InstallController extends Controller
         $options['language'] = Lang::getLocale();
 
         $user = new User;
-        $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
         $user->options = $options;

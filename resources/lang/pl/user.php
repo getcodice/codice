@@ -10,7 +10,8 @@ return [
     'settings' => [
         'email' => 'Adres email',
         'language' => 'Język',
-        'login' => 'Nazwa użytkownika',
+        'name' => 'Nazwa wyświetlana',
+        'name-placeholder' => 'Opcjonalne',
         'notes_per_page' => 'Ilość notatek na stronę',
         'panel-account' => 'Ustawienia konta',
         'panel-application' => 'Ustawienia aplikacji',

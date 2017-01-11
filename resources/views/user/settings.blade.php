@@ -9,15 +9,16 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label">@lang('user.settings.login')</label>
-                    <p class="form-control-static">{{ $user->name }}</p>
-                </div>
-            </div>
-            <div class="col-md-4">
                 {!!
                     BootForm::email(trans('user.settings.email'), 'email')
                         ->value($user->email)
+                !!}
+            </div>
+            <div class="col-md-4">
+                {!!
+                    BootForm::text(trans('user.settings.name'), 'name')
+                        ->value($user->name)
+                        ->placeholder(trans('user.settings.name-placeholder'))
                 !!}
             </div>
         </div>

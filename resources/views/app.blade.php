@@ -35,7 +35,9 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@icon('user') {{ Auth::user()->name }} <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            @icon('user') {{ Auth::user()->name ?: Auth::user()->email }} <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu">
                             {!! App::make('menu.user')->render() !!}
                         </ul>

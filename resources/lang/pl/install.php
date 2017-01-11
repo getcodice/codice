@@ -42,7 +42,6 @@ return [
     'user' => [
         'content' => 'Na koniec utworzymy Twoje konto użytkownika',
         'email' => 'Adres email',
-        'name' => 'Nazwa użytkownika',
         'password' => 'Hasło',
         'password-confirmation' => 'Hasło (potwierdź)',
         'title' => 'Użytkownik',

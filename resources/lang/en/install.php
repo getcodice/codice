@@ -42,7 +42,6 @@ return [
     'user' => [
         'content' => 'Finally, we need to create your account in the system',
         'email' => 'E-mail address',
-        'name' => 'Username',
         'password' => 'Password',
         'password-confirmation' => 'Password (confirm)',
         'title' => 'User account',
