@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive('icon', function ($name) {
-            return '<span class="fa fa-' . $name . '"></span>';
+            return '<span class="fa fa-' . substr($name, 1, -1) . '"></span>';
         });
 
         // Register hook for shutdown actions
