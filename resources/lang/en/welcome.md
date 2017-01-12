@@ -12,5 +12,5 @@ or right from the note <span class="note-btn"><i class="fa fa-pencil"></i> Edit<
 That should be enough for now - you can finally click on that <span class="note-btn"><i class="fa fa-trash-o"></i>
 Remove</span> button ;)
 
-Read [The Basics](http://docs.codice.eu/basics) chapter in the documentation - it is short introduction to Codice,
+Read [The Basics](http://codice.eu/docs/basics) chapter in the documentation - it is short introduction to Codice,
 containing informations written here and even more.

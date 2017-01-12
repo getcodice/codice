@@ -12,5 +12,5 @@ w menu albo prosto z panelu <span class="note-btn"><i class="fa fa-pencil"></i> 
 To powinno Ci wystarczyć na początek - teraz nareszcie możesz kliknąć <span class="note-btn"><i class="fa fa-trash-o"></i>
 Usuń</span> ;)
 
-Warto przeczytać rozdział [The Basics](http://docs.codice.eu/basics) w dokumentacji - jest to krótkie wprowadzenie do Codice,
+Warto przeczytać rozdział [The Basics](http://codice.eu/docs/basics) w dokumentacji - jest to krótkie wprowadzenie do Codice,
 zawierające zarówno informacje przedstawione tutaj, jak i nieco więcej szczegółów.
