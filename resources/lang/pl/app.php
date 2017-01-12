@@ -10,6 +10,7 @@ return [
         'http' => [
             '403' => 'Dostęp zabroniony',
             '404' => 'Nie znaleziono strony',
+            '405' => 'Niedozwolona metoda',
             '500' => 'Błąd serwera',
             '503' => 'Wracamy niedługo',
         ],

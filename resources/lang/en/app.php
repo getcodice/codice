@@ -10,6 +10,7 @@ return [
         'http' => [
             '403' => 'Access forbidden',
             '404' => 'Page not found',
+            '405' => 'Method not allowed',
             '500' => 'Server error',
             '503' => 'Be right back',
         ],
