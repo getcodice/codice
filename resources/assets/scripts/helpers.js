@@ -44,14 +44,14 @@ function codiceLabelSelector(domSelector) {
 }
 
 function codiceNotesPager() {
-    $('.pager').hide();
+    $('.pagination').hide();
     $('.jscroll-container').jscroll({
         loadingHtml: '<i class="fa fa-spinner fa-spin"></i>',
         padding: 10,
-        nextSelector: '.pager a[rel="next"]',
+        nextSelector: '.pagination a[rel="next"]',
         contentSelector: '.jscroll-container',
         callback: function () {
-            $('.pager').hide();
+            $('.pagination').hide();
             codicePrepare();
         }
     });
