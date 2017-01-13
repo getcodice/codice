@@ -96,7 +96,12 @@ ul.dropdown-menu .fa {
 
 .codice-container {
     background-color: #fff;
+    margin-bottom: 25px;
     padding: 20px;
+
+    &.no-bottom-margin {
+        margin-bottom: 0;
+    }
 }
 
 .app-error {

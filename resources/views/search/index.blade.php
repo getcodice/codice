@@ -8,7 +8,7 @@
 
 
     <div class="jscroll-container">
-        @each('note.single', $notes, 'note', 'note.none')
+        @each('note.single', $notes, 'note', 'search.none')
 
         {!! $notes->appends(['query' => Request::query('query')])->render() !!}
     </div>
