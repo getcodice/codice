@@ -20,11 +20,15 @@ class SearchController extends Controller
      * Display results.
      *
      * @param  Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
     public function getIndex(Request $request)
     {
         $query = trim($request->query('query'));
+
+        if (empty($query)) {
+            return redirect()->route('index');
+        }
 
         $perPage = Auth::user()->options['notes_per_page'];
 
