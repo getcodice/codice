@@ -1,0 +1,35 @@
+.form-group-title {
+  display: block;
+  max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+textarea#content,
+textarea#quickform_content {
+  resize: vertical;
+}
+
+.quickform {
+  margin-bottom: 15px;
+  .form-control {
+    border: 0;
+  }
+  .form-group {
+    margin-bottom: 3px;
+  }
+
+  .select2,
+  .select2-search__field {
+    width: 100% !important;
+  }
+
+  .quickform-collapse + .quickform-submit {
+    float: right;
+  }
+}
+
+.CodeMirror, .CodeMirror-scroll {
+  height: 200px;
+  min-height: 200px;
+}

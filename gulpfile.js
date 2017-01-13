@@ -10,7 +10,7 @@ var plugins = {
 
 gulp.task('scripts', function () {
     // Copy JS locales
-    gulp.src('./resources/assets/scripts/locales/*.js')
+    gulp.src('./resources/scripts/locales/*.js')
         .pipe(gulp.dest('./public/assets/js/locales'));
 
     return gulp.src([
@@ -22,17 +22,17 @@ gulp.task('scripts', function () {
         './node_modules/bootbox/bootbox.min.js',
         './node_modules/simplemde/dist/simplemde.min.js',
 
-        './resources/assets/scripts/helpers.js',
-        './resources/assets/scripts/keyboard.js',
-        './resources/assets/scripts/quickform.js',
-        './resources/assets/scripts/search.js',
-        './resources/assets/scripts/main.js',
+        './resources/scripts/helpers.js',
+        './resources/scripts/keyboard.js',
+        './resources/scripts/quickform.js',
+        './resources/scripts/search.js',
+        './resources/scripts/main.js',
     ]).pipe(plugins.concat('codice.js'))
       .pipe(gulp.dest('./public/assets/js'));
 });
 
 gulp.task('styles', function () {
-    return gulp.src('./resources/assets/styles/codice.scss')
+    return gulp.src('./resources/styles/codice.scss')
         .pipe(plugins.sass({
             includePaths: [
                 './node_modules/bootstrap-sass/assets/stylesheets/',
