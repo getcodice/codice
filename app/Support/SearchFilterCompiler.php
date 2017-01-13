@@ -182,16 +182,23 @@ class SearchFilterCompiler
      */
     protected function processStatus($value, $operator)
     {
+        $result = '';
+
         if ($value == 'done') {
-            $status = 1;
+            $result = "status $operator 1";
         } elseif ($value == 'undone') {
-            $status = 0;
+            $result = "status $operator 0";
+        } elseif ($value == 'pending') {
+            $operator = $operator == '=' ? '>' : '<';
+            $result = "status = 0 AND expires_at $operator CURDATE()";
+        } elseif ($value == 'expired') {
+            $operator = $operator == '=' ? '<' : '>';
+            $result = "status = 0 AND expires_at $operator CURDATE()";
         } else {
-            $status = null;
             $this->raiseError();
         }
 
-        return "status $operator $status";
+        return $result;
     }
 
     /**
