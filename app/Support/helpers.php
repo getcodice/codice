@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Codice\Label;
+//use DB;
 use Illuminate\Support\HtmlString;
 
 function boolean_select_options()
@@ -32,6 +33,13 @@ function calendar_class($day, $month, $events)
 function datetime_placeholder($placehoderTranslationKey)
 {
     return trans($placehoderTranslationKey) . ' (' . trans('app.datetime-human') . ')';
+}
+
+function escape_like($string) {
+    // @todo: PDO's quote doesn't serve its purpose here - what should we do?
+    $string = addcslashes($string, '%_');
+
+    return $string;
 }
 
 function icon($icon)

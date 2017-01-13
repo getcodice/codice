@@ -34,6 +34,9 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
+                    @if (empty(Request::query('query')))
+                    <li class="navbar-text nav-search-label">@icon('search')</li>
+                    @endif
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             @icon('user') {{ Auth::user()->name ?: Auth::user()->email }} <span class="caret"></span>
@@ -43,6 +46,14 @@
                         </ul>
                     </li>
                 </ul>
+                <form action="{{ route('search') }}" method="get" class="navbar-form navbar-right {{ Request::query('query') ? '' : 'hidden' }}">
+                    <div class="input-group">
+                        <input type="search" name="query" class="form-control" value="{{ Request::query('query') }}" placeholder="@lang('app.menu.search-placeholder')" value="" required>
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary">@icon('search')</button>
+                        </span>
+                    </div>
+                </form>
             </div>
         </div>
     </nav>

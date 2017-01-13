@@ -4,6 +4,7 @@ namespace Codice\Providers;
 
 use Blade;
 use Codice\Plugins\Action;
+use Codice\Plugins\Filter;
 use Codice\Plugins\Menu;
 use Codice\Plugins\Manager as PluginManager;
 use Codice\Reminders\ReminderService;
@@ -68,6 +69,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Register core filters
+        $this->registerFilters();
+
         // Register service for email reminders
         ReminderService::register(\Codice\Reminders\EmailReminder::class);
 
@@ -84,6 +88,13 @@ class AppServiceProvider extends ServiceProvider
                && class_exists(\Barryvdh\Debugbar\ServiceProvider::class)) {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
+    }
+
+    private function registerFilters()
+    {
+        Filter::register('core.search.clause', 'codice_search_clause', function($query) {
+            return 'content LIKE "%' . escape_like($query) . '%"';
+        });
     }
 
     private function registerMainMenu()

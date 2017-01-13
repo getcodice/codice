@@ -31,6 +31,22 @@ ul.dropdown-menu .fa {
     margin-right: 0;
 }
 
+.nav-search-label {
+    cursor: pointer;
+    margin: 0;
+    padding: 15px;
+
+    &:hover {
+        background: $codice-navbar-hover-bg;
+    }
+}
+
+.navbar-form {
+    button {
+        padding-top: 7px;
+    }
+}
+
 // Styles for page headings
 .page-heading {
     background-color: white;

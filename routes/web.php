@@ -68,6 +68,8 @@ Route::post('password/reset', 'UserController@postReset');
 Route::get('reminders', ['as' => 'reminders', 'uses' => 'ReminderController@getIndex']);
 Route::get('reminder/{id}/remove', ['as' => 'reminder.remove', 'uses' => 'ReminderController@getRemove']);
 
+Route::get('search', ['as' => 'search', 'uses' => 'SearchController@getIndex']);
+
 Route::get('settings', ['as' => 'settings', 'uses' => 'UserController@getSettings']);
 Route::post('settings', 'UserController@postSettings');
 
