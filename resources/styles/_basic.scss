@@ -47,6 +47,16 @@ ul.dropdown-menu .fa {
   }
 }
 
+@media (max-width: $screen-sm) {
+  .nav-search-label {
+    display: none !important;
+  }
+
+  .navbar-form {
+    display: block !important;
+  }
+}
+
 // Styles for page headings
 .page-heading {
   background-color: white;
