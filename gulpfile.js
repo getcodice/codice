@@ -31,6 +31,10 @@ gulp.task('scripts', function () {
       .pipe(gulp.dest('./public/assets/js'));
 });
 
+gulp.task('scripts:watch', function() {
+    gulp.watch('./resources/scripts/**/*.js', ['scripts']);
+});
+
 gulp.task('styles', function () {
     return gulp.src('./resources/styles/codice.scss')
         .pipe(plugins.sass({
@@ -42,6 +46,10 @@ gulp.task('styles', function () {
         .on('error', onError)
         .pipe(plugins.csso())
         .pipe(gulp.dest('./public/assets/css'));
+});
+
+gulp.task('styles:watch', function() {
+    gulp.watch('./resources/styles/**/*.scss', ['styles']);
 });
 
 gulp.task('icons', function() {
