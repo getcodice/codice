@@ -52,11 +52,6 @@ function pad_zero($int)
     return $int < 10 ? '0'.$int : (string) $int;
 }
 
-function plugin_path($pluginName = '')
-{
-    return base_path("plugins/$pluginName");
-}
-
 function form_picker($labelTranslationKey, $inputName, $value = null)
 {
 ?>

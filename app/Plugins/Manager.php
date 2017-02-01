@@ -109,7 +109,7 @@ class Manager
      */
     public function loadPlugin($identifier)
     {
-        require_once plugin_path($identifier . '/Plugin.php');
+        require_once base_path("plugins/$identifier/Plugin.php");
 
         $class = $this->findClassByIdentifier($identifier);
 
@@ -158,7 +158,7 @@ class Manager
             return;
         }
 
-        $pluginPath = plugin_path($identifier);
+        $pluginPath = base_path("plugins/$identifier");
         $pluginNamespace = strtolower($identifier);
 
         $plugin->register();
