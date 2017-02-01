@@ -1,7 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "codice/codice",
+    "description": "Codice: note taking and task-management web application",
     "license": "MIT",
     "type": "project",
     "require": {
