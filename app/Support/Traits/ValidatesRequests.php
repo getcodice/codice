@@ -3,7 +3,7 @@
 namespace Codice\Support\Traits;
 
 use Illuminate\Contracts\Validation\Factory;
-use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 

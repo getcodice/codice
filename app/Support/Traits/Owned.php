@@ -3,7 +3,7 @@
 namespace Codice\Support\Traits;
 
 use Auth;
-use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 trait Owned
 {

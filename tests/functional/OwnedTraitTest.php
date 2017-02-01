@@ -3,7 +3,7 @@
 use Codice\Note;
 use Codice\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Http\Exception\HttpResponseException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class OwnwedTraitTest extends TestCase
 {

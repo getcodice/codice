@@ -24,7 +24,7 @@ class LabelsTest extends TestCase
 
         $note->reTag($labels);
 
-        $this->seeInDatabase('label_note', [
+        $this->assertDatabaseHas('label_note', [
             'label_id' => 1,
             'note_id' => 1
         ]);
@@ -48,12 +48,12 @@ class LabelsTest extends TestCase
 
         $note->reTag($labels);
 
-        $this->seeInDatabase('label_note', [
+        $this->assertDatabaseHas('label_note', [
             'label_id' => 1,
             'note_id' => 1
         ]);
 
-        $this->seeInDatabase('labels', [
+        $this->assertDatabaseHas('labels', [
             'name' => 'new label'
         ]);
     }
@@ -62,7 +62,7 @@ class LabelsTest extends TestCase
     {
         factory(Label::class)->create(['color' => 'invalid']);
 
-        $this->seeInDatabase('labels', [
+        $this->assertDatabaseHas('labels', [
             'user_id' => 1,
             'color' => 1
         ]);

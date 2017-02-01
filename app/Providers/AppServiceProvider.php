@@ -78,10 +78,15 @@ class AppServiceProvider extends ServiceProvider
         // Register plugins
         PluginManager::instance()->registerAll();
 
-        // Register laravel-ide-helper unless we are in prouduction env
+        // Conditionally register providers for some dev-only packages
         if ($this->app->environment() !== 'production'
                && class_exists(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class)) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
+
+        if ($this->app->environment() !== 'production'
+            && class_exists(\Laravel\Tinker\TinkerServiceProvider::class)) {
+            $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
         }
 
         if (config('app.debug') === true
