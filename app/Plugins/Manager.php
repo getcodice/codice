@@ -84,7 +84,7 @@ class Manager
      */
     public function loadAllPlugins()
     {
-        $directories = glob(plugin_path('*'));
+        $directories = glob(base_path('plugins/*'));
         $plugins = [];
 
         foreach ($directories as $directory) {
@@ -294,15 +294,14 @@ class Manager
 
         $this->disable($identifier);
 
-        // Load plugin's object so it can be accessed in next step
+        // Load plugin
         $plugin = $this->loadPlugin($identifier);
+
+        // Call its uninstall() method
         $plugin->uninstall();
 
         // Remove plugin's directory
-        $pluginDir = plugin_path($identifier);
-        if (File::isDirectory($pluginDir)) {
-            File::deleteDirectory($pluginDir);
-        }
+        File::deleteDirectory($plugin->path());
 
         return true;
     }
