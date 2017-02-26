@@ -1,8 +1,11 @@
 var $navSearchLabel = $('.nav-search-label');
 var $navSearchForm = $('.navbar-form');
 
-$navSearchLabel.on('click', function () {
+function codiceOpenSearch() {
     $navSearchLabel.addClass('hidden');
     $navSearchForm.removeClass('hidden');
     $('.navbar-form input').focus();
-});
+}
+
+$navSearchLabel.on('click', 'codiceOpenSearch');
+bindKeys('ctrl+shift+f', function() {codiceOpenSearch()}, {context: document});
