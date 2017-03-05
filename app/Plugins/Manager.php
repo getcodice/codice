@@ -3,7 +3,6 @@
 namespace Codice\Plugins;
 
 use App;
-use Codice\Plugins\Migrations\Repository;
 use Codice\Support\Traits\Singleton;
 use File;
 use Illuminate\Database\Migrations\Migrator;
@@ -437,7 +436,11 @@ class Manager
      */
     protected function prepareMigrator($identifier)
     {
-        $repository = new Repository($this->app['db'], $identifier);
+        $repository = new MigrationRepository($this->app['db'], $identifier);
+
+        if (!$repository->repositoryExists()) {
+            $repository->createRepository();
+        }
 
         return new Migrator($repository, $this->app['db'], $this->app['files']);
     }

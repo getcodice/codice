@@ -1,12 +1,12 @@
 <?php
 
-namespace Codice\Plugins\Migrations;
+namespace Codice\Plugins;
 
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
 use Illuminate\Database\Migrations\MigrationRepositoryInterface;
 
-class Repository extends DatabaseMigrationRepository implements MigrationRepositoryInterface
+class MigrationRepository extends DatabaseMigrationRepository implements MigrationRepositoryInterface
 {
     protected $plugin;
 
