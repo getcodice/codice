@@ -3,8 +3,10 @@
 namespace Codice\Plugins;
 
 use App;
+use Codice\Plugins\Migrations\Repository;
 use Codice\Support\Traits\Singleton;
 use File;
+use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\Str;
 use Lang;
 use Log;
@@ -275,6 +277,11 @@ class Manager
         // Load installed plugin's object so it can be accessed in next step
         $this->plugins[$identifier] = $plugin = $this->loadPlugin($identifier);
 
+        // Run plugin's  migrations
+        $migrator = self::prepareMigrator($identifier);
+        $migrator->run([$plugin->path('migrations')]);
+
+        // Run plugin-specific install actions
         $plugin->install();
 
         return true;
@@ -299,6 +306,10 @@ class Manager
 
         // Call its uninstall() method
         $plugin->uninstall();
+
+        // Roll back its migrations
+        $migrator = self::prepareMigrator($identifier);
+        $migrator->rollback([$plugin->path('migrations')]);
 
         // Remove plugin's directory
         File::deleteDirectory($plugin->path());
@@ -412,5 +423,18 @@ class Manager
         }
 
         return $output;
+    }
+
+    /**
+     * Creates migrator object set up for a specified plugin.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return Migrator
+     */
+    protected function prepareMigrator($identifier)
+    {
+        $repository = new Repository($this->app['db'], $identifier);
+
+        return new Migrator($repository, $this->app['db'], $this->app['files']);
     }
 }
