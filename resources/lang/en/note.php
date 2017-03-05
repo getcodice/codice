@@ -12,10 +12,6 @@ return [
         'submit' => 'Save',
         'success' => 'Note has been created!',
     ],
-    'done' => [
-        'done' => 'Note marked as done!',
-        'undone' => 'Note marked as undone.'
-    ],
     'edit' => [
         'title' => 'Edit note',
         'submit' => 'Save',
@@ -42,4 +38,8 @@ return [
         'title' => 'Confirm removal',
     ],
     'removed' => 'Note have been removed.',
+    'toggle' => [
+        'done' => 'Note marked as done!',
+        'undone' => 'Note marked as undone.'
+    ],
 ];

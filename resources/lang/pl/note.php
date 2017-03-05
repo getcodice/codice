@@ -12,10 +12,6 @@ return [
         'submit' => 'Zapisz',
         'success' => 'Notatka została dodana!',
     ],
-    'done' => [
-        'done' => 'Notatka oznaczona jako wykonana!',
-        'undone' => 'Notatka oznaczona jako niewykonana.'
-    ],
     'edit' => [
         'title' => 'Edytuj notatkę',
         'submit' => 'Zapisz',
@@ -42,4 +38,8 @@ return [
         'title' => 'Potwierdź usunięcie',
     ],
     'removed' => 'Notatka została usunięta.',
+    'toggle' => [
+        'done' => 'Notatka oznaczona jako wykonana!',
+        'undone' => 'Notatka oznaczona jako niewykonana.'
+    ],
 ];

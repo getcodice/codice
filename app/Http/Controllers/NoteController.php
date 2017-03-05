@@ -141,35 +141,6 @@ class NoteController extends Controller
     }
 
     /**
-     * Change status of a note.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function getChangeStatus($id)
-    {
-        $note = Note::findMine($id);
-
-        $newStatus = (int) !$note->status;
-
-        $note->status = $newStatus;
-
-        // If note is done, remove reminders for it
-        if ($newStatus) {
-            $note->reminders()->delete();
-        }
-
-        $note->saveWithoutTouching();
-
-        // Read target status using $note->status
-        event('note.changeStatus', [$note]);
-
-        $message = $newStatus === 1 ? 'note.done.done' : 'note.done.undone';
-
-        return Redirect::back()->with('message', trans($message));
-    }
-
-    /**
      * Display single note.
      *
      * @param  int  $id
@@ -210,5 +181,31 @@ class NoteController extends Controller
         event('note.drop', [$note]);
 
         return Redirect::back()->with('message', trans('note.removed'));
+    }
+
+    /**
+     * Toggle note status.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getToggle($id)
+    {
+        $note = Note::findMine($id);
+
+        $newStatus = (int) !$note->status;
+
+        $note->status = $newStatus;
+
+        // If note is done, remove reminders for it
+        if ($newStatus) {
+            $note->reminders()->delete();
+        }
+
+        $note->saveWithoutTouching();
+
+        $message = $newStatus === 1 ? 'note.toggle.done' : 'note.toggle.undone';
+
+        return Redirect::back()->with('message', trans($message));
     }
 }

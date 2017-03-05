@@ -42,7 +42,7 @@
             </span>
         @endif
         <span class="note-buttons">
-            <a href="{!! route('note.change', ['id' => $note->id]) !!}">
+            <a href="{!! route('note.toggle', ['id' => $note->id]) !!}">
                 @if ($note->status)
                     @icon('times') <span class="text">@lang('note.buttons.undone')</span>
                 @else
