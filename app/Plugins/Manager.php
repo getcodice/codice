@@ -314,6 +314,10 @@ class Manager
         // Remove plugin's directory
         File::deleteDirectory($plugin->path());
 
+        // Remove plugin entry from the storage
+        unset($this->storage[$identifier]);
+        $this->setStorage($this->storage);
+
         return true;
     }
 
