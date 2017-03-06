@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Install::class,
-        Commands\Reminders::class,
+        Commands\Remind::class,
     ];
 
     /**

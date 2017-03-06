@@ -6,14 +6,14 @@ use Codice\Reminder;
 use Codice\Reminders\ReminderService;
 use Illuminate\Console\Command;
 
-class Reminders extends Command
+class Remind extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'code:reminders';
+    protected $signature = 'codice:remind';
 
     /**
      * The console command description.
