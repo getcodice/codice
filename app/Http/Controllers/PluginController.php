@@ -56,9 +56,11 @@ class PluginController extends Controller
 
     public function getInstall($id)
     {
-        Manager::instance()->install($id);
+        $status = Manager::instance()->install($id);
 
-        return Redirect::route('plugins')->with('message', trans('plugin.success.install'));
+        return Redirect::route('plugins')
+                ->with('message', trans($status ? 'plugin.success.install' : 'plugin.error.requirements'))
+                ->with('message_type', $status ? 'info' : 'danger');
     }
 
     public function getUninstall($id)

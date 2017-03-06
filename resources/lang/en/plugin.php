@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'error' => [
+        'requirements' => 'Plugin could not be installed due to unmet requirements.',
+    ],
     'index' => [
         'author' => 'Author',
         'controls' => 'Controls',

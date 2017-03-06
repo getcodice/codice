@@ -3,7 +3,9 @@
 namespace Codice\Plugins;
 
 use App;
+use Codice\Codice;
 use Codice\Support\Traits\Singleton;
+use Composer\Semver\Semver;
 use File;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\Str;
@@ -267,6 +269,12 @@ class Manager
             return true;
         }
 
+        // Check plugin requirements
+        $requirements = $this->pluginDetails($identifier)['require'];
+        if (!$this->checkRequirements($requirements)) {
+            return false;
+        }
+
         $this->enable($identifier);
 
         // Load installed plugin's object so it can be accessed in next step
@@ -360,6 +368,48 @@ class Manager
         $json = file_get_contents(base_path("plugins/$identifier/plugin.json"));
 
         return json_decode($json, true);
+    }
+
+    /**
+     * Checks requirements for a given plugin.
+     *
+     * @param  array $requirements
+     * @return bool
+     */
+    public function checkRequirements($requirements)
+    {
+        foreach ($requirements as $requirement => $constraint) {
+            if (!$this->checkRequirement($requirement, $constraint)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if given requirement is met, based on its constraint.
+     *
+     * @param  string $requirement
+     * @param  string $constraint
+     * @return bool
+     */
+    protected function checkRequirement($requirement, $constraint)
+    {
+        if ($requirement === 'codice') {
+            $version = (new Codice)->getVersion();
+        } elseif ($requirement === 'php') {
+            $version = phpversion();
+        } elseif (substr($requirement, 0, 4) === 'ext-') {
+            $extension = substr($requirement, 4);
+            $version = phpversion($extension);
+        } elseif ($this->isEnabled($requirement)) {
+            $version = $this->pluginDetails($requirement)['version'];
+        } else {
+            return false;
+        }
+
+        return Semver::satisfies($version, $constraint);
     }
 
     /**

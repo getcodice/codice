@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'error' => [
+        'requirements' => 'Instalacja wtyczki nie powiodła się ze względu na niespełnione wymagania.',
+    ],
     'index' => [
         'author' => 'Autor',
         'controls' => 'Akcje',
