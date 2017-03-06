@@ -423,18 +423,9 @@ class Manager
      */
     protected function getEnabledPlugins($storage)
     {
-        // @todo: can be refactored using ARRAY_FILTER_USE_BOTH which, however, is PHP 5.6.0+
-
-        $output = [];
-
-        foreach($storage as $pluginIdentifier => $pluginState)
-        {
-            if ($pluginState === true) {
-                $output[] = $pluginIdentifier;
-            }
-        }
-
-        return $output;
+        return array_keys(array_filter($storage, function($state) {
+            return $state === true;
+        }));
     }
 
     /**
