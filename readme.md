@@ -33,4 +33,4 @@ the docs, so that you can build Codice from sources and install it step by step,
 full control over the process.
 
 ## License
-The project is lincensed under MIT, check out [LICENSE](LICENSE.md) for more details.
+The project is licensed under MIT, check out [LICENSE](LICENSE.md) for more details.
