@@ -22,12 +22,12 @@ class PluginController extends Controller
     {
         $manager = Manager::instance();
 
-        $allPlugins = $manager->loadAllPlugins();
+        $allPlugins = $manager->getAllPlugins();
 
         $plugins = [];
-        foreach ($allPlugins as $identifier => $class) {
+        foreach ($allPlugins as $identifier) {
             $plugins[$identifier] = [
-                'details' => $class->pluginDetails(),
+                'details' => $manager->pluginDetails($identifier),
                 'state' => $manager->isInstalled($identifier)
                     ? ($manager->isEnabled($identifier) ? 'enabled' : 'disabled')
                     : 'not-installed',

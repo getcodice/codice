@@ -8,15 +8,6 @@ use ReflectionClass;
 abstract class Plugin extends ServiceProvider
 {
     /**
-     * Return basic plugin informations.
-     *
-     * Obligatory keys: name, descrption, author, version
-     *
-     * @return array
-     */
-    abstract public function pluginDetails();
-
-    /**
      * All operations to perform on plugin installation.
      */
     public function install()

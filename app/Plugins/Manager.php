@@ -63,6 +63,26 @@ class Manager
     }
 
     /**
+     * Gets identifiers of all plugins found in the directory, regardless of their status.
+     *
+     * @return string[]
+     */
+    public function getAllPlugins()
+    {
+        $directories = glob(base_path('plugins/*'));
+        $plugins = [];
+
+        foreach ($directories as $directory) {
+            $tmp = explode('/', $directory);
+            $identifier = end($tmp);
+
+            $plugins[] = $identifier;
+        }
+
+        return $plugins;
+    }
+
+    /**
      * Find enabled plugins and load them into the $this->plugins array.
      *
      * @return array
@@ -76,30 +96,6 @@ class Manager
         }
 
         return $this->plugins;
-    }
-
-    /**
-     * Load all plugins found in the directory, regardless of their status.
-     *
-     * @return Plugin[]
-     */
-    public function loadAllPlugins()
-    {
-        $directories = glob(base_path('plugins/*'));
-        $plugins = [];
-
-        foreach ($directories as $directory) {
-            $tmp = explode('/', $directory);
-            $identifier = end($tmp);
-
-            $plugin = $this->loadPlugin($identifier);
-
-            if ($plugin) {
-                $plugins[$identifier] = $plugin;
-            }
-        }
-
-        return $plugins;
     }
 
     /**
@@ -351,6 +347,19 @@ class Manager
     public function isInstalled($identifier)
     {
         return isset($this->storage[$identifier]);
+    }
+
+    /**
+     * Returns array of plugin details.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return string[]
+     */
+    public function pluginDetails($identifier)
+    {
+        $json = file_get_contents(base_path("plugins/$identifier/plugin.json"));
+
+        return json_decode($json, true);
     }
 
     /**
