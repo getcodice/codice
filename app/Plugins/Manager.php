@@ -174,14 +174,6 @@ class Manager
         $plugin->register();
 
         /*
-         * Register language namespaces
-         */
-        $langPath = $pluginPath . '/lang';
-        if (File::isDirectory($langPath)) {
-            Lang::addNamespace($pluginNamespace, $langPath);
-        }
-
-        /*
          * Register configuration path
          */
         // @FIXME Config::package() doesn't exists
@@ -223,8 +215,8 @@ class Manager
             return;
         }
 
-        foreach ($this->plugins as $plugin) {
-            $this->bootPlugin($plugin);
+        foreach ($this->plugins as $pluginId => $plugin) {
+            $this->bootPlugin($plugin, $pluginId);
         }
 
         $this->booted = true;
@@ -236,9 +228,20 @@ class Manager
      * @param Plugin $plugin
      * @return void
      */
-    public function bootPlugin(Plugin $plugin)
+    public function bootPlugin(Plugin $plugin, $identifier)
     {
+        $pluginPath = base_path("plugins/$identifier");
+        $pluginNamespace = strtolower($identifier);
+
         $plugin->boot();
+
+        /*
+         * Register language namespaces
+         */
+        $langPath = $pluginPath . '/lang';
+        if (File::isDirectory($langPath)) {
+            Lang::addNamespace($pluginNamespace, $langPath);
+        }
     }
 
     /**
