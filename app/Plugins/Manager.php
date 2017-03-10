@@ -23,6 +23,11 @@ class Manager
     protected $app;
 
     /**
+     * Composer runtime autoloader object.
+     */
+    protected $autoloader;
+
+    /**
      * Container object used for storing plugin information objects.
      */
     protected $plugins;
@@ -60,6 +65,8 @@ class Manager
         }
 
         $this->storage = $this->getStorage();
+
+        $this->autoloader = require base_path('vendor/autoload.php');
 
         $this->loadPlugins();
     }
@@ -123,6 +130,9 @@ class Manager
         if (!$pluginObject instanceof Plugin) {
             return false;
         }
+
+        // Add runtime autoloader rule
+        $this->registerAutoloader($identifier);
 
         return $pluginObject;
     }
@@ -499,5 +509,21 @@ class Manager
         }
 
         return new Migrator($repository, $this->app['db'], $this->app['files']);
+    }
+
+    /**
+     * Registers runtime autoloader rule for files inside the folder of given plugin.
+     *
+     * @param string $identifier Plugin's identifier (its directory)
+     * @return bool
+     */
+    protected function registerAutoloader($identifier)
+    {
+        $namespace = "CodicePlugin\\" . Str::studly($identifier) . "\\";
+        $path = base_path('plugins/' . $identifier);
+
+        $this->autoloader->setPsr4($namespace, $path);
+
+        return true;
     }
 }
