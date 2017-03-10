@@ -206,9 +206,9 @@ class Manager
          * Add routes, if available
          */
         $routesFile = $pluginPath . '/routes.php';
-        $controllersNamespace = "CodicePlugins\\" . Str::studly($identifier) . "\\Controllers";
+        $controllersNamespace = "CodicePlugin\\" . Str::studly($identifier) . "\\Controllers";
         if (File::exists($routesFile)) {
-            Route::group(['namespace' => $controllersNamespace], function () use ($routesFile) {
+            Route::group(['middleware' => 'web', 'namespace' => $controllersNamespace], function () use ($routesFile) {
                 require $routesFile;
             });
         }
