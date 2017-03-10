@@ -11,6 +11,7 @@ use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\Str;
 use Lang;
 use Log;
+use Route;
 use View;
 
 class Manager
@@ -205,8 +206,11 @@ class Manager
          * Add routes, if available
          */
         $routesFile = $pluginPath . '/routes.php';
+        $controllersNamespace = "CodicePlugins\\" . Str::studly($identifier) . "\\Controllers";
         if (File::exists($routesFile)) {
-            require $routesFile;
+            Route::group(['namespace' => $controllersNamespace], function () use ($routesFile) {
+                require $routesFile;
+            });
         }
     }
 
