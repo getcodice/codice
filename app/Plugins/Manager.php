@@ -403,8 +403,14 @@ class Manager
         } elseif (substr($requirement, 0, 4) === 'ext-') {
             $extension = substr($requirement, 4);
             $version = phpversion($extension);
-        } elseif ($this->isEnabled($requirement)) {
-            $version = $this->pluginDetails($requirement)['version'];
+        } elseif (substr($requirement, 0, 7) === 'plugin-') {
+            $plugin = substr($requirement, 7);
+
+            if (!$this->isEnabled($plugin)) {
+                return false;
+            }
+
+            $version = $this->pluginDetails($plugin)['version'];
         } else {
             return false;
         }
