@@ -7,5 +7,5 @@ function codiceOpenSearch() {
     $('.navbar-form input').focus();
 }
 
-$navSearchLabel.on('click', 'codiceOpenSearch');
+$navSearchLabel.on('click', function() {codiceOpenSearch()});
 bindKeys('ctrl+shift+f', function() {codiceOpenSearch()}, {context: document});
