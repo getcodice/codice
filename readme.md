@@ -1,6 +1,6 @@
 <p align="center">
-<a href="https://travis-ci.com/Sobak/Codice"><img src="https://travis-ci.com/Sobak/Codice.svg?token=56jJWzdqW9ZYp8m68yDz&branch=master" alt="Build Status"></a>
-<a href="https://github.com/Sobak/Codice/releases"><img src="https://img.shields.io/badge/version-v0.4.2-blue.svg" alt="Version"></a>
+<a href="https://travis-ci.com/getcodice/codice"><img src="https://travis-ci.org/getcodice/codice.svg?branch=master" alt="Build Status"></a>
+<a href="https://github.com/getcodice/codice/releases"><img src="https://img.shields.io/badge/version-v0.5.0-blue.svg" alt="Version"></a>
 <img src="https://img.shields.io/badge/license-MIT-3E8072.svg" alt="License">
 </p>
 
@@ -9,7 +9,7 @@
 <p align="center">
 <strong><a href="http://codice.eu">Project homepage</a></strong> | 
 <strong><a href="http://codice.eu/docs">Documentation</a></strong> |
-<strong><a href="https://github.com/Sobak/Codice/releases">Downloads</a></strong>
+<strong><a href="https://github.com/getcodice/codice/releases">Downloads</a></strong>
 </p>
 
 ## About Codice
@@ -24,7 +24,7 @@
 - API for writing plugins
 
 ## Get Codice
-1. **[Download latest version](https://github.com/Sobak/Codice/releases)**
+1. **[Download latest version](https://github.com/getcodice/codice/releases)**
 2. Upload the files
 3. Open `yourdomain.com/codice/install` in the browser and follow the instructions
 
