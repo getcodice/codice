@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://travis-ci.com/getcodice/codice"><img src="https://travis-ci.org/getcodice/codice.svg?branch=master" alt="Build Status"></a>
+<a href="https://travis-ci.org/getcodice/codice"><img src="https://travis-ci.org/getcodice/codice.svg?branch=master" alt="Build Status"></a>
 <a href="https://github.com/getcodice/codice/releases"><img src="https://img.shields.io/badge/version-v0.5.0-blue.svg" alt="Version"></a>
 <img src="https://img.shields.io/badge/license-MIT-3E8072.svg" alt="License">
 </p>
