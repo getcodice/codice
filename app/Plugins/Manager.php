@@ -8,7 +8,6 @@ use Codice\Support\Traits\Singleton;
 use Composer\Semver\Semver;
 use File;
 use Illuminate\Database\Migrations\Migrator;
-use Illuminate\Support\Str;
 use Lang;
 use Log;
 use Route;
@@ -118,7 +117,7 @@ class Manager
     {
         require_once base_path("plugins/$identifier/Plugin.php");
 
-        $class = $this->findClassByIdentifier($identifier);
+        $class = $this->getPluginFqn($identifier, 'Plugin');
 
         // Not a valid plugin!
         if (!class_exists($class)) {
@@ -198,7 +197,7 @@ class Manager
          * Add routes, if available
          */
         $routesFile = $pluginPath . '/routes.php';
-        $controllersNamespace = "CodicePlugin\\" . Str::studly($identifier) . "\\Controllers";
+        $controllersNamespace = $this->getPluginFqn($identifier, 'Controllers');
         if (File::exists($routesFile)) {
             Route::group(['middleware' => 'web', 'namespace' => $controllersNamespace], function () use ($routesFile) {
                 require $routesFile;
@@ -436,6 +435,18 @@ class Manager
     }
 
     /**
+     * Return a Fully Qualified Name for plugin class or subnamespace.
+     *
+     * @param  string $identifier Plugin's identifier (its directory)
+     * @param  string $for        Class or subnamespace
+     * @return string
+     */
+    protected function getPluginFqn($identifier, $for = '')
+    {
+        return 'CodicePlugin\\' . studly_case($identifier) . '\\' . $for;
+    }
+
+    /**
      * Return database of plugin informations.
      *
      * @return array
@@ -466,16 +477,6 @@ class Manager
         $this->setStorage([]);
     }
 
-    /**
-     * Return a Fully Qualified Name for plugin registration class based on its identifier.
-     *
-     * @param  string $identifier Plugin's identifier (its directory)
-     * @return string
-     */
-    protected function findClassByIdentifier($identifier)
-    {
-        return "CodicePlugin\\" . Str::camel($identifier) . "\\Plugin";
-    }
 
     /**
      * Return a plugin registration class based on its identifier.
@@ -526,7 +527,7 @@ class Manager
      */
     protected function registerAutoloader($identifier)
     {
-        $namespace = "CodicePlugin\\" . Str::studly($identifier) . "\\";
+        $namespace = $this->getPluginFqn($identifier);
         $path = base_path('plugins/' . $identifier);
 
         $this->autoloader->setPsr4($namespace, $path);
