@@ -9,6 +9,7 @@ use Codice\Plugins\Menu;
 use Codice\Plugins\Manager as PluginManager;
 use Codice\Reminders\ReminderService;
 use Illuminate\Support\ServiceProvider;
+use Route;
 use View;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +35,22 @@ class AppServiceProvider extends ServiceProvider
         View::composer('app', function ($view) {
             $this->registerMainMenu();
             $this->registerUserMenu();
+        });
+
+        // Fire event for matched route
+        Route::matched(function ($objects) {
+            /**
+             * Executed on route matching
+             *
+             * @since 0.5.1
+             *
+             * @param \Illuminate\Routing\Route $route Route class object
+             * @param \Illuminate\Http\Request $request Object of current request
+             */
+            Action::call('route.matched', [
+                'route' => $objects->route,
+                'request' => $objects->request,
+            ]);
         });
 
         // Boot plugins
