@@ -4,6 +4,7 @@ return [
         'email' => 'Email address',
         'invalid' => 'Invalid credentials',
         'password' => 'Password',
+        'remember' => 'Remember me',
         'submit' => 'Log in',
         'title' => 'Log in',
     ],

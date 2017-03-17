@@ -4,6 +4,7 @@ return [
         'email' => 'Adres email',
         'invalid' => 'Niepoprawny login lub hasło',
         'password' => 'Hasło',
+        'remember' => 'Zapamiętaj mnie',
         'submit' => 'Zaloguj',
         'title' => 'Logowanie',
     ],

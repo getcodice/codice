@@ -56,9 +56,10 @@ class UserController extends Controller
         $this->validate($request, [
             'email' => 'email|required',
             'password' => 'required',
+            'remember' => 'boolean',
         ]);
 
-        $isValid = Auth::attempt($credentials);
+        $isValid = Auth::attempt($credentials, (bool) $request->input('remember'));
 
         /**
          * Executed on login attempt

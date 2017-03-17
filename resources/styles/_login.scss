@@ -34,6 +34,18 @@ body#login {
   z-index: 2;
 }
 
+.form-login .checkbox {
+  color: #fff;
+  font-size: 16px;
+  position: relative;
+  left: 3px;
+
+  input {
+    padding: 10px;
+    transform: scale(1.2);
+  }
+}
+
 .form-login button {
   background-color: $codice-success-hover;
   color: #fff;
