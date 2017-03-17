@@ -5,6 +5,7 @@ namespace Codice\Http\Controllers;
 use Codice\Codice;
 use Codice\Label;
 use Codice\Note;
+use Codice\Plugins\Filter;
 use Redirect;
 use View;
 
@@ -27,10 +28,21 @@ class InfoController extends Controller
             $changelog = trans('info.about.changelog-error');
         }
 
+        $version = (new Codice)->getVersion();
+
+        /**
+         * Filters Codice core version in human readable form.
+         *
+         * @since 0.6.0
+         *
+         * @return string
+         */
+        $displayVersion = Filter::call('core.version.display', $version);
+
         return View::make('info.about', [
             'changelog' => $changelog,
             'title' => trans('info.about.title'),
-            'version' => (new Codice)->getVersion(),
+            'version' => $displayVersion,
         ]);
     }
 
