@@ -6,7 +6,7 @@ use Codice\Plugins\Filter;
 
 class Codice
 {
-    private $version = '0.5.1-dev';
+    private $version = '0.6.0-dev';
 
     public function getVersion()
     {
