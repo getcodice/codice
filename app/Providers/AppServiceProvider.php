@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
             /**
              * Executed on route matching
              *
-             * @since 0.5.1
+             * @since 0.6.0
              *
              * @param \Illuminate\Routing\Route $route Route class object
              * @param \Illuminate\Http\Request $request Object of current request
