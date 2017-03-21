@@ -17,10 +17,9 @@ class SearchController extends Controller
     }
 
     /**
-     * Display results.
+     * Displays search results.
      *
-     * @param  Request $request
-     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
+     * GET /search (as search)
      */
     public function getIndex(Request $request)
     {
@@ -53,6 +52,9 @@ class SearchController extends Controller
         ]);
     }
 
+    /**
+     * Returns random tip displayed below the search results.
+     */
     protected function randomTip()
     {
         $tips = [

@@ -14,9 +14,9 @@ class PluginController extends Controller
     }
 
     /**
-     * Display listing of plugins.
+     * Displays listing of plugins.
      *
-     * @return \Illuminate\Http\Response
+     * GET /plugins (as plugins)
      */
     public function getIndex()
     {
@@ -40,6 +40,11 @@ class PluginController extends Controller
         ]);
     }
 
+    /**
+     * Enables single plugin.
+     *
+     * GET /plugin/{id}/enable (as plugin.enable)
+     */
     public function getEnable($id)
     {
         Manager::instance()->enable($id);
@@ -47,6 +52,11 @@ class PluginController extends Controller
         return Redirect::route('plugins')->with('message', trans('plugin.success.enable'));
     }
 
+    /**
+     * Disables single plugin.
+     *
+     * GET /plugin/{id}/disable (as plugin.disable)
+     */
     public function getDisable($id)
     {
         Manager::instance()->disable($id);
@@ -54,6 +64,11 @@ class PluginController extends Controller
         return Redirect::route('plugins')->with('message', trans('plugin.success.disable'));
     }
 
+    /**
+     * Installs single plugin.
+     *
+     * GET /plugin/{id}/install (as plugin.install)
+     */
     public function getInstall($id)
     {
         $status = Manager::instance()->install($id);
@@ -63,6 +78,11 @@ class PluginController extends Controller
                 ->with('message_type', $status ? 'info' : 'danger');
     }
 
+    /**
+     * Removes single plugin.
+     *
+     * GET /plugin/{id}/uninstall (as plugin.uninstall)
+     */
     public function getUninstall($id)
     {
         Manager::instance()->uninstall($id);

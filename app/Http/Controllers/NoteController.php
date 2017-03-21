@@ -23,9 +23,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Display a listing of notes.
+     * Displays listing of notes.
      *
-     * @return \Illuminate\Http\Response
+     * GET / (as index)
      */
     public function getIndex()
     {
@@ -38,9 +38,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Display a form for adding new note.
+     * Displays a form for adding new note.
      *
-     * @return \Illuminate\Http\Response
+     * GET /create (as note.create)
      */
     public function getCreate()
     {
@@ -52,10 +52,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Process a form for creating new note.
+     * Processes a form for creating new note.
      *
-     * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /create
      */
     public function postCreate(Request $request)
     {
@@ -90,10 +89,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Display a form for editing a note.
+     * Displays a form for editing a note.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * GET /note/{id}/edit (as note.edit)
      */
     public function getEdit($id)
     {
@@ -111,11 +109,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Process a form for editing note.
+     * Processes a form for editing note.
      *
-     * @param  Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /note/{id}/edit
      */
     public function postEdit(Request $request, $id)
     {
@@ -141,10 +137,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Display single note.
+     * Displays single note.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * GET /note/{id}
      */
     public function getNote($id)
     {
@@ -155,10 +150,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Show server-side confirmation before removing a note.
+     * Shows server-side confirmation before removing a note.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * GET /note/{id}/remove/confirm (as note.remove.confirm)
      */
     public function getRemoveConfirm($id)
     {
@@ -168,10 +162,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Delete a note.
+     * Removes a note.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * GET /note/{id}/remove (as note.remove)
      */
     public function getRemove($id)
     {
@@ -184,10 +177,9 @@ class NoteController extends Controller
     }
 
     /**
-     * Toggle note status.
+     * Toggles note status.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * GET /note/{id}/toggle (as note.toggle)
      */
     public function getToggle($id)
     {

@@ -17,9 +17,9 @@ class InfoController extends Controller
     }
 
     /**
-     * Display "About Codice" page.
+     * Displays "About Codice" page.
      *
-     * @return \Illuminate\Http\Response
+     * GET /about (as about)
      */
     public function getAbout()
     {
@@ -47,9 +47,9 @@ class InfoController extends Controller
     }
 
     /**
-     * Check for software updates.
+     * Checks for software updates.
      *
-     * @return \Illuminate\Http\Response
+     * GET /about/check-updates (as about.updates)
      */
     public function getUpdates()
     {
@@ -78,9 +78,9 @@ class InfoController extends Controller
     }
 
     /**
-     * Display statistics.
+     * Displays statistics.
      *
-     * @return \Illuminate\Http\Response
+     * GET /stats (as stats)
      */
     public function getStats()
     {

@@ -22,9 +22,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Display a listing of labels.
+     * Displays listing of labels.
      *
-     * @return \Illuminate\Http\Response
+     * GET /labels (as labels)
      */
     public function getIndex()
     {
@@ -46,10 +46,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Display notes associated with given label.
+     * Displays notes associated with given label.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * GET /label/{id} (as label)
      */
     public function getNotes($id)
     {
@@ -75,9 +74,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Display a form for adding new label.
+     * Displays a form for adding new label.
      *
-     * @return \Illuminate\Http\Response
+     * GET /labels/create (as label.create)
      */
     public function getCreate()
     {
@@ -87,10 +86,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Process a form for creating new label.
+     * Processes a form for creating new label.
      *
-     * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /labels/create
      */
     public function postCreate(Request $request)
     {
@@ -108,10 +106,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Display a form for editing a label.
+     * Displays a form for editing a label.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * GET /label/{id}/edit (as label.edit)
      */
     public function getEdit($id)
     {
@@ -122,11 +119,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Process a form for editing label.
+     * Processes a form for editing label.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /label/{id}/edit
      */
     public function postEdit(Request $request, $id)
     {
@@ -144,10 +139,9 @@ class LabelController extends Controller
     }
 
     /**
-     * Delete a label.
+     * Removes a label.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * GET /label/{id}/remove (as label.remove)
      */
     public function getRemove($id)
     {

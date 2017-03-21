@@ -15,16 +15,31 @@ class CalendarController extends Controller {
         $this->middleware('auth');
     }
 
+    /**
+     * Displays calendar for current month.
+     *
+     * GET /calendar (as calendar)
+     */
     public function getIndex()
     {
         return $this->displayMonth(date('m'), date('Y'));
     }
 
+    /**
+     * Displays calendar for given month.
+     *
+     * GET /calendar/{year}-{month} (as calendar.month)
+     */
     public function getMonth($year, $month)
     {
         return $this->displayMonth($month, $year);
     }
 
+    /**
+     * Displays notes from given day.
+     *
+     * GET /calendar/{year}-{month}-{day} (as calendar.day)
+     */
     public function getDay($year, $month, $day)
     {
         $perPage = Auth::user()->options['notes_per_page'];
@@ -56,6 +71,9 @@ class CalendarController extends Controller {
         ]);
     }
 
+    /**
+     * Internal logic for displaying month view.
+     */
     private function displayMonth($month, $year)
     {
         $calendar = new Calendar($month, $year);

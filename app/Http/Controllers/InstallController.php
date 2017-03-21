@@ -17,9 +17,6 @@ class InstallController extends Controller
 {
     private $denyInstallation = false;
 
-    /**
-     * InstallController constructor.
-     */
     public function __construct()
     {
         if (file_exists(base_path('.env')) && !file_exists(storage_path('app/.install-pending'))) {
@@ -35,9 +32,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Display welcome message.
+     * Displays welcome message.
      *
-     * @return \Illuminate\Http\Response
+     * GET /install
      */
     public function getWelcome()
     {
@@ -66,9 +63,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Check for software requirements.
+     * Checks for software requirements.
      *
-     * @return \Illuminate\Http\Response
+     * GET /install/requirements (as install.requirements)
      */
     public function getRequirements()
     {
@@ -119,9 +116,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Display form for creating .env file.
+     * Displays form for creating .env file.
      *
-     * @return \Illuminate\Http\Response
+     * GET /install/env (as install.environment)
      */
     public function getEnvironment()
     {
@@ -136,10 +133,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Create .env file.
+     * Creates .env file.
      *
-     * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /install/env
      */
     public function postEnvironment(Request $request)
     {
@@ -172,10 +168,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Fill a database with content.
+     * Fills in a database.
      *
-     * @param  string $lang Currently used installer language
-     * @return \Illuminate\Http\Response
+     * GET /install/database/{lang} (as install.database)
      */
     public function getDatabase($lang)
     {
@@ -201,9 +196,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Display form for creating first user.
+     * Displays form for creating first user.
      *
-     * @return \Illuminate\Http\Response
+     * GET /install/user (as install.user)
      */
     public function getUser()
     {
@@ -215,10 +210,9 @@ class InstallController extends Controller
     }
 
     /**
-     * Create first user.
+     * Creates first user.
      *
-     * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /install/user
      */
     public function postUser(Request $request)
     {
@@ -248,6 +242,11 @@ class InstallController extends Controller
             ->with('message', trans("install.final.$message"));
     }
 
+    /**
+     * Changes installer's language.
+     *
+     * GET /install/change-language/{lang} (as install.language)
+     */
     public function getChangeLanguage($lang)
     {
         Session::put('install-lang', $lang);

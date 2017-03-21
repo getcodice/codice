@@ -16,9 +16,9 @@ class ReminderController extends Controller
     }
 
     /**
-     * Display a listing of reminders.
+     * Displays listing of reminders.
      *
-     * @return \Illuminate\Http\Response
+     * GET /reminders (as reminders)
      */
     public function getIndex()
     {
@@ -34,10 +34,9 @@ class ReminderController extends Controller
     }
 
     /**
-     * Cancel a reminder.
+     * Cancels a reminder.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * GET /reminder/{id}/remove (as reminder.remove)
      */
     public function getRemove($id)
     {

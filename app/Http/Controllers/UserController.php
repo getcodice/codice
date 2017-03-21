@@ -29,9 +29,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display a login form.
+     * Displays login form.
      *
-     * @return \Illuminate\Http\Response
+     * GET /login (as user.login)
      */
     public function getLogin()
     {
@@ -41,10 +41,9 @@ class UserController extends Controller
     }
 
     /**
-     * Process a login form.
+     * Processes a login form.
      *
-     * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /login
      */
     public function postLogin(Request $request)
     {
@@ -84,9 +83,9 @@ class UserController extends Controller
     }
 
     /**
-     * Log user out
+     * Logs user out
      *
-     * @return \Illuminate\Http\Response
+     * GET /logout (as user.logout)
      */
     public function getLogout()
     {
@@ -95,9 +94,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display settings section for current user.
+     * Displays settings section for current user.
      *
-     * @return \Illuminate\Http\Response
+     * GET /settings (as settings)
      */
     public function getSettings()
     {
@@ -109,10 +108,9 @@ class UserController extends Controller
     }
 
     /**
-     * Process settings form.
+     * Saves settings form.
      *
-     * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * POST /settings
      */
     public function postSettings(Request $request)
     {
@@ -157,9 +155,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display the form to request a password reset link.
+     * Displays the form to request a password reset link.
      *
-     * @return \Illuminate\Http\Response
+     * GET /password/email (as password.email)
      */
     public function getEmail()
     {
@@ -167,7 +165,9 @@ class UserController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * Processes password reset request.
+     *
+     * POST /password/email
      */
     public function postEmail(Request $request)
     {
@@ -202,10 +202,9 @@ class UserController extends Controller
     }
 
     /**
-     * Display the password reset view for the given token.
+     * Displays the password reset view for the given token.
      *
-     * @param  string  $token
-     * @return \Illuminate\Http\Response
+     * GET /password/reset/{token} (as password.reset)
      */
     public function getReset($token = null)
     {
@@ -217,10 +216,9 @@ class UserController extends Controller
     }
 
     /**
-     * Reset the given user's password.
+     * Resets password for matching user.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * POST /password/reset
      */
     public function postReset(Request $request)
     {
