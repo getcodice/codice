@@ -6,6 +6,7 @@ use App;
 use Auth;
 use Artisan;
 use Codice\User;
+use Composer\Semver\Semver;
 use Exception;
 use Illuminate\Http\Request;
 use Lang;
@@ -83,8 +84,14 @@ class InstallController extends Controller
             'storage/logs/',
         ];
 
-        $requirements = $permissions = [];
-        $requirementsOk = $permissionsOk = true;
+        $software = $requirements = $permissions = [];
+        $softwareOk = $requirementsOk = $permissionsOk = true;
+
+        // Check PHP version
+        $composerJson = json_decode(file_get_contents(base_path('composer.json')), true);
+        $requiredPhpVersion = $composerJson['require']['php'];
+
+        $software['PHP ' . $requiredPhpVersion] = $softwareOk = Semver::satisfies(PHP_VERSION, $requiredPhpVersion);
 
         foreach ($requiredExtensions as $extension) {
             $status = extension_loaded($extension);
@@ -110,6 +117,8 @@ class InstallController extends Controller
             'progress' => 30,
             'requirements' => $requirements,
             'requirementsOk' => $requirementsOk,
+            'software' => $software,
+            'softwareOk' => $softwareOk,
             'step' => 2,
             'title' => trans('install.requirements.title'),
         ]);
