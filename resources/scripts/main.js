@@ -35,15 +35,5 @@ function codicePrepare() {
 $(function () {
     codicePrepare();
     codiceQuickForm();
-
-    setTimeout(function () {
-        // Nice trick, so we don't duplicate code
-        $('.alert-fixed').trigger('click');
-    }, 5000);
-});
-
-$('.alert-fixed').on('click', function () {
-    $(this).slideUp('slow', function () {
-        $(this).remove();
-    });
+    codiceClearAlerts();
 });

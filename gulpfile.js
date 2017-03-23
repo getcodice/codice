@@ -24,6 +24,7 @@ gulp.task('scripts', function () {
 
         './resources/scripts/helpers.js',
         './resources/scripts/keyboard.js',
+        './resources/scripts/alerts.js',
         './resources/scripts/quickform.js',
         './resources/scripts/search.js',
         './resources/scripts/main.js',
