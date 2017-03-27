@@ -19,4 +19,11 @@ class Codice
          */
         return Filter::call('core.version', $this->version);
     }
+
+    public function isVersionStable()
+    {
+        $version = $this->getVersion();
+
+        return substr($version, -4) !== '-dev';
+    }
 }

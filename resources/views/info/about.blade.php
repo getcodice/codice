@@ -7,14 +7,15 @@
 <p class="lead text-justify"><strong>Codice</strong> @lang('info.about.about-codice')</p>
 
 <div class="row">
-    <div class="col-md-8">
-        <textarea class="form-control" rows="7" style="resize:none" readonly>{{ $changelog }}</textarea>
+    <div class="col-md-8 about-changelog">
+        <p><strong>@lang('info.about.changelog-title')</strong></p>
+        {!! $changelog !!}
     </div>
     <div class="col-md-4">
-        <a href="http://codice.eu" class="btn btn-default btn-block">
+        <a href="https://codice.eu" class="btn btn-default btn-block">
             @lang('info.about.link.main')
         </a>
-        <a href="http://docs.codice.eu" class="btn btn-default btn-block">
+        <a href="https://codice.eu/docs" class="btn btn-default btn-block">
             @lang('info.about.link.documentation')
         </a>
         <a href="{!! route('about.updates') !!}" class="btn btn-success btn-block">

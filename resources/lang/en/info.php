@@ -5,7 +5,9 @@ return [
         'about-codice' => 'is an online notebook and task management application. It allows you to ' .
             'keep your notes in one, safe place, accessible from almost every place in the ' .
             'world, via Internet.',
+        'changelog-dev' => 'You are using development version which has no changelog yet.',
         'changelog-error' => 'Error while fetching change log',
+        'changelog-title' => 'What\'s new?',
         'link' => [
             'documentation' => 'Documentation',
             'main' => 'Project page',
@@ -26,7 +28,7 @@ return [
     ],
     'updates' => [
         'available' => 'There is new Codice version available (:version). Visit ' .
-            '<a href="http://codice.eu" class="alert-link">project page</a>.',
+            '<a href="https://codice.eu" class="alert-link">project page</a>.',
         'check' => 'Check for updates',
         'error' => 'Error while checking for updates',
         'none' => 'Great! Your Codice version is up-to-date.'

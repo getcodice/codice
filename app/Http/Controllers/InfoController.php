@@ -6,6 +6,7 @@ use Codice\Codice;
 use Codice\Label;
 use Codice\Note;
 use Codice\Plugins\Filter;
+use League\CommonMark\CommonMarkConverter;
 use Redirect;
 use View;
 
@@ -23,11 +24,6 @@ class InfoController extends Controller
      */
     public function getAbout()
     {
-        $changelog = @file_get_contents('http://codice.eu/changelog.txt');
-        if ($changelog == false) {
-            $changelog = trans('info.about.changelog-error');
-        }
-
         $version = (new Codice)->getVersion();
 
         /**
@@ -40,7 +36,7 @@ class InfoController extends Controller
         $displayVersion = Filter::call('core.version.display', $version);
 
         return View::make('info.about', [
-            'changelog' => $changelog,
+            'changelog' => $this->fetchChangelog($version),
             'title' => trans('info.about.title'),
             'version' => $displayVersion,
         ]);
@@ -53,26 +49,28 @@ class InfoController extends Controller
      */
     public function getUpdates()
     {
-        $version = @file_get_contents('http://codice.eu/version.txt');
-        if ($version == false) {
+        $releaseData = @file_get_contents('https://codice.eu/api/v1/releases/latest');
+        $version = @json_decode($releaseData, true)['version'];
+
+        if (!$version) {
             return Redirect::route('about')->with([
                 'message' => trans('info.updates.error'),
                 'message_type' => 'danger',
             ]);
         }
 
-        $version = trim($version);
+        $version = substr($version, 1); // Strip "v" from the front
 
         if (version_compare($version, (new Codice)->getVersion(), 'gt')) {
             return Redirect::route('about')->with([
                 'message' => trans('info.updates.available', ['version' => $version]),
-                'message_type' => 'info',
+                'message_type' => 'warning',
                 'message_raw' => true,
             ]);
         } else {
             return Redirect::route('about')->with([
                 'message' => trans('info.updates.none'),
-                'message_type' => 'success',
+                'message_type' => 'info',
             ]);
         }
     }
@@ -97,5 +95,29 @@ class InfoController extends Controller
             'stats' => $stats,
             'title' => trans('info.stats.title'),
         ]);
+    }
+
+    /**
+     * Fetch changelog from codice.eu API and parse it.
+     *
+     * @param  string $version Version to obtain changelog for
+     * @return string
+     */
+    private function fetchChangelog($version)
+    {
+        $codice = new Codice();
+
+        if (!$codice->isVersionStable()) {
+            return trans('info.about.changelog-dev');
+        }
+
+        $releaseData = @file_get_contents("https://codice.eu/api/v1/releases/v$version");
+        $changelog = @json_decode($releaseData, true)['changelog'];
+
+        if (!$changelog) {
+            return trans('info.about.changelog-error');
+        }
+
+        return (new CommonMarkConverter())->convertToHtml($changelog);
     }
 }
