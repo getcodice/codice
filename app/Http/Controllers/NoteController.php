@@ -70,8 +70,6 @@ class NoteController extends Controller
 
         $note->reTag($request->input('labels', []));
 
-        event('note.save.create', [$note]);
-
         // Handle reminders
         foreach (ReminderService::getRegisteredKeys() as $reminderID) {
             if ($request->has("reminder_$reminderID")) {
@@ -126,8 +124,6 @@ class NoteController extends Controller
 
         $note->reTag($request->input('labels', []));
 
-        event('note.save.edit', [$note]);
-
         // Handle reminders
         foreach (ReminderService::getRegisteredKeys() as $reminderID) {
             ReminderService::get($reminderID)->process($note, $input);
@@ -170,8 +166,6 @@ class NoteController extends Controller
     {
         $note = Note::findMine($id);
         $note->delete();
-
-        event('note.drop', [$note]);
 
         return Redirect::back()->with('message', trans('note.removed'));
     }

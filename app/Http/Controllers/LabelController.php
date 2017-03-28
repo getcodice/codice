@@ -100,8 +100,6 @@ class LabelController extends Controller
             'color' => $request->input('color'),
         ]);
 
-        event('label.save.create', [$label]);
-
         return Redirect::route('labels')->with('message', trans('labels.create.success'));
     }
 
@@ -133,8 +131,6 @@ class LabelController extends Controller
         $label->color = $request->input('color');
         $label->save();
 
-        event('label.save.edit', [$label]);
-
         return Redirect::route('labels')->with('message', trans('labels.edit.success'));
     }
 
@@ -147,8 +143,6 @@ class LabelController extends Controller
     {
         $label = Label::findMine($id);
         $label->delete();
-
-        event('label.drop', [$label]);
 
         return Redirect::route('labels')->with('message', trans('labels.removed'));
     }

@@ -4,7 +4,6 @@ namespace Codice;
 
 use Auth;
 use Codice\Support\Traits\Owned;
-use Illuminate\Database\Eloquent\Model;
 
 class Reminder extends Model
 {

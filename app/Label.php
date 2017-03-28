@@ -3,7 +3,6 @@
 namespace Codice;
 
 use Codice\Support\Traits\Owned;
-use Illuminate\Database\Eloquent\Model;
 
 class Label extends Model
 {

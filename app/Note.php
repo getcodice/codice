@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Codice\Support\Markdown\Table\Extension as TableExtension;
 use Codice\Support\Traits\Owned;
 use Codice\Support\Traits\Taggable;
-use Illuminate\Database\Eloquent\Model;
 use League\CommonMark\Converter;
 use League\CommonMark\DocParser;
 use League\CommonMark\Environment;

@@ -149,8 +149,6 @@ class UserController extends Controller
         $user->options = $optionsRequest;
         $user->save();
 
-        event('user.save', [$user]);
-
         return Redirect::back()->with('message', $message);
     }
 
