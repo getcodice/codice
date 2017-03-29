@@ -2,7 +2,6 @@
 
 use Carbon\Carbon;
 use Codice\Label;
-//use DB;
 use Illuminate\Support\HtmlString;
 
 function boolean_select_options()
