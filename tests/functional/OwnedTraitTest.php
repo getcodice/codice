@@ -34,7 +34,7 @@ class OwnwedTraitTest extends TestCase
     {
         $this->setUpTest();
 
-        $this->setExpectedException(HttpResponseException::class);
+        $this->expectException(HttpResponseException::class);
 
         $note = Note::findMine(3);
     }
