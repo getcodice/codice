@@ -25,7 +25,9 @@ class OwnwedTraitTest extends TestCase
 
         $notes = Note::mine()->get();
 
-        $this->assertEquals(2, count($notes));
+        // Two notes added directly and one by the
+        // codice_add_welcome_note action
+        $this->assertEquals(3, count($notes));
     }
 
     public function testFetchingOtherUsersNote()
