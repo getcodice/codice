@@ -114,8 +114,6 @@ class Note extends Model
 
     /**
      * Returns all reminders for the note.
-     *
-     * @return \Codice\Reminder
      */
     public function reminders()
     {
