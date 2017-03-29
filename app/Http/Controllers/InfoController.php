@@ -2,7 +2,7 @@
 
 namespace Codice\Http\Controllers;
 
-use Codice\Codice;
+use Codice\Core\Codice;
 use Codice\Label;
 use Codice\Note;
 use Codice\Plugins\Filter;

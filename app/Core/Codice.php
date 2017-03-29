@@ -1,6 +1,6 @@
 <?php
 
-namespace Codice;
+namespace Codice\Core;
 
 use Codice\Plugins\Filter;
 

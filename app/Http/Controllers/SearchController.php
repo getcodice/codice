@@ -4,9 +4,9 @@ namespace Codice\Http\Controllers;
 
 use Auth;
 use Carbon\Carbon;
+use Codice\Core\SearchFilterCompiler;
 use Codice\Note;
 use Codice\Plugins\Filter;
-use Codice\Support\SearchFilterCompiler;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller

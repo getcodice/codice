@@ -3,7 +3,7 @@
 namespace Codice\Plugins;
 
 use App;
-use Codice\Codice;
+use Codice\Core\Codice;
 use Codice\Support\Traits\Singleton;
 use Composer\Semver\Semver;
 use File;

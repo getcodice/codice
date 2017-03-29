@@ -1,6 +1,6 @@
 <?php
 
-namespace Codice\Support;
+namespace Codice\Core;
 
 class SearchFilterCompiler
 {

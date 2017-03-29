@@ -1,6 +1,6 @@
 <?php
 
-use Codice\Codice;
+use Codice\Core\Codice;
 use Codice\Plugins\Filter;
 
 class CodiceTest extends TestCase
