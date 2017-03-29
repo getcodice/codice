@@ -3,11 +3,7 @@
 namespace Codice\Providers;
 
 use Blade;
-use Carbon\Carbon;
-use Codice\Label;
-use Codice\Note;
 use Codice\Plugins\Action;
-use Codice\Plugins\Filter;
 use Codice\Plugins\Menu;
 use Codice\Plugins\Manager as PluginManager;
 use Codice\Reminders\ReminderService;
@@ -90,10 +86,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // Register core actions
-        $this->registerActions();
+        require app_path('Core/actions.php');
 
         // Register core filters
-        $this->registerFilters();
+        require app_path('Core/filters.php');
 
         // Register service for email reminders
         ReminderService::register(\Codice\Reminders\EmailReminder::class);
@@ -116,41 +112,6 @@ class AppServiceProvider extends ServiceProvider
                && class_exists(\Barryvdh\Debugbar\ServiceProvider::class)) {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
-    }
-
-    private function registerActions()
-    {
-        Action::register('user.created', 'codice_add_welcome_note', function($parameters) {
-            $locale = $parameters['user']->options['language'];
-
-            $path = base_path("resources/lang/$locale/welcome.md");
-
-            if (!file_exists($path)) {
-                $path = base_path('resources/lang/en/welcome.md');
-            }
-
-            $note = new Note;
-            $note->user_id = $parameters['user']->id;
-            $note->content = file_get_contents($path);
-            $note->expires_at = Carbon::tomorrow();
-            $note->status = 1;
-            $note->save();
-
-            $label = new Label;
-            $label->user_id = $parameters['user']->id;
-            $label->name = trans('install.welcome-note-label', [], $locale);
-            $label->color = 6;
-            $label->save();
-
-            $note->labels()->attach($label);
-        });
-    }
-
-    private function registerFilters()
-    {
-        Filter::register('core.search.clause', 'codice_search_clause', function($query) {
-            return 'content LIKE "%' . escape_like($query) . '%"';
-        });
     }
 
     private function registerMainMenu()
