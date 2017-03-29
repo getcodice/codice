@@ -239,8 +239,6 @@ class InstallController extends Controller
         $user->options = $options;
         $user->save();
 
-        $user->addWelcomeNote();
-
         Auth::loginUsingId(1);
 
         $unlink = @unlink(storage_path('app/.install-pending'));

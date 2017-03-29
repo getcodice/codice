@@ -75,7 +75,6 @@ class Install extends Command
         $this->output->writeln(' done');
 
         $this->output->write('Writing welcome note....');
-        $user->addWelcomeNote();
         $this->output->write(' done');
         $this->output->newLine(2);
     }
