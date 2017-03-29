@@ -3,13 +3,8 @@
 namespace Codice;
 
 use Carbon\Carbon;
-use Codice\Support\Markdown\Table\Extension as TableExtension;
 use Codice\Support\Traits\Owned;
 use Codice\Support\Traits\Taggable;
-use League\CommonMark\Converter;
-use League\CommonMark\DocParser;
-use League\CommonMark\Environment;
-use League\CommonMark\HtmlRenderer;
 
 class Note extends Model
 {
@@ -140,32 +135,5 @@ class Note extends Model
         $this->timestamps = true;
 
         return $result;
-    }
-
-    /**
-     * Sets parsed Markdown in content attribute and raw value in content_raw.
-     *
-     * @param $value string Raw (unparsed) Markdown
-     */
-    public function setContentAttribute($value)
-    {
-        $this->attributes['content_raw'] = $value;
-        $this->attributes['content'] = $this->toHtml($value);
-    }
-
-    /**
-     * Convert note content from Markdown to HTML.
-     *
-     * @param  $content string
-     * @return string
-     */
-    private function toHtml($content)
-    {
-        $environment = Environment::createCommonMarkEnvironment();
-        $environment->addExtension(new TableExtension());
-
-        $converter = new Converter(new DocParser($environment), new HtmlRenderer($environment));
-
-        return $converter->convertToHtml($content);
     }
 }

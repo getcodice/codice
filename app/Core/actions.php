@@ -4,6 +4,25 @@ use Carbon\Carbon;
 use Codice\Label;
 use Codice\Note;
 use Codice\Plugins\Action;
+use Codice\Support\Markdown\Table\Extension as TableExtension;
+use League\CommonMark\Converter;
+use League\CommonMark\DocParser;
+use League\CommonMark\Environment;
+use League\CommonMark\HtmlRenderer;
+
+Action::register('note.saving', 'codice_note_parse_markdown', function($parameters) {
+    $content = $parameters['note']->content;
+
+    $environment = Environment::createCommonMarkEnvironment();
+    $environment->addExtension(new TableExtension());
+
+    $converter = new Converter(new DocParser($environment), new HtmlRenderer($environment));
+
+    $contentParsed = $converter->convertToHtml($content);
+
+    $parameters['note']->content_raw = $content;
+    $parameters['note']->content = $contentParsed;
+});
 
 Action::register('user.created', 'codice_add_welcome_note', function($parameters) {
     $locale = $parameters['user']->options['language'];
