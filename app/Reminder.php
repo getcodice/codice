@@ -41,7 +41,7 @@ class Reminder extends Model
      */
     public function note()
     {
-        return $this->belongsTo('Codice\Note');
+        return $this->belongsTo(Note::class);
     }
 
     /**
