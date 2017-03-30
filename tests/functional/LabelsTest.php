@@ -24,10 +24,9 @@ class LabelsTest extends TestCase
 
         $note->reTag($labels);
 
-        $this->assertDatabaseHas('label_note', [
-            'label_id' => 1,
-            'note_id' => 1
-        ]);
+        $note_id = Note::tagged(1)->first()->id;
+
+        $this->assertEquals(1, $note_id);
     }
 
     public function testAssigningAndCreatingLabels()
