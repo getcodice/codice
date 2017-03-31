@@ -2,7 +2,6 @@
 
 namespace Codice\Plugins;
 
-use App;
 use Codice\Core\Codice;
 use Composer\Semver\Semver;
 use File;
@@ -30,12 +29,22 @@ class Manager
     protected $plugins;
 
     /**
+     * Path to the main plugins directory.
+     */
+    protected $pluginsPath;
+
+    /**
      * Storage holding enabled plugins.
      *
      * Key is plugin directory (referenced as "identifier" in code) and the value is Fully Qualified Name
      * of the respective Plugin class (referenced as "class" in the code).
      */
     protected $storage;
+
+    /**
+     * Path to the JSON storage file.
+     */
+    protected $storagePath;
 
     /**
      * @var bool Check if all plugins have had the register() method called.
@@ -49,14 +58,19 @@ class Manager
 
     /**
      * Initializes the plugin manager.
+     *
+     * @param $app
+     * @param $pluginsPath string Path to the main plugins directory
+     * @param $storagePath string Path to the JSON storage file
      */
-    public function __construct()
+    public function __construct($app, $pluginsPath, $storagePath)
     {
-        $this->app = App::make('app');
+        $this->app = $app;
+        $this->pluginsPath = $pluginsPath;
+        $this->storagePath = $storagePath;
 
-        $storageFile = storage_path('app/plugins.json');
 
-        if (!file_exists($storageFile) || filesize($storageFile) == 0) {
+        if (!file_exists($storagePath) || filesize($storagePath) == 0) {
             $this->setInitialStorage();
             Log::info('Plugins storage is empty or could not be found - empty array initialized.');
         }
@@ -75,7 +89,7 @@ class Manager
      */
     public function getAllPlugins()
     {
-        $directories = glob(base_path('plugins/*'));
+        $directories = glob($this->getPluginPath('*'));
         $plugins = [];
 
         foreach ($directories as $directory) {
@@ -112,7 +126,7 @@ class Manager
      */
     public function loadPlugin($identifier)
     {
-        require_once base_path("plugins/$identifier/Plugin.php");
+        require_once $this->getPluginPath("$identifier/Plugin.php");
 
         $class = $this->getPluginFqn($identifier, 'Plugin');
 
@@ -164,7 +178,7 @@ class Manager
             return;
         }
 
-        $pluginPath = base_path("plugins/$identifier");
+        $pluginPath = $this->getPluginPath($identifier);
         $pluginNamespace = strtolower($identifier);
 
         $plugin->register();
@@ -226,7 +240,7 @@ class Manager
      */
     public function bootPlugin(Plugin $plugin, $identifier)
     {
-        $pluginPath = base_path("plugins/$identifier");
+        $pluginPath = $this->getPluginPath($identifier);
         $pluginNamespace = strtolower($identifier);
 
         $plugin->boot();
@@ -378,7 +392,7 @@ class Manager
      */
     public function pluginDetails($identifier)
     {
-        $json = file_get_contents(base_path("plugins/$identifier/plugin.json"));
+        $json = file_get_contents($this->getPluginPath("$identifier/plugin.json"));
 
         return json_decode($json, true);
     }
@@ -444,13 +458,24 @@ class Manager
     }
 
     /**
+     * Return base path for plugins directory or any sublocation of it.
+     *
+     * @param  $path
+     * @return string
+     */
+    protected function getPluginPath($path = '')
+    {
+        return $this->pluginsPath . $path;
+    }
+
+    /**
      * Return database of plugin informations.
      *
      * @return array
      */
     protected function getStorage()
     {
-        return json_decode(file_get_contents(storage_path('app/plugins.json')), true);
+        return json_decode(file_get_contents($this->storagePath), true);
     }
 
     /**
@@ -461,7 +486,7 @@ class Manager
      */
     protected function setStorage($content)
     {
-        return file_put_contents(storage_path('app/plugins.json'), json_encode($content));
+        return file_put_contents($this->storagePath, json_encode($content));
     }
 
     /**
@@ -525,7 +550,7 @@ class Manager
     protected function registerAutoloader($identifier)
     {
         $namespace = $this->getPluginFqn($identifier);
-        $path = base_path('plugins/' . $identifier);
+        $path = $this->getPluginPath($identifier);
 
         $this->autoloader->setPsr4($namespace, $path);
 

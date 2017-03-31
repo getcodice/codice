@@ -87,7 +87,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Register Plugin Manager instance as singleton
         $this->app->singleton('plugin.manager', function ($app) {
-            return new Manager();
+            return new Manager($app, base_path('plugins/'), storage_path('app/plugins.json'));
         });
 
         // Register core actions
