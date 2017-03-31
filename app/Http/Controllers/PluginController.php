@@ -20,7 +20,7 @@ class PluginController extends Controller
      */
     public function getIndex()
     {
-        $manager = Manager::instance();
+        $manager = app('plugin.manager');
 
         $allPlugins = $manager->getAllPlugins();
 
@@ -47,7 +47,7 @@ class PluginController extends Controller
      */
     public function getEnable($id)
     {
-        Manager::instance()->enable($id);
+        app('plugin.manager')->enable($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.enable'));
     }
@@ -59,7 +59,7 @@ class PluginController extends Controller
      */
     public function getDisable($id)
     {
-        Manager::instance()->disable($id);
+        app('plugin.manager')->disable($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.disable'));
     }
@@ -71,7 +71,7 @@ class PluginController extends Controller
      */
     public function getInstall($id)
     {
-        $status = Manager::instance()->install($id);
+        $status = app('plugin.manager')->install($id);
 
         return Redirect::route('plugins')
                 ->with('message', trans($status ? 'plugin.success.install' : 'plugin.error.requirements'))
@@ -85,7 +85,7 @@ class PluginController extends Controller
      */
     public function getUninstall($id)
     {
-        Manager::instance()->uninstall($id);
+        app('plugin.manager')->uninstall($id);
 
         return Redirect::route('plugins')->with('message', trans('plugin.success.uninstall'));
     }

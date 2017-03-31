@@ -4,7 +4,6 @@ namespace Codice\Plugins;
 
 use App;
 use Codice\Core\Codice;
-use Codice\Support\Traits\Singleton;
 use Composer\Semver\Semver;
 use File;
 use Illuminate\Database\Migrations\Migrator;
@@ -15,8 +14,6 @@ use View;
 
 class Manager
 {
-    use Singleton;
-
     /**
      * The application instance, since Plugins are an extension of a Service Provider
      */
@@ -53,7 +50,7 @@ class Manager
     /**
      * Initializes the plugin manager.
      */
-    protected function init()
+    public function __construct()
     {
         $this->app = App::make('app');
 

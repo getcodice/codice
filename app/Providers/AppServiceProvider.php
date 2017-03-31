@@ -4,8 +4,8 @@ namespace Codice\Providers;
 
 use Blade;
 use Codice\Plugins\Action;
+use Codice\Plugins\Manager;
 use Codice\Plugins\Menu;
-use Codice\Plugins\Manager as PluginManager;
 use Codice\Reminders\ReminderService;
 use Illuminate\Support\ServiceProvider;
 use Route;
@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Boot plugins
-        PluginManager::instance()->bootAll();
+        app('plugin.manager')->bootAll();
 
         Blade::directive('filter', function ($name) {
             return "<?php echo Codice\\Plugins\\Filter::call($name); ?>";
@@ -85,6 +85,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Register Plugin Manager instance as singleton
+        $this->app->singleton('plugin.manager', function ($app) {
+            return new Manager();
+        });
+
         // Register core actions
         require app_path('Core/actions.php');
 
@@ -95,7 +100,7 @@ class AppServiceProvider extends ServiceProvider
         ReminderService::register(\Codice\Reminders\EmailReminder::class);
 
         // Register plugins
-        PluginManager::instance()->registerAll();
+        app('plugin.manager')->registerAll();
 
         // Conditionally register providers for some dev-only packages
         if ($this->app->environment() !== 'production'
