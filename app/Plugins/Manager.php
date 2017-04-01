@@ -14,35 +14,32 @@ use View;
 class Manager
 {
     /**
-     * The application instance, since Plugins are an extension of a Service Provider
+     * @var object The application instance.
      */
     protected $app;
 
     /**
-     * Composer runtime autoloader object.
+     * @var object Composer runtime autoloader object.
      */
     protected $autoloader;
 
     /**
-     * Container object used for storing plugin information objects.
+     * @var Plugin[] Container object used for storing plugin information objects.
      */
     protected $plugins;
 
     /**
-     * Path to the main plugins directory.
+     * @var string Path to the main plugins directory.
      */
     protected $pluginsPath;
 
     /**
-     * Storage holding enabled plugins.
-     *
-     * Key is plugin directory (referenced as "identifier" in code) and the value is Fully Qualified Name
-     * of the respective Plugin class (referenced as "class" in the code).
+     * @var array Array of installed plugins: identifier => (bool) is_enabled
      */
     protected $storage;
 
     /**
-     * Path to the JSON storage file.
+     * @var string Path to the JSON storage file.
      */
     protected $storagePath;
 
@@ -150,6 +147,7 @@ class Manager
 
     /**
      * Run the register() method on all plugins. Can only be called once.
+     *
      * @return void
      */
     public function registerAll()
@@ -168,8 +166,8 @@ class Manager
     /**
      * Register a single plugin object.
      *
-     * @param Plugin $plugin
-     * @param string $identifier
+     * @param  Plugin $plugin
+     * @param  string $identifier
      * @return void
      */
     public function registerPlugin(Plugin $plugin, $identifier)
@@ -235,7 +233,7 @@ class Manager
     /**
      * Boot a single plugin object.
      *
-     * @param Plugin $plugin
+     * @param  Plugin $plugin
      * @return void
      */
     public function bootPlugin(Plugin $plugin, $identifier)
@@ -257,7 +255,7 @@ class Manager
     /**
      * Enable a single plugin.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return bool
      */
     public function enable($identifier)
@@ -272,7 +270,7 @@ class Manager
     /**
      * Disable a single plugin.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return bool
      */
     public function disable($identifier)
@@ -287,7 +285,7 @@ class Manager
     /**
      * Install a single plugin.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return bool
      */
     public function install($identifier)
@@ -320,7 +318,7 @@ class Manager
     /**
      * Uninstall a single plugin.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return bool
      */
     public function uninstall($identifier)
@@ -354,7 +352,7 @@ class Manager
     /**
      * Determine if a plugin is disabled.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return bool
      */
     public function isDisabled($identifier)
@@ -365,7 +363,7 @@ class Manager
     /**
      * Determine if a plugin is enabled.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return bool
      */
     public function isEnabled($identifier)
@@ -376,7 +374,7 @@ class Manager
     /**
      * Determine if a plugin is installed.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return bool
      */
     public function isInstalled($identifier)
@@ -387,7 +385,7 @@ class Manager
     /**
      * Returns array of plugin details.
      *
-     * @param string $identifier Plugin's identifier (its directory)
+     * @param  string $identifier Plugin's identifier (its directory)
      * @return string[]
      */
     public function pluginDetails($identifier)
