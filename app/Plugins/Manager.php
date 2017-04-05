@@ -11,6 +11,12 @@ use Log;
 use Route;
 use View;
 
+/**
+ * Plugin Manager
+ *
+ * This class is heavily inspired by the work of OctoberCMS team, thanks!
+ */
+
 class Manager
 {
     /**
