@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/badge/license-MIT-3E8072.svg" alt="License">
 </p>
 
-<p align="center"><a href="http://codice.eu" target="_blank"><img src="http://codice.eu/screenshot.png"></a></p>
+<p align="center"><a href="http://codice.eu" target="_blank"><img src="https://codice.eu/assets/images/screenshot.png"></a></p>
 
 <p align="center">
 <strong><a href="http://codice.eu">Project homepage</a></strong> | 
