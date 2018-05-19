@@ -4,7 +4,7 @@
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-csso": "^2.0.0",
-    "gulp-sass": "^2.0.4",
+    "gulp-sass": "^4.0.1",
     "gulp-util": "^3.0.6"
   },
   "dependencies": {
