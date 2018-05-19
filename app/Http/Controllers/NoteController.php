@@ -65,19 +65,19 @@ class NoteController extends Controller
         $note = Note::create([
             'user_id' => Auth::id(),
             'content' => $request->input('content'),
-            'expires_at' => $request->has('expires_at') ? strtotime($request->input('expires_at')) : null,
+            'expires_at' => $request->filled('expires_at') ? strtotime($request->input('expires_at')) : null,
         ]);
 
         $note->reTag($request->input('labels', []));
 
         // Handle reminders
         foreach (ReminderService::getRegisteredKeys() as $reminderID) {
-            if ($request->has("reminder_$reminderID")) {
+            if ($request->filled("reminder_$reminderID")) {
                 ReminderService::get($reminderID)->set($note, $input);
             }
         }
 
-        if ($request->has('quickform_target')) {
+        if ($request->filled('quickform_target')) {
             $response = Redirect::to($request->input('quickform_target'));
         } else {
             $response = Redirect::route('index');
@@ -119,7 +119,7 @@ class NoteController extends Controller
         $this->validate($request, $this->rules);
 
         $note->content = $request->input('content');
-        $note->expires_at = $request->has('expires_at') ? strtotime($request->input('expires_at')) : null;
+        $note->expires_at = $request->filled('expires_at') ? strtotime($request->input('expires_at')) : null;
         $note->save();
 
         $note->reTag($request->input('labels', []));

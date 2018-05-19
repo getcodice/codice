@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Functional;
+
 use Codice\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class UserOptionsTest extends TestCase
 {

@@ -1,9 +1,13 @@
 <?php
 
+namespace Tests\Functional;
+
+use Auth;
 use Codice\Note;
 use Codice\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Tests\TestCase;
 
 class OwnwedTraitTest extends TestCase
 {

@@ -1,7 +1,11 @@
 <?php
 
+namespace Tests\Unit;
+
 use Codice\Core\Codice;
 use Codice\Plugins\Filter;
+use ReflectionClass;
+use Tests\TestCase;
 
 class CodiceTest extends TestCase
 {

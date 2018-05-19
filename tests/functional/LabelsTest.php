@@ -1,9 +1,13 @@
 <?php
 
+namespace Tests\Functional;
+
+use Auth;
 use Codice\Label;
 use Codice\Note;
 use Codice\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class LabelsTest extends TestCase
 {

@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit;
+
 use Carbon\Carbon;
+use Tests\TestCase;
 
 class HelpersTest extends TestCase
 {

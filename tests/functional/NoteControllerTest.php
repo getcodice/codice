@@ -1,8 +1,12 @@
 <?php
 
+namespace Tests\Functional;
+
+use Auth;
 use Codice\Note;
 use Codice\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class NoteControllerTest extends TestCase
 {

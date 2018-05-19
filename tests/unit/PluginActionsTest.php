@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit;
+
 use Codice\Plugins\Action;
+use Tests\TestCase;
 
 class PluginActionsTest extends TestCase
 {

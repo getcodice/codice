@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit;
+
 use Codice\Support\Calendar;
+use Tests\TestCase;
 
 class CalendarTest extends TestCase
 {

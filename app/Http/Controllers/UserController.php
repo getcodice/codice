@@ -130,7 +130,7 @@ class UserController extends Controller
         $message = trans('user.settings.success');
 
         $user = Auth::user();
-        if ($request->has('password', 'password_new')) {
+        if ($request->filled('password', 'password_new')) {
             if (!Hash::check($request->input('password'), $user->password)) {
                 return Redirect::back()->with('message', trans('user.settings.password-wrong'))
                     ->with('message_type', 'danger');

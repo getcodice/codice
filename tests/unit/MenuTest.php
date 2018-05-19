@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit;
+
 use Codice\Plugins\Menu;
+use Tests\TestCase;
 
 class MenuTest extends TestCase
 {

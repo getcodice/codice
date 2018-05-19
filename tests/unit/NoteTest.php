@@ -1,8 +1,11 @@
 <?php
 
+namespace Tests\Unit;
+
 use Carbon\Carbon;
 use Codice\Note;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class NoteTest extends TestCase
 {

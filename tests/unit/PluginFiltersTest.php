@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit;
+
 use Codice\Plugins\Filter;
+use Tests\TestCase;
 
 class PluginFiltersTest extends TestCase
 {
