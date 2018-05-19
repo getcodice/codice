@@ -17,7 +17,7 @@ gulp.task('scripts', function () {
         './node_modules/jquery/dist/jquery.min.js',
         './node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js',
         './node_modules/select2/dist/js/select2.min.js',
-        './node_modules/jscroll/jquery.jscroll.min.js',
+        './node_modules/jscroll/dist/jquery.jscroll.min.js',
         './node_modules/flatpickr/dist/flatpickr.min.js',
         './node_modules/bootbox/bootbox.min.js',
         './node_modules/simplemde/dist/simplemde.min.js',
