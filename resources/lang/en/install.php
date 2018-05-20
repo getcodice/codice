@@ -8,7 +8,7 @@ return [
         'error' => 'Sorry, there was an error when creating database.',
         'report' => 'However, if you think it\'s a problem with the script itself, feel free to',
         'report-link' => 'report a bug',
-        'success' => 'Database have been created and filled in. It\'s almost done!',
+        'success' => 'Database has been created and filled in. It\'s almost done!',
         'title' => 'Database',
     ],
     'environment' => [
