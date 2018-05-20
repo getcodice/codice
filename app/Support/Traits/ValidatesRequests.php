@@ -11,6 +11,7 @@ trait ValidatesRequests
 {
     public function validate(Request $request, array $rules, $targetRoute = null, array $messages = [])
     {
+        /** @var \Illuminate\Contracts\Validation\Validator $validator */
         $validator = app(Factory::class)->make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {

@@ -14,7 +14,7 @@ class NoteController extends Controller
 {
     private $rules = [
         'content' => 'required',
-        'expires_at' => 'date',
+        'expires_at' => 'date|nullable',
     ];
 
     public function __construct()
