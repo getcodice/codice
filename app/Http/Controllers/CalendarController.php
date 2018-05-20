@@ -9,7 +9,8 @@ use Codice\Support\Calendar;
 use Lang;
 use View;
 
-class CalendarController extends Controller {
+class CalendarController extends Controller
+{
     public function __construct()
     {
         $this->middleware('auth');
