@@ -2,7 +2,12 @@
 
 return [
     'btn-next' => 'Dalej',
+    'btn-prev' => 'Wstecz',
     'database' => [
+        'check-config' => 'Użyj przycisku poniżej, aby spróbować poprawić podaną konfigurację.',
+        'error' => 'Przepraszamy, wystąpił błąd podczas tworzenia bazy danych.',
+        'report' => 'Jeśli uważasz jednak, że problem leży po stronie skryptu to możesz',
+        'report-link' => 'zgłosić błąd',
         'success' => 'Baza danych została utworzona i wypełniona. To już prawie koniec!',
         'title' => 'Baza danych',
     ],
