@@ -19,7 +19,7 @@ return [
     ],
     'expires_at' => 'Termin wykonania:',
     'labels' => [
-        'content' => 'Treść <span style="color:red">*</span>',
+        'content' => 'Treść',
         'expires_at' => 'Termin wykonania',
         'labels' => 'Etykiety',
     ],

@@ -10,6 +10,11 @@ textarea#quickform_content {
   resize: vertical;
 }
 
+.control-label-required:after {
+  color: red;
+  content: " *";
+}
+
 .quickform {
   margin-bottom: 15px;
   .form-control {

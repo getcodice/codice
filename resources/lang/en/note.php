@@ -19,7 +19,7 @@ return [
     ],
     'expires_at' => 'Expires at',
     'labels' => [
-        'content' => 'Content <span style="color:red">*</span>',
+        'content' => 'Content',
         'expires_at' => 'Expires at',
         'labels' => 'Labels',
     ],
