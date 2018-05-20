@@ -12,11 +12,11 @@
     !!}
     {!! BootForm::text(trans('install.environment.db-name'), 'db_name') !!}
     {!! BootForm::text(trans('install.environment.db-user'), 'db_user') !!}
+    {!! BootForm::password(trans('install.environment.db-password'), 'db_password') !!}
     {!!
         BootForm::text(trans('install.environment.db-prefix'), 'db_prefix', 'codice_')
             ->helpBlock(trans('install.environment.db-prefix-help'))
     !!}
-    {!! BootForm::password(trans('install.environment.db-password'), 'db_password') !!}
     </fieldset>
 
     <fieldset>
