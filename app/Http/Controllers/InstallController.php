@@ -163,7 +163,7 @@ class InstallController extends Controller
         $env .= 'DB_USERNAME=' . $request->input('db_user') . "\n";
         $env .= 'DB_PASSWORD=' . $request->input('db_password') . "\n";
         $env .= 'DB_PREFIX=' . $request->input('db_prefix') . "\n\n";
-        $env .= "CACHE_DRIVER=file\nSESSION_DRIVER=file\nQUEUE_DRIVER=sync\n\nMAIL_DRIVER=mail";
+        $env .= "CACHE_DRIVER=file\nSESSION_DRIVER=file\nQUEUE_DRIVER=sync\n\nMAIL_DRIVER=mail\n";
 
         file_put_contents(base_path('.env'), $env);
 
