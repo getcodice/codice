@@ -11,11 +11,6 @@ use View;
 
 class CalendarController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Displays calendar for current month.
      *

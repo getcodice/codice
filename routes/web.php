@@ -6,8 +6,9 @@
 |--------------------------------------------------------------------------
 |
 | This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
+| by your application. All routes placed in this file will also be protected
+| by the "auth" middleware. To add unprotected route please use the "public.php"
+| file.
 |
 */
 
@@ -25,17 +26,6 @@ Route::get('calendar/{year}-{month}-{day}', 'CalendarController@getDay')->name('
 Route::get('create', 'NoteController@getCreate')->name('note.create');
 Route::post('create', 'NoteController@postCreate');
 
-Route::get('install', 'InstallController@getWelcome');
-Route::get('install/requirements', 'InstallController@getRequirements')->name('install.requirements');
-Route::get('install/env', 'InstallController@getEnvironment')->name('install.environment');
-Route::post('install/env', 'InstallController@postEnvironment');
-Route::get('install/database/{lang}', 'InstallController@getDatabase')->name('install.database');
-Route::get('install/user', 'InstallController@getUser')->name('install.user');
-Route::post('install/user', 'InstallController@postUser');
-Route::get('install/change-language/{lang}', 'InstallController@getChangeLanguage')->name('install.language');
-
-Route::get('login', 'UserController@getLogin')->name('user.login');
-Route::post('login', 'UserController@postLogin');
 Route::get('logout', 'UserController@getLogout')->name('user.logout');
 
 Route::get('note/{id}', 'NoteController@getNote')->name('note');
@@ -59,11 +49,6 @@ Route::get('plugin/{id}/enable', 'PluginController@getEnable')->name('plugin.ena
 Route::get('plugin/{id}/install', 'PluginController@getInstall')->name('plugin.install');
 Route::get('plugin/{id}/remove', 'PluginController@getRemove')->name('plugin.remove');
 Route::get('plugin/{id}/uninstall', 'PluginController@getUninstall')->name('plugin.uninstall');
-
-Route::get('password/email', 'UserController@getEmail')->name('password.email');
-Route::post('password/email', 'UserController@postEmail');
-Route::get('password/reset/{token}', 'UserController@getReset')->name('password.reset');
-Route::post('password/reset', 'UserController@postReset');
 
 Route::get('reminders', 'ReminderController@getIndex')->name('reminders');
 Route::get('reminder/{id}/remove', 'ReminderController@getRemove')->name('reminder.remove');

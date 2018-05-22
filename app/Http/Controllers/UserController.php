@@ -19,14 +19,10 @@ class UserController extends Controller
 {
     use ResetsPasswords;
 
-    public function __construct()
-    {
-        $this->middleware('guest', ['only' => 'getLogin']);
-        $this->middleware('auth', ['except' => ['getLogin', 'postLogin', 'getEmail', 'postEmail', 'getReset', 'postReset']]);
-
-        // Set redirectPath so that user is redirected correctly after the password reset
-        $this->redirectTo = '/';
-    }
+    /**
+     * @var string Path the user will be redirected to after the password reset.
+     */
+    protected $redirectTo = '/';
 
     /**
      * Displays login form.

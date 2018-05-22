@@ -12,11 +12,6 @@ use View;
 
 class InfoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Displays "About Codice" page.
      *

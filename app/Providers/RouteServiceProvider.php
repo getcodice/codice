@@ -17,18 +17,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'Codice\Http\Controllers';
 
     /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-
-        parent::boot();
-    }
-
-    /**
      * Define the routes for the application.
      *
      * @return void
@@ -39,23 +27,43 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapPublicRoutes();
     }
 
     /**
      * Define the "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
+     * All of them are also protected with the "auth" middleware.
      *
      * @return void
      */
     protected function mapWebRoutes()
     {
         Route::group([
-            'middleware' => 'web',
+            'middleware' => ['web', 'auth'],
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/web.php');
+        });
+    }
+
+    /**
+     * Define the "public" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc,
+     * unlike "web", though, these are accessible for unathenticated
+     * users too.
+     *
+     * @return void
+     */
+    protected function mapPublicRoutes()
+    {
+        Route::group([
+            'middleware' => ['web'],
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/public.php');
         });
     }
 

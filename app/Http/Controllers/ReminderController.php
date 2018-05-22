@@ -10,11 +10,6 @@ use View;
 
 class ReminderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Displays listing of reminders.
      *

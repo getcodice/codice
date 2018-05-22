@@ -16,11 +16,6 @@ class LabelController extends Controller
         'name' => 'required',
     ];
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Displays listing of labels.
      *

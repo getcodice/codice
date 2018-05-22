@@ -17,11 +17,6 @@ class NoteController extends Controller
         'expires_at' => 'date|nullable',
     ];
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Displays listing of notes.
      *
