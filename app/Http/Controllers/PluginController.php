@@ -2,7 +2,6 @@
 
 namespace Codice\Http\Controllers;
 
-use Codice\Plugins\Manager;
 use Redirect;
 use View;
 
