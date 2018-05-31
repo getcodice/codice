@@ -21,6 +21,9 @@
         <a href="{!! route('about.updates') !!}" class="btn btn-success btn-block">
             @lang('info.updates.check')
         </a>
+        <a href="{!! config('services.website.issues') !!}" class="btn btn-default btn-block">
+            @lang('info.about.link.issues')
+        </a>
     </div>
 </div>
 </div>

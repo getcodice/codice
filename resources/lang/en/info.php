@@ -10,6 +10,7 @@ return [
         'changelog-title' => 'What\'s new?',
         'link' => [
             'documentation' => 'Documentation',
+            'issues' => 'Report a bug',
             'main' => 'Project page',
         ],
         'title' => 'About Codice',

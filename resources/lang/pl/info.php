@@ -10,6 +10,7 @@ return [
         'changelog-title' => 'Zmiany w tej wersji',
         'link' => [
             'documentation' => 'Dokumentacja',
+            'issues' => 'Zgłoś błąd',
             'main' => 'Strona projektu',
         ],
         'title' => 'O Codice',
