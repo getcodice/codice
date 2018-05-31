@@ -14,7 +14,7 @@
     </div>
 
     <div class="codice-container text-center">
-        <p>@lang('search.tip', ['docs' => 'http://codice.eu/docs/search', 'tip' => $tip])</p>
+        <p>@lang('search.tip', ['docs' => config('services.website.documentation') . '/search', 'tip' => $tip])</p>
     </div>
 @stop
 

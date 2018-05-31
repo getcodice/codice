@@ -12,10 +12,10 @@
         {!! $changelog !!}
     </div>
     <div class="col-md-4">
-        <a href="https://codice.eu" class="btn btn-default btn-block">
+        <a href="{!! config('services.website.url') !!}" class="btn btn-default btn-block">
             @lang('info.about.link.main')
         </a>
-        <a href="https://codice.eu/docs" class="btn btn-default btn-block">
+        <a href="{!! config('services.website.documentation') !!}" class="btn btn-default btn-block">
             @lang('info.about.link.documentation')
         </a>
         <a href="{!! route('about.updates') !!}" class="btn btn-success btn-block">

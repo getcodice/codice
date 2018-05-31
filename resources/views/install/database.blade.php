@@ -8,7 +8,7 @@
         <p>@lang('install.database.check-config')</p>
         <p>
             @lang('install.database.report')
-            <a href="https://github.com/getcodice/codice/issues" class="alert-link">
+            <a href="{!! config('services.website.issues') !!}" class="alert-link">
                 @lang('install.database.report-link')
             </a>.
         </p>

@@ -44,7 +44,7 @@ class InfoController extends Controller
      */
     public function getUpdates()
     {
-        $releaseData = @file_get_contents('https://codice.eu/api/v1/releases/latest');
+        $releaseData = @file_get_contents(config('services.website.api') . '/releases/latest');
         $version = @json_decode($releaseData, true)['version'];
 
         if (!$version) {
@@ -58,7 +58,10 @@ class InfoController extends Controller
 
         if (version_compare($version, (new Codice)->getVersion(), 'gt')) {
             return Redirect::route('about')->with([
-                'message' => trans('info.updates.available', ['version' => $version]),
+                'message' => trans('info.updates.available', [
+                    'url' => config('services.website.url'),
+                    'version' => $version,
+                ]),
                 'message_type' => 'warning',
                 'message_raw' => true,
             ]);
@@ -93,7 +96,7 @@ class InfoController extends Controller
     }
 
     /**
-     * Fetch changelog from codice.eu API and parse it.
+     * Fetch changelog from the official Codice API and parse it.
      *
      * @param  string $version Version to obtain changelog for
      * @return string
@@ -106,7 +109,7 @@ class InfoController extends Controller
             return trans('info.about.changelog-dev');
         }
 
-        $releaseData = @file_get_contents("https://codice.eu/api/v1/releases/v$version");
+        $releaseData = @file_get_contents(config('services.website.api') . "/releases/v$version");
         $changelog = @json_decode($releaseData, true)['changelog'];
 
         if (!$changelog) {

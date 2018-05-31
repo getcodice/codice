@@ -35,4 +35,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'website' => [
+        'api' => 'https://codice.eu/api/v1',
+        'documentation' => 'https://codice.eu/docs',
+        'issues' => 'https://github.com/getcodice/codice/issues',
+        'url' => 'https://codice.eu',
+    ],
+
 ];
