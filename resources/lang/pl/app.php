@@ -5,17 +5,6 @@ return [
     'datetime' => 'd.m.Y H:i',
     // Oczekiwany format daty (wyświetlany użytkownikowi)
     'datetime-human' => 'DD.MM.YYYY HH:MM',
-    'error' => [
-        'back-to-index' => 'Wróć na stronę główną',
-        'http' => [
-            '403' => 'Dostęp zabroniony',
-            '404' => 'Nie znaleziono strony',
-            '405' => 'Niedozwolona metoda',
-            '500' => 'Błąd serwera',
-            '503' => 'Wracamy niedługo',
-        ],
-        'token-mismatch' => 'Przepraszamy, Twoja sesja wygasła. Spróbuj wysłać formularz ponownie.',
-    ],
     'form' => [
         'no' => 'Nie',
         'yes' => 'Tak',
