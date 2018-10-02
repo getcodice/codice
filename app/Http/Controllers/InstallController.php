@@ -25,10 +25,6 @@ class InstallController extends Controller
             return Redirect::route('index')->send();
         }
 
-        if (Session::has('install-lang')) {
-            App::setLocale(Session::get('install-lang'));
-        }
-
         return true;
     }
 

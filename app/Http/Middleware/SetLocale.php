@@ -6,6 +6,7 @@ use App;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 class SetLocale
 {
@@ -36,15 +37,25 @@ class SetLocale
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-            $locale = $this->auth->user()['options']['language'];
-        } else {
-            $locale = config('app.locale');
-        }
+        $locale = $this->determineLocale($request);
 
         App::setLocale($locale);
         Carbon::setLocale($locale);
 
         return $next($request);
+    }
+
+    protected function determineLocale(Request $request)
+    {
+        if ($this->auth->check()) {
+            return $this->auth->user()['options']['language'];
+        }
+
+        // A bit naive check but should be enough for its purpose
+        if (session()->has('install-lang') && str_contains($request->path(), 'install')) {
+            return session()->get('install-lang');
+        }
+
+        return config('app.locale');
     }
 }
