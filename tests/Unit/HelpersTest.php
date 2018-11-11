@@ -12,7 +12,8 @@ class HelpersTest extends TestCase
      *
      * @return array
      */
-    public function padZeroDataProvider() {
+    public function padZeroDataProvider()
+    {
         return [
             [0, '00'],
             [1, '01'],
@@ -25,11 +26,6 @@ class HelpersTest extends TestCase
         ];
     }
 
-    /**
-     * Test calendar_class() helper.
-     *
-     * @return void
-     */
     public function testCalendarClassHelper()
     {
         $dayWithNoEvents = Carbon::createFromDate(2015, 12, 24);
@@ -50,11 +46,6 @@ class HelpersTest extends TestCase
         $this->assertEquals('created expiring', calendar_class($dayWithCreatedAndExpiringEvent, 12, $events));
     }
 
-    /**
-     * Test helper for fontawesome icons.
-     *
-     * @return void
-     */
     public function testIconHelper()
     {
         $this->assertEquals('<span class="fa fa-foo"></span>', icon('foo'));
@@ -65,8 +56,8 @@ class HelpersTest extends TestCase
      * Test pad_zero() helper.
      *
      * @dataProvider padZeroDataProvider
-     * @param $input Input for the function
-     * @param $excepted Excepted output
+     * @param $input integer Input for the function
+     * @param $excepted string Excepted output
      * @return void
      */
     public function testPadZeroHelper($input, $excepted)
