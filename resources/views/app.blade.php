@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" href="{!! asset('assets/css/codice.css') !!}">
+    <link rel="stylesheet" href="{!! asset_versioned('assets/css/codice.css') !!}">
     <?php
     /**
      * Before closing `</head>` tag
@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{!! route('index') !!}"><img alt="Codice" src="{!! asset('assets/images/brand.png') !!}"></a>
+                <a class="navbar-brand" href="{!! route('index') !!}"><img alt="Codice" src="{!! asset_versioned('assets/images/brand.png') !!}"></a>
             </div>
             <div class="collapse navbar-collapse" id="navigation">
                 <ul class="nav navbar-nav">
@@ -89,8 +89,8 @@
         @hook('template.content.after')
     </main>
 
-    <script src="{!! asset('assets/js/locales/' . Auth::user()->options['language'] . '.js') !!}"></script>
-    <script src="{!! asset('assets/js/codice.js') !!}"></script>
+    <script src="{!! asset_versioned('assets/js/locales/' . Auth::user()->options['language'] . '.js') !!}"></script>
+    <script src="{!! asset_versioned('assets/js/codice.js') !!}"></script>
     @yield('footer')
     <?php
     /**

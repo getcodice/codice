@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" href="{!! asset('assets/css/codice.css') !!}">
+    <link rel="stylesheet" href="{!! asset_versioned('assets/css/codice.css') !!}">
 </head>
 <body id="login">
 <main class="container">
@@ -15,7 +15,7 @@
     @yield('content')
 </main>
 
-<script src="{!! asset('assets/js/locales/' . App::getLocale() . '.js') !!}"></script>
-<script src="{!! asset('assets/js/codice.js') !!}"></script>
+<script src="{!! asset_versioned('assets/js/locales/' . App::getLocale() . '.js') !!}"></script>
+<script src="{!! asset_versioned('assets/js/codice.js') !!}"></script>
 </body>
 </html>

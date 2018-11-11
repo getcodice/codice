@@ -1,8 +1,20 @@
 <?php
 
 use Carbon\Carbon;
+use Codice\Core\Codice;
 use Codice\Label;
 use Illuminate\Support\HtmlString;
+
+function asset_versioned($path, $secure = null)
+{
+    $version = (new Codice)->getVersion();
+
+    parse_str(parse_url($path, PHP_URL_QUERY), $originalQueryString);
+    $queryString = http_build_query(array_merge(['version' => $version], $originalQueryString));
+    $versionedPath = str_before($path, '?') . '?' . $queryString;
+
+    return app('url')->asset($versionedPath, $secure);
+}
 
 function boolean_select_options()
 {

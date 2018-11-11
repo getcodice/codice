@@ -5,7 +5,7 @@
     <title>HTTP {{ $code }} • Codice</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;subset=latin,latin-ext">
-    <link rel="stylesheet" href="{!! asset('assets/css/codice.css') !!}">
+    <link rel="stylesheet" href="{!! asset_versioned('assets/css/codice.css') !!}">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -17,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('index') }}"><img alt="Codice" src="{!! asset('assets/images/brand.png') !!}"></a>
+            <a class="navbar-brand" href="{{ route('index') }}"><img alt="Codice" src="{!! asset_versioned('assets/images/brand.png') !!}"></a>
         </div>
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="nav navbar-nav">
