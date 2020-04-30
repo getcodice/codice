@@ -33,5 +33,26 @@ If you are more advanced user, read [installation chapter](http://codice.eu/docs
 the docs, so that you can build Codice from sources and install it step by step, having
 full control over the process.
 
+## Development with Docker
+First, get a working `.env` file (probably using SQLite, server-ish RDMBS not included).
+
+Build the container:
+
+```bash
+docker build -t codice .
+```
+
+Start it, detached (so you don't need to open a second terminal/console to stop it later):
+
+```bash
+docker run --publish 8000:8000 --name codice --detach codice
+```
+
+And navigate to http://localhost:8000/. After you finish work, shutdown the container:
+
+```bash
+docker stop codice
+```
+
 ## License
 The project is licensed under MIT, check out [LICENSE](LICENSE.md) for more details.
